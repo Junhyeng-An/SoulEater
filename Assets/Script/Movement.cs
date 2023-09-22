@@ -4,18 +4,54 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public GameObject sword;
     [SerializeField]
     private float speed = 5.0f; // 이동속도
     private float jumpForce = 8.0f; // 점프 파워
     private Rigidbody2D rigid2D;
-
+    private Sword sword;
+    [HideInInspector]
+    public bool isThrowing = false;
     [HideInInspector]
     public bool isLongJump = false; // 낮은 점프, 높은 점프 체크
 
     private void Awake()
     {
         rigid2D = GetComponent<Rigidbody2D>();
+        sword  = GetComponent<Sword>();
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            isThrowing = true;
+            sword.Throwing();
+        }
+
+        if (isThrowing == false)
+        {
+            // left or a = -1 / right or d = 1
+            float x = Input.GetAxisRaw("Horizontal");
+            // 좌우 이동 방향 제어
+            Move(x);
+
+            // 플레이어 점프 (스페이스 키를 누르면 점프)
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Jump();
+            }
+
+            // 스페이스 키를 누르고 있으면 isLongJump = true
+            if (Input.GetKey(KeyCode.Space))
+            {
+                isLongJump = true;
+            }
+
+            // 스페이스 키를 때면 isLongJump = false
+            else if (Input.GetKeyUp(KeyCode.Space))
+            {
+                isLongJump = false;
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -41,17 +77,5 @@ public class Movement : MonoBehaviour
     {
         // x축 이동은 x * speed로, y축 이동은 기존의 속력 값 (현재는 중력)
         rigid2D.velocity = new Vector2(x * speed, rigid2D.velocity.y);
-    }
-    public void Throwing()
-    {
-        //float angle = sword.GetComponent<Sword>().angle2;
-        rigid2D.velocity = Vector2.up * jumpForce;
-        //rigid2D.velocity = Vector2.right * jumpForce;
-        //rigid2D.AddForce(new Vector2(Mathf.Cos(angle)*10, Mathf.Sin(angle)*10));
-        //Debug.Log(new Vector2(Mathf.Cos(angle) * 10, Mathf.Sin(angle) * 10));
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        GetComponent<PlayerController>().isThrowing = false;
     }
 }

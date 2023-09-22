@@ -1,43 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
-public class Sword : MonoBehaviour
+public class Sword_V2 : MonoBehaviour
 {
+    public float force = 5.0f;
     float angle;
-    float ThrowForce = 5.0f;
-    public GameObject target;
 
     [HideInInspector]
     public float angle2;
-
+    bool isThrowing = false;
     Vector2 mouse;
-    private Rigidbody2D rigid2D;
-    // Start is called before the first frame update
-    void Awake()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        if (target.GetComponent<Movement>().isThrowing == true)
+        if (!isThrowing)
         {
-            transform.position = target.transform.position;
-            transform.Rotate(0, 0, 10);
+            GameObject target = GameObject.FindGameObjectWithTag("Player");
+            //GameObject player = GameObject.FindGameObjectWithTag("Player");
+            //transform.position = player.transform.position;
 
-            GetComponent<SpriteRenderer>().color = Color.white;
-        }
-        else
-        {
             mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             angle = Mathf.Atan2(mouse.y - target.transform.position.y, mouse.x - target.transform.position.x) * Mathf.Rad2Deg;
             this.transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
-
             Vector2 v2 = new Vector2(mouse.y - target.transform.position.y, mouse.x - target.transform.position.x);
             angle2 = Mathf.Atan2(v2.x, v2.y);
-
             transform.position = new Vector2(target.transform.position.x + Mathf.Cos(angle2), target.transform.position.y + Mathf.Sin(angle2));
 
             if (Input.GetMouseButton(0))
@@ -61,13 +46,43 @@ public class Sword : MonoBehaviour
                 // 마우스 오른쪽 버튼을 뗄 때의 처리
             }
         }
+        if (Input.GetKeyDown("q"))
+        {
+            isThrowing = true;
+            Throwing();
+        }
     }
-    public void Throwing()
+
+    private void Throwing()
     {
-        //float angle = sword.GetComponent<Sword>().angle2;
-        rigid2D.velocity = Vector2.up * ThrowForce;
-        //rigid2D.velocity = Vector2.right * jumpForce;
-        //rigid2D.AddForce(new Vector2(Mathf.Cos(angle)*10, Mathf.Sin(angle)*10));
-        //Debug.Log(new Vector2(Mathf.Cos(angle) * 10, Mathf.Sin(angle) * 10));
+        // 마우스 포인터의 위치를 월드 좌표로 가져옵니다.
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        // 현재 오브젝트의 위치를 가져옵니다.
+        Vector3 currentPosition = transform.position;
+
+        // 마우스 포인터 방향 벡터를 계산합니다.
+        Vector3 direction = mousePosition - currentPosition;
+
+        // 힘의 크기를 조절합니다.
+        float forceMagnitude = 50.0f; // 힘의 크기를 원하는 값으로 조절하세요.
+
+        // 방향 벡터를 정규화하고 힘을 가할 Rigidbody2D 컴포넌트를 가져옵니다.
+        direction.Normalize();
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+
+        // 힘을 가합니다. 방향 벡터의 크기에 forceMagnitude를 곱하여 힘을 조절합니다.
+        rb.AddForce(direction * forceMagnitude, ForceMode2D.Impulse);
+
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy") 
+        {
+         
+        }
+    }
+
 }
+

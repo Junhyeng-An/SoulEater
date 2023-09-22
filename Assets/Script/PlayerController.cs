@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Movement movement;
-
+    Transform parentTransform = null;
     [HideInInspector]
     public bool isThrowing = false;
 
@@ -16,11 +16,14 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (parentTransform !=null)
+        {
+            transform.position = parentTransform.position;
+        }
         if (Input.GetKeyDown(KeyCode.Q))
         {
             isThrowing = true;
 
-            movement.Throwing();
         }
 
         if (isThrowing == false)
@@ -48,5 +51,6 @@ public class PlayerController : MonoBehaviour
                 movement.isLongJump = false;
             }
         }
+
     }
 }

@@ -7,7 +7,7 @@ public class Sword_V2 : MonoBehaviour
     public float force = 25.0f;
     float angle;
     Rigidbody2D rb;
-    GameObject P; //ÇÃ·¹ÀÌ¾î
+    GameObject P; //í”Œë ˆì´ì–´
     [HideInInspector]
     public float angle2;
     bool isThrowing = false;
@@ -19,12 +19,12 @@ public class Sword_V2 : MonoBehaviour
     }
     void Update()
     {
-        P = GameObject.FindWithTag("Player"); //ÇÃ·¹ÀÌ¾î¸¦ Ã£À½
+        P = GameObject.FindWithTag("Player"); //í”Œë ˆì´ì–´ë¥¼ ì°¾ìŒ
         if (!isThrowing)
         {
             GameObject target = GameObject.FindGameObjectWithTag("Player");
 
-            //ÇÃ·¹ÀÌ¾î ÁÖÀ§·Î Ä®À» µ¹¸®´Â ÄÚµå ////////////////////////
+            //í”Œë ˆì´ì–´ ì£¼ìœ„ë¡œ ì¹¼ì„ ëŒë¦¬ëŠ” ì½”ë“œ ////////////////////////
 
             mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             angle = Mathf.Atan2(mouse.y - target.transform.position.y, mouse.x - target.transform.position.x) * Mathf.Rad2Deg;
@@ -39,30 +39,30 @@ public class Sword_V2 : MonoBehaviour
             if (Input.GetMouseButton(0))
             {
                 GetComponent<SpriteRenderer>().color = Color.red;
-                // ¸¶¿ì½º ¿ŞÂÊ ¹öÆ°À» ´©¸£°í ÀÖ´Â µµÁßÀÇ Ã³¸®
+                // ë§ˆìš°ìŠ¤ ì™¼ìª½ ë²„íŠ¼ì„ ëˆ„ë¥´ê³  ìˆëŠ” ë„ì¤‘ì˜ ì²˜ë¦¬
             }
             if (Input.GetMouseButtonUp(0))
             {
                 GetComponent<SpriteRenderer>().color = Color.white;
-                // ¸¶¿ì½º ¿ŞÂÊ ¹öÆ°À» ¶¿ ¶§ÀÇ Ã³¸®
+                // ë§ˆìš°ìŠ¤ ì™¼ìª½ ë²„íŠ¼ì„ ë—„ ë•Œì˜ ì²˜ë¦¬
             }
             if (Input.GetMouseButton(1))
             {
                 GetComponent<SpriteRenderer>().color = Color.blue;
-                // ¸¶¿ì½º ¿À¸¥ÂÊ ¹öÆ°À» ´©¸£°í ÀÖ´Â µµÁßÀÇ Ã³¸®
+                // ë§ˆìš°ìŠ¤ ì˜¤ë¥¸ìª½ ë²„íŠ¼ì„ ëˆ„ë¥´ê³  ìˆëŠ” ë„ì¤‘ì˜ ì²˜ë¦¬
             }
             if (Input.GetMouseButtonUp(1))
             {
                 GetComponent<SpriteRenderer>().color = Color.white;
-                // ¸¶¿ì½º ¿À¸¥ÂÊ ¹öÆ°À» ¶¿ ¶§ÀÇ Ã³¸®
+                // ë§ˆìš°ìŠ¤ ì˜¤ë¥¸ìª½ ë²„íŠ¼ì„ ë—„ ë•Œì˜ ì²˜ë¦¬
             }
            
         }
 
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition); //¸¶¿ì½º À§Ä¡¸¦ °¡Á®¿È
-        mousePosition.z = 0f; // Z ÁÂÇ¥¸¦ 0À¸·Î ¼³Á¤ (2D È¯°æ)
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition); //ë§ˆìš°ìŠ¤ ìœ„ì¹˜ë¥¼ ê°€ì ¸ì˜´
+        mousePosition.z = 0f; // Z ì¢Œí‘œë¥¼ 0ìœ¼ë¡œ ì„¤ì • (2D í™˜ê²½)
 
-        // ÇÃ·¹ÀÌ¾îÀÇ ÇöÀç À§Ä¡
+        // í”Œë ˆì´ì–´ì˜ í˜„ì¬ ìœ„ì¹˜
         Vector3 playerPosition = transform.position;
 
         if (Input.GetKeyDown("q") && isThrowing ==false)
@@ -70,22 +70,22 @@ public class Sword_V2 : MonoBehaviour
             isThrowing = true;
             if (mousePosition.x > playerPosition.x)
             {
-                // ¸¶¿ì½º°¡ ¿À¸¥ÂÊ¿¡ ÀÖÀ» ¶§ Ä®À» ¿À¸¥ÂÊÀ¸·Î ³¯¸°´Ù.
+                // ë§ˆìš°ìŠ¤ê°€ ì˜¤ë¥¸ìª½ì— ìˆì„ ë•Œ ì¹¼ì„ ì˜¤ë¥¸ìª½ìœ¼ë¡œ ë‚ ë¦°ë‹¤.
                 Throwing(Vector2.right);
             }
             else
             {
-                // ¸¶¿ì½º°¡ ¿ŞÂÊ¿¡ ÀÖÀ» ¶§ Ä®À» ¿ŞÂÊÀ¸·Î ³¯¸°´Ù.
+                // ë§ˆìš°ìŠ¤ê°€ ì™¼ìª½ì— ìˆì„ ë•Œ ì¹¼ì„ ì™¼ìª½ìœ¼ë¡œ ë‚ ë¦°ë‹¤.
                 Throwing(Vector2.left);
             }
         }
         if (isThrowing == true) 
         {
-            throwStartTime += Time.deltaTime; // ½Ã°£À» Ãß°¡ÇÕ´Ï´Ù.
+            throwStartTime += Time.deltaTime; // ì‹œê°„ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
             Debug.Log(throwStartTime);
-            if (throwStartTime >= 2.0f) //´øÁö°í 3ÃÊµÚ¿¡ ´Ù½Ã ÇÃ·¹ÀÌ¾î¿¡°Ô µ¹¾Æ¿È
+            if (throwStartTime >= 2.0f) //ë˜ì§€ê³  3ì´ˆë’¤ì— ë‹¤ì‹œ í”Œë ˆì´ì–´ì—ê²Œ ëŒì•„ì˜´
             {
-                Debug.Log("µ¹¾Æ¿È");
+                Debug.Log("ëŒì•„ì˜´");
                 isThrowing = false;
                 throwStartTime = 0;
             }
@@ -107,7 +107,7 @@ public class Sword_V2 : MonoBehaviour
             P.layer = 0;
             collision.gameObject.tag = "Player";
             collision.gameObject.layer = 6;
-            Debug.Log("º¯°æµÊ");
+            Debug.Log("ë³€ê²½ë¨");
             throwStartTime = 0;
         }
     }

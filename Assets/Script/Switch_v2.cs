@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Switch_v2: MonoBehaviour
 {
-    private bool isPlayer; //ÇÃ·¹ÀÌ¾îÀÇ ¿©ºÎ
-    public float speed = 5; //ÀÌµ¿¼Óµµ
+    private bool isPlayer; //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public float speed = 5; //ï¿½Ìµï¿½ï¿½Óµï¿½
     public float jumpforce = 20.0f;
 
-    public Color playerColor = Color.blue; // ÇÃ·¹ÀÌ¾î »ö»ó
-    public Color nonPlayerColor = Color.red; // ÇÃ·¹ÀÌ¾î°¡ ¾Æ´Ñ °æ¿ìÀÇ »ö»ó
+    public Color playerColor = Color.blue; // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public Color nonPlayerColor = Color.red; // ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     private SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
 
@@ -26,7 +26,7 @@ public class Switch_v2: MonoBehaviour
         {
             float horizontalInput = Input.GetAxis("Horizontal");
             Vector2 movement = new Vector2(horizontalInput, 0);
-            rb.velocity = new Vector2(movement.x * speed, rb.velocity.y); // x ¼Óµµ´Â ¿òÁ÷ÀÓ¿¡ µû¶ó º¯°æÇÏ°í, y ¼Óµµ´Â ±×´ë·Î À¯Áö
+            rb.velocity = new Vector2(movement.x * speed, rb.velocity.y); // x ï¿½Óµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ó¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½, y ï¿½Óµï¿½ï¿½ï¿½ ï¿½×´ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
             spriteRenderer.color = playerColor;
 
@@ -48,14 +48,5 @@ public class Switch_v2: MonoBehaviour
         //}
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Sword") || collision.gameObject.CompareTag("Player"))
-        {
-            // Ãæµ¹ ´ë»óÀÇ ÅÂ±×µµ º¯°æÇÕ´Ï´Ù.
-            collision.gameObject.tag = isPlayer ? "Player" : "Enemy";
-            gameObject.tag = isPlayer ? "Enemy" : "Player";
-            Debug.Log("º¯°æµÊ");
-        }
-    }
+
 }

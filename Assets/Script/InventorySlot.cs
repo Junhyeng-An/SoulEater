@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,7 +25,17 @@ public class InventorySlot : MonoBehaviour ,IPointerUpHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        bool isUse = item.Use();
+        bool isUse = false;
+        try
+        {
+             isUse = item.Use();
+        }
+        catch (NullReferenceException e)
+        {
+            Debug.Log("Error but Okay");
+        }
+        
+        
         if (isUse)
         {
             Inventory.instance.RemoveItem(slotnum);

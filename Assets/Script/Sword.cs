@@ -4,70 +4,52 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour
 {
-    float angle;
-    float ThrowForce = 5.0f;
-    public GameObject target;
-
     [HideInInspector]
-    public float angle2;
+    public float angle;
+
+    GameObject target;
 
     Vector2 mouse;
-    private Rigidbody2D rigid2D;
-    // Start is called before the first frame update
+
     void Awake()
     {
-
+        target = transform.parent.gameObject;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (target.GetComponent<Movement>().isThrowing == true)
+        if (target.GetComponent<PlayerController>().isThrowing == true)
         {
+            Time.timeScale = 0.25f;
             transform.position = target.transform.position;
-            transform.Rotate(0, 0, 10);
+            transform.Rotate(0, 0, 500 * Time.deltaTime);
 
             GetComponent<SpriteRenderer>().color = Color.white;
         }
-        else
+        else if (target.GetComponent<PlayerController>().isThrowing == false)
         {
             mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            angle = Mathf.Atan2(mouse.y - target.transform.position.y, mouse.x - target.transform.position.x) * Mathf.Rad2Deg;
-            this.transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+            angle = Mathf.Atan2(mouse.y - target.transform.position.y, mouse.x - target.transform.position.x);
+            transform.rotation = Quaternion.AngleAxis(angle * Mathf.Rad2Deg, Vector3.forward); // 마우스방향 바라보기
 
-            Vector2 v2 = new Vector2(mouse.y - target.transform.position.y, mouse.x - target.transform.position.x);
-            angle2 = Mathf.Atan2(v2.x, v2.y);
+            transform.position = new Vector2(target.transform.position.x + Mathf.Cos(angle), target.transform.position.y + Mathf.Sin(angle)); // 마우스 위치에따른 검 위치
 
-            transform.position = new Vector2(target.transform.position.x + Mathf.Cos(angle2), target.transform.position.y + Mathf.Sin(angle2));
-
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButtonDown(0)) //마우스 좌클릭 시
             {
                 GetComponent<SpriteRenderer>().color = Color.red;
-                // 마우스 왼쪽 버튼을 누르고 있는 도중의 처리
             }
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(0)) // 마우스 좌클릭 뗄 시
             {
                 GetComponent<SpriteRenderer>().color = Color.white;
-                // 마우스 왼쪽 버튼을 뗄 때의 처리
             }
-            if (Input.GetMouseButton(1))
+            if (Input.GetMouseButtonDown(1)) // 마우스 우클릭 시
             {
                 GetComponent<SpriteRenderer>().color = Color.blue;
-                // 마우스 오른쪽 버튼을 누르고 있는 도중의 처리
             }
-            if (Input.GetMouseButtonUp(1))
+            if (Input.GetMouseButtonUp(1)) // 마우스 우클리 뗄 시
             {
                 GetComponent<SpriteRenderer>().color = Color.white;
-                // 마우스 오른쪽 버튼을 뗄 때의 처리
             }
         }
-    }
-    public void Throwing()
-    {
-        //float angle = sword.GetComponent<Sword>().angle2;
-        rigid2D.velocity = Vector2.up * ThrowForce;
-        //rigid2D.velocity = Vector2.right * jumpForce;
-        //rigid2D.AddForce(new Vector2(Mathf.Cos(angle)*10, Mathf.Sin(angle)*10));
-        //Debug.Log(new Vector2(Mathf.Cos(angle) * 10, Mathf.Sin(angle) * 10));
     }
 }

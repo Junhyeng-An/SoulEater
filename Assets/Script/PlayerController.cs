@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Movement movement;
-    Transform parentTransform = null;
+
     [HideInInspector]
     public bool isThrowing = false;
 
@@ -13,21 +13,18 @@ public class PlayerController : MonoBehaviour
     {
         movement = GetComponent<Movement>();
     }
-
     void Update()
     {
-        if (parentTransform !=null)
-        {
-            transform.position = parentTransform.position;
-        }
         if (Input.GetKeyDown(KeyCode.Q))
         {
             isThrowing = true;
 
+            movement.Throwing();
         }
 
         if (isThrowing == false)
         {
+            //GetComponent<CircleCollider2D>().isTrigger = false;
             // left or a = -1 / right or d = 1
             float x = Input.GetAxisRaw("Horizontal");
             // 좌우 이동 방향 제어
@@ -51,6 +48,9 @@ public class PlayerController : MonoBehaviour
                 movement.isLongJump = false;
             }
         }
-
+        else
+        {
+            //GetComponent<CircleCollider2D>().isTrigger = true;
+        }
     }
 }

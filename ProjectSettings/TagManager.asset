@@ -18,17 +18,17 @@ TagManager:
   - Sword
   - Floor
   - 
+  - Player
+  - Sword
+  - Enemy
+  - Controlled
+  - Disarm
   - 
   - 
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Floor
   - 
   - 
   - 

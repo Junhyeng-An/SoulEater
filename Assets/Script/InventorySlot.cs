@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System;
 
 public class InventorySlot : MonoBehaviour ,IPointerUpHandler
 {
@@ -24,7 +25,14 @@ public class InventorySlot : MonoBehaviour ,IPointerUpHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        bool isUse = item.Use();
+        bool isUse = false;
+        try
+        {
+            isUse = item.Use();
+        } catch (NullReferenceException e)
+        { }
+        
+
         if (isUse)
         {
             Inventory.instance.RemoveItem(slotnum);

@@ -20,7 +20,7 @@ public class Sword : MonoBehaviour
     {
         if (target.GetComponent<PlayerController>().isThrowing == true)
         {
-            Time.timeScale = 0.25f;
+            //Time.timeScale = 0.25f;
             transform.position = target.transform.position;
             transform.Rotate(0, 0, 500 * Time.deltaTime);
 

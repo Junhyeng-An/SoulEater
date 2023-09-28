@@ -13,6 +13,7 @@ public class InventorySlot : MonoBehaviour, IPointerUpHandler, IPointerEnterHand
     public Item item;
     public Image itemIcon;
     public TextMeshProUGUI TM_Pro;
+    public Image Image_Info;
     public void UpdateSlotUI()
     {
         itemIcon.sprite = item.itemImage;
@@ -47,11 +48,13 @@ public class InventorySlot : MonoBehaviour, IPointerUpHandler, IPointerEnterHand
 
         try
         {
+   
             TM_Pro.text = item.Script();
+            Image_Info.gameObject.SetActive(true);
         }
         catch (NullReferenceException e)
         {
-            TM_Pro.text = "";
+            Debug.Log("Null");
         }
     }
     

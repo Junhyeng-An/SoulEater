@@ -147,4 +147,5 @@ MonoBehaviour:
     itemType: 0
     itemName: 
     itemImage: {fileID: 0}
+    effect: []
   image: {fileID: 1654114041524309001}

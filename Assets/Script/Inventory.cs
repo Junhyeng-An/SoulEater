@@ -15,6 +15,7 @@ public class Inventory : MonoBehaviour
          Destroy(gameObject);
          return;
       }
+      
       instance = this;
    }
    #endregion
@@ -29,6 +30,10 @@ public class Inventory : MonoBehaviour
    
    private int slotCnt;
 
+   void Start()
+   {
+      SlotCnt = 4;
+   }
    public int SlotCnt
    {
       get => slotCnt;
@@ -38,11 +43,7 @@ public class Inventory : MonoBehaviour
          onSlotCountChange.Invoke(slotCnt);
       }
    }
-
-   void Start()
-   {
-      SlotCnt = 4;
-   }
+   
 
    public bool AddItem(Item _item)
    {

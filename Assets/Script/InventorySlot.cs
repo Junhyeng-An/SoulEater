@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System;
+using TMPro;
 using Unity.VisualScripting;
 
 public class InventorySlot : MonoBehaviour, IPointerUpHandler, IPointerEnterHandler
@@ -11,7 +12,7 @@ public class InventorySlot : MonoBehaviour, IPointerUpHandler, IPointerEnterHand
     public int slotnum;
     public Item item;
     public Image itemIcon;
-
+    public TextMeshProUGUI TM_Pro;
     public void UpdateSlotUI()
     {
         itemIcon.sprite = item.itemImage;
@@ -46,11 +47,11 @@ public class InventorySlot : MonoBehaviour, IPointerUpHandler, IPointerEnterHand
 
         try
         {
-            Debug.Log(item.Script());
+            TM_Pro.text = item.Script();
         }
         catch (NullReferenceException e)
         {
-            Debug.Log("false");
+            TM_Pro.text = "";
         }
     }
     

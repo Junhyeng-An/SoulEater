@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System;
+using Unity.VisualScripting;
 
-public class InventorySlot : MonoBehaviour ,IPointerUpHandler
+public class InventorySlot : MonoBehaviour, IPointerUpHandler, IPointerEnterHandler
 {
     public int slotnum;
     public Item item;
@@ -38,6 +39,19 @@ public class InventorySlot : MonoBehaviour ,IPointerUpHandler
             Inventory.instance.RemoveItem(slotnum);
         }
         
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+
+        try
+        {
+            Debug.Log(item.Script());
+        }
+        catch (NullReferenceException e)
+        {
+            Debug.Log("false");
+        }
     }
     
 }

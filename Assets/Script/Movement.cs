@@ -6,9 +6,9 @@ public class Movement : MonoBehaviour
 {
     public GameObject sword;
     [SerializeField]
-    private float speed = 5.0f; // ÀÌµ¿¼Óµµ
-    private float jumpForce = 8.0f; // Á¡ÇÁ ÆÄ¿ö
-    private float throwForce = 6.0f; // ´øÁö±â ÆÄ¿ö
+    private float speed = 5.0f; // ï¿½Ìµï¿½ï¿½Óµï¿½
+    private float jumpForce = 8.0f; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ä¿ï¿½
+    private float throwForce = 6.0f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ä¿ï¿½
     private Rigidbody2D rigid;
 
     private void Awake()
@@ -22,13 +22,13 @@ public class Movement : MonoBehaviour
     }
     public void Jump()
     {
-        // jumpForceÀÇ Å©±â¸¸Å­ À­ÂÊ ¹æÇâÀ¸·Î ¼Ó·Â ¼³Á¤
+        // jumpForceï¿½ï¿½ Å©ï¿½â¸¸Å­ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ó·ï¿½ ï¿½ï¿½ï¿½ï¿½
         rigid.velocity = Vector2.up * jumpForce;
     }
 
     public void Move(float x)
     {
-        // xÃà ÀÌµ¿Àº x * speed·Î, yÃà ÀÌµ¿Àº ±âÁ¸ÀÇ ¼Ó·Â °ª (ÇöÀç´Â Áß·Â)
+        // xï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ x * speedï¿½ï¿½, yï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ó·ï¿½ ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß·ï¿½)
         rigid.velocity = new Vector2(x * speed, rigid.velocity.y);
     }
     public void Throwing()
@@ -45,12 +45,8 @@ public class Movement : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.layer == 12) // ´øÁö°í Àû°ú Ãæµ¹ ½Ã
-        {
-            GetComponent<PlayerController>().isThrowing = false;
-            GetComponent<CircleCollider2D>().isTrigger = false;
-        }
-        if (col.gameObject.layer == 20) // ´øÁö°í ¹Ù´Ú°ú Ãæµ¹ ½Ã
+        
+        if (col.gameObject.layer == 20) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù´Ú°ï¿½ ï¿½æµ¹ ï¿½ï¿½
         {
             GetComponent<PlayerController>().isThrowing = false;
             GetComponent<CircleCollider2D>().isTrigger = false;

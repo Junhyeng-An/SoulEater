@@ -136,7 +136,8 @@ GameObject:
   - component: {fileID: 12584355}
   - component: {fileID: 12584354}
   - component: {fileID: 12584353}
-  m_Layer: 14
+  - component: {fileID: 12584358}
+  m_Layer: 12
   m_Name: Enemy_A
   m_TagString: Disarmed
   m_Icon: {fileID: 0}
@@ -286,6 +287,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &12584358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 12584352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63c7caf6f9a306e42813cd97b2e88246, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurHP: 100
+  MaxHP: 100
 --- !u!1 &38471630
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,6 +726,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isThrowing: 0
+  readyThrow: 0
 --- !u!114 &339440862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1675,6 +1691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f69db633c03fff4ebad73f8f577ca2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Item_Gen: 0
   itemDB:
   - itemType: 0
     itemName: knife
@@ -1779,7 +1796,7 @@ GameObject:
   - component: {fileID: 722905064}
   - component: {fileID: 722905063}
   - component: {fileID: 722905068}
-  m_Layer: 14
+  m_Layer: 12
   m_Name: Enemy_B
   m_TagString: Disarmed
   m_Icon: {fileID: 0}

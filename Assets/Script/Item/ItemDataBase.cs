@@ -18,12 +18,12 @@ public class ItemDataBase : MonoBehaviour
     public Vector3[] pos;
     private void Start()
     {
-        for (int i = 0; i < 4; i++) // change Item Count 
+        for (int i = 0; i < 2; i++) // change Item Count 
         {
             GameObject go = Instantiate(filedItemPrefab, pos[i],Quaternion.identity);
             
             
-            go.GetComponent<FiledItems>().SetItem(itemDB[Random.Range(0, 4)]);
+            go.GetComponent<FiledItems>().SetItem(itemDB[Random.Range(0, 2)]);
         }
     }
 }

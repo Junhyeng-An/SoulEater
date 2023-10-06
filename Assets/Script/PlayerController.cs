@@ -5,52 +5,59 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Movement movement;
+    private Sword sword;
 
     [HideInInspector]
     public bool isThrowing = false;
+    public bool readyThrow = false;
 
     void Awake()
     {
         movement = GetComponent<Movement>();
+        sword = GetComponentInChildren<Sword>();
     }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
+            readyThrow = true;
+        }
+        if(Input.GetKeyUp(KeyCode.Q))
+        {
+            readyThrow = false;
             isThrowing = true;
-
             movement.Throwing();
         }
 
-        if (isThrowing == false)
+        if(readyThrow == true)
         {
-            //GetComponent<CircleCollider2D>().isTrigger = false;
-            // left or a = -1 / right or d = 1
+            sword.ReadyThrow();
+        }
+        if(isThrowing == true)
+        {
+            sword.Throwing();
+        }
+        else
+        {
+            //player movement
             float x = Input.GetAxisRaw("Horizontal");
-            // 좌우 이동 방향 제어
             movement.Move(x);
 
-            // 플레이어 점프 (스페이스 키를 누르면 점프)
+            //player jump
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 movement.Jump();
             }
 
-            // 스페이스 키를 누르고 있으면 isLongJump = true
-            if (Input.GetKey(KeyCode.Space))
+            //player dash
+            if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                movement.isLongJump = true;
+                movement.Dash();
             }
 
-            // 스페이스 키를 때면 isLongJump = false
-            else if (Input.GetKeyUp(KeyCode.Space))
-            {
-                movement.isLongJump = false;
-            }
-        }
-        else
-        {
-            //GetComponent<CircleCollider2D>().isTrigger = true;
+            //sword
+            sword.PosRot();
+            sword.OnMouseEvent();
         }
     }
 }

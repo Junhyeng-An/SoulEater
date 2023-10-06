@@ -11,6 +11,8 @@ public class Sword : MonoBehaviour
 
     Vector2 mouse;
 
+    bool isThrowing;
+
     void Awake()
     {
         target = transform.parent.gameObject;
@@ -18,38 +20,75 @@ public class Sword : MonoBehaviour
 
     void Update()
     {
-        if (target.GetComponent<PlayerController>().isThrowing == true)
-        {
-            //Time.timeScale = 0.25f;
-            transform.position = target.transform.position;
-            transform.Rotate(0, 0, 500 * Time.deltaTime);
 
+    }
+
+    public void ReadyThrow()
+    {
+        // 초기 속도와 발사 각도를 라디안으로 변환합니다.
+        float radians = angle * Mathf.Deg2Rad;
+
+        // 초기 속도를 x, y 성분으로 분리합니다.
+        float initialVelocityX = Mathf.Cos(angle) * 50 * 6;
+        float initialVelocityY = 100 * 6;
+
+        // 중력 가속도를 가져옵니다.
+        float gravity = Mathf.Abs(Physics.gravity.y);
+
+        // 시간 간격
+        float timeStep = 0.02f;
+
+        // 초기 위치 설정
+        Vector3 currentPosition = new Vector2(0, 0);
+
+        // 포물선 궤적 그리기
+        for (float t = 0; t < 10f; t += timeStep)
+        {
+            float x = initialVelocityX * t;
+            float y = (initialVelocityY * t) - (0.5f * gravity * t * t);
+
+            // 현재 시간에 따른 위치 계산
+            Vector3 newPosition = new Vector3(x, y);
+
+            // 궤적 선 그리기
+            Debug.DrawLine(currentPosition, currentPosition + newPosition, Color.red, 0.1f);
+
+            // 현재 위치 갱신
+            //currentPosition = newPosition;
+        }
+    }
+    public void Throwing() //when throw sword
+    {
+        transform.position = target.transform.position; 
+        transform.Rotate(0, 0, 500 * Time.deltaTime);
+
+        GetComponent<SpriteRenderer>().color = Color.white;
+    }
+    public void PosRot()//sword's position & rotation
+    {
+        mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition); //mouse position
+        angle = Mathf.Atan2(mouse.y - target.transform.position.y, mouse.x - target.transform.position.x); //angle of mouse to player
+        transform.rotation = Quaternion.AngleAxis(angle * Mathf.Rad2Deg, Vector3.forward); // look mouse
+
+        transform.position = new Vector2(target.transform.position.x + Mathf.Cos(angle), target.transform.position.y + Mathf.Sin(angle)); // sword position
+    }
+    public void OnMouseEvent() //When click mouse
+    {
+        if (Input.GetMouseButtonDown(0)) //left
+        {
+            GetComponent<SpriteRenderer>().color = Color.red;
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
             GetComponent<SpriteRenderer>().color = Color.white;
         }
-        else if (target.GetComponent<PlayerController>().isThrowing == false)
+        if (Input.GetMouseButtonDown(1)) //right
         {
-            mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            angle = Mathf.Atan2(mouse.y - target.transform.position.y, mouse.x - target.transform.position.x);
-            transform.rotation = Quaternion.AngleAxis(angle * Mathf.Rad2Deg, Vector3.forward); // 마우스방향 바라보기
-
-            transform.position = new Vector2(target.transform.position.x + Mathf.Cos(angle), target.transform.position.y + Mathf.Sin(angle)); // 마우스 위치에따른 검 위치
-
-            if (Input.GetMouseButtonDown(0)) //마우스 좌클릭 시
-            {
-                GetComponent<SpriteRenderer>().color = Color.red;
-            }
-            if (Input.GetMouseButtonUp(0)) // 마우스 좌클릭 뗄 시
-            {
-                GetComponent<SpriteRenderer>().color = Color.white;
-            }
-            if (Input.GetMouseButtonDown(1)) // 마우스 우클릭 시
-            {
-                GetComponent<SpriteRenderer>().color = Color.blue;
-            }
-            if (Input.GetMouseButtonUp(1)) // 마우스 우클리 뗄 시
-            {
-                GetComponent<SpriteRenderer>().color = Color.white;
-            }
+            GetComponent<SpriteRenderer>().color = Color.blue;
+        }
+        if (Input.GetMouseButtonUp(1))
+        {
+            GetComponent<SpriteRenderer>().color = Color.white;
         }
     }
 }

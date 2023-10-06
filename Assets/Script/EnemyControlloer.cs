@@ -52,7 +52,7 @@ public class EnemyController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.layer == 11 && gameObject.layer == 14) //collid Sword && Disarm state
+        if (col.gameObject.tag == "Sword" && gameObject.tag == "Disarmed")
         {
             if (col.gameObject.GetComponentInParent<PlayerController>().isThrowing == true)
             {
@@ -60,19 +60,19 @@ public class EnemyController : MonoBehaviour
                 isPlayer = true;
                 GetComponent<CircleCollider2D>().enabled = false;
                 GetComponent<Rigidbody2D>().gravityScale = 0;
-                gameObject.layer = 13; //Controlled
+                gameObject.tag = "Controlled";
             }
         }
-        else if(col.gameObject.layer == 11 && gameObject.layer == 12) //collid Sword && Enemy state
+        else if(col.gameObject.tag == "Sword" && gameObject.layer == 12) //collid Sword && Enemy state
         {
             //need damege scirpt
         }
     }
     private void OnTriggerExit2D(Collider2D col)
     {
-        if (gameObject.layer == 13 && col.gameObject.GetComponentInParent<PlayerController>().isThrowing == true) //Controlled
+        if (gameObject.tag == "Controlled" && col.gameObject.GetComponentInParent<PlayerController>().isThrowing == true)
         {
-            gameObject.layer = 14; //Disarm
+            gameObject.tag = "Disarmed"; //Disarm
         }
     }
 }

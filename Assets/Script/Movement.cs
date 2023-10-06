@@ -11,9 +11,6 @@ public class Movement : MonoBehaviour
     private float throwForce = 6.0f; // 던지기 파워
     private Rigidbody2D rigid;
 
-    [HideInInspector]
-    public bool isLongJump = false; // 낮은 점프, 높은 점프 체크
-
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -21,16 +18,7 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // 낮은 점프, 높은 점프 구현을 위한 중력 계수(gravityScale) 조절 (Jump Up일 때만 적용)
-        // 중력 계수가 낮은 if 문은 높은 점프가 되고, 중력 계수가 높은 else 문은 낮은 점프가 된다
-        if (isLongJump && rigid.velocity.y > 0)
-        {
-            rigid.gravityScale = 1.0f;
-        }
-        else
-        {
-            rigid.gravityScale = 2.5f;
-        }
+
     }
     public void Jump()
     {
@@ -48,6 +36,12 @@ public class Movement : MonoBehaviour
         float angle = sword.GetComponent<Sword>().angle;
         rigid.AddForce(new Vector2(Mathf.Cos(angle) * 50 * throwForce, 100 * throwForce));
         GetComponent<CircleCollider2D>().isTrigger = true;
+    }
+    public void Dash()
+    {
+        float angle = sword.GetComponent<Sword>().angle;
+        rigid.AddForce(new Vector2(Mathf.Cos(angle) * 10, Mathf.Sin(angle) * 10), ForceMode2D.Impulse);
+        //GetComponent<CircleCollider2D>().isTrigger = true;
     }
     private void OnTriggerEnter2D(Collider2D col)
     {

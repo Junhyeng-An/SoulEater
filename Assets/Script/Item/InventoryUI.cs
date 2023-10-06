@@ -20,6 +20,8 @@ public class InventoryUI : MonoBehaviour
         slots = slotHodler.GetComponentsInChildren<InventorySlot>();
         inventory.onSlotCountChange += SlotChange;
         inventory.onChangeItem += RedrawSlotUI;
+      
+
     }
     
     private void Update()

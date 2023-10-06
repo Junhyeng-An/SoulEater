@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 public class ItemDataBase : MonoBehaviour
 {
     public static ItemDataBase instance;
-
+    public int Item_Gen;
     private void Awake()
     {
         instance = this;
@@ -18,12 +18,12 @@ public class ItemDataBase : MonoBehaviour
     public Vector3[] pos;
     private void Start()
     {
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 4; i++) // change Item Count 
         {
             GameObject go = Instantiate(filedItemPrefab, pos[i],Quaternion.identity);
             
             
-            go.GetComponent<FiledItems>().SetItem(itemDB[Random.Range(0, 2)]);
+            go.GetComponent<FiledItems>().SetItem(itemDB[Random.Range(0, 4)]);
         }
     }
 }

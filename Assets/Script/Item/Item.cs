@@ -27,5 +27,15 @@ public class Item
 
         return isUsed;
     }
+
+    public string Script()
+    {
+        foreach (ItemEffect eft in effect)
+        {
+            return eft.Script();
+        }
+
+        return "";
+    }
     
 }

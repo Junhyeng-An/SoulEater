@@ -27,16 +27,15 @@ public class StatController : MonoBehaviour
 
     void Start()
     {
-
     }
 
 
     void Update()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Controlled");
         if (player != null)
         {
-            //Player 오브젝트에서 Player_MaxHP와 Player_CurHP 값을 가져옵니다.
+            //MaxHP, CurHP of "Controlled".
             Player_MaxHP = player.GetComponent<HP_ST>().MaxHP;
             Player_CurHP = player.GetComponent<HP_ST>().CurHP;
 
@@ -56,26 +55,25 @@ public class StatController : MonoBehaviour
                     Player_CurST -= 3;
                 }
             }
-            if (Player_CurHP <= 0 || Player_CurST <= 0) //hp, 스테미나 음수 방지
-            {
-                Player_CurST = 0;
+
+            //hp, 스테미나 음수 방지
+            if (Player_CurHP <= 0)
                 Player_CurHP = 0;
-            }
+            if (Player_CurST <= 0)
+                Player_CurST = 0;
 
             if (Player_CurST < Player_MaxST)
             {
-                float stRecoveryRate = 0.1f; // 0.1초당 회복량
+                float stRecoveryRate = 1f; // 0.1초당 회복량
                 Player_CurST += stRecoveryRate * Time.deltaTime;
 
                 // 현재 ST가 최대 ST를 넘지 않도록 제한합니다.
-                Player_CurST = Mathf.Min(Player_CurST, Player_MaxST);
+                //Player_CurST = Mathf.Min(Player_CurST, Player_MaxST);
             }
-            pText_hp.text = Player_CurHP.ToString() + " / " + Player_MaxHP.ToString(); // 현재 체력을 표시합니다.
-            pText_ST.text = Player_CurST.ToString() + " / " + Player_MaxST.ToString(); // 현재 스테미나를 표시합니다.
+            pText_hp.text = Mathf.Floor(Player_CurHP) + " / " + Player_MaxHP.ToString(); // 현재 체력을 표시합니다.
+            pText_ST.text = Mathf.Floor(Player_CurST) + " / " + Player_MaxST.ToString(); // 현재 스테미나를 표시합니다.
             Handle();
-
         }
-        
     }
 
     void Handle() //hp , st 가 닳는 애니메이션
@@ -83,6 +81,4 @@ public class StatController : MonoBehaviour
         Player_HP.value = Mathf.Lerp(Player_HP.value, (float)Player_CurHP / (float)Player_MaxHP, Time.deltaTime * 10);
         Player_ST.value = Mathf.Lerp(Player_ST.value, (float)Player_CurST / (float)Player_MaxST, Time.deltaTime * 10);
     }
-
-
 }

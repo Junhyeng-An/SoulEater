@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - Sword
   - Item
+  - Controlled
+  - Disarmed
   layers:
   - Default
   - TransparentFX

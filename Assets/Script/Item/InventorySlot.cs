@@ -1,9 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using System;
 
 public class InventorySlot : MonoBehaviour ,IPointerUpHandler
 {
@@ -28,11 +28,14 @@ public class InventorySlot : MonoBehaviour ,IPointerUpHandler
         bool isUse = false;
         try
         {
-            isUse = item.Use();
-        } catch (NullReferenceException e)
-        { }
+             isUse = item.Use();
+        }
+        catch (NullReferenceException e)
+        {
+            Debug.Log("Error but Okay");
+        }
         
-
+        
         if (isUse)
         {
             Inventory.instance.RemoveItem(slotnum);

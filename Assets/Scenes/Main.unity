@@ -801,7 +801,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.5686275, g: 0.8248841, b: 1, a: 0.39215687}
+  m_Color: {r: 0.5686275, g: 0.8248841, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2157,6 +2157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textName: {fileID: 1142115702}
   textSentence: {fileID: 738254957}
+  dialogue: {fileID: 758026635}
 --- !u!1 &738254955
 GameObject:
   m_ObjectHideFlags: 0
@@ -2310,7 +2311,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &758026636
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2351,7 +2352,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -2375,7 +2376,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 758026638}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 736074920}
+        m_TargetAssemblyTypeName: DialogueSystem, Assembly-CSharp
+        m_MethodName: Next
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &758026638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2660,7 +2673,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.745283, g: 0.6995817, b: 0.6995817, a: 1}
   m_FlipX: 0
@@ -6218,7 +6231,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.745283, g: 0.6995817, b: 0.6995817, a: 1}
   m_FlipX: 0
@@ -6305,7 +6318,8 @@ MonoBehaviour:
   info:
     name: Gun's
     sentences:
-    - Gun's village
+    - i want go
+    - Gun's village2
   dialogue: {fileID: 758026635}
 --- !u!1 &2122947920
 GameObject:

@@ -10,7 +10,8 @@ public class DialogueSystem : MonoBehaviour
 {
     public TextMeshProUGUI textName;
     public TextMeshProUGUI textSentence;
-
+    public GameObject dialogue;
+    
     private Queue<string> sentences = new Queue<string>();
     
     
@@ -28,11 +29,12 @@ public class DialogueSystem : MonoBehaviour
         
     }
 
-    private void Next()
+    public void Next()
     {
         if (sentences.Count == 0)
         {
             End();
+            return;
         }
 
         textSentence.text = sentences.Dequeue();
@@ -40,7 +42,7 @@ public class DialogueSystem : MonoBehaviour
 
     private void End()
     {
-        Debug.Log("end");
+        dialogue.SetActive(false);
     }
     
     

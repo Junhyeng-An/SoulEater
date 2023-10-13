@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build.Content;
 using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public GameObject Player;
+    public float CurHP; 
+    public float MaxHP;
+
     public enum EnemyType
     {
         Enemy_A,
@@ -20,8 +24,12 @@ public class EnemyController : MonoBehaviour
         switch (enemyType)
         {
             case EnemyType.Enemy_A:
+                CurHP = 100;
+                MaxHP = 100;
                 break;
             case EnemyType.Enemy_B:
+                CurHP = 80;
+                MaxHP = 80;
                 break;
             case EnemyType.Enemy_C:
                 break;
@@ -34,7 +42,7 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-
+        CheckState();
     }
     // Update is called once per frame
     void Update()
@@ -65,7 +73,10 @@ public class EnemyController : MonoBehaviour
         }
         else if(col.gameObject.tag == "Sword" && gameObject.layer == 12) //collid Sword && Enemy state
         {
-            //need damege scirpt
+            if (gameObject.tag == "Disarmed")
+            {
+                CurHP -= 10;
+            }
         }
     }
     private void OnTriggerExit2D(Collider2D col)

@@ -285,7 +285,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 339440855}
-  enemyType: 1
+  CurHP: 0
+  MaxHP: 0
+  enemyType: 0
 --- !u!58 &12584354
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1949,6 +1951,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 339440855}
+  CurHP: 0
+  MaxHP: 0
   enemyType: 1
 --- !u!58 &722905064
 CircleCollider2D:
@@ -3813,7 +3817,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -26.400024, y: 48}
+  m_AnchoredPosition: {x: -26.399902, y: 48}
   m_SizeDelta: {x: 50, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1132037564

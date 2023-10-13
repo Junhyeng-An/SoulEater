@@ -9,6 +9,7 @@ TagManager:
   - Item
   - Controlled
   - Disarmed
+  - NPC
   layers:
   - Default
   - TransparentFX
@@ -29,7 +30,7 @@ TagManager:
   - 
   - 
   - Minimap
-  - 
+  - NPC
   - Floor
   - 
   - 

@@ -8,9 +8,6 @@ public class HP_ST : MonoBehaviour
 {
     public float CurHP;
     public float MaxHP;
-    //public GameObject HP_Bar;
-    //public Slider HP_Slider;
-    //public TextMeshProUGUI hp_text;
     void Start()
     {
         

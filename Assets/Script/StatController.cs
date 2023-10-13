@@ -36,8 +36,8 @@ public class StatController : MonoBehaviour
         if (player != null)
         {
             //MaxHP, CurHP of "Controlled".
-            Player_MaxHP = player.GetComponent<HP_ST>().MaxHP;
-            Player_CurHP = player.GetComponent<HP_ST>().CurHP;
+            Player_MaxHP = player.GetComponent<EnemyController>().MaxHP;
+            Player_CurHP = player.GetComponent<EnemyController>().CurHP;
 
             Player_HP.value = Player_CurHP / Player_MaxHP;
             Player_ST.value = Player_CurST / Player_MaxST;
@@ -45,7 +45,7 @@ public class StatController : MonoBehaviour
             {
                 if (Player_CurHP > 0)
                 {
-                    player.GetComponent<HP_ST>().CurHP -= 10;
+                    player.GetComponent<EnemyController>().CurHP -= 10;
                 }
             }
             if (Input.GetMouseButtonDown(0)) //st ¼Ò¸ð

@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
 
     [HideInInspector]
     public bool isThrowing = false;
-    public bool readyThrow = false;
 
     void Awake()
     {
@@ -20,22 +19,21 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            readyThrow = true;
+            movement.Throw_Ready();
+        }
+        if(Input.GetKey(KeyCode.Q))
+        {
+            movement.Throw_Line();
         }
         if(Input.GetKeyUp(KeyCode.Q))
         {
-            readyThrow = false;
+            movement.Throw();
             isThrowing = true;
-            movement.Throwing();
         }
 
-        if(readyThrow == true)
-        {
-            sword.ReadyThrow();
-        }
         if(isThrowing == true)
         {
-            sword.Throwing();
+            sword.Throw();
         }
         else
         {

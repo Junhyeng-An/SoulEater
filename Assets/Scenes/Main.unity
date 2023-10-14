@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 12584358}
   m_Layer: 12
   m_Name: Enemy_A
-  m_TagString: Disarmed
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -289,6 +289,8 @@ MonoBehaviour:
   Canvas: {fileID: 1452573242}
   CurHP: 0
   MaxHP: 0
+  CurWP: 0
+  MaxWP: 0
   Enemy_HP: {fileID: 1241059469}
   enemyType: 0
 --- !u!58 &12584354
@@ -349,9 +351,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!212 &12584356
 SpriteRenderer:
@@ -2301,7 +2303,7 @@ GameObject:
   - component: {fileID: 722905068}
   m_Layer: 12
   m_Name: Enemy_B
-  m_TagString: Disarmed
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2323,6 +2325,8 @@ MonoBehaviour:
   Canvas: {fileID: 187102017}
   CurHP: 0
   MaxHP: 0
+  CurWP: 0
+  MaxWP: 0
   Enemy_HP: {fileID: 1437893067}
   enemyType: 1
 --- !u!58 &722905064
@@ -2383,9 +2387,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!212 &722905066
 SpriteRenderer:
@@ -3768,7 +3772,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 915830953}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -3783,9 +3787,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!1001 &925470400
 PrefabInstance:

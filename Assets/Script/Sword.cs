@@ -9,6 +9,7 @@ public class Sword : MonoBehaviour
     public float angle;
 
     GameObject target;
+    Rigidbody2D rigid;
 
     Vector2 mouse;
 
@@ -17,6 +18,7 @@ public class Sword : MonoBehaviour
     void Awake()
     {
         target = transform.parent.gameObject;
+        rigid = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -37,24 +39,29 @@ public class Sword : MonoBehaviour
         angle = Mathf.Atan2(mouse.y - target.transform.position.y, mouse.x - target.transform.position.x); //angle of mouse to player
         transform.rotation = Quaternion.AngleAxis(angle * Mathf.Rad2Deg, Vector3.forward); // look mouse
 
-        transform.position = new Vector2(target.transform.position.x + Mathf.Cos(angle), target.transform.position.y + Mathf.Sin(angle)); // sword position
+        Vector2 mousePos = new Vector2(target.transform.position.x + Mathf.Cos(angle), target.transform.position.y + Mathf.Sin(angle)); // sword position
+        transform.position = Vector2.MoveTowards(transform.position, mousePos, 0.2f);
     }
     public void OnMouseEvent() //When click mouse
     {
         if (Input.GetMouseButtonDown(0)) //left
         {
+            gameObject.tag = "Attack";
             GetComponent<SpriteRenderer>().color = Color.red;
         }
         if (Input.GetMouseButtonUp(0))
         {
+            gameObject.tag = "Sword";
             GetComponent<SpriteRenderer>().color = Color.white;
         }
         if (Input.GetMouseButtonDown(1)) //right
         {
+            gameObject.tag = "Parrying";
             GetComponent<SpriteRenderer>().color = Color.blue;
         }
         if (Input.GetMouseButtonUp(1))
         {
+            gameObject.tag = "Sword";
             GetComponent<SpriteRenderer>().color = Color.white;
         }
     }

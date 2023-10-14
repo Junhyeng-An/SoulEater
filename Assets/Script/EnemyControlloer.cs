@@ -11,6 +11,8 @@ public class EnemyController : MonoBehaviour
     public GameObject Canvas;
     public float CurHP; 
     public float MaxHP;
+    public float CurWP;
+    public float MaxWP;
     float height = 0.8f;
     [SerializeField]
     Slider Enemy_HP;
@@ -32,10 +34,14 @@ public class EnemyController : MonoBehaviour
             case EnemyType.Enemy_A:
                 CurHP = 100;
                 MaxHP = 100;
+                CurWP = 10;
+                MaxWP = 10;
                 break;
             case EnemyType.Enemy_B:
                 CurHP = 80;
                 MaxHP = 80;
+                CurWP = 10;
+                MaxWP = 10;
                 break;
             case EnemyType.Enemy_C:
                 break;
@@ -53,7 +59,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.tag == "Disarmed")
+        if (gameObject.layer == 12)
         {
             Canvas.SetActive(true);
             Enemy_HP.value = CurHP / MaxHP;
@@ -74,6 +80,7 @@ public class EnemyController : MonoBehaviour
                 GetComponent<Rigidbody2D>().gravityScale = 5;
             }
         }
+        HP_Check();
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -88,19 +95,41 @@ public class EnemyController : MonoBehaviour
                 gameObject.tag = "Controlled";
             }
         }
-        else if(col.gameObject.tag == "Sword" && gameObject.layer == 12) //collid Sword && Enemy state
+
+        if (col.gameObject.layer == 11 && gameObject.layer == 12) //collid Sword && Enemy state
         {
-            if (gameObject.tag == "Disarmed")
+            if (col.gameObject.tag == "Attack" && gameObject.tag != "Controlled")
             {
                 CurHP -= 10;
             }
+            if (col.gameObject.tag == "Parrying" && gameObject.tag != "Controlled")
+            {
+                CurWP -= 10;
+                if (CurWP <= 0)
+                {
+                    gameObject.tag = "Disarmed";
+                    Debug.Log("적 무기가 파괴되어 잠식가능한 상태입니다");
+                }
+            }
         }
+    }
+    private void OnTriggerStay2D(Collider2D col)
+    {
+        
     }
     private void OnTriggerExit2D(Collider2D col)
     {
         if (gameObject.tag == "Controlled" && col.gameObject.GetComponentInParent<PlayerController>().isThrowing == true)
         {
             gameObject.tag = "Disarmed"; //Disarm
+        }
+        
+    }
+    public void HP_Check()
+    {
+        if(CurHP <= 0)
+        {
+            this.gameObject.active = false;
         }
     }
 }

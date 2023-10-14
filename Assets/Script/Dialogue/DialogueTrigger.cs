@@ -29,9 +29,20 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.C) && isTrigger == true)
         {
-            dialogue.SetActive(true);
-            Trigger();
-            
+            if (dialogue.active != true)
+            {
+                dialogue.SetActive(true);
+                Trigger();
+            }
+            else
+            {
+
+
+                var system = FindObjectOfType<DialogueSystem>();
+                system.Next();
+
+
+            }
         }
     }
 

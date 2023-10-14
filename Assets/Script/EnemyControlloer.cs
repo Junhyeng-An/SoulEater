@@ -2,12 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Build.Content;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 public class EnemyController : MonoBehaviour
 {
     public GameObject Player;
+    public RectTransform my_bar;
+    public GameObject Canvas;
     public float CurHP; 
     public float MaxHP;
-
+    float height = 0.8f;
+    [SerializeField]
+    Slider Enemy_HP;
     public enum EnemyType
     {
         Enemy_A,
@@ -47,6 +53,17 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameObject.tag == "Disarmed")
+        {
+            Canvas.SetActive(true);
+            Enemy_HP.value = CurHP / MaxHP;
+            Vector3 hpbar_pos = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + height, 0));
+            my_bar.position = hpbar_pos;
+        }
+        if (gameObject.tag == "Controlled")
+        {
+            Canvas.SetActive(false);
+        }
         if (isPlayer == true)
         {
             transform.position = Player.transform.position;

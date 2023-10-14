@@ -66,7 +66,6 @@ public class StatController : MonoBehaviour
             {
                 float stRecoveryRate = 1f; // 0.1초당 회복량
                 Player_CurST += stRecoveryRate * Time.deltaTime;
-
                 // 현재 ST가 최대 ST를 넘지 않도록 제한합니다.
                 //Player_CurST = Mathf.Min(Player_CurST, Player_MaxST);
             }

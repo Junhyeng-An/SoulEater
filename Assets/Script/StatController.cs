@@ -17,16 +17,21 @@ public class StatController : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI pText_ST;
 
-    float Player_MaxHP;
-    float Player_CurHP;
+    [HideInInspector]
+    public float Player_MaxHP;
+    [HideInInspector]
+    public float Player_CurHP;
+    [HideInInspector]
+    public float Player_MaxST = 10;
+    [HideInInspector]
+    public float Player_CurST = 10;
 
-    float Player_MaxST = 10;
-    float Player_CurST = 10;
     GameObject player;
 
 
     void Start()
     {
+        Player_CurST = 10;
     }
 
 
@@ -46,13 +51,6 @@ public class StatController : MonoBehaviour
                 if (Player_CurHP > 0)
                 {
                     player.GetComponent<EnemyController>().CurHP -= 10;
-                }
-            }
-            if (Input.GetMouseButtonDown(0)) //st ¼Ò¸ð
-            {
-                if (Player_CurST > 0)
-                {
-                    Player_CurST -= 3;
                 }
             }
 
@@ -79,5 +77,13 @@ public class StatController : MonoBehaviour
     {
         Player_HP.value = Mathf.Lerp(Player_HP.value, (float)Player_CurHP / (float)Player_MaxHP, Time.deltaTime * 10);
         Player_ST.value = Mathf.Lerp(Player_ST.value, (float)Player_CurST / (float)Player_MaxST, Time.deltaTime * 10);
+    }
+
+    public void Stat(string stat, float value)
+    {
+        if (stat == "HP")
+            Player_CurHP += value;
+        if (stat == "ST")
+            Player_CurST += value;
     }
 }

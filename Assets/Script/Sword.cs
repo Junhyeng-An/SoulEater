@@ -42,27 +42,4 @@ public class Sword : MonoBehaviour
         Vector2 mousePos = new Vector2(target.transform.position.x + Mathf.Cos(angle), target.transform.position.y + Mathf.Sin(angle)); // sword position
         transform.position = Vector2.MoveTowards(transform.position, mousePos, 0.2f);
     }
-    public void OnMouseEvent() //When click mouse
-    {
-        if (Input.GetMouseButtonDown(0)) //left
-        {
-            gameObject.tag = "Attack";
-            GetComponent<SpriteRenderer>().color = Color.red;
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            gameObject.tag = "Sword";
-            GetComponent<SpriteRenderer>().color = Color.white;
-        }
-        if (Input.GetMouseButtonDown(1)) //right
-        {
-            gameObject.tag = "Parrying";
-            GetComponent<SpriteRenderer>().color = Color.blue;
-        }
-        if (Input.GetMouseButtonUp(1))
-        {
-            gameObject.tag = "Sword";
-            GetComponent<SpriteRenderer>().color = Color.white;
-        }
-    }
 }

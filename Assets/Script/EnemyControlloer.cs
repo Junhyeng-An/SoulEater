@@ -108,7 +108,7 @@ public class EnemyController : MonoBehaviour
                 if (CurWP <= 0)
                 {
                     gameObject.tag = "Disarmed";
-                    Debug.Log("적 무기가 파괴되어 잠식가능한 상태입니다");
+                    Debug.Log("");
                 }
             }
         }

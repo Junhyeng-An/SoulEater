@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
         isThrowing = true;
     }
-    void Update()
+    void LateUpdate()
     {
         if(isThrowing == true)
         {

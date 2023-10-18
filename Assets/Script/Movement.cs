@@ -36,10 +36,12 @@ public class Movement : MonoBehaviour
     }
     public void Landing() //check can jump and can distance dash
     {
+        LayerMask mask = 1 << 20;
+        float angle = sword.GetComponent<Sword>().angle;
         RaycastHit2D rayHit_Jump = Physics2D.Raycast(new Vector2(rigid.position.x, rigid.position.y - 0.5f), Vector2.down, 1);
-        RaycastHit2D rayHit_Dash;
+        RaycastHit2D rayHit_Dash = Physics2D.Raycast(transform.position, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)), dashForce, mask);
 
-        if(rayHit_Jump.collider != null)
+        if (rayHit_Jump.collider != null)
         {
             if(rayHit_Jump.distance < 0.5f && rayHit_Jump.collider.gameObject.layer == 20)
             {
@@ -47,9 +49,15 @@ public class Movement : MonoBehaviour
             }
         }
 
-        //if(rayHit_Dash.collider != null)
+        if (rayHit_Dash.collider != null)
         {
-            //have to someting
+            Debug.Log(rayHit_Dash.distance);
+            dashForce = rayHit_Dash.distance - 0.5f;
+        }
+        else
+        {
+            if(dashForce < 5.0f)
+                dashForce += 0.1f;
         }
     }
     public void Jump()

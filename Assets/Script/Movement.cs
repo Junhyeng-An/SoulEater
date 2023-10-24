@@ -76,7 +76,13 @@ public class Movement : MonoBehaviour
     {
         float angle = sword.GetComponent<Sword>().angle;
         transform.Translate(new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * dashForce);
-        //GetComponent<CircleCollider2D>().isTrigger = true;
+        
+        GameObject controlled = GameObject.FindGameObjectWithTag("Controlled");
+        Instantiate(controlled);
+
+        string clone_Name = controlled.name+"(Clone)";
+        GameObject Clone = GameObject.Find(clone_Name);
+        Destroy(Clone, 1f);
     }
     private void OnTriggerEnter2D(Collider2D col)
     {

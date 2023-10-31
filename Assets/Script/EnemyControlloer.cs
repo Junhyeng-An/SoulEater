@@ -16,6 +16,8 @@ public class EnemyController : MonoBehaviour
     float height = 0.8f;
     [SerializeField]
     Slider Enemy_HP;
+
+    StatController stat;
     public enum EnemyType
     {
         Enemy_A,
@@ -55,6 +57,7 @@ public class EnemyController : MonoBehaviour
     void Awake()
     {
         CheckState();
+        stat = GameObject.Find("GameManager").GetComponent<StatController>();
     }
     // Update is called once per frame
     void Update()
@@ -101,14 +104,16 @@ public class EnemyController : MonoBehaviour
             if (col.gameObject.tag == "Attack" && gameObject.tag != "Controlled")
             {
                 CurHP -= 10;
+                stat.Stat("ST", 3);
             }
             if (col.gameObject.tag == "Parrying" && gameObject.tag != "Controlled")
             {
                 CurWP -= 10;
+                stat.Stat("ST", 6);
+
                 if (CurWP <= 0)
                 {
                     gameObject.tag = "Disarmed";
-                    Debug.Log("");
                 }
             }
         }

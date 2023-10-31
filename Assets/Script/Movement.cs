@@ -51,7 +51,7 @@ public class Movement : MonoBehaviour
 
         if (rayHit_Jump.collider != null)
         {
-            if(rayHit_Jump.distance < 0.5f && rayHit_Jump.collider.gameObject.layer == 20)
+            if(rayHit_Jump.distance <= 0.5f && rayHit_Jump.collider.gameObject.layer == 20)
             {
                 isJumping = false;
             }
@@ -164,5 +164,14 @@ public class Movement : MonoBehaviour
         }
 
         return results;
+    }
+
+    public void Return()
+    {
+        if(transform.position.y <= -10)
+        {
+            transform.position = new Vector2(0, 5);
+            rigid.velocity = new Vector2(rigid.velocity.x, 0);
+        }
     }
 }

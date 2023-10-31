@@ -23,13 +23,14 @@ public class PlayerController : MonoBehaviour
     }
     void LateUpdate()
     {
-        if(isThrowing == true)
+        movement.Return();
+        movement.Landing();
+        if (isThrowing == true)
         {
             sword.Throw();
         }
         else
         {
-            movement.Landing();
             //player movement
             float x = Input.GetAxisRaw("Horizontal");
             movement.Move(x);

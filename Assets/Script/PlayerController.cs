@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
                     sword.GetComponent<SpriteRenderer>().color = Color.blue;
                 }
             }
-            else
+            else if(sword.swingForce < 1.5f)
             {
                 sword.gameObject.tag = "Sword";
                 isSwing = false;

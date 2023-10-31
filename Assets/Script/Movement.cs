@@ -34,11 +34,13 @@ public class Movement : MonoBehaviour
         Debug.DrawRay(new Vector2(rigid.position.x, rigid.position.y - 0.5f), Vector2.down, new Color(1, 0, 0));
         Debug.DrawRay(transform.position, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * dashForce, new Color(0, 1, 0));
         ///
-        
-        GameObject controlled = GameObject.FindGameObjectWithTag("Controlled");
-        string clone_Name = controlled.name + "(Clone)";
-        GameObject Clone = GameObject.Find(clone_Name);
-        Destroy(Clone, 0.1f);
+        if (GameObject.FindGameObjectWithTag("Controlled") != null)
+        {
+            GameObject controlled = GameObject.FindGameObjectWithTag("Controlled");
+            string clone_Name = controlled.name + "(Clone)";
+            GameObject Clone = GameObject.Find(clone_Name);
+            Destroy(Clone, 0.1f);
+        }
     }
     public void Landing() //check can jump and can distance dash
     {

@@ -33,6 +33,12 @@ public class Movement : MonoBehaviour
         float angle = sword.GetComponent<Sword>().angle;
         Debug.DrawRay(new Vector2(rigid.position.x, rigid.position.y - 0.5f), Vector2.down, new Color(1, 0, 0));
         Debug.DrawRay(transform.position, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * dashForce, new Color(0, 1, 0));
+        ///
+        
+        GameObject controlled = GameObject.FindGameObjectWithTag("Controlled");
+        string clone_Name = controlled.name + "(Clone)";
+        GameObject Clone = GameObject.Find(clone_Name);
+        Destroy(Clone, 0.1f);
     }
     public void Landing() //check can jump and can distance dash
     {
@@ -51,7 +57,6 @@ public class Movement : MonoBehaviour
 
         if (rayHit_Dash.collider != null)
         {
-            Debug.Log(rayHit_Dash.distance);
             dashForce = rayHit_Dash.distance - 0.5f;
         }
         else
@@ -74,15 +79,25 @@ public class Movement : MonoBehaviour
     }
     public void Dash()
     {
+        int cloneCount = 3;
+        Vector2 posBefore = transform.position;
+
         float angle = sword.GetComponent<Sword>().angle;
         transform.Translate(new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * dashForce);
+        rigid.velocity = new Vector2(rigid.velocity.x, 0);
+
+        Vector2 posAfter = transform.position;
+
+        Vector2 posA = posAfter - posBefore;
+
+        Vector3 posZ = new Vector3(0,0,-2);
         
         GameObject controlled = GameObject.FindGameObjectWithTag("Controlled");
-        Instantiate(controlled);
-
-        string clone_Name = controlled.name+"(Clone)";
-        GameObject Clone = GameObject.Find(clone_Name);
-        Destroy(Clone, 1f);
+        for(int i = 0; i < cloneCount; i++)
+        {
+            GameObject clone = Instantiate(controlled, posAfter - posA / Mathf.Pow(2, i + 1), transform.rotation);
+            clone.GetComponent<SpriteRenderer>().color = new Color(0.75f, 0.5f, 1, 0.1f * (i + 1)*2);
+        }
     }
     private void OnTriggerEnter2D(Collider2D col)
     {

@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool isThrowing;
 
+    bool isSwing;
+
     void Awake()
     {
         movement = GetComponent<Movement>();
@@ -62,9 +64,9 @@ public class PlayerController : MonoBehaviour
                 isThrowing = true;
             }
 
-            //sword
+            //sword 
             sword.PosRot();
-            if (Input.GetMouseButtonDown(0)) //left
+            /*if (Input.GetMouseButtonDown(0)) //left
             {
                 if (stat.Player_CurST >= 3)
                 {
@@ -72,24 +74,34 @@ public class PlayerController : MonoBehaviour
                     stat.Stat("ST", -3);
                     sword.GetComponent<SpriteRenderer>().color = Color.red;
                 }
-            }
-            if (Input.GetMouseButtonUp(0))
+            }*/
+            if (sword.swingForce >= 3)
             {
-                sword.gameObject.tag = "Sword";
-                sword.GetComponent<SpriteRenderer>().color = Color.white;
-            }
-            if (Input.GetMouseButtonDown(1)) //right
-            {
-                if (stat.Player_CurST >= 6)
+                if (Input.GetMouseButton(0) && sword.swingForce >= 3 && stat.Player_CurST >= 3) //left
                 {
+                    if(isSwing == false)
+                    {
+                        stat.Stat("ST", -3);
+                        isSwing = true;
+                    }
+                    sword.gameObject.tag = "Attack";
+                    sword.GetComponent<SpriteRenderer>().color = Color.red;
+                }
+                if (Input.GetMouseButton(1) && sword.swingForce >= 3 && stat.Player_CurST >= 6) //right
+                {
+                    if (isSwing == false)
+                    {
+                        stat.Stat("ST", -6);
+                        isSwing = true;
+                    }
                     sword.gameObject.tag = "Parrying";
-                    stat.Stat("ST", -6);
                     sword.GetComponent<SpriteRenderer>().color = Color.blue;
                 }
             }
-            if (Input.GetMouseButtonUp(1))
+            else
             {
                 sword.gameObject.tag = "Sword";
+                isSwing = false;
                 sword.GetComponent<SpriteRenderer>().color = Color.white;
             }
         }

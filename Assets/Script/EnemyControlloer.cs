@@ -29,6 +29,8 @@ public class EnemyController : MonoBehaviour
 
     bool isPlayer = false;
     bool isEnemy = true;
+
+    Rigidbody2D rigidPlayer;
     public void CheckState()
     {
         switch (enemyType)
@@ -58,6 +60,7 @@ public class EnemyController : MonoBehaviour
     {
         CheckState();
         stat = GameObject.Find("GameManager").GetComponent<StatController>();
+        rigidPlayer = Player.GetComponent<Rigidbody2D>();
     }
     // Update is called once per frame
     void Update()
@@ -91,8 +94,11 @@ public class EnemyController : MonoBehaviour
         {
             if (col.gameObject.GetComponentInParent<PlayerController>().isThrowing == true)
             {
+                rigidPlayer.velocity = new Vector2(rigidPlayer.velocity.x, 0);
                 col.gameObject.GetComponentInParent<PlayerController>().isThrowing = false;
                 isPlayer = true;
+                Player.GetComponent<CircleCollider2D> ().isTrigger = false;
+                Player.GetComponent<Movement>().bounceCount = 2;
                 GetComponent<CircleCollider2D>().enabled = false;
                 GetComponent<Rigidbody2D>().gravityScale = 0;
                 gameObject.tag = "Controlled";

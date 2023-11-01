@@ -12,7 +12,11 @@ public class Movement : MonoBehaviour
     public float throwForce = 12.0f;
     public float dashForce = 5.0f;
 
+    public int bounceCount = 2;
+    public bool gameover = false;
+
     bool isJumping = false;
+    bool isThrowing = false;
 
     private Rigidbody2D rigid;
     private LineRenderer line;
@@ -31,7 +35,7 @@ public class Movement : MonoBehaviour
     private void Update()
     {
         float angle = sword.GetComponent<Sword>().angle;
-        Debug.DrawRay(new Vector2(rigid.position.x, rigid.position.y - 0.5f), Vector2.down, new Color(1, 0, 0));
+        Debug.DrawRay(transform.position, Vector2.down, new Color(1, 0, 0));
         Debug.DrawRay(transform.position, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * dashForce, new Color(0, 1, 0));
         ///
         if (GameObject.FindGameObjectWithTag("Controlled") != null)
@@ -45,13 +49,14 @@ public class Movement : MonoBehaviour
     public void Landing() //check can jump and can distance dash
     {
         LayerMask mask = 1 << 20;
+        LayerMask mask2 = 1 << 21;
         float angle = sword.GetComponent<Sword>().angle;
-        RaycastHit2D rayHit_Jump = Physics2D.Raycast(new Vector2(rigid.position.x, rigid.position.y - 0.5f), Vector2.down, 1);
+        RaycastHit2D rayHit_Jump = Physics2D.Raycast(transform.position, Vector2.down, 1, mask | mask2);
         RaycastHit2D rayHit_Dash = Physics2D.Raycast(transform.position, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)), dashForce, mask);
 
         if (rayHit_Jump.collider != null)
         {
-            if(rayHit_Jump.distance <= 0.5f && rayHit_Jump.collider.gameObject.layer == 20)
+            if(rayHit_Jump.distance <= 0.55f && rigid.velocity.y <= 0)
             {
                 isJumping = false;
             }
@@ -103,11 +108,48 @@ public class Movement : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
-        
+        float E = 0.75f; //Modulus of Elasticity
         if (col.gameObject.layer == 20)
         {
-            GetComponent<PlayerController>().isThrowing = false;
-            GetComponent<CircleCollider2D>().isTrigger = false;
+            Vector2 posPlayer = transform.position;
+            Vector2 posCol = col.ClosestPoint(transform.position);
+            Vector2 v = posCol - posPlayer;
+            float angle = Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg;
+
+            //GetComponent<PlayerController>().isThrowing = false;
+            if (bounceCount > 0 && isThrowing == true)
+            {
+                if (rigid.velocity.y <= 0)
+                    bounceCount--;
+                rigid.velocity = new Vector2(rigid.velocity.x, -rigid.velocity.y) * E;
+                /*if((angle >= 45 && angle < 135) || (angle >= -135 && angle < -45))
+                    rigid.velocity = new Vector2(rigid.velocity.x, -rigid.velocity.y) * E;
+                else if((angle >= 0 && angle < 45) || (angle >= 135 && angle <= 180)
+                     || (angle >= -45 && angle < 0) || (angle >= -180 && angle < -135))
+                    rigid.velocity = new Vector2(-rigid.velocity.x, rigid.velocity.y) * E;
+                bounceCount--;*/
+
+                /*Vector2 collisionDirection = (col.transform.position - transform.position).normalized;
+                Debug.Log(collisionDirection);
+                if (Mathf.Abs(collisionDirection.x) > Mathf.Abs(collisionDirection.y))
+                {
+                    // 좌우 벽과 충돌한 경우, x 방향의 속도를 반전
+                    rigid.velocity = new Vector2(rigid.velocity.x, -rigid.velocity.y);
+                    Debug.Log("LR");
+                }
+                else
+                {
+                    // 상하 벽과 충돌한 경우, y 방향의 속도를 반전
+                    rigid.velocity = new Vector2(-rigid.velocity.x, rigid.velocity.y);
+                    Debug.Log("UD");
+                }*/
+            }
+            else
+            {
+                GetComponent<CircleCollider2D>().radius = 0.25f;
+                GetComponent<CircleCollider2D>().isTrigger = false;
+                gameover = true;
+            }
         }
     }
     public void Throw_Ready()
@@ -138,6 +180,7 @@ public class Movement : MonoBehaviour
     }
     public void Throw()
     {
+        isThrowing = true;
         rigid.velocity = _velocity;
 
         GetComponent<CircleCollider2D>().isTrigger = true;
@@ -165,13 +208,24 @@ public class Movement : MonoBehaviour
 
         return results;
     }
-
     public void Return()
     {
         if(transform.position.y <= -10)
         {
             transform.position = new Vector2(0, 5);
             rigid.velocity = new Vector2(rigid.velocity.x, 0);
+            gameover = false;
+        }
+    }
+    public void WallCheck()
+    {
+        if (rigid.velocity.y > 0)
+        {
+            Physics2D.IgnoreLayerCollision(10, 21, true);
+        }
+        else
+        {
+            Physics2D.IgnoreLayerCollision(10, 21, false);
         }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -25,7 +26,12 @@ public class PlayerController : MonoBehaviour
     {
         movement.Return();
         movement.Landing();
-        if (isThrowing == true)
+        movement.WallCheck();
+        if (movement.gameover == true)
+        {
+            sword.GameOver();
+        }
+        else if (isThrowing == true)
         {
             sword.Throw();
         }
@@ -67,15 +73,6 @@ public class PlayerController : MonoBehaviour
 
             //sword 
             sword.PosRot();
-            /*if (Input.GetMouseButtonDown(0)) //left
-            {
-                if (stat.Player_CurST >= 3)
-                {
-                    sword.gameObject.tag = "Attack";
-                    stat.Stat("ST", -3);
-                    sword.GetComponent<SpriteRenderer>().color = Color.red;
-                }
-            }*/
             if (sword.swingForce >= 3)
             {
                 if (Input.GetMouseButton(0) && sword.swingForce >= 3 && stat.Player_CurST >= 3) //left
@@ -105,6 +102,11 @@ public class PlayerController : MonoBehaviour
                 isSwing = false;
                 sword.GetComponent<SpriteRenderer>().color = Color.white;
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }

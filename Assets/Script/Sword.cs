@@ -50,7 +50,9 @@ public class Sword : MonoBehaviour
         Vector2 posAfter = transform.localPosition;
         float angleAfter = angle;
         swingForce = Mathf.Abs((angleAfter - angleBefore) * Mathf.Rad2Deg);
-        if(swingForce > 3f)
-            Debug.Log(swingForce);
+    }
+    public void GameOver()
+    {
+        transform.rotation = Quaternion.Euler(0, 0, 80);
     }
 }

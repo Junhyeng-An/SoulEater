@@ -18,7 +18,7 @@ public class ItemDataBase : MonoBehaviour
     public Vector3[] pos;
     private void Start()
     {
-        for (int i = 0; i < 2; i++) // change Item Count 
+        for (int i = 0; i < 0; i++) // change Item Count 
         {
             GameObject go = Instantiate(filedItemPrefab, pos[i],Quaternion.identity);
             

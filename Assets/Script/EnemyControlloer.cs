@@ -9,6 +9,7 @@ public class EnemyController : MonoBehaviour
     public GameObject Player;
     public RectTransform my_bar;
     public GameObject Canvas;
+    public Soul_Drop Soul_Drop;
     public float CurHP; 
     public float MaxHP;
     public float CurWP;
@@ -65,6 +66,7 @@ public class EnemyController : MonoBehaviour
         stat = GameObject.Find("GameManager").GetComponent<StatController>();
         rigidPlayer = Player.GetComponent<Rigidbody2D>();
         sword = GameObject.Find("Sword").GetComponent<Sword>();
+        Soul_Drop = GetComponent<global::Soul_Drop>();
     }
     // Update is called once per frame
     void Update()
@@ -152,7 +154,9 @@ public class EnemyController : MonoBehaviour
     {
         if(CurHP <= 0)
         {
+            Soul_Drop.DropItem();
             this.gameObject.active = false;
+            
         }
     }
 }

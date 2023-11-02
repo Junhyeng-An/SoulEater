@@ -12,6 +12,7 @@ TagManager:
   - NPC
   - Attack
   - Parrying
+  - Soul
   layers:
   - Default
   - TransparentFX
@@ -35,7 +36,7 @@ TagManager:
   - NPC
   - Floor
   - Platform
-  - 
+  - Soul
   - 
   - 
   - 

@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     private Movement movement;
     private Sword sword;
     private StatController stat;
+    private EnemyController enemy;
 
     [HideInInspector]
     public bool isThrowing;
@@ -100,6 +101,7 @@ public class PlayerController : MonoBehaviour
             {
                 sword.gameObject.tag = "Sword";
                 isSwing = false;
+                
                 sword.GetComponent<SpriteRenderer>().color = Color.white;
             }
         }

@@ -111,6 +111,8 @@ public class Movement : MonoBehaviour
         float E = 0.75f; //Modulus of Elasticity
         if (col.gameObject.layer == 20)
         {
+            isThrowing = GetComponent<PlayerController>().isThrowing;
+
             Vector2 posPlayer = transform.position;
             Vector2 posCol = col.ClosestPoint(transform.position);
             Vector2 v = posCol - posPlayer;
@@ -119,9 +121,11 @@ public class Movement : MonoBehaviour
             //GetComponent<PlayerController>().isThrowing = false;
             if (bounceCount > 0 && isThrowing == true)
             {
-                if (rigid.velocity.y <= 0)
+                //if (rigid.velocity.y <= 0)
+                {
                     bounceCount--;
-                rigid.velocity = new Vector2(rigid.velocity.x, -rigid.velocity.y) * E;
+                    rigid.velocity = new Vector2(rigid.velocity.x, -rigid.velocity.y) * E;
+                }
                 /*if((angle >= 45 && angle < 135) || (angle >= -135 && angle < -45))
                     rigid.velocity = new Vector2(rigid.velocity.x, -rigid.velocity.y) * E;
                 else if((angle >= 0 && angle < 45) || (angle >= 135 && angle <= 180)
@@ -180,7 +184,6 @@ public class Movement : MonoBehaviour
     }
     public void Throw()
     {
-        isThrowing = true;
         rigid.velocity = _velocity;
 
         GetComponent<CircleCollider2D>().isTrigger = true;

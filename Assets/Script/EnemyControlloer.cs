@@ -18,6 +18,9 @@ public class EnemyController : MonoBehaviour
     Slider Enemy_HP;
 
     StatController stat;
+
+    public bool isDamage = false;
+    private Sword sword;
     public enum EnemyType
     {
         Enemy_A,
@@ -61,6 +64,7 @@ public class EnemyController : MonoBehaviour
         CheckState();
         stat = GameObject.Find("GameManager").GetComponent<StatController>();
         rigidPlayer = Player.GetComponent<Rigidbody2D>();
+        sword = GameObject.Find("Sword").GetComponent<Sword>();
     }
     // Update is called once per frame
     void Update()
@@ -87,6 +91,10 @@ public class EnemyController : MonoBehaviour
             }
         }
         HP_Check();
+        if(sword.swingForce <= 1.5f)
+        {
+            isDamage = false;
+        }
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -104,29 +112,34 @@ public class EnemyController : MonoBehaviour
                 gameObject.tag = "Controlled";
             }
         }
-
-        if (col.gameObject.layer == 11 && gameObject.layer == 12) //collid Sword && Enemy state
-        {
-            if (col.gameObject.tag == "Attack" && gameObject.tag != "Controlled")
-            {
-                CurHP -= 10;
-                stat.Stat("ST", 3);
-            }
-            if (col.gameObject.tag == "Parrying" && gameObject.tag != "Controlled")
-            {
-                CurWP -= 10;
-                stat.Stat("ST", 6);
-
-                if (CurWP <= 0)
-                {
-                    gameObject.tag = "Disarmed";
-                }
-            }
-        }
     }
     private void OnTriggerStay2D(Collider2D col)
     {
-        
+        if (col.gameObject.layer == 11 && gameObject.layer == 12) //collid Sword && Enemy state
+        {
+            if (isDamage == false)
+            {
+                if (col.gameObject.tag == "Attack" && gameObject.tag != "Controlled")
+                {
+                    CurHP -= 10;
+                    stat.Stat("ST", 3);
+
+                    isDamage = true;
+                }
+                if (col.gameObject.tag == "Parrying" && gameObject.tag != "Controlled")
+                {
+                    CurWP -= 10;
+                    stat.Stat("ST", 6);
+
+                    if (CurWP <= 0)
+                    {
+                        gameObject.tag = "Disarmed";
+                    }
+
+                    isDamage = true;
+                }
+            }
+        }
     }
     private void OnTriggerExit2D(Collider2D col)
     {
@@ -134,7 +147,6 @@ public class EnemyController : MonoBehaviour
         {
             gameObject.tag = "Disarmed"; //Disarm
         }
-        
     }
     public void HP_Check()
     {

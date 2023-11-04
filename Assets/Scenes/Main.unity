@@ -167,6 +167,9 @@ MonoBehaviour:
   MaxHP: 0
   CurWP: 0
   MaxWP: 0
+  nextMove: 0
+  detect_meter: 5
+  attack_meter: 1.2
   Enemy_HP: {fileID: 1241059469}
   isDamage: 0
   enemyType: 0
@@ -947,6 +950,9 @@ MonoBehaviour:
   MaxHP: 0
   CurWP: 0
   MaxWP: 0
+  nextMove: 0
+  detect_meter: 5
+  attack_meter: 1.2
   Enemy_HP: {fileID: 1811895528}
   isDamage: 0
   enemyType: 1
@@ -2393,6 +2399,9 @@ MonoBehaviour:
   MaxHP: 0
   CurWP: 0
   MaxWP: 0
+  nextMove: 0
+  detect_meter: 5
+  attack_meter: 1.2
   Enemy_HP: {fileID: 1437893067}
   isDamage: 0
   enemyType: 1
@@ -3183,6 +3192,9 @@ MonoBehaviour:
   MaxHP: 0
   CurWP: 0
   MaxWP: 0
+  nextMove: 0
+  detect_meter: 5
+  attack_meter: 1.2
   Enemy_HP: {fileID: 1352010454}
   isDamage: 0
   enemyType: 1
@@ -5910,7 +5922,7 @@ GameObject:
   - component: {fileID: 1386392705}
   - component: {fileID: 1386392704}
   - component: {fileID: 1386392703}
-  m_Layer: 21
+  m_Layer: 20
   m_Name: Playform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6885,7 +6897,7 @@ GameObject:
   - component: {fileID: 1635637055}
   - component: {fileID: 1635637054}
   - component: {fileID: 1635637053}
-  m_Layer: 21
+  m_Layer: 20
   m_Name: Playform (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7906,7 +7918,7 @@ Transform:
   m_GameObject: {fileID: 1856158912}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3, z: 0}
+  m_LocalPosition: {x: 0.03, y: -3.26, z: 0}
   m_LocalScale: {x: 30, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

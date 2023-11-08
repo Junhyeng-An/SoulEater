@@ -170,6 +170,7 @@ MonoBehaviour:
   nextMove: 0
   detect_meter: 5
   attack_meter: 1.2
+  issearch: 0
   Enemy_HP: {fileID: 1241059469}
   isDamage: 0
   enemyType: 0
@@ -953,6 +954,7 @@ MonoBehaviour:
   nextMove: 0
   detect_meter: 5
   attack_meter: 1.2
+  issearch: 0
   Enemy_HP: {fileID: 1811895528}
   isDamage: 0
   enemyType: 1
@@ -2402,6 +2404,7 @@ MonoBehaviour:
   nextMove: 0
   detect_meter: 5
   attack_meter: 1.2
+  issearch: 0
   Enemy_HP: {fileID: 1437893067}
   isDamage: 0
   enemyType: 1
@@ -3195,6 +3198,7 @@ MonoBehaviour:
   nextMove: 0
   detect_meter: 5
   attack_meter: 1.2
+  issearch: 0
   Enemy_HP: {fileID: 1352010454}
   isDamage: 0
   enemyType: 1
@@ -9770,6 +9774,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   angle: 0
   swingForce: 0
+  limitSpeed: 3
 --- !u!1 &9093283267261980277
 GameObject:
   m_ObjectHideFlags: 0

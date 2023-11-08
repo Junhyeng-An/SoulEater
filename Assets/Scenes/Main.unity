@@ -5926,8 +5926,8 @@ GameObject:
   - component: {fileID: 1386392705}
   - component: {fileID: 1386392704}
   - component: {fileID: 1386392703}
-  m_Layer: 20
-  m_Name: Playform
+  m_Layer: 21
+  m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6901,7 +6901,7 @@ GameObject:
   - component: {fileID: 1635637055}
   - component: {fileID: 1635637054}
   - component: {fileID: 1635637053}
-  m_Layer: 20
+  m_Layer: 21
   m_Name: Playform (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9110,6 +9110,7 @@ MonoBehaviour:
   jumpForce: 12
   throwForce: 12
   dashForce: 5
+  angle: 0
   bounceCount: 3
   gameover: 0
 --- !u!1001 &1465016394951389681
@@ -9549,7 +9550,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.699, y: 0.0353, z: 0}
-  m_LocalScale: {x: 2.398, y: 0.1794, z: 1}
+  m_LocalScale: {x: 1, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 690021843478362926}
@@ -9772,9 +9773,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de58128a308a51f42a5186cb4d58c107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: 0
   swingForce: 0
-  limitSpeed: 3
+  limitSpeed: 10
 --- !u!1 &9093283267261980277
 GameObject:
   m_ObjectHideFlags: 0

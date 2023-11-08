@@ -11,6 +11,7 @@ public class Movement : MonoBehaviour
     public float jumpForce = 8.0f;
     public float throwForce = 12.0f;
     public float dashForce = 5.0f;
+    public float angle;
 
     public int bounceCount = 2;
     public bool gameover = false;
@@ -34,7 +35,8 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
-        float angle = sword.GetComponent<Sword>().angle;
+        Vector2 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition); //mouse position
+        angle = Mathf.Atan2(mouse.y - transform.position.y, mouse.x - transform.position.x);
         Debug.DrawRay(transform.position, Vector2.down, new Color(1, 0, 0));
         Debug.DrawRay(transform.position, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * dashForce, new Color(0, 1, 0));
         ///
@@ -50,7 +52,7 @@ public class Movement : MonoBehaviour
     {
         LayerMask mask = 1 << 20;
         LayerMask mask2 = 1 << 21;
-        float angle = sword.GetComponent<Sword>().angle;
+
         RaycastHit2D rayHit_Jump = Physics2D.Raycast(transform.position, Vector2.down, 1, mask | mask2);
         RaycastHit2D rayHit_Dash = Physics2D.Raycast(transform.position, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)), dashForce, mask);
 
@@ -89,7 +91,6 @@ public class Movement : MonoBehaviour
         int cloneCount = 3;
         Vector2 posBefore = transform.position;
 
-        float angle = sword.GetComponent<Sword>().angle;
         transform.Translate(new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * dashForce);
         rigid.velocity = new Vector2(rigid.velocity.x, 0);
 
@@ -116,7 +117,7 @@ public class Movement : MonoBehaviour
             Vector2 posPlayer = transform.position;
             Vector2 posCol = col.ClosestPoint(transform.position);
             Vector2 v = posCol - posPlayer;
-            float angle = Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg;
+            float angle = Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg; //have to fix
 
             //GetComponent<PlayerController>().isThrowing = false;
             if (bounceCount > 0 && isThrowing == true)

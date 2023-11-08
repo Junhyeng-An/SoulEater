@@ -13,8 +13,6 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool isThrowing;
 
-    bool isSwing;
-
     void Awake()
     {
         movement = GetComponent<Movement>();
@@ -74,35 +72,14 @@ public class PlayerController : MonoBehaviour
 
             //sword 
             sword.PosRot();
-            if (sword.swingForce >= 3)
+            sword.SwingCheck();
+            if (Input.GetMouseButton(0)) //left
             {
-                if (Input.GetMouseButton(0) && sword.swingForce >= 3 && stat.Player_CurST >= 3) //left
-                {
-                    if(isSwing == false)
-                    {
-                        stat.Stat("ST", -3);
-                        isSwing = true;
-                    }
-                    sword.gameObject.tag = "Attack";
-                    sword.GetComponent<SpriteRenderer>().color = Color.red;
-                }
-                if (Input.GetMouseButton(1) && sword.swingForce >= 3 && stat.Player_CurST >= 6) //right
-                {
-                    if (isSwing == false)
-                    {
-                        stat.Stat("ST", -6);
-                        isSwing = true;
-                    }
-                    sword.gameObject.tag = "Parrying";
-                    sword.GetComponent<SpriteRenderer>().color = Color.blue;
-                }
+                sword.Attack();
             }
-            else if(sword.swingForce < 1.5f)
+            if (Input.GetMouseButton(1) && sword.swingForce >= 3 && stat.Player_CurST >= 6) //right
             {
-                sword.gameObject.tag = "Sword";
-                isSwing = false;
-                
-                sword.GetComponent<SpriteRenderer>().color = Color.white;
+                sword.Parrying();
             }
         }
 

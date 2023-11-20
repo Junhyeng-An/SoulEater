@@ -18,7 +18,7 @@ public class EnemyController : MonoBehaviour
     public float MaxHP;
     public float CurWP;
     public float MaxWP;
-    public int nextMove;//Çàµ¿ÁöÇ¥¸¦ °áÁ¤ÇÒ º¯¼ö
+    public int nextMove;//í–‰ë™ì§€í‘œë¥¼ ê²°ì •í•  ë³€ìˆ˜
     public float detect_meter = 4.0f;
     public float attack_meter = 1.2f;
     public bool issearch = false;
@@ -260,13 +260,13 @@ public class EnemyController : MonoBehaviour
 
         if (distance <= detect_meter && distance >= attack_meter)
         {
-            Debug.Log("ÀÎ½ÄµÊ");
+            Debug.Log("ì¸ì‹ë¨");
             transform.position = Vector2.Lerp(transform.position, conPos, 0.4f * Time.deltaTime);
         }
         else if (distance <= attack_meter)
         {
             //Attack();
-            Debug.Log("ÇÃ·¹ÀÌ¾î¸¦ ÇâÇØ °ø°İÁß");
+            Debug.Log("í”Œë ˆì´ì–´ë¥¼ í–¥í•´ ê³µê²©ì¤‘");
         }
         else
         {

@@ -23,7 +23,7 @@ public class EnemyController : MonoBehaviour
     public float attack_meter = 1.2f;
     public bool issearch = false;
     float height = 0.8f;
-
+    private Animator animator;
     [SerializeField]
     Slider Enemy_HP;
 
@@ -80,7 +80,7 @@ public class EnemyController : MonoBehaviour
         Soul_Drop = GetComponent<global::Soul_Drop>();
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
+        animator = GetComponent<Animator>();
         Invoke("Think", 1);
     }
     void Update()
@@ -187,6 +187,8 @@ public class EnemyController : MonoBehaviour
 
     void Idle() //Enemy ai Idle
     {
+        animator.SetFloat("RunState", 0.1f);
+        
         rigid.velocity = new Vector2(nextMove, rigid.velocity.y);
 
         Vector2 Mypos = transform.position;
@@ -218,15 +220,22 @@ public class EnemyController : MonoBehaviour
 
     void Think()
     {
-
+        if (nextMove == 1) 
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        }
+        if (nextMove == -1)
+        {
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+        }
         //set next active
         nextMove = Random.Range(-1, 2); //-1 = left, 0 = stop ,1 = right
 
         //change direct
-        if (nextMove != 0)
-        {
-            spriteRenderer.flipX = (nextMove == 1);
-        }
+        // if (nextMove != 0)
+        // {
+        //     spriteRenderer.flipX = (nextMove == 1);
+        // }
         if (nextMove == 0)
         {
             Invoke("Think", 1.0f);

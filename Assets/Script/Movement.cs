@@ -29,6 +29,7 @@ public class Movement : MonoBehaviour
 
     private void Awake()
     {
+        
         rigid = GetComponent<Rigidbody2D>();
         line = GetComponent<LineRenderer>();
     }
@@ -138,13 +139,13 @@ public class Movement : MonoBehaviour
                 Debug.Log(collisionDirection);
                 if (Mathf.Abs(collisionDirection.x) > Mathf.Abs(collisionDirection.y))
                 {
-                    // ÁÂ¿ì º®°ú Ãæµ¹ÇÑ °æ¿ì, x ¹æÇâÀÇ ¼Óµµ¸¦ ¹ÝÀü
+                    // ï¿½Â¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½ï¿½, x ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                     rigid.velocity = new Vector2(rigid.velocity.x, -rigid.velocity.y);
                     Debug.Log("LR");
                 }
                 else
                 {
-                    // »óÇÏ º®°ú Ãæµ¹ÇÑ °æ¿ì, y ¹æÇâÀÇ ¼Óµµ¸¦ ¹ÝÀü
+                    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½ï¿½, y ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                     rigid.velocity = new Vector2(-rigid.velocity.x, rigid.velocity.y);
                     Debug.Log("UD");
                 }*/

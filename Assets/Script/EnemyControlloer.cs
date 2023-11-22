@@ -22,7 +22,7 @@ public class EnemyController : MonoBehaviour
     public float detect_meter = 4.0f;
     public float attack_meter = 1.2f;
     public bool issearch = false;
-    float height = 0.8f;
+    public float hp_har_height = 1;
     private Animator animator;
     [SerializeField]
     Slider Enemy_HP;
@@ -33,6 +33,7 @@ public class EnemyController : MonoBehaviour
 
     public bool isDamage = false;
     private Sword sword;
+
     public enum EnemyType
     {
         Enemy_A,
@@ -89,7 +90,7 @@ public class EnemyController : MonoBehaviour
         {
             Canvas.SetActive(true);
             Enemy_HP.value = CurHP / MaxHP;
-            Vector3 hpbar_pos = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + height, 0));
+            Vector3 hpbar_pos = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + hp_har_height, 0));
             my_bar.position = hpbar_pos;
         }
         if (gameObject.tag == "Controlled")
@@ -113,7 +114,7 @@ public class EnemyController : MonoBehaviour
         }
         if(gameObject.tag == "Enemy" || gameObject.tag == "Disarmed")
         {
-            if(issearch == false)
+            if (issearch == false)
             {
                 Idle();
             }
@@ -187,7 +188,7 @@ public class EnemyController : MonoBehaviour
 
     void Idle() //Enemy ai Idle
     {
-        animator.SetFloat("RunState", 0.1f);
+        //animator.SetFloat("RunState", 0.1f);
         
         rigid.velocity = new Vector2(nextMove, rigid.velocity.y);
 
@@ -204,6 +205,14 @@ public class EnemyController : MonoBehaviour
         Debug.DrawRay(frontVec, Vector3.down, new Color(0, 1, 0)); //fall_area check Ray
 
         RaycastHit2D rayHit = Physics2D.Raycast(frontVec, Vector3.down, 1, LayerMask.GetMask("Floor"));
+        if (Mypos.x - frontVec.x < 0)
+        {
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+        }
+        else if (Mypos.x - frontVec.x > 0)
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        }
 
 
         if (rayHit.collider == null)
@@ -220,22 +229,14 @@ public class EnemyController : MonoBehaviour
 
     void Think()
     {
-        if (nextMove == 1) 
-        {
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-        }
-        if (nextMove == -1)
-        {
-            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-        }
         //set next active
         nextMove = Random.Range(-1, 2); //-1 = left, 0 = stop ,1 = right
 
         //change direct
-        // if (nextMove != 0)
-        // {
-        //     spriteRenderer.flipX = (nextMove == 1);
-        // }
+        if (nextMove != 0)
+        {
+            spriteRenderer.flipX = (nextMove == 1);
+        }
         if (nextMove == 0)
         {
             Invoke("Think", 1.0f);
@@ -266,7 +267,14 @@ public class EnemyController : MonoBehaviour
 
         float distance = Vector2.Distance(Mypos, conPos);
 
-
+        if (Mypos.x - conPos.x < 0)
+        {
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+        }
+        else if(Mypos.x - conPos.x >= 0)
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        }
         if (distance <= detect_meter && distance >= attack_meter)
         {
             Debug.Log("인식됨");

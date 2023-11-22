@@ -74,6 +74,7 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        
         CheckState();
         stat = GameObject.Find("GameManager").GetComponent<StatController>();
         rigidPlayer = Player.GetComponent<Rigidbody2D>();
@@ -86,9 +87,13 @@ public class EnemyController : MonoBehaviour
     }
     void Update()
     {
+          
+
+        
         if (gameObject.layer == 12)
         {
             Canvas.SetActive(true);
+            animator.SetFloat("RunState", 0.1f);
             Enemy_HP.value = CurHP / MaxHP;
             Vector3 hpbar_pos = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + hp_har_height, 0));
             my_bar.position = hpbar_pos;
@@ -188,7 +193,7 @@ public class EnemyController : MonoBehaviour
 
     void Idle() //Enemy ai Idle
     {
-        //animator.SetFloat("RunState", 0.1f);
+    
         
         rigid.velocity = new Vector2(nextMove, rigid.velocity.y);
 

@@ -11,6 +11,9 @@ using Unity.VisualScripting;
 public class EnemyController : MonoBehaviour
 {
     public GameObject Player;
+    public GameObject Attack_area;
+    public GameObject Hit_area;
+    public GameObject[] Weapon;
     public RectTransform my_bar;
     public GameObject Canvas;
     public Soul_Drop Soul_Drop;
@@ -23,6 +26,7 @@ public class EnemyController : MonoBehaviour
     public float attack_meter = 1.2f;
     public bool issearch = false;
     public float hp_har_height = 1;
+    float timer;
     private Animator animator;
     [SerializeField]
     Slider Enemy_HP;
@@ -30,7 +34,7 @@ public class EnemyController : MonoBehaviour
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     StatController stat;
-
+    Movement movement;
     public bool isDamage = false;
     private Sword sword;
 
@@ -84,6 +88,8 @@ public class EnemyController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         Invoke("Think", 1);
+        Attack_area.SetActive(false);
+        Hit_area.SetActive(false);
     }
     void Update()
     {
@@ -92,6 +98,9 @@ public class EnemyController : MonoBehaviour
         
         if (gameObject.layer == 12)
         {
+            Hit_area.SetActive(false);
+            for (int i = 0; i < Weapon.Length; i++) 
+            { Weapon[i].SetActive(true); }
             Canvas.SetActive(true);
             animator.SetFloat("RunState", 0.1f);
             Enemy_HP.value = CurHP / MaxHP;
@@ -100,6 +109,9 @@ public class EnemyController : MonoBehaviour
         }
         if (gameObject.tag == "Controlled")
         {
+            Hit_area.SetActive(true);
+            for (int i = 0; i < Weapon.Length; i++)
+            { Weapon[i].SetActive(false); }
             Canvas.SetActive(false);
         }
         if (isPlayer == true)
@@ -185,10 +197,24 @@ public class EnemyController : MonoBehaviour
     {
         if(CurHP <= 0)
         {
-            Soul_Drop.DropItem();
-            this.gameObject.active = false;
+            if (gameObject.tag == "Controlled")
+            {
+                CurHP = 0;
+                Invoke("die",0.2f);
+            }
+            else
+            {
+                Soul_Drop.DropItem();
+                CurHP = 0;
+                gameObject.SetActive(false);
+            }
             
         }
+    }
+    void die()
+    {
+        gameObject.SetActive(false);
+        Time.timeScale = 0;
     }
 
     void Idle() //Enemy ai Idle
@@ -287,12 +313,26 @@ public class EnemyController : MonoBehaviour
         }
         else if (distance <= attack_meter)
         {
-            //Attack();
+            timer += Time.deltaTime;
+            Debug.Log(timer);
+            if (timer>=1.0f && timer <1.2f)
+            {
+                Attack_area.SetActive(true);
+            }
+            else if (timer >= 1.2f && timer < 1.4f)
+            {
+                Attack_area.SetActive(false);
+            }
+            else if (timer >= 1.4f)
+            {
+                timer = 0.0f;
+            }
             Debug.Log("플레이어를 향해 공격중");
         }
         else
         {
             issearch = false;
+            Attack_area.SetActive(false);
         }
     }
 }

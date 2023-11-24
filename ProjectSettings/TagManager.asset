@@ -13,6 +13,8 @@ TagManager:
   - Attack
   - Parrying
   - Soul
+  - hit_area
+  - closehit
   layers:
   - Default
   - TransparentFX
@@ -38,7 +40,7 @@ TagManager:
   - Platform
   - Soul
   - 
-  - 
+  - E_Attack
   - 
   - 
   - 

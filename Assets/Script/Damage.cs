@@ -19,7 +19,9 @@ public class Damage : MonoBehaviour
         {
             Debug.LogError("EnemyController not found in the parent!");
         }
-
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
     }
     void damage()
     {

@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour
 {
     public GameObject Player;
     public GameObject Attack_area;
+    public GameObject attackPrefab;
     public GameObject Hit_area;
     public GameObject[] Weapon;
     public RectTransform my_bar;
@@ -37,7 +38,7 @@ public class EnemyController : MonoBehaviour
     Movement movement;
     public bool isDamage = false;
     private Sword sword;
-
+    private GameObject attackAreaInstance;
     public enum EnemyType
     {
         Enemy_A,
@@ -78,7 +79,7 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        
+        area_setting();
         CheckState();
         stat = GameObject.Find("GameManager").GetComponent<StatController>();
         rigidPlayer = Player.GetComponent<Rigidbody2D>();
@@ -88,32 +89,34 @@ public class EnemyController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         Invoke("Think", 1);
-        Attack_area.SetActive(false);
-        Hit_area.SetActive(false);
     }
     void Update()
     {
-          
-
-        
         if (gameObject.layer == 12)
         {
-            Hit_area.SetActive(false);
             for (int i = 0; i < Weapon.Length; i++) 
             { Weapon[i].SetActive(true); }
             Canvas.SetActive(true);
-            animator.SetFloat("RunState", 0.1f);
+            animator.SetFloat("RunState", 0.1f); //Run Animation//
             Enemy_HP.value = CurHP / MaxHP;
             Vector3 hpbar_pos = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + hp_har_height, 0));
             my_bar.position = hpbar_pos;
         }
         if (gameObject.tag == "Controlled")
         {
-            Hit_area.SetActive(true);
+            area_setting();
             for (int i = 0; i < Weapon.Length; i++)
-            { Weapon[i].SetActive(false); }
+            {
+                Weapon[i].SetActive(false);
+            }
+
             Canvas.SetActive(false);
         }
+        else if(gameObject.tag != "Controlled")
+        {
+            area_setting();
+        }
+
         if (isPlayer == true)
         {
             transform.position = Player.transform.position;
@@ -193,6 +196,19 @@ public class EnemyController : MonoBehaviour
             gameObject.tag = "Disarmed"; //Disarm
         }
     }
+
+    void area_setting()
+    {
+        if (gameObject.tag == "Controlled")
+        {
+            Hit_area.SetActive(true);
+        }
+        else
+        {
+            Hit_area.SetActive(false);
+        }
+    }
+    
     public void HP_Check()
     {
         if(CurHP <= 0)
@@ -311,24 +327,22 @@ public class EnemyController : MonoBehaviour
             Debug.Log("인식됨");
             transform.position = Vector2.Lerp(transform.position, conPos, 0.4f * Time.deltaTime);
         }
-        else if (distance <= attack_meter)
+        else if (distance <= attack_meter) //Attack AI start
         {
             timer += Time.deltaTime;
-            Debug.Log(timer);
-            if (timer>=1.0f && timer <1.2f)
+            Debug.Log(timer); 
+            if (timer >= 1.0f && timer < 1.2f) //Attack in a 1second
             {
                 Attack_area.SetActive(true);
+                animator.SetTrigger("Attack");//<-------- Attack Animation Here
             }
-            else if (timer >= 1.2f && timer < 1.4f)
+            else if (timer >= 1.2f)
             {
                 Attack_area.SetActive(false);
-            }
-            else if (timer >= 1.4f)
-            {
                 timer = 0.0f;
             }
             Debug.Log("플레이어를 향해 공격중");
-        }
+        } //Attack AI End
         else
         {
             issearch = false;

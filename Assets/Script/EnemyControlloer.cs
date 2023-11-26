@@ -97,13 +97,18 @@ public class EnemyController : MonoBehaviour
             for (int i = 0; i < Weapon.Length; i++) 
             { Weapon[i].SetActive(true); }
             Canvas.SetActive(true);
-            animator.SetFloat("RunState", 0.1f); //Run Animation//
+            if (gameObject.CompareTag("Controlled") != true)
+            {
+                animator.SetFloat("RunState", 0.1f); //Run Animation//
+            }
+
             Enemy_HP.value = CurHP / MaxHP;
             Vector3 hpbar_pos = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + hp_har_height, 0));
             my_bar.position = hpbar_pos;
         }
         if (gameObject.tag == "Controlled")
         {
+            
             area_setting();
             for (int i = 0; i < Weapon.Length; i++)
             {
@@ -119,6 +124,7 @@ public class EnemyController : MonoBehaviour
 
         if (isPlayer == true)
         {
+           
             transform.position = Player.transform.position;
             if (Player.GetComponent<PlayerController>().isThrowing == true)
             {
@@ -287,6 +293,7 @@ public class EnemyController : MonoBehaviour
         if (nextMove == 0)
         {
             Invoke("Think", 1.0f);
+        
         }
         else
         {

@@ -13,7 +13,7 @@ public class Sword : MonoBehaviour
     private StatController stat;
     GameObject target;
     Rigidbody2D rigid;
-
+    
     private Vector2 mouseBefore;
     private Vector2 mouse;
 

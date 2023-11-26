@@ -576,6 +576,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6089862896052927254, guid: 0783dfe717ddeee49bb13ef440203e72, type: 3}
   m_PrefabInstance: {fileID: 1865626486}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &470575934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470575920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6769ade8616bb54b911067394f5ad13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackForce: 100
+  knockbackDuration: 0.5
 --- !u!1 &501346403
 GameObject:
   m_ObjectHideFlags: 0
@@ -9681,6 +9695,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7376148903770300122, guid: 0783dfe717ddeee49bb13ef440203e72, type: 3}
       insertIndex: -1
       addedObject: {fileID: 470575922}
+    - targetCorrespondingSourceObject: {fileID: 7376148903770300122, guid: 0783dfe717ddeee49bb13ef440203e72, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 470575934}
   m_SourcePrefab: {fileID: 100100000, guid: 0783dfe717ddeee49bb13ef440203e72, type: 3}
 --- !u!1 &1871490500
 GameObject:
@@ -9907,6 +9924,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9198021489589324292, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
       insertIndex: 3
       addedObject: {fileID: 1882942796}
+    - targetCorrespondingSourceObject: {fileID: 9198021489589324292, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1882942798}
   m_SourcePrefab: {fileID: 100100000, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
 --- !u!4 &1882942794 stripped
 Transform:
@@ -9947,6 +9967,20 @@ MonoBehaviour:
   Enemy_HP: {fileID: 1093509603}
   isDamage: 0
   enemyType: 0
+--- !u!114 &1882942798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693569688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6769ade8616bb54b911067394f5ad13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackForce: 100
+  knockbackDuration: 0.5
 --- !u!1 &1887184472
 GameObject:
   m_ObjectHideFlags: 0

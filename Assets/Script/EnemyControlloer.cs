@@ -125,7 +125,7 @@ public class EnemyController : MonoBehaviour
         if (isPlayer == true)
         {
            
-            transform.position = Player.transform.position;
+            transform.position = new Vector2(Player.transform.position.x, Player.transform.position.y - 0.5f);
             if (Player.GetComponent<PlayerController>().isThrowing == true)
             {
                 isPlayer = false;

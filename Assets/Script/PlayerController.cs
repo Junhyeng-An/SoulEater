@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     private Movement movement;
     private Sword sword;
     private StatController stat;
+    private Setting_UI setting;
     private EnemyController enemy;
 
     [HideInInspector]
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
         movement = GetComponent<Movement>();
         sword = GetComponentInChildren<Sword>();
         stat = GameObject.Find("GameManager").GetComponent<StatController>();
+        setting = GameObject.Find("GameManager").GetComponent<Setting_UI>();
 
         isThrowing = true;
     }
@@ -34,7 +36,7 @@ public class PlayerController : MonoBehaviour
         {
             sword.Throw();
         }
-        else
+        else if (setting.settingsMenu.activeSelf == false)
         {
             //player movement
             float x = Input.GetAxisRaw("Horizontal");
@@ -77,7 +79,7 @@ public class PlayerController : MonoBehaviour
             {
                 sword.Attack();
             }
-            if (Input.GetMouseButton(1) && sword.swingForce >= 3 && stat.Player_CurST >= 6) //right
+            if (Input.GetMouseButton(1)) //right
             {
                 sword.Parrying();
             }

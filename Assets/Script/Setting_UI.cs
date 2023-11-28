@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Setting_UI : MonoBehaviour
 {
-    public GameObject settingsMenu; // Reference to your settings menu GameObject
+    private PlayerController playerController;
 
+    public GameObject settingsMenu; // Reference to your settings menu GameObject
     // Update is called once per frame
     void Update()
     {

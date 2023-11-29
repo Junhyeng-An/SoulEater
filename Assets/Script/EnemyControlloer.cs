@@ -124,8 +124,8 @@ public class EnemyController : MonoBehaviour
 
         if (isPlayer == true)
         {
-           
-            transform.position = Player.transform.position;
+
+            transform.position = new Vector2(Player.transform.position.x, Player.transform.position.y - 0.5f);
             if (Player.GetComponent<PlayerController>().isThrowing == true)
             {
                 isPlayer = false;
@@ -134,7 +134,7 @@ public class EnemyController : MonoBehaviour
             }
         }
         HP_Check();
-        if(sword.swingForce <= 1.5f)
+        if(sword.isSwing == false)
         {
             isDamage = false;
         }
@@ -255,7 +255,7 @@ public class EnemyController : MonoBehaviour
 
         //Enemy Move 
         Vector2 frontVec = new Vector2(rigid.position.x + nextMove * 1.2f, rigid.position.y);
-        Debug.DrawRay(frontVec, Vector3.down, new Color(0, 1, 0)); //fall_area check Ray
+        //Debug.DrawRay(frontVec, Vector3.down, new Color(0, 1, 0)); //fall_area check Ray
 
         RaycastHit2D rayHit = Physics2D.Raycast(frontVec, Vector3.down, 1, LayerMask.GetMask("Floor"));
         if (Mypos.x - frontVec.x < 0)

@@ -7,19 +7,22 @@ public class Knock_Back : MonoBehaviour
     public float knockbackForce = 10f;
     public float knockbackDuration = 0.5f;
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Sword"))
-        {
+        Sword sword = GameObject.Find("Player").GetComponentInChildren<Sword>();
 
+        if ((other.CompareTag("Attack") || other.CompareTag("Parrying")) && sword.isKnock == false)
+        {
+            Debug.Log("³Ë¹éµÊ");
             // Calculate the direction of the knockback
-            Vector2 knockbackDirection = (transform.position - other.transform.position).normalized;
+            Vector2 knockbackDirection = (transform.position - other.transform.parent.position).normalized;
 
             // Apply knockback force to the enemy
             Rigidbody2D enemyRigidbody = GetComponent<Rigidbody2D>();
             if (enemyRigidbody != null)
             {
                 enemyRigidbody.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
+                sword.isKnock = true;
 
                 // Disable enemy movement temporarily
                 StartCoroutine(DisableMovement());

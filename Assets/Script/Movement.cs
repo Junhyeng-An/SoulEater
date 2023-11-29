@@ -29,7 +29,7 @@ public class Movement : MonoBehaviour
 
     private void Awake()
     {
-        
+
         rigid = GetComponent<Rigidbody2D>();
         line = GetComponent<LineRenderer>();
     }
@@ -59,7 +59,7 @@ public class Movement : MonoBehaviour
 
         if (rayHit_Jump.collider != null)
         {
-            if(rayHit_Jump.distance <= 0.55f && rigid.velocity.y <= 0)
+            if (rayHit_Jump.distance <= 0.55f && rigid.velocity.y <= 0)
             {
                 isJumping = false;
             }
@@ -71,7 +71,7 @@ public class Movement : MonoBehaviour
         }
         else
         {
-            if(dashForce < 5.0f)
+            if (dashForce < 5.0f)
                 dashForce += 0.1f;
         }
     }
@@ -99,13 +99,30 @@ public class Movement : MonoBehaviour
 
         Vector2 posA = posAfter - posBefore;
 
-        Vector3 posZ = new Vector3(0,0,-2);
-        
+        Vector3 posZ = new Vector3(0, 0, -2);
+
         GameObject controlled = GameObject.FindGameObjectWithTag("Controlled");
-        for(int i = 0; i < cloneCount; i++)
+        for (int i = 0; i < cloneCount; i++)
         {
             GameObject clone = Instantiate(controlled, posAfter - posA / Mathf.Pow(2, i + 1), transform.rotation);
-            clone.GetComponent<SpriteRenderer>().color = new Color(0.75f, 0.5f, 1, 0.1f * (i + 1)*2);
+
+            ChangeColorRecursive(clone.transform, i);
+        }
+    }
+    void ChangeColorRecursive(Transform clone, int i)
+    {
+        foreach (Transform child in clone.transform)
+        {
+            // 자식 객체의 Renderer 컴포넌트 가져오기
+            Renderer childRenderer = child.GetComponent<Renderer>();
+
+            // Renderer 컴포넌트가 있다면 색상 변경
+            if (childRenderer != null)
+            {
+                childRenderer.material.color = new Color(0.75f, 0.5f, 1, 0.1f * (i + 1) * 2);
+            }
+
+            ChangeColorRecursive(child, i);
         }
     }
     private void OnTriggerEnter2D(Collider2D col)

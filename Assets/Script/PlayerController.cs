@@ -72,14 +72,18 @@ public class PlayerController : MonoBehaviour
 
             //sword 
             sword.PosRot();
-            sword.SwingCheck();
-            if (Input.GetMouseButton(0)) //left
+            //sword.SwingCheck();
+            if (Input.GetMouseButtonDown(0)) //left
             {
                 sword.Attack();
             }
-            if (Input.GetMouseButton(1) && sword.swingForce >= 3 && stat.Player_CurST >= 6) //right
+            if (Input.GetMouseButtonDown(1)) //right
             {
                 sword.Parrying();
+            }
+            if (Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1))
+            {
+                sword.Idle();
             }
         }
 

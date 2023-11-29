@@ -54,11 +54,16 @@ public class StatController : MonoBehaviour
                 }
             }
 
-            //hp, 스테미나 음수 방지
+            //if(hp, st <= 0)
             if (Player_CurHP <= 0)
                 Player_CurHP = 0;
             if (Player_CurST <= 0)
                 Player_CurST = 0;
+            //if(hp, st >= max)
+            if (Player_CurHP > Player_MaxHP)
+                Player_CurHP = Player_MaxHP;
+            if (Player_CurST > Player_MaxST)
+                Player_CurST = Player_MaxST;
 
             if (Player_CurST < Player_MaxST)
             {

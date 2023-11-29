@@ -22,18 +22,27 @@ public class Sword : MonoBehaviour
     float angleDeltaDelta;
 
     bool isThrowing;
-    bool isSwing;
+    public bool isSwing;
+    public bool isKnock;
 
+    float stretch;
+    bool attack_Ani = false;
     void Awake()
     {
         target = transform.parent.gameObject;
         rigid = GetComponent<Rigidbody2D>();
 
         stat = GameObject.Find("GameManager").GetComponent<StatController>();
+
+        stretch = 1.0f;
     }
 
     void Update()
     {
+        if(attack_Ani == true)
+        {
+            Attack_Animation();
+        }
     }
 
     public void Throw() //when throw sword
@@ -85,7 +94,7 @@ public class Sword : MonoBehaviour
 
         transform.rotation = Quaternion.AngleAxis(angle * Mathf.Rad2Deg, Vector3.forward); // look mouse
 
-        Vector2 mousePos = new Vector2(target.transform.position.x + Mathf.Cos(angle), target.transform.position.y + Mathf.Sin(angle)); // sword position
+        Vector2 mousePos = new Vector2(target.transform.position.x + Mathf.Cos(angle) * stretch, target.transform.position.y + Mathf.Sin(angle) * stretch); // sword position
         transform.position = mousePos;
 
         Vector2 posAfter = transform.localPosition;
@@ -103,46 +112,46 @@ public class Sword : MonoBehaviour
         return radian;
     }
 
-    public void SwingCheck()
-    {
-        if (swingForce < 1.0f)
-        {
-            gameObject.tag = "Sword";
-            isSwing = false;
-
-            GetComponent<SpriteRenderer>().color = Color.white;
-        }
-    }
     public void Attack()
     {
-        float minForce = 5.0f;
-        if(minForce > limitSpeed)
+        if(stat.Player_CurST >= 3)
         {
-            minForce = limitSpeed;
-        }
-
-        if(swingForce >= minForce && stat.Player_CurST >= 3)
-        {
-            if (isSwing == false)
-            {
-                stat.Stat("ST", -3);
-                isSwing = true;
-            }
+            isSwing = true;
+            stat.Stat("ST", -3);
             gameObject.tag = "Attack";
-            GetComponent<SpriteRenderer>().color = Color.red;
+            GetComponentInChildren<SpriteRenderer>().color = Color.red;
+
+            attack_Ani = true;
         }
     }
     public void Parrying()
     {
-        if (swingForce > 5.0f && stat.Player_CurST >= 6)
+        if (stat.Player_CurST >= 6)
         {
-            if (isSwing == false)
-            {
-                stat.Stat("ST", -6);
-                isSwing = true;
-            }
+            isSwing = true;
+            stat.Stat("ST", -6);
             gameObject.tag = "Parrying";
-            GetComponent<SpriteRenderer>().color = Color.blue;
+            GetComponentInChildren<SpriteRenderer>().color = Color.blue;
+        }
+    }
+    public void Idle()
+    {
+        isSwing = false;
+        isKnock = false;
+        gameObject.tag = "Sword";
+        GetComponentInChildren<SpriteRenderer>().color = Color.white;
+    }
+    void Attack_Animation()
+    {
+        float stretch_max = 2.0f;
+        if (stretch < stretch_max)
+        {
+            stretch += 0.1f;
+        }
+        else if(stretch >= stretch_max)
+        {
+            stretch = 1.0f;
+            attack_Ani = false;
         }
     }
     public void GameOver()

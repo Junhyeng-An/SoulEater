@@ -576,7 +576,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6089862896052927254, guid: 0783dfe717ddeee49bb13ef440203e72, type: 3}
   m_PrefabInstance: {fileID: 1865626486}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &470575934
+--- !u!114 &470575945
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -588,7 +588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6769ade8616bb54b911067394f5ad13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackForce: 100
+  knockbackForce: 3
   knockbackDuration: 0.5
 --- !u!1 &501346403
 GameObject:
@@ -9697,7 +9697,7 @@ PrefabInstance:
       addedObject: {fileID: 470575922}
     - targetCorrespondingSourceObject: {fileID: 7376148903770300122, guid: 0783dfe717ddeee49bb13ef440203e72, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 470575934}
+      addedObject: {fileID: 470575945}
   m_SourcePrefab: {fileID: 100100000, guid: 0783dfe717ddeee49bb13ef440203e72, type: 3}
 --- !u!1 &1871490500
 GameObject:
@@ -9799,6 +9799,30 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 18
       objectReference: {fileID: 0}
+    - target: {fileID: 1965014845325286645, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1965014845325286645, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1965014845325286645, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177144569241614170, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177144569241614170, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3177144569241614170, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4162768982026460719, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -9810,6 +9834,18 @@ PrefabInstance:
     - target: {fileID: 5506075672461619230, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
       propertyPath: m_Layer
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7705360906059188636, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7705360906059188636, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7705360906059188636, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7722725372934843069, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
       propertyPath: m_Pivot.x
@@ -9907,6 +9943,18 @@ PrefabInstance:
       propertyPath: Enemy_HP
       value: 
       objectReference: {fileID: 1093509603}
+    - target: {fileID: 9033782663338398878, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033782663338398878, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033782663338398878, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8533553315668378928, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
     m_RemovedGameObjects: []
@@ -9926,7 +9974,7 @@ PrefabInstance:
       addedObject: {fileID: 1882942796}
     - targetCorrespondingSourceObject: {fileID: 9198021489589324292, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1882942798}
+      addedObject: {fileID: 1882942809}
   m_SourcePrefab: {fileID: 100100000, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
 --- !u!4 &1882942794 stripped
 Transform:
@@ -9967,7 +10015,7 @@ MonoBehaviour:
   Enemy_HP: {fileID: 1093509603}
   isDamage: 0
   enemyType: 0
---- !u!114 &1882942798
+--- !u!114 &1882942809
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9979,7 +10027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6769ade8616bb54b911067394f5ad13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackForce: 100
+  knockbackForce: 3
   knockbackDuration: 0.5
 --- !u!1 &1887184472
 GameObject:
@@ -11399,6 +11447,7 @@ GameObject:
   - component: {fileID: 8187709968285665248}
   - component: {fileID: 4291135599501353188}
   - component: {fileID: 8912048795482995076}
+  - component: {fileID: 8912048795482995077}
   m_Layer: 11
   m_Name: Sword
   m_TagString: Sword
@@ -11711,7 +11760,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.5}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
 --- !u!50 &8187709968285665248
@@ -11858,6 +11907,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swingForce: 0
   limitSpeed: 10
+  isSwing: 0
+  isKnock: 0
 --- !u!114 &8912048795482995076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11870,6 +11921,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 078bfecbc10662542962f6f6d59099c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8912048795482995077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022355562902686601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6769ade8616bb54b911067394f5ad13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackForce: 10
+  knockbackDuration: 0.5
 --- !u!1 &9093283267261980277
 GameObject:
   m_ObjectHideFlags: 0

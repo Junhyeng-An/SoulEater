@@ -3133,9 +3133,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2401293536896692182}
   - component: {fileID: 3378028559857233641}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: C_Enemy2
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

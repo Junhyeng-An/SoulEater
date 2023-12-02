@@ -2802,9 +2802,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7722725372934843069}
   - component: {fileID: 6328030663488903928}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: C_Enemy1
-  m_TagString: Disarmed
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

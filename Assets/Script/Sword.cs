@@ -22,11 +22,22 @@ public class Sword : MonoBehaviour
     float angleDeltaDelta;
 
     bool isThrowing;
+
+    [HideInInspector]
     public bool isSwing;
+    [HideInInspector]
     public bool isKnock;
 
     float stretch;
+
+    public float stretch_Min;
+    public float stretch_Max;
+    [Range(0.0f, 1.0f)]
+    public float stretch_Speed;
+
     bool attack_Ani = false;
+    bool isMax = false;
+
     void Awake()
     {
         target = transform.parent.gameObject;
@@ -114,12 +125,13 @@ public class Sword : MonoBehaviour
 
     public void Attack()
     {
-        if(stat.Player_CurST >= 3)
+        if(stat.Player_CurST >= 3 && attack_Ani == false)
         {
             isSwing = true;
             stat.Stat("ST", -3);
             gameObject.tag = "Attack";
-            GetComponentInChildren<SpriteRenderer>().color = Color.red;
+            //GetComponentInChildren<SpriteRenderer>().color = Color.red;
+            Debug.Log(GetComponentInChildren<SpriteRenderer>().color);
 
             attack_Ani = true;
         }
@@ -143,16 +155,25 @@ public class Sword : MonoBehaviour
     }
     void Attack_Animation()
     {
-        float stretch_max = 2.0f;
-        if (stretch < stretch_max)
+        if (stretch < stretch_Max && isMax == false)
         {
-            stretch += 0.1f;
+            stretch += stretch_Speed;
         }
-        else if(stretch >= stretch_max)
+        else if(stretch >= stretch_Max && isMax == false)
         {
-            stretch = 1.0f;
+            isMax = true;
+        }
+        else if(stretch > stretch_Min && isMax == true)
+        {
+            stretch -= stretch_Speed;
+        }
+        else if(stretch <= stretch_Min && isMax == true)
+        {
             attack_Ani = false;
+            isMax = false;
+            Idle();
         }
+
     }
     public void GameOver()
     {

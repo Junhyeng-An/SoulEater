@@ -25,4 +25,8 @@ public class Hit_Enemy : MonoBehaviour
             GetComponent<SpriteRenderer>().color = new Color(1, 0.5f, 0.5f);
         }
     }
+    private void OnEnable()
+    {
+        //GetComponent<Collider>().isTrigger = true;
+    }
 }

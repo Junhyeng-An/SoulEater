@@ -189,7 +189,7 @@ public class Sword : MonoBehaviour
 
         if (col.gameObject.layer == LayerMask.NameToLayer("E_Attack"))
         {
-            col.enabled = false;
+            //col.enabled = false;
             Debug.Log("¥Í¿Ω");
         }
     }

@@ -46,7 +46,10 @@ public class Sword : MonoBehaviour
         stat = GameObject.Find("GameManager").GetComponent<StatController>();
 
         stretch = 1.0f;
-    }
+        stretch_Min = 1.0f;
+        stretch_Max = 2.0f;
+        stretch_Speed = 0.1f;
+}
 
     void Update()
     {
@@ -81,7 +84,7 @@ public class Sword : MonoBehaviour
 
         if(angleDeltaDelta *10000 < 0)
         {
-            Debug.Log(angleDeltaDelta*10000);
+            //Debug.Log(angleDeltaDelta*10000);
         }
         else
         {
@@ -178,5 +181,16 @@ public class Sword : MonoBehaviour
     public void GameOver()
     {
         transform.rotation = Quaternion.Euler(0, 0, 80);
+    }
+
+    private void OnTriggerStay2D(Collider2D col)
+    {
+        Debug.Log(col.gameObject.layer);
+
+        if (col.gameObject.layer == LayerMask.NameToLayer("E_Attack"))
+        {
+            col.enabled = false;
+            Debug.Log("´êÀ½");
+        }
     }
 }

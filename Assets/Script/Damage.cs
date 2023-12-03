@@ -5,14 +5,15 @@ using UnityEngine;
 public class Damage : MonoBehaviour
 {
     float closeDamage = 10;
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         EnemyController enemyController = GetComponentInParent<EnemyController>();
         if (enemyController != null)
         {
-            if (collision.CompareTag("closehit"))
+            if (collision.CompareTag("closehit") && enemyController.isHit == false)
             {
                 enemyController.CurHP -= closeDamage;
+                enemyController.isHit = true;
             }
         }
         else

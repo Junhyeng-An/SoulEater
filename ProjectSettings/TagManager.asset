@@ -15,6 +15,7 @@ TagManager:
   - Soul
   - hit_area
   - closehit
+  - Hit_Ready
   layers:
   - Default
   - TransparentFX

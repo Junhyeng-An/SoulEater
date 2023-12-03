@@ -27,7 +27,11 @@ public class EnemyController : MonoBehaviour
     public float attack_meter = 1.2f;
     public bool issearch = false;
     public float hp_har_height = 1;
-    float timer;
+    public float timer;
+    public bool isHit = false;
+
+    bool isAttake = false;
+
     private Animator animator;
     [SerializeField]
     Slider Enemy_HP;
@@ -320,25 +324,36 @@ public class EnemyController : MonoBehaviour
         Vector2 conPos = con.transform.position;
 
         float distance = Vector2.Distance(Mypos, conPos);
-
-        if (Mypos.x - conPos.x < 0)
+        if (isAttake == false)
         {
-            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            if (Mypos.x - conPos.x < 0)
+            {
+                transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            }
+            else if (Mypos.x - conPos.x >= 0)
+            {
+                transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            }
+            if (distance <= detect_meter && distance >= attack_meter)
+            {
+                //Debug.Log("인식됨");
+                transform.position = Vector2.Lerp(transform.position, conPos, 0.4f * Time.deltaTime);
+            }
+            else if (distance <= attack_meter) //Attack AI start
+            {
+                isAttake = true;
+                //Debug.Log("플레이어를 향해 공격중");
+            } //Attack AI End
+            else
+            {
+                issearch = false;
+                Attack_area.SetActive(false);
+            }
         }
-        else if(Mypos.x - conPos.x >= 0)
-        {
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-        }
-        if (distance <= detect_meter && distance >= attack_meter)
-        {
-            Debug.Log("인식됨");
-            transform.position = Vector2.Lerp(transform.position, conPos, 0.4f * Time.deltaTime);
-        }
-        else if (distance <= attack_meter) //Attack AI start
+        else if(isAttake == true)
         {
             timer += Time.deltaTime;
-            Debug.Log(timer); 
-            if (timer >= 1.0f && timer < 1.2f) //Attack in a 1second
+            if (timer >= 0.0f && timer < 1.2f) //Attack in a 1second
             {
                 Attack_area.SetActive(true);
                 animator.SetTrigger("Attack");//<-------- Attack Animation Here
@@ -346,14 +361,11 @@ public class EnemyController : MonoBehaviour
             else if (timer >= 1.2f)
             {
                 Attack_area.SetActive(false);
+                GameObject.FindGameObjectWithTag("Controlled").GetComponentInChildren<EnemyController>().isHit = false;
                 timer = 0.0f;
+
+                isAttake = false;
             }
-            Debug.Log("플레이어를 향해 공격중");
-        } //Attack AI End
-        else
-        {
-            issearch = false;
-            Attack_area.SetActive(false);
         }
     }
 }

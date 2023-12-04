@@ -24,11 +24,12 @@ public class EnemyController : MonoBehaviour
     public float MaxWP;
     public int nextMove;//행동지표를 결정할 변수
     public float detect_meter = 4.0f;
-    public float attack_meter = 1.2f;
+    public float attack_meter = 2.0f;
     public bool issearch = false;
     public float hp_har_height = 1;
     public float timer;
     public bool isHit = false;
+    public bool isParried = false;
 
     bool isAttake = false;
 
@@ -353,7 +354,7 @@ public class EnemyController : MonoBehaviour
         else if(isAttake == true)
         {
             timer += Time.deltaTime;
-            if (timer >= 0.0f && timer < 1.2f) //Attack in a 1second
+            if (timer >= 0.0f && timer < 1.2f && isParried == false) //Attack in a 1second
             {
                 Attack_area.SetActive(true);
                 animator.SetTrigger("Attack");//<-------- Attack Animation Here
@@ -365,6 +366,7 @@ public class EnemyController : MonoBehaviour
                 timer = 0.0f;
 
                 isAttake = false;
+                isParried = false;
             }
         }
     }

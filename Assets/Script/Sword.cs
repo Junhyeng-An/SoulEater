@@ -17,7 +17,7 @@ public class Sword : MonoBehaviour
     private Vector2 mouseBefore;
     private Vector2 mouse;
 
-    float angle;
+    public float angle;
     float angleDelta;
     float angleDeltaDelta;
 
@@ -27,6 +27,8 @@ public class Sword : MonoBehaviour
     public bool isSwing;
     [HideInInspector]
     public bool isKnock;
+    [HideInInspector]
+    public bool isParrying;
 
     float stretch;
 
@@ -45,9 +47,9 @@ public class Sword : MonoBehaviour
 
         stat = GameObject.Find("GameManager").GetComponent<StatController>();
 
-        stretch = 1.0f;
-        stretch_Min = 1.0f;
-        stretch_Max = 2.0f;
+        stretch = 1.4f;
+        stretch_Min = 1.4f;
+        stretch_Max = 2.2f;
         stretch_Speed = 0.1f;
 }
 
@@ -133,8 +135,7 @@ public class Sword : MonoBehaviour
             isSwing = true;
             stat.Stat("ST", -3);
             gameObject.tag = "Attack";
-            //GetComponentInChildren<SpriteRenderer>().color = Color.red;
-            Debug.Log(GetComponentInChildren<SpriteRenderer>().color);
+            GetComponent<SpriteRenderer>().color = Color.red;
 
             attack_Ani = true;
         }
@@ -146,7 +147,7 @@ public class Sword : MonoBehaviour
             isSwing = true;
             stat.Stat("ST", -6);
             gameObject.tag = "Parrying";
-            GetComponentInChildren<SpriteRenderer>().color = Color.blue;
+            GetComponent<SpriteRenderer>().color = Color.blue;
         }
     }
     public void Idle()
@@ -154,7 +155,7 @@ public class Sword : MonoBehaviour
         isSwing = false;
         isKnock = false;
         gameObject.tag = "Sword";
-        GetComponentInChildren<SpriteRenderer>().color = Color.white;
+        GetComponent<SpriteRenderer>().color = Color.white;
     }
     void Attack_Animation()
     {
@@ -187,10 +188,18 @@ public class Sword : MonoBehaviour
     {
         Debug.Log(col.gameObject.layer);
 
-        if (col.gameObject.layer == LayerMask.NameToLayer("E_Attack"))
+        if (gameObject.tag == "Parrying")
         {
-            //col.enabled = false;
-            Debug.Log("¥Í¿Ω");
+            if (col.gameObject.layer == LayerMask.NameToLayer("E_Attack"))
+            {
+                col.GetComponentInParent<EnemyController>().isParried = true;
+                col.gameObject.SetActive(false);
+            }
+            if (col.gameObject.layer == LayerMask.NameToLayer("bullet"))
+            {
+                col.gameObject.SetActive(false);
+                Destroy(col);
+            }
         }
     }
 }

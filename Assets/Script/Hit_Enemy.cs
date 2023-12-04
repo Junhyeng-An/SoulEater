@@ -17,12 +17,12 @@ public class Hit_Enemy : MonoBehaviour
         if(enemyController.timer >= 1)
         {
             gameObject.tag = "closehit";
-            GetComponent<SpriteRenderer>().color = Color.red;
+            GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.5f);
         }
         else
         {
             gameObject.tag = "Hit_Ready";
-            GetComponent<SpriteRenderer>().color = new Color(1, 0.5f, 0.5f);
+            GetComponent<SpriteRenderer>().color = new Color(1, 0.5f, 0.5f, 0.5f);
         }
     }
     private void OnEnable()

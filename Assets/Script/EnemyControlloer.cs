@@ -363,7 +363,7 @@ public class EnemyController : MonoBehaviour
                 }
                 else
                 {
-                    animator.SetFloat("RunState", 0.1f);
+                    animator.SetTrigger("parrying");
                     Debug.Log("aaaa");
                     //isAttake = false;
                     //isParried = false;
@@ -374,6 +374,7 @@ public class EnemyController : MonoBehaviour
             {
                 Attack_area.SetActive(false);
                 animator.SetFloat("RunState", 0.1f);
+
                 GameObject.FindGameObjectWithTag("Controlled").GetComponentInChildren<EnemyController>().isHit = false;
                 timer = 0.0f;
 

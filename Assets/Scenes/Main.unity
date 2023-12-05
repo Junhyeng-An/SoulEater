@@ -5093,17 +5093,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Unit003
       objectReference: {fileID: 0}
+    - target: {fileID: 5474816785634141339, guid: d3427667cf88f4047aa192e16d720bdf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6538331435542124833, guid: d3427667cf88f4047aa192e16d720bdf, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: c2fc0aafc4ba14749a6cc196ffeb52b8, type: 2}
     - target: {fileID: 8358369895197977394, guid: d3427667cf88f4047aa192e16d720bdf, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8358369895197977394, guid: d3427667cf88f4047aa192e16d720bdf, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10697,11 +10701,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1026083017966555603, guid: c38062f1382f5474e9a3ab7ae5eb0710, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1026083017966555603, guid: c38062f1382f5474e9a3ab7ae5eb0710, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2103908487054762868, guid: c38062f1382f5474e9a3ab7ae5eb0710, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10746,6 +10750,10 @@ PrefabInstance:
     - target: {fileID: 4460306395012927184, guid: c38062f1382f5474e9a3ab7ae5eb0710, type: 3}
       propertyPath: m_Name
       value: Turret1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4460306395012927184, guid: c38062f1382f5474e9a3ab7ae5eb0710, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10929,6 +10937,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Turret
       objectReference: {fileID: 0}
+    - target: {fileID: 1108864345136522887, guid: a0586d4014027d5468237e6fc0108e71, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2038407524127767450, guid: a0586d4014027d5468237e6fc0108e71, type: 3}
       propertyPath: m_LocalPosition.x
       value: -20
@@ -10971,11 +10983,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3782045782113270441, guid: a0586d4014027d5468237e6fc0108e71, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3782045782113270441, guid: a0586d4014027d5468237e6fc0108e71, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

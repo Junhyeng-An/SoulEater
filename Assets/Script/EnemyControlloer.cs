@@ -26,6 +26,7 @@ public class EnemyController : MonoBehaviour
     public bool isParried = false;
 
     bool isAttake = false;
+    bool isAni = false;
 
     private Animator animator;
     [SerializeField]
@@ -348,19 +349,37 @@ public class EnemyController : MonoBehaviour
         else if(isAttake == true)
         {
             timer += Time.deltaTime;
-            if (timer >= 0.0f && timer < 1.2f && isParried == false) //Attack in a 1second
+            if (timer >= 0.0f && timer < 1.2f) //Attack in a 1second
             {
-                Attack_area.SetActive(true);
-                animator.SetTrigger("Attack");//<-------- Attack Animation Here
+                if (isParried == false)
+                {
+                    Attack_area.SetActive(true);
+                    if (isAni == false)
+                    {
+                        animator.SetTrigger("Attack");//<-------- Attack Animation Here
+                        isAni = true;
+                    }
+                    //animator.speed = 0.0f;
+                }
+                else
+                {
+                    animator.SetFloat("RunState", 0.1f);
+                    Debug.Log("aaaa");
+                    //isAttake = false;
+                    //isParried = false;
+                    //isAni = false;
+                }
             }
             else if (timer >= 1.2f)
             {
                 Attack_area.SetActive(false);
+                animator.SetFloat("RunState", 0.1f);
                 GameObject.FindGameObjectWithTag("Controlled").GetComponentInChildren<EnemyController>().isHit = false;
                 timer = 0.0f;
 
                 isAttake = false;
                 isParried = false;
+                isAni = false;
             }
         }
     }

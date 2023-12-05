@@ -1,12 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEditor.Searcher;
-using UnityEditor.SearchService;
-using Unity.VisualScripting;
 
 public class EnemyController : MonoBehaviour
 {

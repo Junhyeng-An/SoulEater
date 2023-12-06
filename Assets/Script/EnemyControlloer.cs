@@ -10,7 +10,9 @@ public class EnemyController : MonoBehaviour
     public GameObject Hit_area;
     public GameObject[] Weapon;
     public RectTransform my_bar;
+    public RectTransform my_bar_WP;
     public GameObject my_hp_bar;
+    public GameObject my_WP_bar;
     public GameObject Canvas;
     public Soul_Drop Soul_Drop;
     public float CurHP; 
@@ -32,6 +34,8 @@ public class EnemyController : MonoBehaviour
     private Animator animator;
     [SerializeField]
     Slider Enemy_HP;
+    [SerializeField]
+    Slider Enemy_WP;
 
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
@@ -60,14 +64,14 @@ public class EnemyController : MonoBehaviour
             case EnemyType.Enemy_A:
                 CurHP = 100;
                 MaxHP = 100;
-                CurWP = 10;
-                MaxWP = 10;
+                CurWP = 20;
+                MaxWP = 20;
                 break;
             case EnemyType.Enemy_B:
                 CurHP = 80;
                 MaxHP = 80;
-                CurWP = 10;
-                MaxWP = 10;
+                CurWP = 20;
+                MaxWP = 20;
                 break;
             case EnemyType.Enemy_C:
                 break;
@@ -104,8 +108,12 @@ public class EnemyController : MonoBehaviour
             }
 
             Enemy_HP.value = CurHP / MaxHP;
+            Enemy_WP.value = CurWP / MaxWP;
             Vector3 hpbar_pos = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + hp_har_height, 0));
+            float slider_scale = Enemy_HP.GetComponent<RectTransform>().localScale.y;
+            Vector3 wpbar_pos = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + hp_har_height - slider_scale/9, 0));
             my_bar.position = hpbar_pos;
+            my_bar_WP.position = wpbar_pos;
         }
         if (gameObject.tag == "Controlled")
         {
@@ -165,6 +173,9 @@ public class EnemyController : MonoBehaviour
                 GetComponent<CircleCollider2D>().enabled = false;
                 GetComponent<Rigidbody2D>().gravityScale = 0;
                 gameObject.tag = "Controlled";
+
+                Attack_area.SetActive(false);
+                timer = 0.0f;
             }
         }
     }
@@ -224,8 +235,9 @@ public class EnemyController : MonoBehaviour
             if (gameObject.tag == "Controlled")
             {
                 CurHP = 0;
-                animator.SetTrigger("Die");
+                //animator.SetTrigger("Die");
                 my_hp_bar.SetActive(false);
+                my_WP_bar.SetActive(false);
                 Invoke("Die_me",1.4f);
             }
             else
@@ -235,6 +247,7 @@ public class EnemyController : MonoBehaviour
                     Soul_Drop.DropItem();
                     hasDroppedItem = true;
                     my_hp_bar.SetActive(false);
+                    my_WP_bar.SetActive(false);
                 }
 
                 CurHP = 0;
@@ -389,8 +402,8 @@ public class EnemyController : MonoBehaviour
             {
                 Attack_area.SetActive(false);
                 animator.SetFloat("RunState", 0.1f);
-
-                GameObject.FindGameObjectWithTag("Controlled").GetComponentInChildren<EnemyController>().isHit = false;
+                if (GameObject.FindGameObjectWithTag("Controlled") != null)
+                    GameObject.FindGameObjectWithTag("Controlled").GetComponentInChildren<EnemyController>().isHit = false;
                 timer = 0.0f;
 
                 isAttake = false;

@@ -180,7 +180,8 @@ public class EnemyController : MonoBehaviour
 
                     isDamage = true;
                 }
-                if (col.gameObject.tag == "Parrying" && gameObject.tag != "Controlled")
+                if (col.gameObject.tag == "Parrying" && gameObject.tag != "Controlled" && 
+                    timer > 0 && timer <= 1)
                 {
                     CurWP -= 10;
                     stat.Stat("ST", 6);
@@ -363,14 +364,14 @@ public class EnemyController : MonoBehaviour
                 }
                 else
                 {
-                    animator.SetTrigger("parrying");
-                    Debug.Log("aaaa");
-                    //isAttake = false;
-                    //isParried = false;
-                    //isAni = false;
+                    if (isAni == true)
+                    {
+                        animator.SetTrigger("parrying");
+                        isAni = false;
+                    }
                 }
             }
-            else if (timer >= 1.2f)
+            else if (timer >= 2.0f)
             {
                 Attack_area.SetActive(false);
                 animator.SetFloat("RunState", 0.1f);

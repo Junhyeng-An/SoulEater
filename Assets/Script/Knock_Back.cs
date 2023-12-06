@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Knock_Back : MonoBehaviour
 {
-    public float knockbackForce = 10f;
+    public float knockbackForce_Attack = 1f;
+    public float knockbackForce_Parrying = 3f;
+
+    float knockbackForce;
     public float knockbackDuration = 0.5f;
 
     private void OnTriggerStay2D(Collider2D other)
@@ -13,6 +16,14 @@ public class Knock_Back : MonoBehaviour
 
         if ((other.CompareTag("Attack") || other.CompareTag("Parrying")) && sword.isKnock == false)
         {
+            if (other.CompareTag("Attack"))
+            {
+                knockbackForce = knockbackForce_Attack;
+            }
+            else
+            {
+                knockbackForce = knockbackForce_Parrying;
+            }
             Debug.Log("³Ë¹éµÊ");
             // Calculate the direction of the knockback
             Vector2 knockbackDirection = (transform.position - other.transform.parent.position).normalized;

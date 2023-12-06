@@ -50,7 +50,7 @@ public class Sword : MonoBehaviour
         stretch = 1.4f;
         stretch_Min = 1.4f;
         stretch_Max = 2.2f;
-        stretch_Speed = 0.1f;
+        stretch_Speed = 0.05f;
 }
 
     void Update()
@@ -106,6 +106,8 @@ public class Sword : MonoBehaviour
             swingForce = limitSpeed;
         }
 
+        //Debug.Log(swingForce);
+
         angle = NormalizeRadian(angle);
 
         transform.rotation = Quaternion.AngleAxis(angle * Mathf.Rad2Deg, Vector3.forward); // look mouse
@@ -142,12 +144,17 @@ public class Sword : MonoBehaviour
     }
     public void Parrying()
     {
-        if (stat.Player_CurST >= 6)
+        if (stat.Player_CurST >= 6 && swingForce > 5.0f && isSwing == false)
         {
             isSwing = true;
             stat.Stat("ST", -6);
             gameObject.tag = "Parrying";
             GetComponent<SpriteRenderer>().color = Color.blue;
+        }
+
+        if (swingForce < 1.0f)
+        {
+            Idle();
         }
     }
     public void Idle()
@@ -186,7 +193,7 @@ public class Sword : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D col)
     {
-        Debug.Log(col.gameObject.layer);
+        //Debug.Log(col.gameObject.layer);
 
         if (gameObject.tag == "Parrying")
         {

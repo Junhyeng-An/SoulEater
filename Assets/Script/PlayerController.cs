@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
             {
                 sword.Attack();
             }
-            if (Input.GetMouseButtonDown(1)) //right
+            if (Input.GetMouseButton(1)) //right
             {
                 sword.Parrying();
             }

@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
     public GameObject Hit_area;
     public GameObject[] Weapon;
     public RectTransform my_bar;
+    public GameObject my_hp_bar;
     public GameObject Canvas;
     public Soul_Drop Soul_Drop;
     public float CurHP; 
@@ -27,7 +28,7 @@ public class EnemyController : MonoBehaviour
 
     bool isAttake = false;
     bool isAni = false;
-
+    bool hasDroppedItem = false;
     private Animator animator;
     [SerializeField]
     Slider Enemy_HP;
@@ -223,23 +224,35 @@ public class EnemyController : MonoBehaviour
             if (gameObject.tag == "Controlled")
             {
                 CurHP = 0;
-                Invoke("die",0.2f);
+                animator.SetTrigger("Die");
+                my_hp_bar.SetActive(false);
+                Invoke("Die_me",1.4f);
             }
             else
             {
-                Soul_Drop.DropItem();
+                if (!hasDroppedItem)
+                {
+                    Soul_Drop.DropItem();
+                    hasDroppedItem = true;
+                    my_hp_bar.SetActive(false);
+                }
+
                 CurHP = 0;
-                gameObject.SetActive(false);
+                animator.SetTrigger("Die");
+                Invoke("Die_enemy", 1.4f);
             }
-            
         }
     }
-    void die()
+    void Die_me()
     {
         gameObject.SetActive(false);
         Time.timeScale = 0;
     }
-
+    void Die_enemy()
+    {
+        
+        gameObject.SetActive(false);
+    }
     void Idle() //Enemy ai Idle
     {
     
@@ -321,7 +334,7 @@ public class EnemyController : MonoBehaviour
         Vector2 conPos = con.transform.position;
 
         float distance = Vector2.Distance(Mypos, conPos);
-        if (isAttake == false)
+        if (isAttake == false && CurHP > 0)
         {
             if (Mypos.x - conPos.x < 0)
             {
@@ -369,6 +382,7 @@ public class EnemyController : MonoBehaviour
                         animator.SetTrigger("parrying");
                         isAni = false;
                     }
+                    
                 }
             }
             else if (timer >= 2.0f)

@@ -177,13 +177,14 @@ public class Movement : MonoBehaviour
     }
     public void Throw_Ready()
     {
-        startDragPos = transform.position;
+        //startDragPos = transform.position;
         line.enabled = true;
 
         Time.timeScale = 0.25f;
     }
     public void Throw_Line()
     {
+        startDragPos = transform.position;
         endDragPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 fix = (endDragPos - startDragPos).normalized;
         _velocity = new Vector2(fix.x * throwForce / 2, throwForce);

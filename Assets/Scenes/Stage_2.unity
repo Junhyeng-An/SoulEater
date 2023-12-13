@@ -301,7 +301,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 46183713}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -761,7 +761,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 305295792}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -836,7 +836,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 319580444}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1442,7 +1442,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -2769,7 +2769,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2401293536896692182, guid: 0783dfe717ddeee49bb13ef440203e72, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -31.987984
+      value: -37
       objectReference: {fileID: 0}
     - target: {fileID: 2401293536896692182, guid: 0783dfe717ddeee49bb13ef440203e72, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2807,6 +2807,10 @@ PrefabInstance:
       propertyPath: my_hp_bar
       value: 
       objectReference: {fileID: 692491130}
+    - target: {fileID: 5265801814108520192, guid: 0783dfe717ddeee49bb13ef440203e72, type: 3}
+      propertyPath: hp_har_height
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6505201125227793100, guid: 0783dfe717ddeee49bb13ef440203e72, type: 3}
       propertyPath: m_Name
       value: C_Enemy2
@@ -2974,6 +2978,8 @@ GameObject:
   - component: {fileID: 736074920}
   - component: {fileID: 736074921}
   - component: {fileID: 736074922}
+  - component: {fileID: 736074923}
+  - component: {fileID: 736074924}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3057,6 +3063,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingsMenu: {fileID: 714093469}
+--- !u!114 &736074923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736074917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10aa7919839fdcb478343cd9e6d36ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomSpeed: 0.0025
+--- !u!114 &736074924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736074917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 2cef752296d6bdf439f049c1b0fcdfa3, type: 2}
 --- !u!1 &738254955
 GameObject:
   m_ObjectHideFlags: 0
@@ -3526,6 +3562,10 @@ PrefabInstance:
       propertyPath: Attack_area
       value: 
       objectReference: {fileID: 1007395306}
+    - target: {fileID: 8214481443033835402, guid: afea87827d9724041aa9ba6a8d3f0d75, type: 3}
+      propertyPath: hp_har_height
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8650634146397988401, guid: afea87827d9724041aa9ba6a8d3f0d75, type: 3}
       propertyPath: m_Name
       value: Unit001
@@ -3709,7 +3749,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 819656400}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -3776,6 +3816,10 @@ PrefabInstance:
       propertyPath: my_hp_bar
       value: 
       objectReference: {fileID: 843472664}
+    - target: {fileID: 2379781463988346219, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
+      propertyPath: hp_har_height
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5506075672461619230, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
       propertyPath: m_Name
       value: C_Enemy1
@@ -6185,11 +6229,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2332790638496791484, guid: db13c8be848db3145971ac5ed602eae4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 24
+      value: 33
       objectReference: {fileID: 0}
     - target: {fileID: 2332790638496791484, guid: db13c8be848db3145971ac5ed602eae4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2332790638496791484, guid: db13c8be848db3145971ac5ed602eae4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6235,6 +6279,10 @@ PrefabInstance:
       propertyPath: Attack_area
       value: 
       objectReference: {fileID: 658681899}
+    - target: {fileID: 5016498399926906575, guid: db13c8be848db3145971ac5ed602eae4, type: 3}
+      propertyPath: hp_har_height
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5474816785634141339, guid: db13c8be848db3145971ac5ed602eae4, type: 3}
       propertyPath: m_Name
       value: Unit000
@@ -23503,6 +23551,10 @@ PrefabInstance:
       propertyPath: my_hp_bar
       value: 
       objectReference: {fileID: 1963522577}
+    - target: {fileID: 2379781463988346219, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
+      propertyPath: hp_har_height
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5506075672461619230, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
       propertyPath: m_Name
       value: C_Enemy1 (1)
@@ -23595,6 +23647,14 @@ PrefabInstance:
       propertyPath: MaxHP
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 9033782663338398878, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+    - target: {fileID: 9198021489589324292, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -23657,7 +23717,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1977028213}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 

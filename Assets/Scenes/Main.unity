@@ -1029,7 +1029,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -2595,6 +2595,8 @@ GameObject:
   - component: {fileID: 736074920}
   - component: {fileID: 736074921}
   - component: {fileID: 736074922}
+  - component: {fileID: 736074923}
+  - component: {fileID: 736074924}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2678,6 +2680,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingsMenu: {fileID: 714093469}
+--- !u!114 &736074923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736074917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 3a3c3eeadda58b04bae0195c342cff2d, type: 2}
+--- !u!114 &736074924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736074917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10aa7919839fdcb478343cd9e6d36ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomSpeed: 0.0025
 --- !u!1 &738254955
 GameObject:
   m_ObjectHideFlags: 0
@@ -4506,7 +4538,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1034856485}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -9897,6 +9929,10 @@ PrefabInstance:
       propertyPath: my_hp_bar
       value: 
       objectReference: {fileID: 375958491}
+    - target: {fileID: 5265801814108520192, guid: 0783dfe717ddeee49bb13ef440203e72, type: 3}
+      propertyPath: hp_har_height
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5638981061253612580, guid: 0783dfe717ddeee49bb13ef440203e72, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
       value: 1
@@ -10045,6 +10081,10 @@ PrefabInstance:
       propertyPath: my_hp_bar
       value: 
       objectReference: {fileID: 357028095}
+    - target: {fileID: 2379781463988346219, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
+      propertyPath: hp_har_height
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5506075672461619230, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
       propertyPath: m_Name
       value: Unit000

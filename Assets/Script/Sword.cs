@@ -188,7 +188,7 @@ public class Sword : MonoBehaviour
     }
     public void GameOver()
     {
-        transform.rotation = Quaternion.Euler(0, 0, 80);
+        transform.rotation = Quaternion.Euler(0, 0, -100);
     }
 
     private void OnTriggerStay2D(Collider2D col)

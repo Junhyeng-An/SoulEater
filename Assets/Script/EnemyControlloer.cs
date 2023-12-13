@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public class EnemyController : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class EnemyController : MonoBehaviour
     public GameObject my_WP_bar;
     public GameObject Canvas;
     public Soul_Drop Soul_Drop;
-    public float CurHP; 
+    public float CurHP;
     public float MaxHP;
     public float CurWP;
     public float MaxWP;
@@ -99,9 +100,19 @@ public class EnemyController : MonoBehaviour
     {
         if (gameObject.layer == 12)
         {
-            for (int i = 0; i < Weapon.Length; i++) 
+            for (int i = 0; i < Weapon.Length; i++)
             { Weapon[i].SetActive(true); }
             Canvas.SetActive(true);
+
+            if (gameObject.tag == "Disarmed")
+            {
+                for (int i = 0; i < Weapon.Length; i++)
+                {
+                    Weapon[i].SetActive(false);
+                }
+                CurWP = 0;
+            }
+
             if (gameObject.CompareTag("Controlled") != true)
             {
                 animator.SetFloat("RunState", 0.1f); //Run Animation//
@@ -110,14 +121,14 @@ public class EnemyController : MonoBehaviour
             Enemy_HP.value = CurHP / MaxHP;
             Enemy_WP.value = CurWP / MaxWP;
             Vector3 hpbar_pos = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + hp_har_height, 0));
-            float slider_scale = Enemy_HP.GetComponent<RectTransform>().localScale.y;
-            Vector3 wpbar_pos = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + hp_har_height - slider_scale/9, 0));
+            float slider_scale = 0.15f;
+            Vector3 wpbar_pos = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + hp_har_height - slider_scale, 0));
             my_bar.position = hpbar_pos;
             my_bar_WP.position = wpbar_pos;
         }
         if (gameObject.tag == "Controlled")
         {
-            
+
             area_setting();
             for (int i = 0; i < Weapon.Length; i++)
             {
@@ -126,7 +137,7 @@ public class EnemyController : MonoBehaviour
 
             Canvas.SetActive(false);
         }
-        else if(gameObject.tag != "Controlled")
+        else if (gameObject.tag != "Controlled")
         {
             area_setting();
         }
@@ -143,19 +154,22 @@ public class EnemyController : MonoBehaviour
             }
         }
         HP_Check();
-        if(sword.isSwing == false)
+        if (sword.isSwing == false)
         {
             isDamage = false;
         }
-        if(gameObject.tag == "Enemy" || gameObject.tag == "Disarmed")
+        if (gameObject.tag == "Enemy" || gameObject.tag == "Disarmed")
         {
             if (issearch == false)
             {
                 Idle();
             }
-            else if(issearch == true) 
+            else if (issearch == true)
             {
-                Enemy_detect();
+                if (gameObject.tag == "Enemy")
+                    Enemy_detect();
+                else
+                    Enemy_Disarmed();
             }
         }
     }
@@ -168,13 +182,14 @@ public class EnemyController : MonoBehaviour
                 rigidPlayer.velocity = new Vector2(rigidPlayer.velocity.x, 0);
                 col.gameObject.GetComponentInParent<PlayerController>().isThrowing = false;
                 isPlayer = true;
-                Player.GetComponent<CircleCollider2D> ().isTrigger = false;
+                Player.GetComponent<CircleCollider2D>().isTrigger = false;
                 Player.GetComponent<Movement>().bounceCount = 2;
                 GetComponent<CircleCollider2D>().enabled = false;
                 GetComponent<Rigidbody2D>().gravityScale = 0;
                 gameObject.tag = "Controlled";
 
-                Attack_area.SetActive(false);
+                if (Attack_area != null)
+                    Attack_area.SetActive(false);
                 timer = 0.0f;
             }
         }
@@ -192,8 +207,8 @@ public class EnemyController : MonoBehaviour
 
                     isDamage = true;
                 }
-                if (col.gameObject.tag == "Parrying" && gameObject.tag != "Controlled" && 
-                    timer > 0 && timer <= 1)
+                if (col.gameObject.tag == "Parrying" && gameObject.tag != "Controlled" &&
+                    timer > 0 && timer <= 1.2f)
                 {
                     CurWP -= 10;
                     stat.Stat("ST", 6);
@@ -227,10 +242,10 @@ public class EnemyController : MonoBehaviour
             Hit_area.SetActive(false);
         }
     }
-    
+
     public void HP_Check()
     {
-        if(CurHP <= 0)
+        if (CurHP <= 0)
         {
             if (gameObject.tag == "Controlled")
             {
@@ -238,7 +253,7 @@ public class EnemyController : MonoBehaviour
                 //animator.SetTrigger("Die");
                 my_hp_bar.SetActive(false);
                 my_WP_bar.SetActive(false);
-                Invoke("Die_me",1.4f);
+                Invoke("Die_me", 1.4f);
             }
             else
             {
@@ -263,13 +278,13 @@ public class EnemyController : MonoBehaviour
     }
     void Die_enemy()
     {
-        
+
         gameObject.SetActive(false);
     }
     void Idle() //Enemy ai Idle
     {
-    
-        
+
+
         rigid.velocity = new Vector2(nextMove, rigid.velocity.y);
 
         Vector2 Mypos = transform.position;
@@ -299,9 +314,9 @@ public class EnemyController : MonoBehaviour
         {
             Turn();
         }
-        if(distance <= detect_meter && distance >= attack_meter)
+        if (distance <= detect_meter && distance >= attack_meter)
         {
-            issearch = true;    
+            issearch = true;
         }
 
 
@@ -320,7 +335,7 @@ public class EnemyController : MonoBehaviour
         if (nextMove == 0)
         {
             Invoke("Think", 1.0f);
-        
+
         }
         else
         {
@@ -373,7 +388,7 @@ public class EnemyController : MonoBehaviour
                 Attack_area.SetActive(false);
             }
         }
-        else if(isAttake == true)
+        else if (isAttake == true)
         {
             timer += Time.deltaTime;
             if (timer >= 0.0f && timer < 1.2f) //Attack in a 1second
@@ -386,7 +401,6 @@ public class EnemyController : MonoBehaviour
                         animator.SetTrigger("Attack");//<-------- Attack Animation Here
                         isAni = true;
                     }
-                    //animator.speed = 0.0f;
                 }
                 else
                 {
@@ -395,7 +409,7 @@ public class EnemyController : MonoBehaviour
                         animator.SetTrigger("parrying");
                         isAni = false;
                     }
-                    
+
                 }
             }
             else if (timer >= 2.0f)
@@ -411,5 +425,40 @@ public class EnemyController : MonoBehaviour
                 isAni = false;
             }
         }
+    }
+
+    void Enemy_Disarmed()
+    {
+        if (isAni == true)
+        {
+            animator.SetTrigger("parrying");
+            StartCoroutine(StopForSeconds(1f));
+        }
+        else
+        {
+            float runSpeed = 1f;
+
+            Vector2 Mypos = transform.position;
+
+            GameObject con = GameObject.FindGameObjectWithTag("Player");
+
+            Vector2 conPos = con.transform.position;
+
+            if (Mypos.x - conPos.x < 0)
+            {
+                transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                transform.Translate((Mypos - conPos).normalized * runSpeed * Time.deltaTime);
+            }
+            else if (Mypos.x - conPos.x >= 0)
+            {
+                transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+                transform.Translate((conPos - Mypos).normalized * runSpeed * Time.deltaTime);
+            }
+        }
+    }
+    IEnumerator StopForSeconds(float time)
+    {
+        yield return new WaitForSeconds(time);
+        isAni = false;
     }
 }

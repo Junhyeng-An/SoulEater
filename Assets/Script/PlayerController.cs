@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private StatController stat;
     private Setting_UI setting;
     private EnemyController enemy;
+    private VolumeController volume;
 
     [HideInInspector]
     public bool isThrowing;
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
         sword = GetComponentInChildren<Sword>();
         stat = GameObject.Find("GameManager").GetComponent<StatController>();
         setting = GameObject.Find("GameManager").GetComponent<Setting_UI>();
+        volume = GameObject.Find("GameManager").GetComponent<VolumeController>();
 
         isThrowing = true;
     }
@@ -35,6 +37,7 @@ public class PlayerController : MonoBehaviour
         else if (isThrowing == true)
         {
             sword.Throw();
+            volume.ZoomOut();
         }
         else if(setting.settingsMenu.activeSelf == false)
         {
@@ -65,13 +68,15 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKey(KeyCode.Q))
             {
                 movement.Throw_Line();
+                volume.ZoomIn();
             }
+            else
+                volume.ZoomOut();
             if (Input.GetKeyUp(KeyCode.Q))
             {
                 movement.Throw();
                 isThrowing = true;
             }
-
             //sword 
             sword.PosRot();
             //sword.SwingCheck();

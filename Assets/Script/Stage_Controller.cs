@@ -6,6 +6,13 @@ public class Stage_Controller : MonoBehaviour
 {
     public string Scene_Name;
 
+
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.O))
+            LoadingScene.LoadScene("Main");
+    }
     // Update is called once per frame
     private void OnTriggerEnter2D(Collider2D other)
     {

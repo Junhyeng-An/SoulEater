@@ -28,5 +28,8 @@ public class Setting_UI : MonoBehaviour
         // Pause or unpause the game based on the settings menu visibility
         Time.timeScale = isSettingsMenuActive ? 0f : 1f;
     }
-    
+    public void turn_off_game()
+    {
+        Application.Quit();
+    }
 }

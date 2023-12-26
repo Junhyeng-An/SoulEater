@@ -5,16 +5,17 @@ using System.Collections;
 
 public class EnemyController : MonoBehaviour
 {
-    public GameObject Player;
-    public GameObject Attack_area;
-    public GameObject attackPrefab;
-    public GameObject Hit_area;
-    public GameObject[] Weapon;
+    GameObject Player;
+    GameObject Attack_area;
+    GameObject Weapon;
+
     public RectTransform my_bar;
     public RectTransform my_bar_WP;
     public GameObject my_hp_bar;
     public GameObject my_WP_bar;
-    public GameObject Canvas;
+
+    GameObject UI;
+
     public Soul_Drop Soul_Drop;
     public float CurHP;
     public float MaxHP;
@@ -85,11 +86,17 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        area_setting();
         CheckState();
+
         stat = GameObject.Find("GameManager").GetComponent<StatController>();
-        rigidPlayer = Player.GetComponent<Rigidbody2D>();
         sword = GameObject.Find("Sword").GetComponent<Sword>();
+        Player = GameObject.Find("Player");
+        UI = transform.Find("Canvas").gameObject; //GameObject.Find("UI_Manager");
+
+        Attack_area = transform.Find("Attack_area").gameObject;
+        Weapon = transform.Find("Root").Find("BodySet").Find("P_Body").Find("ArmSet").gameObject;
+
+        rigidPlayer = Player.GetComponent<Rigidbody2D>();
         Soul_Drop = GetComponent<global::Soul_Drop>();
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -98,78 +105,66 @@ public class EnemyController : MonoBehaviour
     }
     void Update()
     {
-        if (gameObject.layer == 12)
+        //if (gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            for (int i = 0; i < Weapon.Length; i++)
-            { Weapon[i].SetActive(true); }
-            Canvas.SetActive(true);
-
-            if (gameObject.tag == "Disarmed")
             {
-                for (int i = 0; i < Weapon.Length; i++)
+                Weapon.SetActive(true);
+                UI.SetActive(true);
+
+                if (gameObject.tag == "Disarmed")
                 {
-                    Weapon[i].SetActive(false);
+                    Weapon.SetActive(false);
+                    CurWP = 0;
                 }
-                CurWP = 0;
+
+                if (gameObject.CompareTag("Controlled") != true)
+                {
+                    animator.SetFloat("RunState", 0.1f); //Run Animation//
+                }
+
+                Enemy_HP.value = CurHP / MaxHP;
+                Enemy_WP.value = CurWP / MaxWP;
+                Vector3 hpbar_pos = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + hp_har_height, 0));
+                float slider_scale = 0.15f;
+                Vector3 wpbar_pos = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + hp_har_height - slider_scale, 0));
+                my_bar.position = hpbar_pos;
+                my_bar_WP.position = wpbar_pos;
+            }
+            if (gameObject.tag == "Controlled")
+            {
+                Weapon.SetActive(false);
+                UI.SetActive(false);
             }
 
-            if (gameObject.CompareTag("Controlled") != true)
+            if (isPlayer == true)
             {
-                animator.SetFloat("RunState", 0.1f); //Run Animation//
+
+                transform.position = new Vector2(Player.transform.position.x, Player.transform.position.y - 0.5f);
+                if (Player.GetComponent<PlayerController>().isThrowing == true)
+                {
+                    isPlayer = false;
+                    GetComponent<CircleCollider2D>().enabled = true;
+                    GetComponent<Rigidbody2D>().gravityScale = 5;
+                }
             }
-
-            Enemy_HP.value = CurHP / MaxHP;
-            Enemy_WP.value = CurWP / MaxWP;
-            Vector3 hpbar_pos = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + hp_har_height, 0));
-            float slider_scale = 0.15f;
-            Vector3 wpbar_pos = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + hp_har_height - slider_scale, 0));
-            my_bar.position = hpbar_pos;
-            my_bar_WP.position = wpbar_pos;
-        }
-        if (gameObject.tag == "Controlled")
-        {
-
-            area_setting();
-            for (int i = 0; i < Weapon.Length; i++)
+            HP_Check();
+            if (sword.isSwing == false)
             {
-                Weapon[i].SetActive(false);
+                isDamage = false;
             }
-
-            Canvas.SetActive(false);
-        }
-        else if (gameObject.tag != "Controlled")
-        {
-            area_setting();
-        }
-
-        if (isPlayer == true)
-        {
-
-            transform.position = new Vector2(Player.transform.position.x, Player.transform.position.y - 0.5f);
-            if (Player.GetComponent<PlayerController>().isThrowing == true)
+            if (gameObject.tag == "Enemy" || gameObject.tag == "Disarmed")
             {
-                isPlayer = false;
-                GetComponent<CircleCollider2D>().enabled = true;
-                GetComponent<Rigidbody2D>().gravityScale = 5;
-            }
-        }
-        HP_Check();
-        if (sword.isSwing == false)
-        {
-            isDamage = false;
-        }
-        if (gameObject.tag == "Enemy" || gameObject.tag == "Disarmed")
-        {
-            if (issearch == false)
-            {
-                Idle();
-            }
-            else if (issearch == true)
-            {
-                if (gameObject.tag == "Enemy")
-                    Enemy_detect();
-                else
-                    Enemy_Disarmed();
+                if (issearch == false)
+                {
+                    Idle();
+                }
+                else if (issearch == true)
+                {
+                    if (gameObject.tag == "Enemy")
+                        Enemy_detect();
+                    else
+                        Enemy_Disarmed();
+                }
             }
         }
     }
@@ -196,7 +191,13 @@ public class EnemyController : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D col)
     {
-        if (col.gameObject.layer == 11 && gameObject.layer == 12) //collid Sword && Enemy state
+        Col_Sword(col);
+    }
+
+    void Col_Sword(Collider2D col)
+    {
+        if (col.gameObject.layer == LayerMask.NameToLayer("Sword") &&
+            gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             if (isDamage == false)
             {
@@ -228,18 +229,6 @@ public class EnemyController : MonoBehaviour
         if (gameObject.tag == "Controlled" && col.gameObject.GetComponentInParent<PlayerController>().isThrowing == true)
         {
             gameObject.tag = "Disarmed"; //Disarm
-        }
-    }
-
-    void area_setting()
-    {
-        if (gameObject.tag == "Controlled")
-        {
-            Hit_area.SetActive(true);
-        }
-        else
-        {
-            Hit_area.SetActive(false);
         }
     }
 

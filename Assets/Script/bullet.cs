@@ -16,13 +16,12 @@ public class bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        hit_area = GameObject.FindGameObjectWithTag("hit_area");
         player = GameObject.FindGameObjectWithTag("Controlled");
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        if (collision.gameObject == hit_area)
+        if (col.gameObject.tag == "Player")
         {
             Destroy(gameObject);
             player.GetComponent<EnemyController>().CurHP -= Bullet_Damage;

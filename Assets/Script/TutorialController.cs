@@ -66,6 +66,35 @@ public class TutorialController : MonoBehaviour
         sprite.color = new Vector4(sprite.color.r, sprite.color.b, sprite.color.g, alpha);
         text.color = new Vector4(sprite.color.r, sprite.color.b, sprite.color.g, alpha);
         sprite2.color = new Vector4(sprite.color.r, sprite.color.b, sprite.color.g, alpha);
+
+        if(transform.parent != null)
+        {
+            //Drag();
+        }
+    }
+    void Drag()
+    {
+        while (true)
+        {
+            // 현재 위치
+            float startY = children_sprite2.transform.position.y;
+
+            // 목표 위치
+            float targetY = startY + 2;
+
+            // 이동 속도와 방향에 따라 보간된 새로운 위치 계산
+            float t = 0;
+            while (t < 1)
+            {
+                t += Time.deltaTime * 2;
+                transform.position = new Vector3(transform.position.x, Mathf.Lerp(startY, targetY, t), transform.position.z);
+            }
+
+            // 다시 역방향으로 이동
+            float temp = startY;
+            startY = targetY;
+            targetY = temp;
+        }
     }
     private void OnTriggerStay2D(Collider2D col)
     {

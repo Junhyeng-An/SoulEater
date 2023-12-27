@@ -6,4 +6,6 @@ Rule
 
 Good
 
-1. if문에 레이어 체크 시 LayerMask.NameToLayer("") 사용
+1. 변수는 첫글자 소문자
+2. 주석은 영어로
+3. if문에 레이어 체크 시 LayerMask.NameToLayer("") 사용

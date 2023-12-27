@@ -11202,6 +11202,10 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1687198627650978381, guid: 0783dfe717ddeee49bb13ef440203e72, type: 3}
+      propertyPath: m_Name
+      value: UI_EnemyStat
+      objectReference: {fileID: 0}
     - target: {fileID: 2401293536896692182, guid: 0783dfe717ddeee49bb13ef440203e72, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -11480,6 +11484,10 @@ PrefabInstance:
     - target: {fileID: 2379781463988346219, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
       propertyPath: hp_har_height
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2723296607794444481, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
+      propertyPath: m_Name
+      value: UI_EnemyStat
       objectReference: {fileID: 0}
     - target: {fileID: 5506075672461619230, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
       propertyPath: m_Name

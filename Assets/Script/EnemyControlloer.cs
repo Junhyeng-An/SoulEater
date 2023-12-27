@@ -5,47 +5,6 @@ using System.Collections;
 
 public class EnemyController : MonoBehaviour
 {
-    GameObject Player;
-    GameObject Attack_area;
-    GameObject Weapon;
-
-    public RectTransform my_bar;
-    public RectTransform my_bar_WP;
-    public GameObject my_hp_bar;
-    public GameObject my_WP_bar;
-
-    GameObject UI;
-
-    public Soul_Drop Soul_Drop;
-    public float CurHP;
-    public float MaxHP;
-    public float CurWP;
-    public float MaxWP;
-    public int nextMove;//행동지표를 결정할 변수
-    public float detect_meter = 4.0f;
-    public float attack_meter = 2.0f;
-    public bool issearch = false;
-    public float hp_har_height = 1;
-    public float timer;
-    public bool isHit = false;
-    public bool isParried = false;
-
-    bool isAttake = false;
-    bool isAni = false;
-    bool hasDroppedItem = false;
-    private Animator animator;
-    [SerializeField]
-    Slider Enemy_HP;
-    [SerializeField]
-    Slider Enemy_WP;
-
-    Rigidbody2D rigid;
-    SpriteRenderer spriteRenderer;
-    StatController stat;
-    Movement movement;
-    public bool isDamage = false;
-    private Sword sword;
-    private GameObject attackAreaInstance;
     public enum EnemyType
     {
         Enemy_A,
@@ -54,12 +13,67 @@ public class EnemyController : MonoBehaviour
         Boss_A
     }
     public EnemyType enemyType;
+    [Header("AI")]
+    public float detect_distance = 4.0f;
+    public float attack_distance = 2.0f;
+    int nextMove;//행동지표를 결정할 변수
 
-    bool isPlayer = false;
-    bool isEnemy = true;
+    [Header("Bar_Position")]
+    public Vector3 XYSpace = new Vector3(0, 1, 0.15f); // Z = between space X, Y
 
+    GameObject Player;
+    GameObject Weapon;
+    GameObject Attack_area;
+    GameObject UI_EnemyStat;
+    GameObject bar_EnemyHP;
+    GameObject bar_EnemyWP;
+    RectTransform bar_PosHP;
+    RectTransform bar_PosWP;
+    Slider Enemy_HP;
+    Slider Enemy_WP;
+    Animator animator;
+    Rigidbody2D rigid;
     Rigidbody2D rigidPlayer;
-    public void CheckState()
+    SpriteRenderer spriteRenderer;
+    CircleCollider2D collider;
+    CircleCollider2D colliderPlayer;
+
+    Sword sword;
+    Movement movement;
+    Soul_Drop Soul_Drop;
+    StatController stat;
+    PlayerController playerController;
+
+    [HideInInspector] public float CurHP;
+    [HideInInspector] public float MaxHP;
+    [HideInInspector] public float CurWP;
+    [HideInInspector] public float MaxWP;
+
+    [HideInInspector] public float timer;
+
+    [HideInInspector] public bool isHit = false;
+    [HideInInspector] public bool isParried = false;
+    [HideInInspector] public bool isDamage = false;
+
+    bool isAni = false;
+    bool isEnemy = true;
+    bool isPlayer = false;
+    bool isAttake = false;
+    bool issearch = false;
+    bool hasDroppedItem = false;
+
+    Vector2 pos;
+    Vector2 playerPos;
+    void Awake()
+    {
+        EnemyStat();
+        Objects();
+        Components();
+
+        Invoke("Think", 1);
+    }
+
+    public void EnemyStat() // Setting Status Enemy, If Start Disarmed
     {
         switch (enemyType)
         {
@@ -83,104 +97,186 @@ public class EnemyController : MonoBehaviour
                 break;
         }
     }
-    // Start is called before the first frame update
-    void Awake()
+    void Components()       // GetComponent<>()
     {
-        CheckState();
+        rigid = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        collider = GetComponent<CircleCollider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        movement = Player.GetComponent<Movement>();
+        rigidPlayer = Player.GetComponent<Rigidbody2D>();
+        colliderPlayer = Player.GetComponent<CircleCollider2D>();
+        playerController = Player.GetComponent<PlayerController>();
 
         stat = GameObject.Find("GameManager").GetComponent<StatController>();
         sword = GameObject.Find("Sword").GetComponent<Sword>();
+        Soul_Drop = GetComponent<global::Soul_Drop>();
+
+        bar_PosHP = bar_EnemyHP.GetComponent<RectTransform>();
+        bar_PosWP = bar_EnemyWP.GetComponent<RectTransform>();
+        Enemy_HP = bar_EnemyHP.transform.Find("SliderHP").GetComponent<Slider>();
+        Enemy_WP = bar_EnemyWP.transform.Find("SliderWP").GetComponent<Slider>();
+    }
+    void Objects()          // gameObject
+    {
         Player = GameObject.Find("Player");
-        UI = transform.Find("Canvas").gameObject; //GameObject.Find("UI_Manager");
+
+        UI_EnemyStat = transform.Find("UI_EnemyStat").gameObject;
+        bar_EnemyHP = UI_EnemyStat.transform.Find("EnemyHP").gameObject;
+        bar_EnemyWP = UI_EnemyStat.transform.Find("EnemyWP").gameObject;
 
         Attack_area = transform.Find("Attack_area").gameObject;
         Weapon = transform.Find("Root").Find("BodySet").Find("P_Body").Find("ArmSet").gameObject;
-
-        rigidPlayer = Player.GetComponent<Rigidbody2D>();
-        Soul_Drop = GetComponent<global::Soul_Drop>();
-        rigid = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
-        Invoke("Think", 1);
     }
+
     void Update()
     {
-        //if (gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        pos = transform.position;
+        playerPos = Player.transform.position;
+
+        Weapon.SetActive(true);
+        UI_EnemyStat.SetActive(true);
+
+        Check_HW();
+        Check_Die();
+
+        if (gameObject.tag == "Enemy")
+            Tag_Enemy();
+        if (gameObject.tag == "Disarmed")
+            Tag_Disarmed();
+        if (gameObject.tag == "Controlled")
+            Tag_Controlled();
+        else
+            animator.SetFloat("RunState", 0.1f); //Run Animation//
+
+        if (sword.isSwing == false)
         {
+            isDamage = false;
+        }
+    }
+    void Tag_Enemy()        // tag == Enemy
+    {
+        if (issearch == false)
+            Idle();
+        else
+            Enemy_detect();
+    }
+    void Tag_Disarmed()     // tag == DisArmed
+    {
+        CurWP = 0;
+        Weapon.SetActive(false);
+
+        if (isAni == true)
+        {
+            animator.SetTrigger("parrying");
+            StartCoroutine(StopForSeconds(1f));
+        }
+        else
+        {
+            float runSpeed = 1f;
+
+            if (pos.x - playerPos.x < 0)
             {
-                Weapon.SetActive(true);
-                UI.SetActive(true);
-
-                if (gameObject.tag == "Disarmed")
-                {
-                    Weapon.SetActive(false);
-                    CurWP = 0;
-                }
-
-                if (gameObject.CompareTag("Controlled") != true)
-                {
-                    animator.SetFloat("RunState", 0.1f); //Run Animation//
-                }
-
-                Enemy_HP.value = CurHP / MaxHP;
-                Enemy_WP.value = CurWP / MaxWP;
-                Vector3 hpbar_pos = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + hp_har_height, 0));
-                float slider_scale = 0.15f;
-                Vector3 wpbar_pos = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + hp_har_height - slider_scale, 0));
-                my_bar.position = hpbar_pos;
-                my_bar_WP.position = wpbar_pos;
+                transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                transform.Translate((pos - playerPos).normalized * runSpeed * Time.deltaTime);
             }
-            if (gameObject.tag == "Controlled")
+            else if (pos.x - playerPos.x >= 0)
             {
-                Weapon.SetActive(false);
-                UI.SetActive(false);
-            }
-
-            if (isPlayer == true)
-            {
-
-                transform.position = new Vector2(Player.transform.position.x, Player.transform.position.y - 0.5f);
-                if (Player.GetComponent<PlayerController>().isThrowing == true)
-                {
-                    isPlayer = false;
-                    GetComponent<CircleCollider2D>().enabled = true;
-                    GetComponent<Rigidbody2D>().gravityScale = 5;
-                }
-            }
-            HP_Check();
-            if (sword.isSwing == false)
-            {
-                isDamage = false;
-            }
-            if (gameObject.tag == "Enemy" || gameObject.tag == "Disarmed")
-            {
-                if (issearch == false)
-                {
-                    Idle();
-                }
-                else if (issearch == true)
-                {
-                    if (gameObject.tag == "Enemy")
-                        Enemy_detect();
-                    else
-                        Enemy_Disarmed();
-                }
+                transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+                transform.Translate((playerPos - pos).normalized * runSpeed * Time.deltaTime);
             }
         }
     }
+    void Tag_Controlled()   // tag == Controlled
+    {
+        Weapon.SetActive(false);
+        UI_EnemyStat.SetActive(false);
+
+        if (isPlayer == true)
+        {
+            transform.position = playerPos - Vector2.up * 0.5f;
+
+            if (playerController.isThrowing == true)
+            {
+                isPlayer = false;
+                collider.enabled = true;
+                rigid.gravityScale = 5;
+                UI_EnemyStat.SetActive(false);
+                Weapon.SetActive(false);
+            }
+        }
+    }
+    void Check_HW()         // Check HP, WP
+    {
+        Enemy_HP.value = CurHP / MaxHP;
+        Enemy_WP.value = CurWP / MaxWP;
+
+        Vector3 bar_pos = transform.position + Vector3.right * XYSpace.x + Vector3.up * XYSpace.y;
+        bar_PosHP.position = Camera.main.WorldToScreenPoint(bar_pos);
+        bar_PosWP.position = Camera.main.WorldToScreenPoint(bar_pos - Vector3.up * XYSpace.z);
+    }
+    void Check_Die()        // Check Die Player & Enemy
+    {
+        if (CurHP <= 0)
+        {
+            if (gameObject.tag == "Controlled")
+            {
+                CurHP = 0;
+                bar_EnemyHP.SetActive(false);
+                bar_EnemyWP.SetActive(false);
+                Invoke("Die_Player", 1.4f);
+            }
+            else
+            {
+                if (!hasDroppedItem)
+                {
+                    Soul_Drop.DropItem();
+                    hasDroppedItem = true;
+                    bar_EnemyHP.SetActive(false);
+                    bar_EnemyWP.SetActive(false);
+                }
+
+                CurHP = 0;
+                animator.SetTrigger("Die");
+                Invoke("Die_Enemy", 1.4f);
+            }
+        }
+    }
+    void Die_Player()
+    {
+        gameObject.SetActive(false);
+        Time.timeScale = 0;
+    }
+    void Die_Enemy()
+    {
+        gameObject.SetActive(false);
+    }
     private void OnTriggerEnter2D(Collider2D col)
+    {
+        Change_Player(col);
+    }
+    private void OnTriggerStay2D(Collider2D col)
+    {
+        Col_Sword(col);
+    }
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        Ejection(col);
+    }
+    void Change_Player(Collider2D col)
     {
         if (col.gameObject.tag == "Sword" && gameObject.tag == "Disarmed")
         {
-            if (col.gameObject.GetComponentInParent<PlayerController>().isThrowing == true)
+            if (playerController.isThrowing == true)
             {
-                rigidPlayer.velocity = new Vector2(rigidPlayer.velocity.x, 0);
-                col.gameObject.GetComponentInParent<PlayerController>().isThrowing = false;
+                rigidPlayer.velocity *= Vector2.right; // velocity.y = 0
+                playerController.isThrowing = false;
                 isPlayer = true;
-                Player.GetComponent<CircleCollider2D>().isTrigger = false;
-                Player.GetComponent<Movement>().bounceCount = 2;
-                GetComponent<CircleCollider2D>().enabled = false;
-                GetComponent<Rigidbody2D>().gravityScale = 0;
+                colliderPlayer.isTrigger = false;
+                movement.bounceCount = 2;
+                collider.enabled = false;
+                rigid.gravityScale = 0;
                 gameObject.tag = "Controlled";
 
                 if (Attack_area != null)
@@ -189,11 +285,6 @@ public class EnemyController : MonoBehaviour
             }
         }
     }
-    private void OnTriggerStay2D(Collider2D col)
-    {
-        Col_Sword(col);
-    }
-
     void Col_Sword(Collider2D col)
     {
         if (col.gameObject.layer == LayerMask.NameToLayer("Sword") &&
@@ -224,93 +315,43 @@ public class EnemyController : MonoBehaviour
             }
         }
     }
-    private void OnTriggerExit2D(Collider2D col)
+    void Ejection(Collider2D col)
     {
-        if (gameObject.tag == "Controlled" && col.gameObject.GetComponentInParent<PlayerController>().isThrowing == true)
+        if (gameObject.tag == "Controlled" && playerController.isThrowing == true)
         {
-            gameObject.tag = "Disarmed"; //Disarm
+            gameObject.tag = "Disarmed";
         }
     }
-
-    public void HP_Check()
-    {
-        if (CurHP <= 0)
-        {
-            if (gameObject.tag == "Controlled")
-            {
-                CurHP = 0;
-                //animator.SetTrigger("Die");
-                my_hp_bar.SetActive(false);
-                my_WP_bar.SetActive(false);
-                Invoke("Die_me", 1.4f);
-            }
-            else
-            {
-                if (!hasDroppedItem)
-                {
-                    Soul_Drop.DropItem();
-                    hasDroppedItem = true;
-                    my_hp_bar.SetActive(false);
-                    my_WP_bar.SetActive(false);
-                }
-
-                CurHP = 0;
-                animator.SetTrigger("Die");
-                Invoke("Die_enemy", 1.4f);
-            }
-        }
-    }
-    void Die_me()
-    {
-        gameObject.SetActive(false);
-        Time.timeScale = 0;
-    }
-    void Die_enemy()
-    {
-
-        gameObject.SetActive(false);
-    }
+    
+    /// [ AI ] ///
     void Idle() //Enemy ai Idle
     {
-
-
         rigid.velocity = new Vector2(nextMove, rigid.velocity.y);
 
-        Vector2 Mypos = transform.position;
-
-        GameObject con = GameObject.FindGameObjectWithTag("Player");
-
-        Vector2 conPos = con.transform.position;
-
-        float distance = Vector2.Distance(Mypos, conPos);
+        float distance = Vector2.Distance(pos, playerPos);
 
         //Enemy Move 
         Vector2 frontVec = new Vector2(rigid.position.x + nextMove * 1.2f, rigid.position.y);
-        //Debug.DrawRay(frontVec, Vector3.down, new Color(0, 1, 0)); //fall_area check Ray
 
         RaycastHit2D rayHit = Physics2D.Raycast(frontVec, Vector3.down, 1, LayerMask.GetMask("Floor"));
-        if (Mypos.x - frontVec.x < 0)
+        if (pos.x - frontVec.x < 0)
         {
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         }
-        else if (Mypos.x - frontVec.x > 0)
+        else if (pos.x - frontVec.x > 0)
         {
             transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
-
 
         if (rayHit.collider == null)
         {
             Turn();
         }
-        if (distance <= detect_meter && distance >= attack_meter)
+        if (distance <= detect_distance && distance >= attack_distance)
         {
             issearch = true;
         }
-
-
     }
-
     void Think()
     {
         //set next active
@@ -324,17 +365,14 @@ public class EnemyController : MonoBehaviour
         if (nextMove == 0)
         {
             Invoke("Think", 1.0f);
-
         }
         else
         {
-
             float nextThinkTime = Random.Range(2f, 5f);//thinktime cooltime
 
             Invoke("Think", nextThinkTime);
         }
     }
-
     void Turn() // if Enemyfront == fall_area
     {
         nextMove = nextMove * (-1);
@@ -344,32 +382,27 @@ public class EnemyController : MonoBehaviour
     }
     void Enemy_detect()
     {
-        Vector2 Mypos = transform.position;
 
-        GameObject con = GameObject.FindGameObjectWithTag("Player");
-
-        Vector2 conPos = con.transform.position;
-
-        float distance = Vector2.Distance(Mypos, conPos);
+        float distance = Vector2.Distance(pos, playerPos);
         if (isAttake == false && CurHP > 0)
         {
-            if (Mypos.x - conPos.x < 0)
+            // flip
+            if (pos.x - playerPos.x < 0)
             {
                 transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             }
-            else if (Mypos.x - conPos.x >= 0)
+            else if (pos.x - playerPos.x >= 0)
             {
                 transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             }
-            if (distance <= detect_meter && distance >= attack_meter)
+
+            if (distance <= detect_distance && distance >= attack_distance)
             {
-                //Debug.Log("인식됨");
-                transform.position = Vector2.Lerp(transform.position, conPos, 0.4f * Time.deltaTime);
+                transform.position = Vector2.Lerp(pos, playerPos, 0.4f * Time.deltaTime);
             }
-            else if (distance <= attack_meter) //Attack AI start
+            else if (distance <= attack_distance) //Attack AI start
             {
                 isAttake = true;
-                //Debug.Log("플레이어를 향해 공격중");
             } //Attack AI End
             else
             {
@@ -415,36 +448,8 @@ public class EnemyController : MonoBehaviour
             }
         }
     }
-
-    void Enemy_Disarmed()
-    {
-        if (isAni == true)
-        {
-            animator.SetTrigger("parrying");
-            StartCoroutine(StopForSeconds(1f));
-        }
-        else
-        {
-            float runSpeed = 1f;
-
-            Vector2 Mypos = transform.position;
-
-            GameObject con = GameObject.FindGameObjectWithTag("Player");
-
-            Vector2 conPos = con.transform.position;
-
-            if (Mypos.x - conPos.x < 0)
-            {
-                transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                transform.Translate((Mypos - conPos).normalized * runSpeed * Time.deltaTime);
-            }
-            else if (Mypos.x - conPos.x >= 0)
-            {
-                transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-                transform.Translate((conPos - Mypos).normalized * runSpeed * Time.deltaTime);
-            }
-        }
-    }
+    //////////////
+    
     IEnumerator StopForSeconds(float time)
     {
         yield return new WaitForSeconds(time);

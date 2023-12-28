@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
+using static SoonsoonData;
 
 public class EnemyController : MonoBehaviour
 {
@@ -64,12 +65,49 @@ public class EnemyController : MonoBehaviour
 
     Vector2 pos;
     Vector2 playerPos;
+    string E_filePath;
+    string E_filePath1;
+    string E_filePath2;
+    public class EnemyData
+    {
+        public float curHP;
+        public float maxHP;
+        public float CurWP;
+        public float MaxWP;
+        public float detect_distance;
+        public float attack_distance;
+
+        public EnemyData(float cur, float max, float curWp, float maxWp, float detect, float attack)
+        {
+            curHP = cur;
+            maxHP = max;
+            CurWP = curWp;
+            MaxWP = maxWp;
+            detect_distance = detect;
+            attack_distance = attack;
+        }
+
+        public static EnemyData LoadFromJSON(string filePath)
+        {
+            if (System.IO.File.Exists(filePath))
+            {
+                string json = System.IO.File.ReadAllText(filePath);
+                return JsonUtility.FromJson<EnemyData>(json);
+            }
+            else
+            {
+                Debug.LogError("File not found: " + filePath);
+                return null;
+            }
+        }
+    }
+
     void Awake()
     {
+        Enemy_data_save();
         EnemyStat();
         Objects();
         Components();
-
         Invoke("Think", 1);
     }
 
@@ -78,18 +116,13 @@ public class EnemyController : MonoBehaviour
         switch (enemyType)
         {
             case EnemyType.Enemy_A:
-                CurHP = 100;
-                MaxHP = 100;
-                CurWP = 20;
-                MaxWP = 20;
+                LoadEnemyData(E_filePath);
                 break;
             case EnemyType.Enemy_B:
-                CurHP = 80;
-                MaxHP = 80;
-                CurWP = 20;
-                MaxWP = 20;
+                LoadEnemyData(E_filePath1);
                 break;
             case EnemyType.Enemy_C:
+                LoadEnemyData(E_filePath2);
                 break;
             case EnemyType.Boss_A:
                 break;
@@ -448,8 +481,42 @@ public class EnemyController : MonoBehaviour
             }
         }
     }
-    //////////////
-    
+
+    private void Enemy_data_save()
+    {
+        E_filePath = Application.persistentDataPath + "/EnemyA_data.json";
+        E_filePath1 = Application.persistentDataPath + "/EnemyB_data.json";
+        E_filePath2 = Application.persistentDataPath + "/EnemyC_data.json";
+        Debug.Log("File path: " + E_filePath);
+        Debug.Log("File path: " + E_filePath1);
+        Debug.Log("File path: " + E_filePath2);
+        EnemyData EnemyA = new EnemyData(100, 100,20,20,5,2);
+        EnemyData EnemyB = new EnemyData(80, 80,20,20,5,2);
+        EnemyData EnemyC = new EnemyData(50, 50,20,20,5,2);
+        string jsonA = JsonUtility.ToJson(EnemyA);
+        string jsonB = JsonUtility.ToJson(EnemyB);
+        string jsonC = JsonUtility.ToJson(EnemyC);
+        System.IO.File.WriteAllText(E_filePath , jsonA);
+        System.IO.File.WriteAllText(E_filePath1 ,jsonB);
+        System.IO.File.WriteAllText(E_filePath2 , jsonC);
+    }
+
+    private void LoadEnemyData(string filePath)
+    {
+        EnemyData enemyData = EnemyData.LoadFromJSON(filePath);
+
+        if (enemyData != null)
+        {
+            CurHP = enemyData.curHP;
+            CurWP = enemyData.CurWP;
+            MaxHP = enemyData.maxHP;
+            MaxWP = enemyData.MaxWP;
+            detect_distance = enemyData.detect_distance;
+            attack_distance = enemyData.attack_distance;
+        }
+    }
+    ////////////////////
+
     IEnumerator StopForSeconds(float time)
     {
         yield return new WaitForSeconds(time);

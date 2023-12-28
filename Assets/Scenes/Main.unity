@@ -8327,6 +8327,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 537180181}
     - target: {fileID: 2379781463988346219, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
+      propertyPath: enemyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2379781463988346219, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
       propertyPath: my_WP_bar
       value: 
       objectReference: {fileID: 2048052496}

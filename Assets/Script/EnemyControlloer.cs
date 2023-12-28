@@ -41,6 +41,7 @@ public class EnemyController : MonoBehaviour
 
     Sword sword;
     Movement movement;
+    TimeScale timeScale;
     Soul_Drop Soul_Drop;
     StatController stat;
     PlayerController playerController;
@@ -143,6 +144,7 @@ public class EnemyController : MonoBehaviour
         playerController = Player.GetComponent<PlayerController>();
 
         stat = GameObject.Find("GameManager").GetComponent<StatController>();
+        timeScale = GameObject.Find("GameManager").GetComponent<TimeScale>();
         sword = GameObject.Find("Sword").GetComponent<Sword>();
         Soul_Drop = GetComponent<global::Soul_Drop>();
 
@@ -279,7 +281,7 @@ public class EnemyController : MonoBehaviour
     void Die_Player()
     {
         gameObject.SetActive(false);
-        Time.timeScale = 0;
+        timeScale.SlowMotion(TimeScale.MotionType.die);
     }
     void Die_Enemy()
     {
@@ -331,6 +333,8 @@ public class EnemyController : MonoBehaviour
                     stat.Stat("ST", 3);
 
                     isDamage = true;
+
+                    timeScale.SlowMotion(TimeScale.MotionType.attack);
                 }
                 if (col.gameObject.tag == "Parrying" && gameObject.tag != "Controlled" &&
                     timer > 0 && timer <= 1.2f)
@@ -344,6 +348,8 @@ public class EnemyController : MonoBehaviour
                     }
 
                     isDamage = true;
+
+                    timeScale.SlowMotion(TimeScale.MotionType.attack);
                 }
             }
         }

@@ -2040,6 +2040,7 @@ GameObject:
   - component: {fileID: 736074918}
   - component: {fileID: 736074923}
   - component: {fileID: 736074924}
+  - component: {fileID: 736074925}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2112,6 +2113,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomSpeed: 0.0025
+--- !u!114 &736074925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736074917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b38c3b8ae4ddc624b9db7d0cd6d53be1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  motion: 0
+  isUpdate: 1
+  scale_die: 0
+  scale_special: 0
+  scale_throwing: 0.25
+  speed_change: 2
 --- !u!1 &738254955
 GameObject:
   m_ObjectHideFlags: 0

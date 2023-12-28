@@ -19,8 +19,9 @@ public class Movement : MonoBehaviour
     bool isJumping = false;
     bool isThrowing = false;
 
-    private Rigidbody2D rigid;
-    private LineRenderer line;
+    Rigidbody2D rigid;
+    LineRenderer line;
+    TimeScale timeScale;
 
     Vector2 _velocity;
 
@@ -29,9 +30,9 @@ public class Movement : MonoBehaviour
 
     private void Awake()
     {
-
         rigid = GetComponent<Rigidbody2D>();
         line = GetComponent<LineRenderer>();
+        timeScale = GameObject.Find("GameManager").GetComponent<TimeScale>();
     }
 
     private void Update()
@@ -48,6 +49,7 @@ public class Movement : MonoBehaviour
             GameObject Clone = GameObject.Find(clone_Name);
             Destroy(Clone, 0.1f);
         }
+
     }
     public void Landing() //check can jump and can distance dash
     {
@@ -179,8 +181,7 @@ public class Movement : MonoBehaviour
     {
         //startDragPos = transform.position;
         line.enabled = true;
-
-        Time.timeScale = 0.25f;
+        timeScale.SlowMotionUpdate(TimeScale.MotionType.throwing);
     }
     public void Throw_Line()
     {
@@ -209,7 +210,7 @@ public class Movement : MonoBehaviour
         GetComponent<CircleCollider2D>().isTrigger = true;
         line.enabled = false;
 
-        Time.timeScale = 1;
+        timeScale.SlowMotionUpdate(TimeScale.MotionType.back);
     }
     public Vector2[] Plot(Rigidbody2D rigidbody, Vector2 pos, Vector2 velocity, int steps)
     {

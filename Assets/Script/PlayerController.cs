@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
     private Movement movement;
     private Sword sword;
     private StatController stat;
-    private Setting_UI setting;
     private EnemyController enemy;
     private VolumeController volume;
 
@@ -20,7 +19,6 @@ public class PlayerController : MonoBehaviour
         movement = GetComponent<Movement>();
         sword = GetComponentInChildren<Sword>();
         stat = GameObject.Find("GameManager").GetComponent<StatController>();
-        setting = GameObject.Find("GameManager").GetComponent<Setting_UI>();
         volume = GameObject.Find("GameManager").GetComponent<VolumeController>();
 
         isThrowing = true;
@@ -39,7 +37,7 @@ public class PlayerController : MonoBehaviour
             sword.Throw();
             volume.ZoomOut();
         }
-        else if(setting.settingsMenu.activeSelf == false)
+        else // setting miss 
         {
             //player movement
             float x = Input.GetAxisRaw("Horizontal");

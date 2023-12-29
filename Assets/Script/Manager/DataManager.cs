@@ -8,6 +8,9 @@ public class Player_Data
 {
     public int soul_Count;
     public float sword_Reach;
+    public float Speed;
+    public float Jump;
+    public float Hp_Drain;
 }
 
 

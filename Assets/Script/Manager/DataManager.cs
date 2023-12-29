@@ -92,6 +92,11 @@ public class DataManager : MonoBehaviour
         Debug.Log(SAVE_FILE_EXIST);
         return SAVE_FILE_EXIST;
     }
-        
-        
+
+    public void Delete_Save_File()
+    {
+        File.Delete(path + filename);
+    }
+
+
 }

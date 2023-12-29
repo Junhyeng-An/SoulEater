@@ -21,13 +21,14 @@ public class Start_UI : MonoBehaviour
     public void load_Game()
     {
         DataManager.Instance.LoadData();
+        SceneManager.LoadScene("Dorf");
     }
 
     public void new_Game()
     {
         DataManager.Instance._PlayerData.soul_Count = 1;
         DataManager.Instance._PlayerData.sword_Reach = 2.2f;
-        DataManager.Instance.SaveData();
+        
         SceneManager.LoadScene("Main");
     }
 

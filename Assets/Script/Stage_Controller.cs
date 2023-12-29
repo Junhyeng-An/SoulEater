@@ -23,7 +23,7 @@ public class Stage_Controller : MonoBehaviour
             if (NoEnemiesInScene())
             {
                 // Load the next scene
-                LoadingScene.LoadScene("Stage_2");
+                LoadingScene.LoadScene(Scene_Name);
                 //LoadNextScene();
             }
             else

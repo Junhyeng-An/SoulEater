@@ -6,16 +6,20 @@ using System.Collections.Generic;
 
 public class Soul_Manager : MonoBehaviour
 {
-    public int Soul_Count = 0;
+    public int Soul_Count;
     public TextMeshProUGUI textName;
-    
-    
-    
+
+    private void Awake()
+    {
+        Soul_Count = DataManager.Instance._PlayerData.soul_Count;
+    }
+
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Soul"))
         {
-            Soul_Count++;
+            Soul_Count = ++DataManager.Instance._PlayerData.soul_Count;
         }
     }
 
@@ -26,6 +30,7 @@ public class Soul_Manager : MonoBehaviour
 
     void Show_Count()
     {
+        Soul_Count = DataManager.Instance._PlayerData.soul_Count;
         textName.text = Soul_Count.ToString();
     }
     

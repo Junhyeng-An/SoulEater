@@ -27,7 +27,7 @@ public class Start_UI : MonoBehaviour
 
     public void new_Game()
     {
-        DataManager.Instance._PlayerData.soul_Count = 1;
+        DataManager.Instance._PlayerData.soul_Count = 0;
         DataManager.Instance._PlayerData.jump = 12.0f;
         DataManager.Instance._PlayerData.gold = 0;
         DataManager.Instance._PlayerData.speed = 5.0f;

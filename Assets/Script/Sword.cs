@@ -6,8 +6,8 @@ using UnityEngine;
 public class Sword : MonoBehaviour
 {
     [HideInInspector] public float swingForce;
-    [HideInInspector] public float damage_playerAttack = 10;
-    [HideInInspector] public float damage_playerParrying = 1;
+    [HideInInspector] public float damage_playerAttack;
+    [HideInInspector] public float damage_playerParrying;
 
     public float limitSpeed;
 
@@ -53,8 +53,11 @@ public class Sword : MonoBehaviour
         stretch_Max = 2.2f;
         stretch_Speed = 0.05f;
 
-        damage_playerAttack = 10;
-        damage_playerParrying = 5;
+        damage_playerAttack = DataManager.Instance._SwordData.player_damage_attack;
+        damage_playerParrying = DataManager.Instance._SwordData.player_parrying_attack;
+        
+        Debug.Log(damage_playerParrying);
+        
     }
 
     void Update()

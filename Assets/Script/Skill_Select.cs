@@ -6,17 +6,17 @@ using TMPro;
 
 public class Skill_Select : MonoBehaviour
 {
-    private List<Skill_Card> skillCards = new List<Skill_Card>();  //ÀüÃ¼ ½ºÅ³Ä«µå ¸®½ºÆ®
-    List<Skill_Card> selectedCards = new List<Skill_Card>(); //¼±ÅÃÁö¿¡ ¶ã ½ºÅ³Ä«µå ¸®½ºÆ®
+    private List<Skill_Card> skillCards = new List<Skill_Card>();  //ï¿½ï¿½Ã¼ ï¿½ï¿½Å³Ä«ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
+    List<Skill_Card> selectedCards = new List<Skill_Card>(); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Å³Ä«ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 
     public List<Text> Card;
     public List<Button> Button;
     bool isShow = false;
     class Skill_Card
     {
-        public string name; //½ºÅ³ÀÌ¸§
-        public string skill_content; //½ºÅ³³»¿ë
-        public float upgrade_count; //¾ó¸¶¸¸Å­ µÇ´ÂÁö
+        public string name; //ï¿½ï¿½Å³ï¿½Ì¸ï¿½
+        public string skill_content; //ï¿½ï¿½Å³ï¿½ï¿½ï¿½ï¿½
+        public float upgrade_count; //ï¿½ó¸¶¸ï¿½Å­ ï¿½Ç´ï¿½ï¿½ï¿½
 
         public Skill_Card(string N, string SC, float UC)
         {
@@ -28,9 +28,9 @@ public class Skill_Select : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        skillCards.Add(new Skill_Card("ÇÇÈí", "ÀûÀ» Ã³Ä¡½Ã ÀÏÁ¤·®ÀÇ HP¸¦ È¸º¹ÇÑ´Ù", 10));
-        skillCards.Add(new Skill_Card("Ä® °­È­", "Ä®ÀÇ ±æÀÌ°¡ Áõ°¡ÇÕ´Ï´Ù", 12));
-        skillCards.Add(new Skill_Card("È­¿° ¼Ó¼º", "Àû¿¡°Ô È­»ó È¿°ú¸¦ ÁÝ´Ï´Ù", 15));
+        skillCards.Add(new Skill_Card("ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½ Ã³Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ HPï¿½ï¿½ È¸ï¿½ï¿½ï¿½Ñ´ï¿½", 10));
+        skillCards.Add(new Skill_Card("Ä® ï¿½ï¿½È­", "Ä®ï¿½ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½", 12));
+        skillCards.Add(new Skill_Card("È­ï¿½ï¿½ ï¿½Ó¼ï¿½", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½ È¿ï¿½ï¿½ï¿½ï¿½ ï¿½Ý´Ï´ï¿½", 15));
         Card_Suffle();
         Card_Show();
     }
@@ -43,18 +43,18 @@ public class Skill_Select : MonoBehaviour
 
     void Card_Suffle()
     {
-        List<int> selectedIndices = new List<int>(); //Áßº¹¹æÁö ¸®½ºÆ®
+        List<int> selectedIndices = new List<int>(); //ï¿½ßºï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
         for (int i = 0; i < 3; i++)
         {
             int randomIndex;
 
-            // Áßº¹µÈ ÀÎµ¦½º¸¦ ÇÇÇÏ±â À§ÇÑ ·çÇÁ
+            // ï¿½ßºï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             do
             {
                 randomIndex = Random.Range(0, skillCards.Count);
             } while (selectedIndices.Contains(randomIndex));
 
-            // ¼±ÅÃµÈ ÀÎµ¦½º¸¦ ¸®½ºÆ®¿¡ Ãß°¡ÇÏ°í Ä«µå¸¦ ¼±ÅÃµÈ Ä«µå ¸®½ºÆ®¿¡ Ãß°¡
+            // ï¿½ï¿½ï¿½Ãµï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ï°ï¿½ Ä«ï¿½å¸¦ ï¿½ï¿½ï¿½Ãµï¿½ Ä«ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½
             selectedIndices.Add(randomIndex);
             selectedCards.Add(skillCards[randomIndex]);
         }
@@ -63,7 +63,7 @@ public class Skill_Select : MonoBehaviour
     {
         for (int i = 0; i < selectedCards.Count; i++)
         {
-            Card[i].text = $"Ä«µå {i + 1}: {selectedCards[i].name}\n\n{selectedCards[i].skill_content}\n\n°­È­ °è¼ö: {selectedCards[i].upgrade_count}";
+            Card[i].text = $"Ä«ï¿½ï¿½ {i + 1}: {selectedCards[i].name}\n\n{selectedCards[i].skill_content}\n\nï¿½ï¿½È­ ï¿½ï¿½ï¿½: {selectedCards[i].upgrade_count}";
         }
     }
 
@@ -71,26 +71,26 @@ public class Skill_Select : MonoBehaviour
     {
         Skill_Card selectedSkill = selectedCards[selectedIndex];
 
-        // ¼±ÅÃµÈ ½ºÅ³ÀÇ È¿°ú¸¦ ÇÃ·¹ÀÌ¾î µ¥ÀÌÅÍ¿¡ Àû¿ë
+        // ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½Å³ï¿½ï¿½ È¿ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½ï¿½ï¿½ï¿½
         switch (selectedSkill.name)
         {
-            case "ÇÇÈí":
-                DataManager.Instance._PlayerData.Hp_Drain += selectedSkill.upgrade_count;
+            case "ï¿½ï¿½ï¿½ï¿½":
+                DataManager.Instance._Player_Skill.HP_Drain += selectedSkill.upgrade_count;
                 break;
-            case "Ä® °­È­":
-                DataManager.Instance._PlayerData.sword_Reach += selectedSkill.upgrade_count;
+            case "Ä® ï¿½ï¿½È­":
+                DataManager.Instance._Player_Skill.sword_Reach += selectedSkill.upgrade_count;
                 break;
-            case "È­¿° ¼Ó¼º":
-                DataManager.Instance._PlayerData.fire_dote += selectedSkill.upgrade_count;
+            case "È­ï¿½ï¿½ ï¿½Ó¼ï¿½":
+                DataManager.Instance._Player_Skill.fire_dote += selectedSkill.upgrade_count;
                 break;
-                // ´Ù¸¥ ½ºÅ³¿¡ ´ëÇÑ °æ¿ì Ãß°¡
+                // ï¿½Ù¸ï¿½ ï¿½ï¿½Å³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
         }
 
-        // ¾÷µ¥ÀÌÆ®µÈ ÇÃ·¹ÀÌ¾î µ¥ÀÌÅÍ¸¦ ÀúÀå
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½
         DataManager.Instance.SaveData();
     }
 
-    public void Button_Click(int button_index) //¹öÆ°Å¬¸¯ÀÌº¥Æ® , ´­·ÁÁø ¹öÆ°ÀÇ ÀÎµ¦½º °ª¿¡ µû¶ó Card_Effet(int selectedIndex) ½ÇÇàÇÏ±â
+    public void Button_Click(int button_index) //ï¿½ï¿½Æ°Å¬ï¿½ï¿½ï¿½Ìºï¿½Æ® , ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Card_Effet(int selectedIndex) ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
     {
         Card_Effet(button_index);
         gameObject.SetActive(false);

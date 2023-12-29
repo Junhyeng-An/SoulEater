@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using PixelCrushers;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -7,10 +8,10 @@ public class Movement : MonoBehaviour
     public GameObject sword;
 
     [SerializeField]
-    public float speed = 5.0f;
-    public float jumpForce = 8.0f;
-    public float throwForce = 12.0f;
-    public float dashForce = 5.0f;
+    private float speed;
+    private float jumpForce ;
+    private float throwForce = 12.0f;
+    private float dashForce = 5.0f;
     public float angle;
 
     public int bounceCount = 2;
@@ -30,6 +31,12 @@ public class Movement : MonoBehaviour
 
     private void Awake()
     {
+        jumpForce = DataManager.Instance._PlayerData.jump;
+        speed = DataManager.Instance._PlayerData.speed;
+        
+        
+        
+        
         rigid = GetComponent<Rigidbody2D>();
         line = GetComponent<LineRenderer>();
         timeScale = GameObject.Find("GameManager").GetComponent<TimeScale>();

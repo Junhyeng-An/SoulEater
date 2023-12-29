@@ -5,7 +5,7 @@ using UnityEngine;
 public class Knock_Back : MonoBehaviour
 {
     public float knockbackForce_Attack = 1f;
-    public float knockbackForce_Parrying = 3f;
+    public float knockbackForce_Parrying = 7f;
 
     float knockbackForce;
     public float knockbackDuration = 0.5f;
@@ -16,18 +16,21 @@ public class Knock_Back : MonoBehaviour
 
         if ((other.CompareTag("Attack") || other.CompareTag("Parrying")) && sword.isKnock == false)
         {
+            Vector2 knockbackDirection;
+
             if (other.CompareTag("Attack"))
             {
                 knockbackForce = knockbackForce_Attack;
+                //knockbackDirection = (transform.position - other.transform.parent.position).normalized;
+                knockbackDirection = Vector2.up;
             }
             else
             {
                 knockbackForce = knockbackForce_Parrying;
+                knockbackDirection = Vector2.up;
             }
             Debug.Log("³Ë¹éµÊ");
             // Calculate the direction of the knockback
-            Vector2 knockbackDirection = (transform.position - other.transform.parent.position).normalized;
-
             // Apply knockback force to the enemy
             Rigidbody2D enemyRigidbody = GetComponent<Rigidbody2D>();
             if (enemyRigidbody != null)

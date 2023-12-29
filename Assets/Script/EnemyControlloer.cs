@@ -50,6 +50,7 @@ public class EnemyController : MonoBehaviour
     [HideInInspector] public float MaxHP;
     [HideInInspector] public float CurWP;
     [HideInInspector] public float MaxWP;
+    [HideInInspector] public float damage_enemyAttack;
 
     [HideInInspector] public float timer;
 
@@ -77,8 +78,9 @@ public class EnemyController : MonoBehaviour
         public float MaxWP;
         public float detect_distance;
         public float attack_distance;
+        public float damage_enemyAttack;
 
-        public EnemyData(float cur, float max, float curWp, float maxWp, float detect, float attack)
+        public EnemyData(float cur, float max, float curWp, float maxWp, float detect, float attack, float damage)
         {
             curHP = cur;
             maxHP = max;
@@ -86,6 +88,7 @@ public class EnemyController : MonoBehaviour
             MaxWP = maxWp;
             detect_distance = detect;
             attack_distance = attack;
+            damage_enemyAttack = damage;
         }
 
         public static EnemyData LoadFromJSON(string filePath)
@@ -294,6 +297,7 @@ public class EnemyController : MonoBehaviour
     private void OnTriggerStay2D(Collider2D col)
     {
         Col_Sword(col);
+        Col_Enemy(col);
     }
     private void OnTriggerExit2D(Collider2D col)
     {
@@ -329,7 +333,7 @@ public class EnemyController : MonoBehaviour
             {
                 if (col.gameObject.tag == "Attack" && gameObject.tag != "Controlled")
                 {
-                    CurHP -= 10;
+                    CurHP -= sword.damage_playerAttack;
                     stat.Stat("ST", 3);
 
                     isDamage = true;
@@ -339,7 +343,7 @@ public class EnemyController : MonoBehaviour
                 if (col.gameObject.tag == "Parrying" && gameObject.tag != "Controlled" &&
                     timer > 0 && timer <= 1.2f)
                 {
-                    CurWP -= 10;
+                    CurWP -= sword.damage_playerParrying;
                     stat.Stat("ST", 6);
 
                     if (CurWP <= 0)
@@ -354,6 +358,15 @@ public class EnemyController : MonoBehaviour
             }
         }
     }
+    void Col_Enemy(Collider2D col)
+    {
+        if (col.CompareTag("closehit") && isHit == false)
+        {
+            CurHP -= damage_enemyAttack; 
+            isHit = true;
+        }
+    }
+
     void Ejection(Collider2D col)
     {
         if (gameObject.tag == "Controlled" && playerController.isThrowing == true)
@@ -496,9 +509,9 @@ public class EnemyController : MonoBehaviour
         Debug.Log("File path: " + E_filePath);
         Debug.Log("File path: " + E_filePath1);
         Debug.Log("File path: " + E_filePath2);
-        EnemyData EnemyA = new EnemyData(100, 100,20,20,5,2);
-        EnemyData EnemyB = new EnemyData(80, 80,20,20,5,2);
-        EnemyData EnemyC = new EnemyData(50, 50,20,20,5,2);
+        EnemyData EnemyA = new EnemyData(100, 100,20,20,5,2, 10);
+        EnemyData EnemyB = new EnemyData(80, 80,20,20,5,2, 10);
+        EnemyData EnemyC = new EnemyData(50, 50,20,20,5,2, 10);
         string jsonA = JsonUtility.ToJson(EnemyA);
         string jsonB = JsonUtility.ToJson(EnemyB);
         string jsonC = JsonUtility.ToJson(EnemyC);

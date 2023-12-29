@@ -8068,11 +8068,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1020646235073341701, guid: 0783dfe717ddeee49bb13ef440203e72, type: 3}
       propertyPath: knockbackForce_Attack
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1020646235073341701, guid: 0783dfe717ddeee49bb13ef440203e72, type: 3}
       propertyPath: knockbackForce_Parrying
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1215246866831362493, guid: 0783dfe717ddeee49bb13ef440203e72, type: 3}
       propertyPath: m_Radius
@@ -8161,6 +8161,10 @@ PrefabInstance:
     - target: {fileID: 2401293536896692182, guid: 0783dfe717ddeee49bb13ef440203e72, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3503801991629242365, guid: 0783dfe717ddeee49bb13ef440203e72, type: 3}
+      propertyPath: m_Mass
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4468359713460931560, guid: 0783dfe717ddeee49bb13ef440203e72, type: 3}
       propertyPath: m_IsActive
@@ -9855,6 +9859,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swingForce: 0
+  damage_playerAttack: 10
+  damage_playerParrying: 10
   limitSpeed: 10
   angle: 0
   isSwing: 0

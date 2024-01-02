@@ -29,7 +29,7 @@ public class Start_UI : MonoBehaviour
     {
         DataManager.Instance._PlayerData.soul_Count = 0;
         DataManager.Instance._PlayerData.jump = 12.0f;
-        DataManager.Instance._PlayerData.gold = 0;
+        DataManager.Instance._PlayerData.coin = 0;
         DataManager.Instance._PlayerData.speed = 5.0f;
 
         DataManager.Instance._SwordData.player_damage_attack = 10.0f;

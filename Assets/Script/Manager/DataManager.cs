@@ -6,7 +6,7 @@ using System.IO;
 
 public class Player_Data
 {
-    public int gold;
+    public int coin;
     public int soul_Count;
     public float speed;
     public float jump;

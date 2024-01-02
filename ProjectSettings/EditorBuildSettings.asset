@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Dorf.unity
     guid: 2e6222d6a7f138c408dfca5e0e6f768f
+  - enabled: 1
+    path: Assets/Scenes/Boss_cinema_test.unity
+    guid: 0fe4ee0891d34074480a7ec99054e649
   m_configObjects: {}

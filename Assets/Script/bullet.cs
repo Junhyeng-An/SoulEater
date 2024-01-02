@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static EnemyController;
 
 public class bullet : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class bullet : MonoBehaviour
     void Update()
     {
         player = GameObject.FindGameObjectWithTag("Controlled");
+        
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -24,7 +26,7 @@ public class bullet : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             Destroy(gameObject);
-            player.GetComponent<EnemyController>().CurHP -= Bullet_Damage;
+            player.GetComponent<EnemyData>().curHP -= Bullet_Damage;
 
         }
     }

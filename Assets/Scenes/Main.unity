@@ -376,7 +376,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &133175635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10818,9 +10818,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sword: {fileID: 2022355562902686601}
   speed: 5
-  jumpForce: 12
-  throwForce: 12
-  dashForce: 5
   angle: 0
   bounceCount: 3
   gameover: 0

@@ -141,10 +141,10 @@ public class Sword : MonoBehaviour
 
     public void Attack()
     {
-        if(stat.Player_CurST >= 3 && attack_Ani == false)
+        if(attack_Ani == false)
         {
             isSwing = true;
-            stat.Stat("ST", -3);
+            //stat.Stat("ST", -3);
             gameObject.tag = "Attack";
             GetComponent<SpriteRenderer>().color = Color.red;
 

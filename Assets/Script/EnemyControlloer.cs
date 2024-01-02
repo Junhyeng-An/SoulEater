@@ -44,13 +44,20 @@ public class EnemyController : MonoBehaviour
     TimeScale timeScale;
     Soul_Drop Soul_Drop;
     StatController stat;
+    SkillController skill;
     PlayerController playerController;
+
+    public EnemyData EnemyA;
+    public EnemyData EnemyB;
+    public EnemyData EnemyC;
+
 
     [HideInInspector] public float CurHP;
     [HideInInspector] public float MaxHP;
     [HideInInspector] public float CurWP;
     [HideInInspector] public float MaxWP;
     [HideInInspector] public float damage_enemyAttack;
+    [HideInInspector] public SkillController.Skill_Active CurSkill;
 
     [HideInInspector] public float timer;
 
@@ -79,8 +86,10 @@ public class EnemyController : MonoBehaviour
         public float detect_distance;
         public float attack_distance;
         public float damage_enemyAttack;
+        public SkillController.Skill_Active CurSkill;
 
-        public EnemyData(float cur, float max, float curWp, float maxWp, float detect, float attack, float damage)
+
+        public EnemyData(float cur, float max, float curWp, float maxWp, float detect, float attack, float damage, SkillController.Skill_Active skill)
         {
             curHP = cur;
             maxHP = max;
@@ -89,6 +98,8 @@ public class EnemyController : MonoBehaviour
             detect_distance = detect;
             attack_distance = attack;
             damage_enemyAttack = damage;
+
+            CurSkill = skill;
         }
 
         public static EnemyData LoadFromJSON(string filePath)
@@ -121,12 +132,15 @@ public class EnemyController : MonoBehaviour
         {
             case EnemyType.Enemy_A:
                 LoadEnemyData(E_filePath);
+                CurSkill = SkillController.Skill_Active.Smash;
                 break;
             case EnemyType.Enemy_B:
                 LoadEnemyData(E_filePath1);
+                CurSkill = SkillController.Skill_Active.Push;
                 break;
             case EnemyType.Enemy_C:
                 LoadEnemyData(E_filePath2);
+                CurSkill = SkillController.Skill_Active.DashAttack;
                 break;
             case EnemyType.Boss_A:
                 break;
@@ -141,6 +155,7 @@ public class EnemyController : MonoBehaviour
         collider = GetComponent<CircleCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
+        skill = Player.GetComponent<SkillController>();
         movement = Player.GetComponent<Movement>();
         rigidPlayer = Player.GetComponent<Rigidbody2D>();
         colliderPlayer = Player.GetComponent<CircleCollider2D>();
@@ -170,6 +185,8 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
+        //Debug.Log(CurSkill);
+
         pos = transform.position;
         playerPos = Player.transform.position;
 
@@ -334,7 +351,7 @@ public class EnemyController : MonoBehaviour
                 if (col.gameObject.tag == "Attack" && gameObject.tag != "Controlled")
                 {
                     CurHP -= sword.damage_playerAttack;
-                    stat.Stat("ST", 3);
+                    //stat.Stat("ST", 3);
 
                     isDamage = true;
 
@@ -509,9 +526,9 @@ public class EnemyController : MonoBehaviour
         Debug.Log("File path: " + E_filePath);
         Debug.Log("File path: " + E_filePath1);
         Debug.Log("File path: " + E_filePath2);
-        EnemyData EnemyA = new EnemyData(100, 100,20,20,5,2, 10);
-        EnemyData EnemyB = new EnemyData(80, 80,20,20,5,2, 10);
-        EnemyData EnemyC = new EnemyData(50, 50,20,20,5,2, 10);
+         EnemyA = new EnemyData(100, 100,20,20,5,2, 10, SkillController.Skill_Active.Smash);
+         EnemyB = new EnemyData(80, 80,20,20,5,2, 10, SkillController.Skill_Active.DashAttack);
+         EnemyC = new EnemyData(50, 50,20,20,5,2, 10, SkillController.Skill_Active.Push);
         string jsonA = JsonUtility.ToJson(EnemyA);
         string jsonB = JsonUtility.ToJson(EnemyB);
         string jsonC = JsonUtility.ToJson(EnemyC);
@@ -532,6 +549,7 @@ public class EnemyController : MonoBehaviour
             MaxWP = enemyData.MaxWP;
             detect_distance = enemyData.detect_distance;
             attack_distance = enemyData.attack_distance;
+            CurSkill = enemyData.CurSkill;
         }
     }
     ////////////////////

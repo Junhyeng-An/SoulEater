@@ -33,14 +33,19 @@ public class Start_UI : MonoBehaviour
         DataManager.Instance._PlayerData.coin = 0;
         DataManager.Instance._PlayerData.speed = 5.0f;
         #endregion
-       
-        
+
+
+        #region Sword_Data
         
         DataManager.Instance._SwordData.player_damage_attack = 10.0f;
-        
+        DataManager.Instance._SwordData.player_attack_level = 1;
+
+        DataManager.Instance._SwordData.player_sword_reach = 1.0f;
+        DataManager.Instance._SwordData.player_sword_level = 1;
         
         DataManager.Instance._SwordData.player_parrying_attack = 1.0f;
-
+        DataManager.Instance._SwordData.player_parrying_level = 1;
+        #endregion
         
         
         
@@ -53,7 +58,7 @@ public class Start_UI : MonoBehaviour
         DataManager.Instance._Player_Skill.fire_dote = 0.0f;
         
         
-        SceneManager.LoadScene("Boss_cinema_test");
+        SceneManager.LoadScene("Main");
     }
 
 

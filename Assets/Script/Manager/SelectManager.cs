@@ -61,6 +61,7 @@ public class SelectManager : MonoBehaviour
     public void Destroy_Prefab()
     {
         Destroy(settingWindowInstance);
+        Debug.Log("destroy");
     }
 
 }

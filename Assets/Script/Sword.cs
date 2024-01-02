@@ -222,6 +222,37 @@ public class Sword : MonoBehaviour
     // Weapon enfocement
 
     #region Weapon enforce Button
+
+    public void Player_attack_damage_upgrade()
+    {
+        if (DataManager.Instance._PlayerData.coin >= 10)
+        {
+            DataManager.Instance._PlayerData.coin -= 10;
+            DataManager.Instance._SwordData.player_damage_attack += 2;
+            DataManager.Instance._SwordData.player_attack_level += 1;
+        }
+    }
+
+    public void Player_parrying_damage_upgrade()
+    {
+        if (DataManager.Instance._PlayerData.coin >= 10)
+        {
+            DataManager.Instance._PlayerData.coin -= 10;
+            DataManager.Instance._SwordData.player_parrying_attack += 1;
+            DataManager.Instance._SwordData.player_parrying_level += 1;
+        }
+    }
+
+    public void Player_sword_reach_upgrade()
+    {
+        if (DataManager.Instance._PlayerData.coin >= 10)
+        {
+            DataManager.Instance._PlayerData.coin -= 10;
+            DataManager.Instance._SwordData.player_sword_reach += 0.1f;
+            DataManager.Instance._SwordData.player_sword_level += 1;
+        }
+    }
+    
     
     
 

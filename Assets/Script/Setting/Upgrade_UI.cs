@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using PixelCrushers;
 using UnityEngine;
 using TMPro;
+using UnityEditor.AnimatedValues;
+
 public class Upgrade_UI : MonoBehaviour
 {
     public TextMeshProUGUI Weapon_Attack_Level;
@@ -13,12 +15,17 @@ public class Upgrade_UI : MonoBehaviour
 
     private void Update()
     {
-        Weapon_Attack_Level.text = DataManager.Instance._SwordData.player_attack_level.ToString() + "->"
+        Weapon_Attack_Level.text = "LV"+DataManager.Instance._SwordData.player_attack_level.ToString() + "->"
             + (DataManager.Instance._SwordData.player_attack_level + 1).ToString();
-        Weapon_Parrying_Level.text = DataManager.Instance._SwordData.player_parrying_level.ToString() + "->"
+        Weapon_Parrying_Level.text = "LV"+DataManager.Instance._SwordData.player_parrying_level.ToString() + "->"
             + (DataManager.Instance._SwordData.player_parrying_level + 1).ToString();
-        Weapon_Reach_Level.text = DataManager.Instance._SwordData.player_sword_level.ToString() + "->"
-            + (DataManager.Instance._SwordData.player_sword_level + 1).ToString();
-
+        Weapon_Reach_Level.text = "LV"+DataManager.Instance._SwordData.player_sword_level.ToString() + "->" 
+                                  + (DataManager.Instance._SwordData.player_sword_level + 1).ToString();
     }
+
+  
+    
+    
+    
+    
 }

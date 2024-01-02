@@ -40,9 +40,12 @@ public class SkillController : MonoBehaviour
     }
     void SkillCheck_Player()
     {
-        controlled = GameObject.FindGameObjectWithTag("Controlled");
+        if (GameObject.FindGameObjectWithTag("Controlled") != null)
+        {
+            controlled = GameObject.FindGameObjectWithTag("Controlled");
 
-        player_skill = controlled.GetComponent<EnemyController>().CurSkill;
+            player_skill = controlled.GetComponent<EnemyController>().CurSkill;
+        }
     }
 
     public void Active()

@@ -188,7 +188,7 @@ public class Movement : MonoBehaviour
     {
         //startDragPos = transform.position;
         line.enabled = true;
-        timeScale.SlowMotionUpdate(TimeScale.MotionType.throwing);
+        //timeScale.SlowMotionUpdate(TimeScale.MotionType.throwing);
     }
     public void Throw_Line()
     {
@@ -209,6 +209,8 @@ public class Movement : MonoBehaviour
         }
 
         line.SetPositions(positions);
+
+        timeScale.SlowMotion(TimeScale.MotionType.throwing);
     }
     public void Throw()
     {

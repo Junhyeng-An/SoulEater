@@ -138,13 +138,11 @@ public class TimeScale : MonoBehaviour
     }
     IEnumerator TimeStop(float T)
     {
-        float originalTimeScale = Time.timeScale;
-
         Time.timeScale = 0f;
 
         yield return new WaitForSecondsRealtime(T);
 
-        Time.timeScale = originalTimeScale;
+        Time.timeScale = 1;
     }
 
 

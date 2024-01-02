@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private StatController stat;
     private EnemyController enemy;
     private VolumeController volume;
+    private SkillController skill;
 
     [HideInInspector]
     public bool isThrowing;
@@ -44,7 +45,7 @@ public class PlayerController : MonoBehaviour
             movement.Move(x);
 
             //player jump
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W))
             {
                 movement.Jump();
             }
@@ -59,18 +60,23 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.Q))
+            if(Input.GetKeyDown(KeyCode.Q))     // Skille Key
+            {
+                skill.Active_Smash();
+            }
+
+            if (Input.GetKeyDown(KeyCode.R))    // Throw Key
             {
                 movement.Throw_Ready();
             }
-            if (Input.GetKey(KeyCode.Q))
+            if (Input.GetKey(KeyCode.R))
             {
                 movement.Throw_Line();
                 volume.ZoomIn();
             }
             else
                 volume.ZoomOut();
-            if (Input.GetKeyUp(KeyCode.Q))
+            if (Input.GetKeyUp(KeyCode.R))
             {
                 movement.Throw();
                 isThrowing = true;

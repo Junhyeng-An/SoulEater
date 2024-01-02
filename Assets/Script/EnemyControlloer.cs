@@ -334,7 +334,7 @@ public class EnemyController : MonoBehaviour
                 if (col.gameObject.tag == "Attack" && gameObject.tag != "Controlled")
                 {
                     CurHP -= sword.damage_playerAttack;
-                    stat.Stat("ST", 3);
+                    //stat.Stat("ST", 3);
 
                     isDamage = true;
 

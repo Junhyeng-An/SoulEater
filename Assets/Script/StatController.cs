@@ -12,7 +12,7 @@ public class StatController : MonoBehaviour
     Slider Player_HP;
     [SerializeField]
     TextMeshProUGUI pText_hp;
-    [SerializeField]
+    [SerializeField]    
     Slider Player_ST;
     [SerializeField]
     TextMeshProUGUI pText_ST;

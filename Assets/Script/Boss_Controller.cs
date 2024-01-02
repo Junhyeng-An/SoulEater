@@ -16,17 +16,21 @@ public class Boss_Controller : MonoBehaviour
     float damage_playerAttack;
     private bool isPattern1Active = false;  // 패턴1 활성화 여부
     private bool isPattern2Active = false;  // 패턴2 활성화 여부
+    private bool isDamage;
 
     public Circle_Fire pattern_circle;  // 패턴1 스크립트
     public Red_Square pattern_Square;  // 패턴2 스크립트
+    private Sword sword;
+    GameObject player;
 
     private void Awake()
     {
         currentHealth = maxHealth;  // 시작 시 현재 체력을 최대 체력으로 초기화
+        sword = GameObject.Find("Sword").GetComponent<Sword>();
     }
     void Start()
     {
-        //damage_playerAttack = DataManager.Instance._SwordData.player_damage_attack;
+        damage_playerAttack = DataManager.Instance._SwordData.player_damage_attack;
         
         DeactivateAllPatterns();
         StartCoroutine(ActivatePatterns());
@@ -34,10 +38,14 @@ public class Boss_Controller : MonoBehaviour
 
     void Update()
     {
+        player = GameObject.Find("GameManager");
+        if (sword.isSwing == false)
+        {
+            isDamage = false;
+        }
         if (Input.GetKeyDown("p")) //hp 데미지
         {
-            //currentHealth -= damage_playerAttack;
-            currentHealth -= 10;
+            currentHealth -= damage_playerAttack;
         }
         // HP에 따라 패턴 전환
         if (currentHealth <= 0)
@@ -117,11 +125,17 @@ public class Boss_Controller : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "Sword")
+        if (isDamage == false)
         {
-            TakeDamage(damage_playerAttack);
+            if (collision.gameObject.tag == "Attack" && gameObject.tag != "Controlled")
+            {
+                TakeDamage(damage_playerAttack);
+                player.GetComponent<StatController>().Stat("ST", 3);
+
+                isDamage = true;
+            }
         }
     }
 }

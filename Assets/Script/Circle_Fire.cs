@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Circle_Fire : MonoBehaviour
 {
-    public float CurHP;
-    public float MaxHP;
-    public float hp_har_height = 1;
     public GameObject projectilePrefab;  // 발사체 프리팹
     public GameObject Start_Pos;
     public float projectileSpeed = 5f;   // 발사 속도
@@ -31,11 +28,6 @@ public class Circle_Fire : MonoBehaviour
             FireProjectile();
             timeSinceLastFire = 0f;
         }
-
-        if (CurHP <= 0)
-        {
-            Destroy(gameObject);
-        }
     }
 
     void FireProjectile()
@@ -57,19 +49,4 @@ public class Circle_Fire : MonoBehaviour
             Destroy(projectile, projectileLifetime);
         }
     }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (isDamage == false)
-        {
-            if (collision.gameObject.tag == "Attack" && gameObject.tag != "Controlled")
-            {
-                CurHP -= 10;
-                player.GetComponent<StatController>().Stat("ST", 3);
-
-                isDamage = true;
-            }
-        }
-    }
-
 }

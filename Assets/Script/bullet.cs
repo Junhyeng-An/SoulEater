@@ -26,8 +26,7 @@ public class bullet : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             Destroy(gameObject);
-            player.GetComponent<EnemyData>().curHP -= Bullet_Damage;
-
+            player.GetComponent<EnemyController>().CurHP -= Bullet_Damage;
         }
     }
 }

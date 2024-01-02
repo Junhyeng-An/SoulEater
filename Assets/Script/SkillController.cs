@@ -7,14 +7,17 @@ public class SkillController : MonoBehaviour
     Sword sword;
     StatController stat;
     EnemyController enemy;
-    //[HideInInspector] public 
+
+    GameObject player;
+    GameObject controlled;
 
     public enum Skill_Active
     {
         Slash,
         Thrust,
         Smash,
-        DashAttack
+        DashAttack,
+        Push
     }
     public enum Passive_Active
     {
@@ -24,32 +27,47 @@ public class SkillController : MonoBehaviour
     public Skill_Active skill_active;
     public Passive_Active passive_active;
 
+    [HideInInspector] public Skill_Active player_skill;
+
     void Awake()
     {
-        
+        player = GameObject.Find("Player");
+        stat = GetComponent<StatController>();
     }
     void Update()
     {
-        
+        SkillCheck_Player();
+    }
+    void SkillCheck_Player()
+    {
+        controlled = GameObject.FindGameObjectWithTag("Controlled");
+
+        player_skill = controlled.GetComponent<EnemyController>().CurSkill;
     }
 
-    public void Active(Skill_Active skill)
+    public void Active()
     {
-        if (skill == Skill_Active.Slash)
+        Debug.Log(player_skill);
+
+        if (player_skill == Skill_Active.Slash)
+        {
+            
+        }
+        if (player_skill == Skill_Active.Thrust)
         {
 
         }
-        if (skill == Skill_Active.Thrust)
-        {
-
-        }
-        if (skill == Skill_Active.Smash)
+        if (player_skill == Skill_Active.Smash)
         {
             Active_Smash();
         }
-        if (skill == Skill_Active.DashAttack)
+        if (player_skill == Skill_Active.DashAttack)
         {
             Active_DashAttack();
+        }
+        if (player_skill == Skill_Active.Push)
+        {
+            Active_Push();
         }
     }
     public void Active_Slash ()
@@ -79,5 +97,9 @@ public class SkillController : MonoBehaviour
         {
             
         }
+    }
+    public void Active_Push()
+    {
+
     }
 }

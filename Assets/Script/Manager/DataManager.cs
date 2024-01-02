@@ -16,7 +16,6 @@ public class Sword_Data
 {
     public float player_damage_attack;
     public float player_parrying_attack;
-
 }
 
 public class Player_Skill

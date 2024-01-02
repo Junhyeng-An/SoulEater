@@ -6,33 +6,35 @@ using TMPro;
 
 public class Skill_Select : MonoBehaviour
 {
-    private List<Skill_Card> skillCards = new List<Skill_Card>();  //��ü ��ųī�� ����Ʈ
-    List<Skill_Card> selectedCards = new List<Skill_Card>(); //�������� �� ��ųī�� ����Ʈ
+    private List<Skill_Card> skillCards = new List<Skill_Card>();  // List of skill cards
+    List<Skill_Card> selectedCards = new List<Skill_Card>(); // List of selected skill cards
 
     public List<Text> Card;
     public List<Button> Button;
     bool isShow = false;
+
     class Skill_Card
     {
-        public string name; //��ų�̸�
-        public string skill_content; //��ų����
-        public float upgrade_count; //�󸶸�ŭ �Ǵ���
+        public string name; // Skill name
+        public string skillContent; // Skill description
+        public float upgradeCount; // Number of upgrades available
 
         public Skill_Card(string N, string SC, float UC)
         {
             name = N;
-            skill_content = SC;
-            upgrade_count = UC;
+            skillContent = SC;
+            upgradeCount = UC;
         }
     }
+
     // Start is called before the first frame update
     void Start()
     {
-        skillCards.Add(new Skill_Card("����", "���� óġ�� �������� HP�� ȸ���Ѵ�", 10));
-        skillCards.Add(new Skill_Card("Į ��ȭ", "Į�� ���̰� �����մϴ�", 12));
-        skillCards.Add(new Skill_Card("ȭ�� �Ӽ�", "������ ȭ�� ȿ���� �ݴϴ�", 15));
-        Card_Suffle();
-        Card_Show();
+        skillCards.Add(new Skill_Card("Heal", "Restores HP when used", 10));
+        skillCards.Add(new Skill_Card("Charge Attack", "Charges and performs a powerful attack", 12));
+        skillCards.Add(new Skill_Card("Elemental Affinity", "Enhances weapon with elemental effects", 15));
+        CardShuffle();
+        CardShow();
     }
 
     // Update is called once per frame
@@ -41,58 +43,59 @@ public class Skill_Select : MonoBehaviour
 
     }
 
-    void Card_Suffle()
+    void CardShuffle()
     {
-        List<int> selectedIndices = new List<int>(); //�ߺ����� ����Ʈ
+        List<int> selectedIndices = new List<int>(); // List of selected indices
         for (int i = 0; i < 3; i++)
         {
             int randomIndex;
 
-            // �ߺ��� �ε����� ���ϱ� ���� ����
+            // Ensure that the same index is not selected again
             do
             {
                 randomIndex = Random.Range(0, skillCards.Count);
             } while (selectedIndices.Contains(randomIndex));
 
-            // ���õ� �ε����� ����Ʈ�� �߰��ϰ� ī�带 ���õ� ī�� ����Ʈ�� �߰�
+            // Add the selected index to the list and add the corresponding card to the selectedCards list
             selectedIndices.Add(randomIndex);
             selectedCards.Add(skillCards[randomIndex]);
         }
     }
-    void Card_Show()
+
+    void CardShow()
     {
         for (int i = 0; i < selectedCards.Count; i++)
         {
-            Card[i].text = $"ī�� {i + 1}: {selectedCards[i].name}\n\n{selectedCards[i].skill_content}\n\n��ȭ ���: {selectedCards[i].upgrade_count}";
+            Card[i].text = $"Card {i + 1}: {selectedCards[i].name}\n\n{selectedCards[i].skillContent}\n\nUpgrade Count: {selectedCards[i].upgradeCount}";
         }
     }
 
-    void Card_Effet(int selectedIndex)
+    void CardEffect(int selectedIndex)
     {
         Skill_Card selectedSkill = selectedCards[selectedIndex];
 
-        // ���õ� ��ų�� ȿ���� �÷��̾� �����Ϳ� ����
+        // Apply the effects based on the selected skill
         switch (selectedSkill.name)
         {
-            case "����":
-                DataManager.Instance._Player_Skill.HP_Drain += selectedSkill.upgrade_count;
+            case "Heal":
+                DataManager.Instance._Player_Skill.HP_Drain += selectedSkill.upgradeCount;
                 break;
-            case "Į ��ȭ":
-                DataManager.Instance._Player_Skill.sword_Reach += selectedSkill.upgrade_count;
+            case "Charge Attack":
+                DataManager.Instance._Player_Skill.sword_Reach += selectedSkill.upgradeCount;
                 break;
-            case "ȭ�� �Ӽ�":
-                DataManager.Instance._Player_Skill.fire_dote += selectedSkill.upgrade_count;
+            case "Elemental Affinity":
+                DataManager.Instance._Player_Skill.fire_dote += selectedSkill.upgradeCount;
                 break;
-                // �ٸ� ��ų�� ���� ��� �߰�
+                // Add cases for other skills as needed
         }
 
-        // ������Ʈ�� �÷��̾� �����͸� ����
+        // Save the data after applying the effects
         DataManager.Instance.SaveData();
     }
 
-    public void Button_Click(int button_index) //��ưŬ���̺�Ʈ , ������ ��ư�� �ε��� ���� ���� Card_Effet(int selectedIndex) �����ϱ�
+    public void ButtonClick(int buttonIndex) // Button event, calls CardEffect(int selectedIndex)
     {
-        Card_Effet(button_index);
+        CardEffect(buttonIndex);
         gameObject.SetActive(false);
         isShow = false;
     }

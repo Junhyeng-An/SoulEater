@@ -7,16 +7,14 @@ public class Circle_Fire : MonoBehaviour
     public float CurHP;
     public float MaxHP;
     public float hp_har_height = 1;
-    //public RectTransform my_bar;
-    //public GameObject Canvas;
     public GameObject projectilePrefab;  // 발사체 프리팹
+    public GameObject Start_Pos;
     public float projectileSpeed = 5f;   // 발사 속도
     public float fireRate = 2f;          // 발사 간격
     public float projectileSpread = 15f; // 발사체 사이의 각도
     public float projectileLifetime = 4f; // 발사체 수명 (초)
     private float timeSinceLastFire = 0f;
-    //[SerializeField]
-    //Slider Boss_HP;
+
 
     private Sword sword;
     private bool isDamage;
@@ -27,15 +25,6 @@ public class Circle_Fire : MonoBehaviour
     }
     void Update()
     {
-        //if (sword.isSwing == false)
-        //{
-        //    isDamage = false;
-        //}
-        //player = GameObject.Find("GameManager");
-        //Turret_HP.value = CurHP / MaxHP;
-        //Vector3 hpbar_pos = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + hp_har_height, 0));
-        //my_bar.position = hpbar_pos;
-        // 발사 간격을 체크하여 발사체 발사
         timeSinceLastFire += Time.deltaTime;
         if (timeSinceLastFire >= 1f / fireRate)
         {
@@ -61,7 +50,7 @@ public class Circle_Fire : MonoBehaviour
             Vector2 projectileDirection = new Vector2(Mathf.Cos(radians), Mathf.Sin(radians));
 
             // 발사체 생성 및 초기화
-            GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+            GameObject projectile = Instantiate(projectilePrefab, Start_Pos.transform.position, Quaternion.identity);
             Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
             rb.velocity = projectileDirection * projectileSpeed;
 

@@ -27,14 +27,27 @@ public class Start_UI : MonoBehaviour
 
     public void new_Game()
     {
+        #region Player_Data
         DataManager.Instance._PlayerData.soul_Count = 0;
         DataManager.Instance._PlayerData.jump = 12.0f;
         DataManager.Instance._PlayerData.coin = 0;
         DataManager.Instance._PlayerData.speed = 5.0f;
-
+        #endregion
+       
+        
+        
         DataManager.Instance._SwordData.player_damage_attack = 10.0f;
+        
+        
         DataManager.Instance._SwordData.player_parrying_attack = 1.0f;
 
+        
+        
+        
+        
+        
+        
+        
         DataManager.Instance._Player_Skill.HP_Drain = 0.0f;
         DataManager.Instance._Player_Skill.sword_Reach = 0.0f;
         DataManager.Instance._Player_Skill.fire_dote = 0.0f;

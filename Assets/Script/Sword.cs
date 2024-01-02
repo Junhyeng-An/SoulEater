@@ -6,8 +6,10 @@ using UnityEngine;
 public class Sword : MonoBehaviour
 {
     [HideInInspector] public float swingForce;
+    
     [HideInInspector] public float damage_playerAttack;
     [HideInInspector] public float damage_playerParrying;
+    [HideInInspector] public float sword_reach;
 
     public float limitSpeed;
 
@@ -216,4 +218,17 @@ public class Sword : MonoBehaviour
             }
         }
     }
+        
+    // Weapon enfocement
+
+    #region Weapon enforce Button
+    
+    
+
+    #endregion
+    
+    
+    
+    
+    
 }

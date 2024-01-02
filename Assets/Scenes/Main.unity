@@ -11206,7 +11206,6 @@ GameObject:
   - component: {fileID: 1398267605568276108}
   - component: {fileID: 5709001818499016076}
   - component: {fileID: 7602798124270833893}
-  - component: {fileID: 7943908127309186626}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -11617,7 +11616,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6346f380674cb744835c09989d48074, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Soul_Count: 0
   textName: {fileID: 1419276547}
 --- !u!114 &7750766071213744889
 MonoBehaviour:
@@ -11667,21 +11665,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &7943908127309186626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1811561660009772183}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce5cfc730c90d55409684176b89fce04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skill_active: 0
-  passive_active: 0
-  player_skill: 0
 --- !u!50 &8187709968285665248
 Rigidbody2D:
   serializedVersion: 4
@@ -11775,6 +11758,7 @@ MonoBehaviour:
   swingForce: 0
   damage_playerAttack: 10
   damage_playerParrying: 10
+  sword_reach: 0
   limitSpeed: 10
   angle: 0
   isSwing: 0

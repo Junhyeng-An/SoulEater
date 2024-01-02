@@ -53,7 +53,7 @@ public class Start_UI : MonoBehaviour
         DataManager.Instance._Player_Skill.fire_dote = 0.0f;
         
         
-        SceneManager.LoadScene("Boss_cinema_test");
+        SceneManager.LoadScene("Main");
     }
 
 

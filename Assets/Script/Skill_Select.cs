@@ -96,7 +96,7 @@ public class Skill_Select : MonoBehaviour
     public void ButtonClick(int buttonIndex) // Button event, calls CardEffect(int selectedIndex)
     {
         CardEffect(buttonIndex);
-        gameObject.SetActive(false);
-        isShow = false;
+        DataManager.Instance._PlayerData.soul_Count -= SelectManager.Instance.upgrade_soul;
+        SelectManager.Instance.Destroy_Prefab();
     }
 }

@@ -17,6 +17,8 @@ TagManager:
   - closehit
   - Hit_Ready
   - Coin
+  - Boss
+  - red_square
   layers:
   - Default
   - TransparentFX

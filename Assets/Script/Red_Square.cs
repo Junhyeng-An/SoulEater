@@ -7,6 +7,7 @@ public class Red_Square : MonoBehaviour
     public GameObject redSquarePrefab;  // 빨간색 네모 프리팹
     public float timeBeforeFalling = 1.5f;  // 떨어지기 전 대기 시간
     public float timeToLive = 5f;  // 빨간색 네모가 존재하는 시간
+    public float Damage;
 
     private Transform playerTransform;
     private float timeElapsed = 0f; // 경과 시간을 저장하는 변수

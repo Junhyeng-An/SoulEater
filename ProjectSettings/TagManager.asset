@@ -16,6 +16,7 @@ TagManager:
   - hit_area
   - closehit
   - Hit_Ready
+  - Coin
   layers:
   - Default
   - TransparentFX
@@ -40,7 +41,7 @@ TagManager:
   - Floor
   - Platform
   - Soul
-  - 
+  - Coin
   - E_Attack
   - 
   - 

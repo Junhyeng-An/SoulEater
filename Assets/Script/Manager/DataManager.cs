@@ -6,7 +6,7 @@ using System.IO;
 
 public class Player_Data
 {
-    public int gold;
+    public int coin;
     public int soul_Count;
     public float speed;
     public float jump;
@@ -15,8 +15,15 @@ public class Player_Data
 public class Sword_Data
 {
     public float player_damage_attack;
-    public float player_parrying_attack;
+    public int player_attack_level;
 
+    public float player_sword_reach;
+    public int player_sword_level;
+    
+    
+    
+    public float player_parrying_attack;
+    public int player_parrying_level;
 }
 
 public class Player_Skill

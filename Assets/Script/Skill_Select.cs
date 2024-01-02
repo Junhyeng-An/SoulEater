@@ -86,14 +86,12 @@ public class Skill_Select : MonoBehaviour
                 // �ٸ� ��ų�� ���� ��� �߰�
         }
 
-        // ������Ʈ�� �÷��̾� �����͸� ����
-        DataManager.Instance.SaveData();
     }
 
     public void Button_Click(int button_index) //��ưŬ���̺�Ʈ , ������ ��ư�� �ε��� ���� ���� Card_Effet(int selectedIndex) �����ϱ�
     {
         Card_Effet(button_index);
-        gameObject.SetActive(false);
-        isShow = false;
+        DataManager.Instance._PlayerData.soul_Count -= SelectManager.Instance.upgrade_soul;
+        SelectManager.Instance.Destroy_Prefab();
     }
 }

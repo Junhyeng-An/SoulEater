@@ -7,9 +7,12 @@ public class SkillController : MonoBehaviour
     Sword sword;
     StatController stat;
     EnemyController enemy;
+    Rigidbody2D rigid_player;
 
     GameObject player;
     GameObject controlled;
+
+    Vector3 vel;
 
     public enum Skill_Active
     {
@@ -24,19 +27,30 @@ public class SkillController : MonoBehaviour
 
     }
 
-    public Skill_Active skill_active;
-    public Passive_Active passive_active;
+    [HideInInspector] public Skill_Active skill_active;
+    [HideInInspector] public Passive_Active skill_passive;
 
     [HideInInspector] public Skill_Active player_skill;
+
+    [HideInInspector] public bool isSkill = false;
+
+    public float power_smash = 2;
 
     void Awake()
     {
         player = GameObject.Find("Player");
         stat = GetComponent<StatController>();
+        rigid_player = player.GetComponent<Rigidbody2D>();
+        vel = rigid_player.velocity;
     }
     void Update()
     {
         SkillCheck_Player();
+
+        if(isSkill == true)
+        {
+            vel = Vector3.down * power_smash;
+        }
     }
     void SkillCheck_Player()
     {
@@ -50,8 +64,6 @@ public class SkillController : MonoBehaviour
 
     public void Active()
     {
-        Debug.Log(player_skill);
-
         if (player_skill == Skill_Active.Slash)
         {
             
@@ -84,25 +96,32 @@ public class SkillController : MonoBehaviour
     {
         if (stat.Player_CurST >= 3)
         {
-
+            isSkill = true;
         }
     }
     public void Active_Smash()
     {
-        if (stat.Player_CurST >= 3)
+        LayerMask mask = 1 << 20;
+        LayerMask mask2 = 1 << 21;
+        RaycastHit2D rayHit_Jump = Physics2D.Raycast(player.transform.position, Vector2.down, 2, mask | mask2);
+        if (stat.Player_CurST >= 3 && rayHit_Jump.collider == null)
         {
+            Debug.Log(player_skill);
+            //vel = Vector3.zero;
 
+            //vel = Vector3.down * power_smash;
+            isSkill = true;
         }
     }
     public void Active_DashAttack()
     {
         if (Input.GetMouseButton(0)) // left
         {
-            
+            isSkill = true;
         }
     }
     public void Active_Push()
     {
-
+        isSkill = true;
     }
 }

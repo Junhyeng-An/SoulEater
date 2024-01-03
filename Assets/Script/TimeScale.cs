@@ -122,6 +122,7 @@ public class TimeScale : MonoBehaviour
             else
             {
                 Time.timeScale = scale;
+                update_event[i] = false;
             }
         }
         else

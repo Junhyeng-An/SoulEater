@@ -303,6 +303,7 @@ public class EnemyController : MonoBehaviour
     {
         gameObject.SetActive(false);
         timeScale.SlowMotion(TimeScale.MotionType.die);
+        movement.gameover = true;
     }
     void Die_Enemy()
     {

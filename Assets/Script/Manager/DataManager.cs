@@ -87,7 +87,7 @@ public class DataManager : MonoBehaviour
         if (File.Exists(path + Player_Data_filename))
         {
             SAVE_FILE_EXIST = true;
-            Debug.Log(_PlayerData.soul_Count);
+            Debug.Log(path+Player_Data_filename);
         }
         else
         {

@@ -62,7 +62,10 @@ public class Start_UI : MonoBehaviour
     }
 
 
-    
+    public void Setting_Button()
+    {
+        DataManager.Instance.Delete_Save_File();
+    }
 
 
 

@@ -7,10 +7,11 @@ public class PlayerController : MonoBehaviour
 {
     private Movement movement;
     private Sword sword;
+    private TimeScale time;
     private StatController stat;
     private EnemyController enemy;
-    private VolumeController volume;
     private SkillController skill;
+    private VolumeController volume;
 
     [HideInInspector]
     public bool isThrowing;
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
     {
         movement = GetComponent<Movement>();
         sword = GetComponentInChildren<Sword>();
+        time = GameObject.Find("GameManager").GetComponent<TimeScale>();
         stat = GameObject.Find("GameManager").GetComponent<StatController>();
         skill = GameObject.Find("GameManager").GetComponent<SkillController>();
         volume = GameObject.Find("GameManager").GetComponent<VolumeController>();
@@ -102,6 +104,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            time.SlowMotion(1);
         }
     }
 }

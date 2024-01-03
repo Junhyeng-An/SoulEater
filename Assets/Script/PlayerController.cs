@@ -107,4 +107,9 @@ public class PlayerController : MonoBehaviour
             time.SlowMotion(1);
         }
     }
+
+   
+    
+    
+    
 }

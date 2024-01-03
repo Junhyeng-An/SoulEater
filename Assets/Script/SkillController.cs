@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class SkillController : MonoBehaviour
@@ -12,19 +15,20 @@ public class SkillController : MonoBehaviour
     GameObject player;
     GameObject controlled;
 
-    Vector3 vel;
+    private int active_langth;
+    private bool[] isSkill = new bool[10];
+    private bool condition = false;
 
     public enum Skill_Active
     {
         Slash,
-        Thrust,
         Smash,
         DashAttack,
         Push
     }
     public enum Passive_Active
     {
-
+    
     }
 
     [HideInInspector] public Skill_Active skill_active;
@@ -32,27 +36,54 @@ public class SkillController : MonoBehaviour
 
     [HideInInspector] public Skill_Active player_skill;
 
-    [HideInInspector] public bool isSkill = false;
-
     public float power_smash = 2;
+    float height_smash = 3;
+    
+    private System.Action[] skillFunctions;
+
+    private GameObject HitBox;
+    private GameObject AttackBox;
+    private P_Attack p_attack;
 
     void Awake()
     {
         player = GameObject.Find("Player");
         stat = GetComponent<StatController>();
         rigid_player = player.GetComponent<Rigidbody2D>();
-        vel = rigid_player.velocity;
+
+        active_langth = System.Enum.GetValues(typeof(Skill_Active)).Length;
+
+        skillFunctions = new System.Action[]
+        {
+            Slash,
+            Smash,
+            DashAttack,
+            Push
+        };
+
+        HitBox = Resources.Load<GameObject>("P_Attack");
     }
+
+
+
     void Update()
     {
-        SkillCheck_Player();
-
-        if(isSkill == true)
+        Check_PlayerSkill();
+        
+        /*if(isSkill == true)
         {
             vel = Vector3.down * power_smash;
+        }*/
+        
+        for (int i = 0; i < active_langth; i++)
+        {
+            if (isSkill[i] == true)
+            {
+                skillFunctions[i]();
+            }
         }
     }
-    void SkillCheck_Player()
+    void Check_PlayerSkill()
     {
         if (GameObject.FindGameObjectWithTag("Controlled") != null)
         {
@@ -64,64 +95,77 @@ public class SkillController : MonoBehaviour
 
     public void Active()
     {
-        if (player_skill == Skill_Active.Slash)
+        for (int i = 0; i < active_langth; i++)
         {
-            
+            if ((int)player_skill == i)
+            {
+                isSkill[i] = true;
+            }
         }
-        if (player_skill == Skill_Active.Thrust)
-        {
+    }
+    
+    void Slash()
+    {
+        Debug.Log("Slash!");
+    }
 
-        }
-        if (player_skill == Skill_Active.Smash)
-        {
-            Active_Smash();
-        }
-        if (player_skill == Skill_Active.DashAttack)
-        {
-            Active_DashAttack();
-        }
-        if (player_skill == Skill_Active.Push)
-        {
-            Active_Push();
-        }
-    }
-    public void Active_Slash ()
+    void Smash()
     {
-        if(stat.Player_CurST >= 3)
-        {
+        LayerMask mask = 1 << 20 | 1 << 21;
+        RaycastHit2D rayHit_smash = Physics2D.Raycast(player.transform.position, Vector2.down, height_smash, mask);
 
+        if (condition == false)
+        {
+            height_smash = 3;
+            if(rayHit_smash.collider == null)
+                Check_Condition(3);
+        }
+        else
+        {
+            height_smash = 0.5f;
+            rigid_player.velocity= Vector3.down * power_smash;
+            Debug.Log("Smash!");
+            if(rayHit_smash.collider != null)
+            {
+                End_Skill();
+                Create_HitBox(player.transform.position, new Vector2(2, 2), 50, 3);
+            }
         }
     }
-    public void Active_Thrust()
+    void DashAttack()
     {
-        if (stat.Player_CurST >= 3)
-        {
-            isSkill = true;
-        }
+        Debug.Log("DashAttack!");
     }
-    public void Active_Smash()
+    void Push()
     {
-        LayerMask mask = 1 << 20;
-        LayerMask mask2 = 1 << 21;
-        RaycastHit2D rayHit_Jump = Physics2D.Raycast(player.transform.position, Vector2.down, 2, mask | mask2);
-        if (stat.Player_CurST >= 3 && rayHit_Jump.collider == null)
-        {
-            Debug.Log(player_skill);
-            //vel = Vector3.zero;
+        Debug.Log("Push!");
+    }
 
-            //vel = Vector3.down * power_smash;
-            isSkill = true;
-        }
-    }
-    public void Active_DashAttack()
+    void Check_Condition(float st)
     {
-        if (Input.GetMouseButton(0)) // left
-        {
-            isSkill = true;
-        }
+        if (stat.Player_CurST >= st)
+            condition = true;
+        else
+            condition = false;
     }
-    public void Active_Push()
+    void Check_Condition(float st, float cool)
     {
-        isSkill = true;
+        if (stat.Player_CurST >= st && cool <= 0)
+            condition = true;
+        else
+            condition = false;
+    }
+    
+    void End_Skill()
+    {
+        condition = false;
+        isSkill[(int)player_skill] = false;
+        height_smash = 3;
+    }
+
+    void Create_HitBox(Vector3 pos, Vector2 size, float dmg, float fade)
+    {
+        AttackBox = Instantiate(HitBox, pos, transform.rotation);
+        AttackBox.GetComponent<P_Attack>().Attack_Area(pos, size, dmg, fade);
     }
 }

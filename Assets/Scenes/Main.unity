@@ -943,7 +943,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 24706551
+    m_Bits: 58260983
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2265,8 +2265,7 @@ MonoBehaviour:
   skill_active: 0
   skill_passive: 0
   player_skill: 0
-  isSkill: 0
-  power_smash: 0.1
+  power_smash: 12
 --- !u!1 &832642409
 GameObject:
   m_ObjectHideFlags: 0

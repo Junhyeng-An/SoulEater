@@ -257,6 +257,10 @@ MonoBehaviour:
   - {fileID: 2778473420495741368}
   - {fileID: 9150526250571582222}
   - {fileID: 7071749718256523753}
+  CardImages:
+  - {fileID: 5099225959893088900}
+  - {fileID: 3517607541042130257}
+  - {fileID: 2346493813681652338}
 --- !u!1 &649000336685315837
 GameObject:
   m_ObjectHideFlags: 0

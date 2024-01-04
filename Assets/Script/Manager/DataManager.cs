@@ -27,8 +27,22 @@ public class Sword_Data
 public class Player_Skill
 {
     public float HP_Drain;
-    public float sword_Reach;
-    public float fire_dote;
+    public int HP_Drain_Level;
+
+    public float Hp_Up;
+    public int HP_Up_Level;
+
+    public float poison_damage;
+    public int Poision_Damage_Level;
+
+    public float Dash;
+    public int Dash_Level;
+
+    public float Discount;
+    public int Discount_Level;
+
+    public float MaxHP;
+    public int MaxHP_Level;
 
 }
 

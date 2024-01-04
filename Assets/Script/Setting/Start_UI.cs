@@ -52,11 +52,18 @@ public class Start_UI : MonoBehaviour
         
         
         
-        
+        #region Player_Skill;
         DataManager.Instance._Player_Skill.HP_Drain = 0.0f;
-        DataManager.Instance._Player_Skill.sword_Reach = 0.0f;
-        DataManager.Instance._Player_Skill.fire_dote = 0.0f;
-        
+        DataManager.Instance._Player_Skill.HP_Drain_Level =0;
+
+        DataManager.Instance._Player_Skill.Hp_Up =0.0f;
+        DataManager.Instance._Player_Skill.HP_Up_Level = 0;
+
+        DataManager.Instance._Player_Skill.poison_damage = 0.0f;
+        DataManager.Instance._Player_Skill.Poision_Damage_Level = 0;
+
+        #endregion
+
         
         SceneManager.LoadScene("Main");
     }

@@ -19,6 +19,8 @@ TagManager:
   - Coin
   - Boss
   - red_square
+  - Skill_Smash
+  - Layzer
   layers:
   - Default
   - TransparentFX

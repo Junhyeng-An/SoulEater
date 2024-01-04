@@ -7545,11 +7545,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1026083017966555603, guid: c38062f1382f5474e9a3ab7ae5eb0710, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1026083017966555603, guid: c38062f1382f5474e9a3ab7ae5eb0710, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2103908487054762868, guid: c38062f1382f5474e9a3ab7ae5eb0710, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7594,6 +7594,10 @@ PrefabInstance:
     - target: {fileID: 4460306395012927184, guid: c38062f1382f5474e9a3ab7ae5eb0710, type: 3}
       propertyPath: m_Name
       value: Turret1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4460306395012927184, guid: c38062f1382f5474e9a3ab7ae5eb0710, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -65,6 +65,7 @@ public class EnemyController : MonoBehaviour
     [HideInInspector] public bool isHit = false;
     [HideInInspector] public bool isParried = false;
     [HideInInspector] public bool isDamage = false;
+    [HideInInspector] public bool isDamage_skill = false;
 
     bool isAni = false;
     bool isEnemy = true;
@@ -133,15 +134,12 @@ public class EnemyController : MonoBehaviour
         {
             case EnemyType.Enemy_A:
                 LoadEnemyData(E_filePath);
-                CurSkill = SkillController.Skill_Active.Smash;
                 break;
             case EnemyType.Enemy_B:
                 LoadEnemyData(E_filePath1);
-                CurSkill = SkillController.Skill_Active.Push;
                 break;
             case EnemyType.Enemy_C:
                 LoadEnemyData(E_filePath2);
-                CurSkill = SkillController.Skill_Active.DashAttack;
                 break;
             case EnemyType.Boss_A:
                 break;
@@ -156,12 +154,12 @@ public class EnemyController : MonoBehaviour
         collider = GetComponent<CircleCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        skill = Player.GetComponent<SkillController>();
         movement = Player.GetComponent<Movement>();
         rigidPlayer = Player.GetComponent<Rigidbody2D>();
         colliderPlayer = Player.GetComponent<CircleCollider2D>();
         playerController = Player.GetComponent<PlayerController>();
 
+        skill = GameObject.Find("GameManager").GetComponent<SkillController>();
         stat = GameObject.Find("GameManager").GetComponent<StatController>();
         timeScale = GameObject.Find("GameManager").GetComponent<TimeScale>();
         sword = GameObject.Find("Sword").GetComponent<Sword>();
@@ -317,6 +315,7 @@ public class EnemyController : MonoBehaviour
     private void OnTriggerStay2D(Collider2D col)
     {
         Col_Sword(col);
+        Col_Skill(col);
         Col_Enemy(col);
     }
     private void OnTriggerExit2D(Collider2D col)
@@ -376,6 +375,16 @@ public class EnemyController : MonoBehaviour
                     timeScale.SlowMotion(TimeScale.MotionType.attack);
                 }
             }
+        }
+    }
+    void Col_Skill(Collider2D col)
+    {
+        if(skill.onSkill == true)
+            isDamage_skill = false;
+        if (col.gameObject.layer == LayerMask.NameToLayer("P_Attack") && isDamage_skill == false)
+        {
+            CurHP -= skill.damage;
+            isDamage_skill = true;
         }
     }
     void Col_Enemy(Collider2D col)
@@ -538,7 +547,7 @@ public class EnemyController : MonoBehaviour
         Debug.Log("File path: " + E_filePath2);
          EnemyA = new EnemyData(100, 100,20,20,5,2, 10, SkillController.Skill_Active.Smash);
          EnemyB = new EnemyData(80, 80,20,20,5,2, 10, SkillController.Skill_Active.DashAttack);
-         EnemyC = new EnemyData(50, 50,20,20,5,2, 10, SkillController.Skill_Active.Push);
+         EnemyC = new EnemyData(50, 50,20,20,5,2, 10, SkillController.Skill_Active.Slash);
         string jsonA = JsonUtility.ToJson(EnemyA);
         string jsonB = JsonUtility.ToJson(EnemyB);
         string jsonC = JsonUtility.ToJson(EnemyC);

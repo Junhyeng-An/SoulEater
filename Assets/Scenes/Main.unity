@@ -2262,6 +2262,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce5cfc730c90d55409684176b89fce04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  onSkill: 0
   skill_active: 0
   skill_passive: 0
   player_skill: 0
@@ -8201,7 +8203,7 @@ PrefabInstance:
       objectReference: {fileID: 537180181}
     - target: {fileID: 2379781463988346219, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
       propertyPath: enemyType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2379781463988346219, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
       propertyPath: my_WP_bar
@@ -9235,9 +9237,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sword: {fileID: 2022355562902686601}
   speed: 5
+  dashForce: 5
   angle: 0
   bounceCount: 3
   gameover: 0
+  posMid: {x: 0, y: 0}
 --- !u!1 &1811561660009772183
 GameObject:
   m_ObjectHideFlags: 0

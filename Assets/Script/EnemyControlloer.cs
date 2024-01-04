@@ -47,6 +47,7 @@ public class EnemyController : MonoBehaviour
     SkillController skill;
     PlayerController playerController;
     Red_Square red_Square;
+    Laser_Pattern laser_Pattern;
 
     public EnemyData EnemyA;
     public EnemyData EnemyB;
@@ -312,7 +313,6 @@ public class EnemyController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         Change_Player(col);
-        Col_Red_Square(col);
     }
     private void OnTriggerStay2D(Collider2D col)
     {
@@ -384,13 +384,6 @@ public class EnemyController : MonoBehaviour
         {
             CurHP -= damage_enemyAttack; 
             isHit = true;
-        }
-    }
-    void Col_Red_Square(Collider2D col)
-    {
-        if (col.tag == "red_square") 
-        {
-            CurHP -= red_Square.Damage;
         }
     }
 

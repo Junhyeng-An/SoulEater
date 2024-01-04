@@ -19,6 +19,9 @@ public class SkillController : MonoBehaviour
     private bool[] isSkill = new bool[10];
     private bool condition = false;
 
+    public float damage;
+    public bool onSkill;
+
     public enum Skill_Active
     {
         Slash,
@@ -38,6 +41,8 @@ public class SkillController : MonoBehaviour
 
     public float power_smash = 2;
     float height_smash = 3;
+    float height;
+    float size_smash;
     
     private System.Action[] skillFunctions;
 
@@ -50,6 +55,7 @@ public class SkillController : MonoBehaviour
         player = GameObject.Find("Player");
         stat = GetComponent<StatController>();
         rigid_player = player.GetComponent<Rigidbody2D>();
+        sword = player.GetComponentInChildren<Sword>();
 
         active_langth = System.Enum.GetValues(typeof(Skill_Active)).Length;
 
@@ -69,11 +75,6 @@ public class SkillController : MonoBehaviour
     void Update()
     {
         Check_PlayerSkill();
-        
-        /*if(isSkill == true)
-        {
-            vel = Vector3.down * power_smash;
-        }*/
         
         for (int i = 0; i < active_langth; i++)
         {
@@ -100,41 +101,84 @@ public class SkillController : MonoBehaviour
             if ((int)player_skill == i)
             {
                 isSkill[i] = true;
+                onSkill = true;
             }
         }
     }
     
     void Slash()
     {
-        Debug.Log("Slash!");
+        Vector2 skillSize = new Vector2(2, 2);
+        if(condition == false)
+        {
+            Check_Condition(3);
+            damage = 10;
+        }
+        else
+        {
+            Create_HitBox(player.transform.position, 
+                skillSize, 
+                damage, 
+                5, 
+                Quaternion.AngleAxis(sword.angle * Mathf.Rad2Deg - 90, Vector3.forward),
+                10
+                );
+
+            End_Skill();
+        }
     }
 
     void Smash()
     {
         LayerMask mask = 1 << 20 | 1 << 21;
-        RaycastHit2D rayHit_smash = Physics2D.Raycast(player.transform.position, Vector2.down, height_smash, mask);
+        RaycastHit2D rayHit_smash = Physics2D.Raycast(player.transform.position, Vector2.down, Mathf.Infinity, mask);
+
+        height = rayHit_smash.distance;
+        Vector3 colPos = rayHit_smash.point;
+
+        Vector2 skillSize = new Vector2(size_smash, size_smash);
 
         if (condition == false)
         {
-            height_smash = 3;
-            if(rayHit_smash.collider == null)
+            if (height >= height_smash)
+            {
                 Check_Condition(3);
+                size_smash = height / 2;
+                if (size_smash >= 4)
+                    size_smash = 4;
+                damage = height * 3;
+            }
         }
         else
         {
-            height_smash = 0.5f;
             rigid_player.velocity= Vector3.down * power_smash;
             Debug.Log("Smash!");
-            if(rayHit_smash.collider != null)
+            if(height <= player.GetComponent<CircleCollider2D>().radius + 0.1f)
             {
                 End_Skill();
-                Create_HitBox(player.transform.position, new Vector2(2, 2), 50, 3);
+                Create_HitBox(colPos + Vector3.up * skillSize.y / 2, skillSize, damage, 1);
             }
         }
     }
     void DashAttack()
     {
-        Debug.Log("DashAttack!");
+        Vector2 skillSize = new Vector2(player.GetComponent<Movement>().dashForce, 1);
+        if (condition == false && stat.Player_CurST >= 3)
+        {
+            condition = true;
+            damage = 10;
+        }
+        else
+        {
+            Create_HitBox(
+                new Vector2(player.transform.position.x, player.transform.position.y) - player.GetComponent<Movement>().posMid / 2, 
+                skillSize, 
+                damage, 
+                1,
+                Quaternion.AngleAxis(sword.angle * Mathf.Rad2Deg, Vector3.forward)
+                );
+            End_Skill();
+        }
     }
     void Push()
     {
@@ -144,14 +188,20 @@ public class SkillController : MonoBehaviour
     void Check_Condition(float st)
     {
         if (stat.Player_CurST >= st)
+        {
             condition = true;
+            stat.Player_CurST -= st;
+        }
         else
             condition = false;
     }
     void Check_Condition(float st, float cool)
     {
         if (stat.Player_CurST >= st && cool <= 0)
+        {
             condition = true;
+            stat.Player_CurST -= st;
+        }
         else
             condition = false;
     }
@@ -161,11 +211,22 @@ public class SkillController : MonoBehaviour
         condition = false;
         isSkill[(int)player_skill] = false;
         height_smash = 3;
+        onSkill = false;
     }
 
     void Create_HitBox(Vector3 pos, Vector2 size, float dmg, float fade)
     {
         AttackBox = Instantiate(HitBox, pos, transform.rotation);
         AttackBox.GetComponent<P_Attack>().Attack_Area(pos, size, dmg, fade);
+    }
+    void Create_HitBox(Vector3 pos, Vector2 size, float dmg, float fade, Quaternion rotation)
+    {
+        AttackBox = Instantiate(HitBox, pos, rotation);
+        AttackBox.GetComponent<P_Attack>().Attack_Area(pos, size, dmg, fade);
+    }
+    void Create_HitBox(Vector3 pos, Vector2 size, float dmg, float fade, Quaternion rotation , float speed)
+    {
+        AttackBox = Instantiate(HitBox, pos, rotation);
+        AttackBox.GetComponent<P_Attack>().Attack_Area(pos, size, dmg, fade, speed);
     }
 }

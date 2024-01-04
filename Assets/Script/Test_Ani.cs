@@ -98,8 +98,6 @@ public class Test_Ani : MonoBehaviour
         {
             time += Time.deltaTime;
 
-            Debug.Log(time);
-
             if (time < cycle)
             {
                 moveBody = change_run;

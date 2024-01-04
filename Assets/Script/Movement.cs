@@ -11,7 +11,7 @@ public class Movement : MonoBehaviour
     private float speed;
     private float jumpForce ;
     private float throwForce = 12.0f;
-    private float dashForce = 5.0f;
+    [HideInInspector] public float dashForce = 5.0f;
     public float angle;
 
     public int bounceCount = 2;
@@ -19,6 +19,8 @@ public class Movement : MonoBehaviour
 
     bool isJumping = false;
     bool isThrowing = false;
+
+    public Vector2 posMid;
 
     Rigidbody2D rigid;
     LineRenderer line;
@@ -106,14 +108,14 @@ public class Movement : MonoBehaviour
 
         Vector2 posAfter = transform.position;
 
-        Vector2 posA = posAfter - posBefore;
+        posMid = posAfter - posBefore;
 
         Vector3 posZ = new Vector3(0, 0, -2);
 
         GameObject controlled = GameObject.FindGameObjectWithTag("Controlled");
         for (int i = 0; i < cloneCount; i++)
         {
-            GameObject clone = Instantiate(controlled, posAfter - posA / Mathf.Pow(2, i + 1), transform.rotation);
+            GameObject clone = Instantiate(controlled, posAfter - posMid / Mathf.Pow(2, i + 1), transform.rotation);
 
             ChangeColorRecursive(clone.transform, i);
         }

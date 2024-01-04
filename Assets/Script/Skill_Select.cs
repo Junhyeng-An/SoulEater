@@ -51,38 +51,39 @@ public class Skill_Select : MonoBehaviour
         // 새로운 카드를 생성하기 전에 기존의 카드 리스트를 비움
         skillCards.Clear();
 
-        // 레어 카드를 75% 확률
+        // 레어 카드를 85% 확률
         for (int i = 0; i < 85; i++)
         {
-            skillCards.Add(new Skill_Card("치유", 0, "사용 시 HP를 회복합니다", 10, 1));
-            skillCards.Add(new Skill_Card("흡수", 0, "공격 시 HP를 회복합니다", 10, 1));
-            skillCards.Add(new Skill_Card("독", 0, "공격 시 적에게 독 데미지를 입힙니다", 10, 1));
-            skillCards.Add(new Skill_Card("대쉬거리", 0, "대쉬거리가 증가합니다", 10, 1));
-            skillCards.Add(new Skill_Card("최대체력", 0, "칼 길이 증가합니다", 10, 1));
-            skillCards.Add(new Skill_Card("할인", 0, "무기 강화비용이 감소합니다", 10, 1));
+            skillCards.Add(new Skill_Card("Healing", 0, "사용 시 HP를 회복합니다", 10, 1));
+            skillCards.Add(new Skill_Card("Absorption", 0, "공격 시 HP를 회복합니다", 10, 1));
+            skillCards.Add(new Skill_Card("Poison", 0, "공격 시 적에게 독 데미지를 입힙니다", 10, 1));
+            skillCards.Add(new Skill_Card("Dash Distance", 0, "대쉬거리가 증가합니다", 10, 1));
+            skillCards.Add(new Skill_Card("Max Health", 0, "칼 길이 증가합니다", 10, 1));
+            skillCards.Add(new Skill_Card("Discount", 0, "무기 강화비용이 감소합니다", 10, 1));
         }
 
-        // 에픽 카드를 20% 확률
+        // Epic cards with a 13% chance
         for (int i = 0; i < 13; i++)
         {
-            skillCards.Add(new Skill_Card("치유", 1, "사용 시 HP를 회복합니다", 20, 2));
-            skillCards.Add(new Skill_Card("흡수", 1, "공격 시 HP를 회복합니다", 20, 2));
-            skillCards.Add(new Skill_Card("독", 1, "공격 시 적에게 독 데미지를 입힙니다", 20, 2));
-            skillCards.Add(new Skill_Card("대쉬거리", 1, "대쉬거리가 증가합니다", 20, 2));
-            skillCards.Add(new Skill_Card("최대체력", 1, "칼 길이 증가합니다", 20, 2));
-            skillCards.Add(new Skill_Card("할인", 1, "무기 강화비용이 감소합니다", 20, 2));
+            skillCards.Add(new Skill_Card("Healing", 1, "사용 시 HP를 회복합니다", 20, 2));
+            skillCards.Add(new Skill_Card("Absorption", 1, "공격 시 HP를 회복합니다", 20, 2));
+            skillCards.Add(new Skill_Card("Poison", 1, "공격 시 적에게 독 데미지를 입힙니다", 20, 2));
+            skillCards.Add(new Skill_Card("Dash Distance", 1, "대쉬거리가 증가합니다", 20, 2));
+            skillCards.Add(new Skill_Card("Max Health", 1, "칼 길이 증가합니다", 20, 2));
+            skillCards.Add(new Skill_Card("Discount", 1, "무기 강화비용이 감소합니다", 20, 2));
         }
 
-        // 레전더리 카드를 2% 확률
+        // Legendary cards with a 2% chance
         for (int i = 0; i < 2; i++)
         {
-            skillCards.Add(new Skill_Card("치유", 2, "사용 시 HP를 회복합니다", 30, 3));
-            skillCards.Add(new Skill_Card("흡수", 2, "공격 시 HP를 회복합니다", 30, 3));
-            skillCards.Add(new Skill_Card("독", 2, "공격 시 적에게 독 데미지를 입힙니다", 30, 3));
-            skillCards.Add(new Skill_Card("대쉬거리", 2, "대쉬거리가 증가합니다", 30, 3));
-            skillCards.Add(new Skill_Card("최대체력", 2, "칼 길이 증가합니다", 30, 3));
-            skillCards.Add(new Skill_Card("할인", 2, "무기 강화비용이 감소합니다", 30, 3));
+            skillCards.Add(new Skill_Card("Healing", 2, "사용 시 HP를 회복합니다", 30, 3));
+            skillCards.Add(new Skill_Card("Absorption", 2, "공격 시 HP를 회복합니다", 30, 3));
+            skillCards.Add(new Skill_Card("Poison", 2, "공격 시 적에게 독 데미지를 입힙니다", 30, 3));
+            skillCards.Add(new Skill_Card("Dash Distance", 2, "대쉬거리가 증가합니다", 30, 3));
+            skillCards.Add(new Skill_Card("Max Health", 2, "칼 길이 증가합니다", 30, 3));
+            skillCards.Add(new Skill_Card("Discount", 2, "무기 강화비용이 감소합니다", 30, 3));
         }
+
 
         // 다른 스킬에 대한 블록도 유사하게 추가 가능
 
@@ -114,7 +115,7 @@ public class Skill_Select : MonoBehaviour
     {
         for (int i = 0; i < selectedCards.Count; i++)
         {
-            Card[i].text = $"카드 {i + 1}: {selectedCards[i].name}\n\n{selectedCards[i].skillContent}\n\n업그레이드 횟수: {selectedCards[i].upgradeCount}";
+            Card[i].text = $"{selectedCards[i].name}\n\n{selectedCards[i].skillContent}\n\n업그레이드 횟수: {selectedCards[i].upgradeCount}";
 
             // 등급에 따라 다른 색상을 설정
             SetCardColor(i, selectedCards[i].card_level);
@@ -128,31 +129,32 @@ public class Skill_Select : MonoBehaviour
         // Apply the effects based on the selected skill
         switch (selectedSkill.name)
         {
-            case "치유":
+            case "Healing":
                 DataManager.Instance._Player_Skill.HP_Drain += selectedSkill.upgradeCount;
                 DataManager.Instance._Player_Skill.HP_Drain_Level += 1;
                 break;
-            case "흡수":
+            case "Absorption":
                 DataManager.Instance._Player_Skill.Hp_Up += selectedSkill.upgradeCount;
                 DataManager.Instance._Player_Skill.HP_Up_Level += 1;
                 break;
-            case "독":
+            case "Poison":
                 DataManager.Instance._Player_Skill.poison_damage += selectedSkill.upgradeCount;
-                DataManager.Instance._Player_Skill.Poision_Damage_Level +=1;
+                DataManager.Instance._Player_Skill.Poision_Damage_Level += 1;
                 break;
-            case "대쉬":
+            case "Dash":
                 DataManager.Instance._Player_Skill.Dash += selectedSkill.upgradeCount;
                 DataManager.Instance._Player_Skill.Dash += 1;
                 break;
-            case "최대체력":
+            case "Max Health":
                 DataManager.Instance._Player_Skill.MaxHP += selectedSkill.upgradeCount;
                 DataManager.Instance._Player_Skill.MaxHP_Level += 1;
                 break;
-            case "할인":
+            case "Discount":
                 DataManager.Instance._Player_Skill.Discount += selectedSkill.upgradeCount;
                 DataManager.Instance._Player_Skill.Discount_Level += 1;
                 break;
         }
+
 
         // Save the data after applying the effects
         DataManager.Instance.SaveData();
@@ -185,6 +187,12 @@ public class Skill_Select : MonoBehaviour
         }
     }
 
+    public void Reroll()
+    {
+        selectedCards.Clear();
+        CardShuffle();
+        CardShow();
+    }
     List<T> ShuffleList<T>(List<T> inputList)
     {
         List<T> randomList = new List<T>();

@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
             sword.Throw();
             volume.ZoomOut();
         }
-        else // setting miss 
+        else if(skill.onSkill == false)// setting miss 
         {
             //player movement
             float x = Input.GetAxisRaw("Horizontal");
@@ -61,11 +61,6 @@ public class PlayerController : MonoBehaviour
                     movement.Dash();
                     stat.Stat("ST", -3);
                 }
-            }
-            
-            if (Input.GetKeyDown(KeyCode.Q))     // Skille Key
-            {
-                skill.Active();
             }
 
             if (Input.GetKeyDown(KeyCode.R))    // Throw Key

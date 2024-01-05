@@ -22,6 +22,8 @@ public class SkillController : MonoBehaviour
     public float damage;
     public bool onSkill;
 
+    public float coolTime;
+
     public enum Skill_Active
     {
         Slash,
@@ -33,6 +35,8 @@ public class SkillController : MonoBehaviour
     {
     
     }
+
+    public KeyCode skill_key;
 
     [HideInInspector] public Skill_Active skill_active;
     [HideInInspector] public Passive_Active skill_passive;
@@ -75,7 +79,7 @@ public class SkillController : MonoBehaviour
     void Update()
     {
         Check_PlayerSkill();
-        
+
         for (int i = 0; i < active_langth; i++)
         {
             if (isSkill[i] == true)
@@ -83,6 +87,11 @@ public class SkillController : MonoBehaviour
                 skillFunctions[i]();
             }
         }
+
+        if (coolTime > 0)
+            coolTime -= Time.deltaTime;
+        else
+            coolTime = 0;
     }
     void Check_PlayerSkill()
     {
@@ -91,14 +100,38 @@ public class SkillController : MonoBehaviour
             controlled = GameObject.FindGameObjectWithTag("Controlled");
 
             player_skill = controlled.GetComponent<EnemyController>().CurSkill;
+            Check_SkillKey();
         }
     }
-
+    void Check_SkillKey()
+    {
+        if (player_skill == Skill_Active.DashAttack)
+        {
+            if (Input.GetKey(KeyCode.LeftShift) && Input.GetMouseButtonDown(0))
+            {
+                Active();
+            }
+        }
+        if (player_skill == Skill_Active.Slash)
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                Active();
+            }
+        }
+        if (player_skill == Skill_Active.Smash)
+        {
+            if (Input.GetKey(KeyCode.S) && Input.GetMouseButtonDown(0))
+            {
+                Active();
+            }
+        }
+    }
     public void Active()
     {
         for (int i = 0; i < active_langth; i++)
         {
-            if ((int)player_skill == i)
+            if ((int)player_skill == i && onSkill ==false)
             {
                 isSkill[i] = true;
                 onSkill = true;
@@ -111,19 +144,20 @@ public class SkillController : MonoBehaviour
         Vector2 skillSize = new Vector2(2, 2);
         if(condition == false)
         {
-            Check_Condition(3);
+            Check_Condition(3, coolTime);
             damage = 10;
         }
         else
         {
-            Create_HitBox(player.transform.position, 
+            Create_HitBox(
+                sword.transform.position, 
                 skillSize, 
                 damage, 
                 5, 
                 Quaternion.AngleAxis(sword.angle * Mathf.Rad2Deg - 90, Vector3.forward),
                 10
                 );
-
+            coolTime = 3;
             End_Skill();
         }
     }
@@ -148,11 +182,15 @@ public class SkillController : MonoBehaviour
                     size_smash = 4;
                 damage = height * 3;
             }
+            else
+                End_Skill();
         }
         else
         {
+            sword.transform.position = player.transform.position - Vector3.up * sword.stretch_Min;
+            sword.transform.rotation = Quaternion.Euler(0, 0, -90);
+
             rigid_player.velocity= Vector3.down * power_smash;
-            Debug.Log("Smash!");
             if(height <= player.GetComponent<CircleCollider2D>().radius + 0.1f)
             {
                 End_Skill();
@@ -193,7 +231,9 @@ public class SkillController : MonoBehaviour
             stat.Player_CurST -= st;
         }
         else
-            condition = false;
+        {
+            End_Skill();
+        }
     }
     void Check_Condition(float st, float cool)
     {
@@ -203,7 +243,9 @@ public class SkillController : MonoBehaviour
             stat.Player_CurST -= st;
         }
         else
-            condition = false;
+        {
+            End_Skill();
+        }
     }
     
     void End_Skill()

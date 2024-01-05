@@ -2264,6 +2264,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   onSkill: 0
+  coolTime: 0
+  skill_key: 0
   skill_active: 0
   skill_passive: 0
   player_skill: 0

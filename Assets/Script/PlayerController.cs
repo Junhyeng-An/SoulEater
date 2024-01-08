@@ -53,6 +53,12 @@ public class PlayerController : MonoBehaviour
                 movement.Jump();
             }
 
+            //player jump bottom
+            if(Input.GetKeyDown(KeyCode.S))
+            {
+                movement.Jump_Down();
+            }
+
             //player dash
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {

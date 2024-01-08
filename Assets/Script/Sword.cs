@@ -55,16 +55,21 @@ public class Sword : MonoBehaviour
         stretch_Max = 2.2f;
         stretch_Speed = 0.05f;
 
-        damage_playerAttack = DataManager.Instance._SwordData.player_damage_attack;
-        damage_playerParrying = DataManager.Instance._SwordData.player_parrying_attack;
-        
+       
+
+
         Debug.Log(damage_playerParrying);
         
     }
 
     void Update()
     {
-        if(attack_Ani == true)
+        damage_playerAttack = DataManager.Instance._SwordData.player_damage_attack;
+        damage_playerParrying = DataManager.Instance._SwordData.player_parrying_attack;
+        sword_reach = DataManager.Instance._SwordData.player_sword_reach;
+
+
+        if (attack_Ani == true)
         {
             Attack_Animation();
         }

@@ -19,6 +19,8 @@ public class Movement : MonoBehaviour
 
     bool isJumping = false;
     bool isThrowing = false;
+    bool isDown = false;
+    float time_down = 0;
 
     public Vector2 posMid;
 
@@ -30,6 +32,8 @@ public class Movement : MonoBehaviour
 
     Vector2 startDragPos;
     Vector2 endDragPos;
+
+    RaycastHit2D rayHit_Jump;
 
     private void Awake()
     {
@@ -65,7 +69,7 @@ public class Movement : MonoBehaviour
         LayerMask mask = 1 << 20;
         LayerMask mask2 = 1 << 21;
 
-        RaycastHit2D rayHit_Jump = Physics2D.Raycast(transform.position, Vector2.down, 1, mask | mask2);
+        rayHit_Jump = Physics2D.Raycast(transform.position, Vector2.down, 1, mask | mask2);
         RaycastHit2D rayHit_Dash = Physics2D.Raycast(transform.position, new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)), dashForce, mask);
 
         if (rayHit_Jump.collider != null)
@@ -92,6 +96,16 @@ public class Movement : MonoBehaviour
         {
             rigid.velocity = Vector2.up * jumpForce;
             isJumping = true;
+        }
+    }
+    public void Jump_Down()
+    {
+        if (rayHit_Jump.collider.gameObject.layer == LayerMask.NameToLayer("Platform"))
+        {
+            Debug.Log(rayHit_Jump.collider.gameObject.layer);
+
+            isDown = true;
+            time_down = 0;
         }
     }
     public void Move(float x)
@@ -254,6 +268,13 @@ public class Movement : MonoBehaviour
     }
     public void WallCheck()
     {
+        time_down += Time.deltaTime;
+
+        if(time_down >= 0.375f)
+        {
+            isDown = false;
+        }
+        
         if (rigid.velocity.y > 0)
         {
             Physics2D.IgnoreLayerCollision(10, 21, true);
@@ -261,6 +282,10 @@ public class Movement : MonoBehaviour
         else
         {
             Physics2D.IgnoreLayerCollision(10, 21, false);
+        }
+        if (isDown == true)
+        {
+            Physics2D.IgnoreLayerCollision(10, 21, true);
         }
     }
 }

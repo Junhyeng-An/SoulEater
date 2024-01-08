@@ -30,7 +30,7 @@ public class Start_UI : MonoBehaviour
         #region Player_Data
         DataManager.Instance._PlayerData.soul_Count = 0;
         DataManager.Instance._PlayerData.jump = 12.0f;
-        DataManager.Instance._PlayerData.coin = 0;
+        DataManager.Instance._PlayerData.coin = 1000;
         DataManager.Instance._PlayerData.speed = 5.0f;
         #endregion
 

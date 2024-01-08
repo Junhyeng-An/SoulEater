@@ -168,6 +168,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audio_Sound: 0.2
+  bgmClip: {fileID: 0}
+  bgmVolume: 0
+  sfxClip:
+  - {fileID: 8300000, guid: ee8244fd830039e42aeec47962ba4051, type: 3}
+  sfxVolume: 10
+  channels: 3
 --- !u!1 &365012152
 GameObject:
   m_ObjectHideFlags: 0

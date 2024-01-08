@@ -147,7 +147,6 @@ public class Sword : MonoBehaviour
             //stat.Stat("ST", -3);
             gameObject.tag = "Attack";
             GetComponent<SpriteRenderer>().color = Color.red;
-
             attack_Ani = true;
         }
     }
@@ -159,6 +158,7 @@ public class Sword : MonoBehaviour
             stat.Stat("ST", -6);
             gameObject.tag = "Parrying";
             GetComponent<SpriteRenderer>().color = Color.blue;
+            SoundManager.Instance.Playsfx(SoundManager.SFX.parrying);
         }
 
         if (swingForce < 1.0f)
@@ -230,6 +230,7 @@ public class Sword : MonoBehaviour
             DataManager.Instance._PlayerData.coin -= 10;
             DataManager.Instance._SwordData.player_damage_attack += 2;
             DataManager.Instance._SwordData.player_attack_level += 1;
+            SoundManager.Instance.Playsfx(SoundManager.SFX.upgrade);
         }
     }
 
@@ -240,6 +241,7 @@ public class Sword : MonoBehaviour
             DataManager.Instance._PlayerData.coin -= 10;
             DataManager.Instance._SwordData.player_parrying_attack += 1;
             DataManager.Instance._SwordData.player_parrying_level += 1;
+            SoundManager.Instance.Playsfx(SoundManager.SFX.upgrade);
         }
     }
 
@@ -250,6 +252,7 @@ public class Sword : MonoBehaviour
             DataManager.Instance._PlayerData.coin -= 10;
             DataManager.Instance._SwordData.player_sword_reach += 0.1f;
             DataManager.Instance._SwordData.player_sword_level += 1;
+            SoundManager.Instance.Playsfx(SoundManager.SFX.upgrade);
         }
     }
     

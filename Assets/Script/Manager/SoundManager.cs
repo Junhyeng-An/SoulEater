@@ -1,23 +1,24 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using PixelCrushers;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
     private static SoundManager instance = null;
 
-    public float audio_Sound;
     private bool audio_Mute = false;
     
     [Header("#BGM")] 
     public AudioClip bgmClip;
-    public float bgmVolume;
+    [HideInInspector]public float bgmVolume;
     private AudioSource bgmPlayer;
 
     [Header("SFX")]
     public AudioClip[] sfxClip;
-    public float sfxVolume;
+    [HideInInspector]public float sfxVolume;
     public int channels;
     private AudioSource[] sfxPlayers;
     private int channelIndex;
@@ -56,11 +57,13 @@ public class SoundManager : MonoBehaviour
 
         bgmPlayer.playOnAwake = false;
         bgmPlayer.loop = true;
-        bgmPlayer.volume = bgmVolume;
+        bgmPlayer.volume = DataManager.Instance._Sound_Volume.BGM_Volume;
         bgmPlayer.clip = bgmClip;
 
         #endregion
 
+        
+        
         #region SFX_Initialize
 
         GameObject sfxObject = new GameObject("SFXPlayer");
@@ -71,12 +74,12 @@ public class SoundManager : MonoBehaviour
         {
             sfxPlayers[index] = sfxObject.AddComponent<AudioSource>();
             sfxPlayers[index].playOnAwake = false;
-            sfxPlayers[index].volume = sfxVolume;
+            sfxPlayers[index].volume = DataManager.Instance._Sound_Volume.SFX_Volume;
         }
 
         #endregion
 
-
+        
 
     }
 
@@ -116,17 +119,38 @@ public class SoundManager : MonoBehaviour
         
         Init();
         
+        AudioListener.volume = DataManager.Instance._Sound_Volume.Mute ? 0.0f : 1.0f;
+
     }
 
-    public void Change_Master_Volume(float value)
+
+
+    public void Change_BGM_Volume(float value)
     {
-        audio_Sound = value;
-        AudioListener.volume = audio_Sound;
+        bgmVolume = value;
+        DataManager.Instance._Sound_Volume.BGM_Volume = value;
+
     }
 
+    public void Change_SFX_Volume(float value)
+    {
+        
+        sfxVolume = value;  
+        for (int index = 0; index < sfxPlayers.Length; index++)
+        {
+         
+            sfxPlayers[index].volume = sfxVolume;
+        }
+
+        DataManager.Instance._Sound_Volume.SFX_Volume = value;
+
+
+    }
+    
     public void Mute_Button(bool mute)
     {
-        AudioListener.pause = mute;
+        AudioListener.volume = mute ? 0.0f : 1.0f;
+
     }
     
     

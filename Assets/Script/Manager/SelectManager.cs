@@ -9,7 +9,7 @@ public class SelectManager : MonoBehaviour
 
     public Transform Setting_Canvas;
 
-    public  int upgrade_soul =1;
+    public int upgrade_soul = 2;
 
     private static SelectManager instance = null;
 

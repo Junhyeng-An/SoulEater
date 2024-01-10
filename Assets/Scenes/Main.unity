@@ -602,7 +602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 074a8543495540348a5cf584a52f2394, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Scene_Name: Dorf
+  Scene_Name: Stage_2
 --- !u!50 &184578302
 Rigidbody2D:
   serializedVersion: 4
@@ -8234,6 +8234,14 @@ PrefabInstance:
     - target: {fileID: 5506075672461619230, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
       propertyPath: m_Name
       value: Unit000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5506075672461619230, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5506075672461619230, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 6054110837536635021, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
       propertyPath: m_Name

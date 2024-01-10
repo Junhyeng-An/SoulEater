@@ -21,6 +21,7 @@ TagManager:
   - red_square
   - Skill_Smash
   - Layzer
+  - Enemy_Vo
   layers:
   - Default
   - TransparentFX

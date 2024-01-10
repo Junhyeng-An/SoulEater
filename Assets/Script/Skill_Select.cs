@@ -11,7 +11,7 @@ public class Skill_Select : MonoBehaviour
 
     public List<Text> Card;
     public List<Button> Button;
-    public List<Image> CardImages; // UI ÀÌ¹ÌÁö ÄÄÆ÷³ÍÆ® ¸®½ºÆ®
+    public List<Image> CardImages; // UI ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½Æ®
     bool isShow = false;
 
     class Skill_Card
@@ -48,76 +48,76 @@ public class Skill_Select : MonoBehaviour
     }
     void GenerateSkillCards()
     {
-        // »õ·Î¿î Ä«µå¸¦ »ý¼ºÇÏ±â Àü¿¡ ±âÁ¸ÀÇ Ä«µå ¸®½ºÆ®¸¦ ºñ¿ò
+        // ï¿½ï¿½ï¿½Î¿ï¿½ Ä«ï¿½å¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½
         skillCards.Clear();
 
-        // ·¹¾î Ä«µå¸¦ 85% È®·ü
+        // ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½å¸¦ 85% È®ï¿½ï¿½
         for (int i = 0; i < 85; i++)
         {
-            skillCards.Add(new Skill_Card("Healing", 0, "»ç¿ë ½Ã HP¸¦ È¸º¹ÇÕ´Ï´Ù", 10, 1));
-            skillCards.Add(new Skill_Card("Absorption", 0, "°ø°Ý ½Ã HP¸¦ È¸º¹ÇÕ´Ï´Ù", 10, 1));
-            skillCards.Add(new Skill_Card("Poison", 0, "°ø°Ý ½Ã Àû¿¡°Ô µ¶ µ¥¹ÌÁö¸¦ ÀÔÈü´Ï´Ù", 10, 1));
-            skillCards.Add(new Skill_Card("Dash Distance", 0, "´ë½¬°Å¸®°¡ Áõ°¡ÇÕ´Ï´Ù", 10, 1));
-            skillCards.Add(new Skill_Card("Max Health", 0, "Ä® ±æÀÌ Áõ°¡ÇÕ´Ï´Ù", 10, 1));
-            skillCards.Add(new Skill_Card("Discount", 0, "¹«±â °­È­ºñ¿ëÀÌ °¨¼ÒÇÕ´Ï´Ù", 10, 1));
+            skillCards.Add(new Skill_Card("Healing", 0, "ï¿½ï¿½ï¿½ ï¿½ï¿½ HPï¿½ï¿½ È¸ï¿½ï¿½ï¿½Õ´Ï´ï¿½", 10, 1));
+            skillCards.Add(new Skill_Card("Absorption", 0, "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ HPï¿½ï¿½ È¸ï¿½ï¿½ï¿½Õ´Ï´ï¿½", 10, 1));
+            skillCards.Add(new Skill_Card("Poison", 0, "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½", 10, 1));
+            skillCards.Add(new Skill_Card("Dash Distance", 0, "ï¿½ë½¬ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½", 10, 1));
+            skillCards.Add(new Skill_Card("Max Health", 0, "Ä® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½", 10, 1));
+            skillCards.Add(new Skill_Card("Discount", 0, "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½", 10, 1));
         }
 
         // Epic cards with a 13% chance
         for (int i = 0; i < 13; i++)
         {
-            skillCards.Add(new Skill_Card("Healing", 1, "»ç¿ë ½Ã HP¸¦ È¸º¹ÇÕ´Ï´Ù", 20, 2));
-            skillCards.Add(new Skill_Card("Absorption", 1, "°ø°Ý ½Ã HP¸¦ È¸º¹ÇÕ´Ï´Ù", 20, 2));
-            skillCards.Add(new Skill_Card("Poison", 1, "°ø°Ý ½Ã Àû¿¡°Ô µ¶ µ¥¹ÌÁö¸¦ ÀÔÈü´Ï´Ù", 20, 2));
-            skillCards.Add(new Skill_Card("Dash Distance", 1, "´ë½¬°Å¸®°¡ Áõ°¡ÇÕ´Ï´Ù", 20, 2));
-            skillCards.Add(new Skill_Card("Max Health", 1, "Ä® ±æÀÌ Áõ°¡ÇÕ´Ï´Ù", 20, 2));
-            skillCards.Add(new Skill_Card("Discount", 1, "¹«±â °­È­ºñ¿ëÀÌ °¨¼ÒÇÕ´Ï´Ù", 20, 2));
+            skillCards.Add(new Skill_Card("Healing", 1, "ï¿½ï¿½ï¿½ ï¿½ï¿½ HPï¿½ï¿½ È¸ï¿½ï¿½ï¿½Õ´Ï´ï¿½", 20, 2));
+            skillCards.Add(new Skill_Card("Absorption", 1, "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ HPï¿½ï¿½ È¸ï¿½ï¿½ï¿½Õ´Ï´ï¿½", 20, 2));
+            skillCards.Add(new Skill_Card("Poison", 1, "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½", 20, 2));
+            skillCards.Add(new Skill_Card("Dash Distance", 1, "ï¿½ë½¬ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½", 20, 2));
+            skillCards.Add(new Skill_Card("Max Health", 1, "Ä® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½", 20, 2));
+            skillCards.Add(new Skill_Card("Discount", 1, "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½", 20, 2));
         }
 
         // Legendary cards with a 2% chance
         for (int i = 0; i < 2; i++)
         {
-            skillCards.Add(new Skill_Card("Healing", 2, "»ç¿ë ½Ã HP¸¦ È¸º¹ÇÕ´Ï´Ù", 30, 3));
-            skillCards.Add(new Skill_Card("Absorption", 2, "°ø°Ý ½Ã HP¸¦ È¸º¹ÇÕ´Ï´Ù", 30, 3));
-            skillCards.Add(new Skill_Card("Poison", 2, "°ø°Ý ½Ã Àû¿¡°Ô µ¶ µ¥¹ÌÁö¸¦ ÀÔÈü´Ï´Ù", 30, 3));
-            skillCards.Add(new Skill_Card("Dash Distance", 2, "´ë½¬°Å¸®°¡ Áõ°¡ÇÕ´Ï´Ù", 30, 3));
-            skillCards.Add(new Skill_Card("Max Health", 2, "Ä® ±æÀÌ Áõ°¡ÇÕ´Ï´Ù", 30, 3));
-            skillCards.Add(new Skill_Card("Discount", 2, "¹«±â °­È­ºñ¿ëÀÌ °¨¼ÒÇÕ´Ï´Ù", 30, 3));
+            skillCards.Add(new Skill_Card("Healing", 2, "ï¿½ï¿½ï¿½ ï¿½ï¿½ HPï¿½ï¿½ È¸ï¿½ï¿½ï¿½Õ´Ï´ï¿½", 30, 3));
+            skillCards.Add(new Skill_Card("Absorption", 2, "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ HPï¿½ï¿½ È¸ï¿½ï¿½ï¿½Õ´Ï´ï¿½", 30, 3));
+            skillCards.Add(new Skill_Card("Poison", 2, "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½", 30, 3));
+            skillCards.Add(new Skill_Card("Dash Distance", 2, "ï¿½ë½¬ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½", 30, 3));
+            skillCards.Add(new Skill_Card("Max Health", 2, "Ä® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½", 30, 3));
+            skillCards.Add(new Skill_Card("Discount", 2, "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½", 30, 3));
         }
 
 
-        // ´Ù¸¥ ½ºÅ³¿¡ ´ëÇÑ ºí·Ïµµ À¯»çÇÏ°Ô Ãß°¡ °¡´É
+        // ï¿½Ù¸ï¿½ ï¿½ï¿½Å³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-        // ¸ðµç Ä«µå¸¦ »ý¼ºÇÑ ÈÄ¿¡ Ä«µå ¸®½ºÆ®¸¦ ¼¯À½
+        // ï¿½ï¿½ï¿½ Ä«ï¿½å¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ä¿ï¿½ Ä«ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         skillCards = ShuffleList(skillCards);
     }
 
     void CardShuffle()
     {
-        List<int> selectedIndices = new List<int>(); // ¼±ÅÃµÈ ÀÎµ¦½º ¸®½ºÆ®
+        List<int> selectedIndices = new List<int>(); // ï¿½ï¿½ï¿½Ãµï¿½ ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
         for (int i = 0; i < 3; i++)
         {
             int randomIndex;
 
-            // µ¿ÀÏÇÑ ÀÎµ¦½º ¶Ç´Â µ¿ÀÏÇÑ ÀÌ¸§ÀÇ Ä«µå°¡ ´Ù½Ã ¼±ÅÃµÇÁö ¾Êµµ·Ï º¸Àå
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ Ä«ï¿½å°¡ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ ï¿½Êµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             do
             {
                 randomIndex = Random.Range(0, skillCards.Count);
             } while (selectedIndices.Contains(randomIndex) || IsNameAlreadySelected(skillCards[randomIndex].name));
 
-            // ¼±ÅÃµÈ ÀÎµ¦½º¸¦ ¸®½ºÆ®¿¡ Ãß°¡ÇÏ°í ÇØ´çÇÏ´Â Ä«µå¸¦ selectedCards ¸®½ºÆ®¿¡ Ãß°¡
+            // ï¿½ï¿½ï¿½Ãµï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ï°ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ Ä«ï¿½å¸¦ selectedCards ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½
             selectedIndices.Add(randomIndex);
             selectedCards.Add(skillCards[randomIndex]);
         }
     }
 
-    // ¼±ÅÃµÈ Ä«µå Á¤º¸¸¦ È­¸é¿¡ Ç¥½ÃÇÏ´Â ÇÔ¼ö
+    // ï¿½ï¿½ï¿½Ãµï¿½ Ä«ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È­ï¿½é¿¡ Ç¥ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
     void CardShow()
     {
         for (int i = 0; i < selectedCards.Count; i++)
         {
-            Card[i].text = $"{selectedCards[i].name}\n\n{selectedCards[i].skillContent}\n\n¾÷±×·¹ÀÌµå È½¼ö: {selectedCards[i].upgradeCount}";
+            Card[i].text = $"{selectedCards[i].name}\n\n{selectedCards[i].skillContent}\n\nï¿½ï¿½ï¿½×·ï¿½ï¿½Ìµï¿½ È½ï¿½ï¿½: {selectedCards[i].upgradeCount}";
 
-            // µî±Þ¿¡ µû¶ó ´Ù¸¥ »ö»óÀ» ¼³Á¤
+            // ï¿½ï¿½Þ¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             SetCardColor(i, selectedCards[i].card_level);
         }
     }
@@ -156,8 +156,7 @@ public class Skill_Select : MonoBehaviour
         }
 
 
-        // Save the data after applying the effects
-        DataManager.Instance.SaveData();
+      
     }
 
     public void ButtonClick(int buttonIndex) // Button event, calls CardEffect(int selectedIndex)
@@ -173,13 +172,13 @@ public class Skill_Select : MonoBehaviour
 
         switch (cardLevel)
         {
-            case 0: // ·¹¾î
+            case 0: // ï¿½ï¿½ï¿½ï¿½
                 cardImage.color = Color.blue;
                 break;
-            case 1: // ¿¡ÇÈ
+            case 1: // ï¿½ï¿½ï¿½ï¿½
                 cardImage.color = Color.magenta;
                 break;
-            case 2: // ·¹Àü´õ¸®
+            case 2: // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 cardImage.color = Color.yellow;
                 break;
             default:
@@ -201,16 +200,16 @@ public class Skill_Select : MonoBehaviour
         int randomIndex = 0;
         while (inputList.Count > 0)
         {
-            randomIndex = r.Next(0, inputList.Count); // ¸®½ºÆ®¿¡¼­ ·£´ýÇÑ °´Ã¼ ¼±ÅÃ
-            randomList.Add(inputList[randomIndex]); // »õ·Î¿î ·£´ý ¸®½ºÆ®¿¡ Ãß°¡
-            inputList.RemoveAt(randomIndex); // Áßº¹À» ÇÇÇÏ±â À§ÇØ Á¦°Å
+            randomIndex = r.Next(0, inputList.Count); // ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
+            randomList.Add(inputList[randomIndex]); // ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½
+            inputList.RemoveAt(randomIndex); // ï¿½ßºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         }
 
-        return randomList; // »õ·Î¿î ·£´ý ¸®½ºÆ® ¹ÝÈ¯
+        return randomList; // ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½È¯
     }
     bool IsNameAlreadySelected(string cardName)
     {
-        // ÀÌ¹Ì ¼±ÅÃµÈ Ä«µåµé Áß¿¡ µ¿ÀÏÇÑ ÀÌ¸§ÀÇ Ä«µå°¡ ÀÖ´ÂÁö È®ÀÎ
+        // ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ Ä«ï¿½ï¿½ï¿½ ï¿½ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ Ä«ï¿½å°¡ ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½
         foreach (Skill_Card selectedCard in selectedCards)
         {
             if (selectedCard.name == cardName)

@@ -46,6 +46,15 @@ public class Player_Skill
 
 }
 
+public class Sound_Volume
+{
+    public float BGM_Volume;
+    public float SFX_Volume;
+
+}
+
+
+
 
 
 public class DataManager : MonoBehaviour
@@ -54,12 +63,14 @@ public class DataManager : MonoBehaviour
     private string Player_Data_filename = "PlayerData";
     private string Sword_Data_filename = "SwordData";
     private string Player_Skill_filename = "PlayerSkill";
+    private string Sound_Volume_filename = "Sound_Volume";
     private bool SAVE_FILE_EXIST = false;
 
     
     public Player_Data _PlayerData = new Player_Data();
     public Sword_Data _SwordData = new Sword_Data();
     public Player_Skill _Player_Skill = new Player_Skill();
+    public Sound_Volume _Sound_Volume = new Sound_Volume();
        
     
     
@@ -102,9 +113,15 @@ public class DataManager : MonoBehaviour
         {
             SAVE_FILE_EXIST = true;
             Debug.Log(path+Player_Data_filename);
+            string load_Sound_Volume_Data = File.ReadAllText(path + Sound_Volume_filename);
+            _Sound_Volume = JsonUtility.FromJson<Sound_Volume>(load_Sound_Volume_Data);
+            
+            
         }
         else
         {
+            _Sound_Volume.SFX_Volume = 0.2f;
+            _Sound_Volume.BGM_Volume = 0.2f;
             SAVE_FILE_EXIST = false;
         }
         
@@ -129,6 +146,9 @@ public class DataManager : MonoBehaviour
         
         File.WriteAllText(path + Player_Skill_filename,json_skilldata);
         
+        string json_Volume_Sound = JsonUtility.ToJson(_Sound_Volume);
+        
+        File.WriteAllText(path + Sound_Volume_filename,json_Volume_Sound);
         
     }
 
@@ -142,6 +162,10 @@ public class DataManager : MonoBehaviour
         
         string load_skill_Data = File.ReadAllText(path + Player_Skill_filename);
         _Player_Skill = JsonUtility.FromJson<Player_Skill>(load_skill_Data);
+        
+        // string load_Sound_Volume_Data = File.ReadAllText(path + Sound_Volume_filename);
+        // _Sound_Volume = JsonUtility.FromJson<Sound_Volume>(load_Sound_Volume_Data);
+        
     }
 
     public bool Save_File_Exist()
@@ -149,6 +173,9 @@ public class DataManager : MonoBehaviour
         Debug.Log(SAVE_FILE_EXIST);
         return SAVE_FILE_EXIST;
     }
+    
+    
+    
 
     public void Delete_Save_File()
     {

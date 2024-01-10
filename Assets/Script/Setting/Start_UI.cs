@@ -11,6 +11,18 @@ public class Start_UI : MonoBehaviour
 {
     public Button Load_Button;
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     private void Start()
     {
         if (DataManager.Instance.Save_File_Exist())
@@ -46,12 +58,8 @@ public class Start_UI : MonoBehaviour
         DataManager.Instance._SwordData.player_parrying_attack = 1.0f;
         DataManager.Instance._SwordData.player_parrying_level = 1;
         #endregion
-        
-        
-        
-        
-        
-        
+
+
         #region Player_Skill;
         DataManager.Instance._Player_Skill.HP_Drain = 0.0f;
         DataManager.Instance._Player_Skill.HP_Drain_Level =0;
@@ -64,15 +72,15 @@ public class Start_UI : MonoBehaviour
 
         #endregion
 
+
+
+        
+
         
         SceneManager.LoadScene("Main");
     }
 
 
-    public void Setting_Button()
-    {
-        DataManager.Instance.Delete_Save_File();
-    }
 
 
 

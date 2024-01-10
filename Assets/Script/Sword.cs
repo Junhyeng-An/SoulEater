@@ -163,7 +163,6 @@ public class Sword : MonoBehaviour
             stat.Stat("ST", -6);
             gameObject.tag = "Parrying";
             GetComponent<SpriteRenderer>().color = Color.blue;
-            SoundManager.Instance.Playsfx(SoundManager.SFX.parrying);
         }
 
         if (swingForce < 1.0f)

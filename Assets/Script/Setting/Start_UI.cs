@@ -55,7 +55,7 @@ public class Start_UI : MonoBehaviour
         DataManager.Instance._SwordData.player_sword_reach = 1.0f;
         DataManager.Instance._SwordData.player_sword_level = 1;
         
-        DataManager.Instance._SwordData.player_parrying_attack = 1.0f;
+        DataManager.Instance._SwordData.player_parrying_attack = 50.0f;
         DataManager.Instance._SwordData.player_parrying_level = 1;
         #endregion
 

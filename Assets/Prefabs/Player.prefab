@@ -173,6 +173,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swingForce: 0
+  damage_playerAttack: 0
+  damage_playerParrying: 0
+  sword_reach: 0
   limitSpeed: 10
   angle: 0
   isSwing: 0
@@ -637,9 +640,7 @@ GameObject:
   - component: {fileID: 1997728589757482987}
   - component: {fileID: 2858368165016770911}
   - component: {fileID: 8694403856203445919}
-  - component: {fileID: 8513359773620154081}
   - component: {fileID: 215761989225540268}
-  - component: {fileID: 653785086020672631}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -921,25 +922,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sword: {fileID: 1544426780104256370}
   speed: 5
-  jumpForce: 12
-  throwForce: 12
   dashForce: 5
   angle: 0
   bounceCount: 3
   gameover: 0
---- !u!114 &8513359773620154081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8803280041538625635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67a143ba3af3b1b4d824af91ebe18d31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  items: []
+  posMid: {x: 0, y: 0}
 --- !u!114 &215761989225540268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -954,17 +941,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurHP: 100
   MaxHP: 100
---- !u!114 &653785086020672631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8803280041538625635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6346f380674cb744835c09989d48074, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Soul_Count: 0
-  textName: {fileID: 0}

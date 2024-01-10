@@ -159,11 +159,11 @@ public class Sword : MonoBehaviour
     {
         if (stat.Player_CurST >= 6 && swingForce > 5.0f && isSwing == false)
         {
+            Coin_Soul_Manager.Instance.Drop_Soul(transform);
             isSwing = true;
             stat.Stat("ST", -6);
             gameObject.tag = "Parrying";
             GetComponent<SpriteRenderer>().color = Color.blue;
-            SoundManager.Instance.Playsfx(SoundManager.SFX.parrying);
         }
 
         if (swingForce < 1.0f)

@@ -97,10 +97,6 @@ public class SoundManager : MonoBehaviour
             sfxPlayers[loopIndex].Play();
             break;
         }
-        
-        
-        
-  
     }
     private void Awake()
     {

@@ -45,7 +45,7 @@ public class Coin : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            // Destroy the object that this script is attached to
+            ++DataManager.Instance._PlayerData.coin;
             Destroy(this.gameObject);
         }
     }

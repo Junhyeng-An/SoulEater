@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class Stage_Controller : MonoBehaviour
 {
     public string Scene_Name;
-
+    GameObject pl;
 
 
     private void Update()
@@ -22,6 +22,7 @@ public class Stage_Controller : MonoBehaviour
             // Check if there are no enemies in the scene
             if (NoEnemiesInScene())
             {
+                DontDestroyOnLoad(other.gameObject);
                 // Load the next scene
                 LoadingScene.LoadScene(Scene_Name);
                 //LoadNextScene();

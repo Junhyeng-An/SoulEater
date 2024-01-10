@@ -273,10 +273,12 @@ MonoBehaviour:
   CurWP: 0
   MaxWP: 0
   damage_enemyAttack: 0
+  CurSkill: 0
   timer: 0
   isHit: 0
   isParried: 0
   isDamage: 0
+  isDamage_skill: 0
 --- !u!114 &5817756113407858093
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -43,6 +43,7 @@ public class EnemyController : MonoBehaviour
     Movement movement;
     TimeScale timeScale;
     Soul_Drop Soul_Drop;
+    Coin_Drop Coin_Drop;
     StatController stat;
     SkillController skill;
     PlayerController playerController;
@@ -165,6 +166,7 @@ public class EnemyController : MonoBehaviour
         timeScale = GameObject.Find("GameManager").GetComponent<TimeScale>();
         sword = GameObject.Find("Sword").GetComponent<Sword>();
         Soul_Drop = GetComponent<global::Soul_Drop>();
+        Coin_Drop = GetComponent<global::Coin_Drop>();
 
         bar_PosHP = bar_EnemyHP.GetComponent<RectTransform>();
         bar_PosWP = bar_EnemyWP.GetComponent<RectTransform>();
@@ -509,6 +511,7 @@ public class EnemyController : MonoBehaviour
                 {
                     if (isAni == true)
                     {
+                        Soul_Drop.DropItem();
                         animator.SetTrigger("parrying");
                         isAni = false;
                     }

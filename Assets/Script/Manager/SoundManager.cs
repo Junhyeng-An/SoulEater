@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using PixelCrushers;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
@@ -61,6 +62,8 @@ public class SoundManager : MonoBehaviour
 
         #endregion
 
+        
+        
         #region SFX_Initialize
 
         GameObject sfxObject = new GameObject("SFXPlayer");
@@ -71,12 +74,12 @@ public class SoundManager : MonoBehaviour
         {
             sfxPlayers[index] = sfxObject.AddComponent<AudioSource>();
             sfxPlayers[index].playOnAwake = false;
-            sfxPlayers[index].volume = DataManager.Instance._Sound_Volume.BGM_Volume;
+            sfxPlayers[index].volume = DataManager.Instance._Sound_Volume.SFX_Volume;
         }
 
         #endregion
 
-
+        
 
     }
 
@@ -116,6 +119,8 @@ public class SoundManager : MonoBehaviour
         
         Init();
         
+        AudioListener.volume = DataManager.Instance._Sound_Volume.Mute ? 0.0f : 1.0f;
+
     }
 
 
@@ -130,7 +135,7 @@ public class SoundManager : MonoBehaviour
     public void Change_SFX_Volume(float value)
     {
         
-        sfxVolume = value;
+        sfxVolume = value;  
         for (int index = 0; index < sfxPlayers.Length; index++)
         {
          
@@ -144,7 +149,8 @@ public class SoundManager : MonoBehaviour
     
     public void Mute_Button(bool mute)
     {
-        AudioListener.pause = mute;
+        AudioListener.volume = mute ? 0.0f : 1.0f;
+
     }
     
     

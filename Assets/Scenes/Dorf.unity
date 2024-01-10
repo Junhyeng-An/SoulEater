@@ -478,6 +478,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Black_Smith
       objectReference: {fileID: 0}
+    - target: {fileID: 7135327817912118814, guid: 4e103f8c90e5c455eb27de836e8fb692, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 6049055631982025028, guid: 4e103f8c90e5c455eb27de836e8fb692, type: 3}
@@ -2657,13 +2661,10 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8893287330390304263, guid: 92a08448cd3527a4aaf11bc404e0f1a0, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1255496059}
-    - targetCorrespondingSourceObject: {fileID: 8893287330390304263, guid: 92a08448cd3527a4aaf11bc404e0f1a0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1255496060}
-    - targetCorrespondingSourceObject: {fileID: 8893287330390304263, guid: 92a08448cd3527a4aaf11bc404e0f1a0, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1255496061}
+    - targetCorrespondingSourceObject: {fileID: 8893287330390304263, guid: 92a08448cd3527a4aaf11bc404e0f1a0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1255496062}
   m_SourcePrefab: {fileID: 100100000, guid: 92a08448cd3527a4aaf11bc404e0f1a0, type: 3}
 --- !u!1 &501346403
 GameObject:
@@ -6845,7 +6846,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8893287330390304263, guid: 92a08448cd3527a4aaf11bc404e0f1a0, type: 3}
   m_PrefabInstance: {fileID: 486299899}
   m_PrefabAsset: {fileID: 0}
---- !u!61 &1255496059
+--- !u!114 &1255496061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255496054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fa6a8b1a29329d40adce0c684848d33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon_Upgrade: {fileID: 8801056}
+--- !u!61 &1255496062
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6890,46 +6904,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.09375, y: 2.40625}
   m_EdgeRadius: 0
---- !u!50 &1255496060
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1255496054}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!114 &1255496061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1255496054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fa6a8b1a29329d40adce0c684848d33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapon_Upgrade: {fileID: 8801056}
 --- !u!1001 &1262643381
 PrefabInstance:
   m_ObjectHideFlags: 0

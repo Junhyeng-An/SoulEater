@@ -50,7 +50,7 @@ public class Sound_Volume
 {
     public float BGM_Volume;
     public float SFX_Volume;
-
+    public bool Mute;
 }
 
 
@@ -122,6 +122,8 @@ public class DataManager : MonoBehaviour
         {
             _Sound_Volume.SFX_Volume = 0.2f;
             _Sound_Volume.BGM_Volume = 0.2f;
+            _Sound_Volume.Mute = false; // true : mute , false : Sound On
+            
             SAVE_FILE_EXIST = false;
         }
         
@@ -163,6 +165,8 @@ public class DataManager : MonoBehaviour
         string load_skill_Data = File.ReadAllText(path + Player_Skill_filename);
         _Player_Skill = JsonUtility.FromJson<Player_Skill>(load_skill_Data);
         
+        //Sound is load when game was start 
+        
         // string load_Sound_Volume_Data = File.ReadAllText(path + Sound_Volume_filename);
         // _Sound_Volume = JsonUtility.FromJson<Sound_Volume>(load_Sound_Volume_Data);
         
@@ -173,7 +177,15 @@ public class DataManager : MonoBehaviour
         Debug.Log(SAVE_FILE_EXIST);
         return SAVE_FILE_EXIST;
     }
-    
+
+    //Sound need independent save system
+    public void Save_Sound()
+    {
+        string json_Volume_Sound = JsonUtility.ToJson(_Sound_Volume);
+        
+        File.WriteAllText(path + Sound_Volume_filename,json_Volume_Sound);
+
+    }
     
     
 

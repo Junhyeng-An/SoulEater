@@ -105,7 +105,7 @@ public class DataManager : MonoBehaviour
                 Destroy(this.gameObject);
             }
             DontDestroyOnLoad(this.gameObject);
-            #endregion
+        #endregion
             
         path = Application.persistentDataPath + "/";
 

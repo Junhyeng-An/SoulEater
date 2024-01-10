@@ -46,7 +46,7 @@ public class Soul : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            // Destroy the object that this script is attached to
+            ++DataManager.Instance._PlayerData.soul_Count;
             Destroy(this.gameObject);
         }
     }

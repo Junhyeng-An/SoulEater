@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 9153492702390456149}
   - component: {fileID: 6203719566641058146}
   - component: {fileID: 9037172845829006221}
-  - component: {fileID: 1706698381069575796}
   - component: {fileID: 6389389714788167728}
   - component: {fileID: 7323956069885087028}
   - component: {fileID: 6764346398447048846}
@@ -124,20 +123,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 43e85dd76a7f6bb42b43abde30f4e178, type: 2}
   color: {r: 1, g: 1, b: 1, a: 1}
   outlineSize: 15
---- !u!114 &1706698381069575796
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 62761198425080227}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c7da1819a425ca4792624083ec30bf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemPrefab: {fileID: 6881506416508319521, guid: b9ad29b4c16028e4eb4b9bc4e3e07e8c, type: 3}
-  dropForce: 5
 --- !u!50 &6389389714788167728
 Rigidbody2D:
   serializedVersion: 4
@@ -5126,6 +5111,10 @@ PrefabInstance:
     - target: {fileID: 427802716039631007, guid: 3c052d43a42d52148badd31c93953a18, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 427802716039631007, guid: 3c052d43a42d52148badd31c93953a18, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2441121023461670068, guid: 3c052d43a42d52148badd31c93953a18, type: 3}
       propertyPath: m_Name

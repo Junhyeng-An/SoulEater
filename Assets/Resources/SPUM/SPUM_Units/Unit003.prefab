@@ -98,7 +98,6 @@ GameObject:
   - component: {fileID: 8104451654706117652}
   - component: {fileID: 5854550243890681001}
   - component: {fileID: 2366522673178439367}
-  - component: {fileID: 1942431046012115925}
   - component: {fileID: 3344907319647731488}
   - component: {fileID: 1101181574644919361}
   - component: {fileID: 4075610464272732113}
@@ -209,20 +208,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 43e85dd76a7f6bb42b43abde30f4e178, type: 2}
   color: {r: 1, g: 1, b: 1, a: 1}
   outlineSize: 15
---- !u!114 &1942431046012115925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 69942638184730381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c7da1819a425ca4792624083ec30bf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemPrefab: {fileID: 6881506416508319521, guid: b9ad29b4c16028e4eb4b9bc4e3e07e8c, type: 3}
-  dropForce: 5
 --- !u!114 &3344907319647731488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,31 +346,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 516a699585d9f3f4a9f4baa96ccb6558, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
-  Attack_area: {fileID: 1664678405342391976}
-  attackPrefab: {fileID: 0}
-  Hit_area: {fileID: 8942387811997562604}
-  Weapon:
-  - {fileID: 1608647676015109855}
-  - {fileID: 5633735783902171156}
-  my_bar: {fileID: 5099960744845772855}
-  Canvas: {fileID: 1088139755714661496}
-  Soul_Drop: {fileID: 0}
+  enemyType: 0
+  detect_distance: 4
+  attack_distance: 2
+  XYSpace: {x: 0, y: 1, z: 0.15}
   CurHP: 0
   MaxHP: 0
   CurWP: 0
   MaxWP: 0
-  nextMove: 0
-  detect_meter: 4
-  attack_meter: 1.2
-  issearch: 0
-  hp_har_height: 1
+  damage_enemyAttack: 0
+  CurSkill: 0
   timer: 0
   isHit: 0
   isParried: 0
-  Enemy_HP: {fileID: 6461602707720167910}
   isDamage: 0
-  enemyType: 0
+  isDamage_skill: 0
 --- !u!114 &8302780060070221486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,7 +373,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6769ade8616bb54b911067394f5ad13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackForce: 3
+  knockbackForce_Attack: 1
+  knockbackForce_Parrying: 7
   knockbackDuration: 0.5
 --- !u!1 &217938353071165519
 GameObject:
@@ -4833,6 +4809,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4476095806229280850}
     m_Modifications:
+    - target: {fileID: 427802716039631007, guid: 3c052d43a42d52148badd31c93953a18, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2441121023461670068, guid: 3c052d43a42d52148badd31c93953a18, type: 3}
       propertyPath: m_Name
       value: Attack_prefeb
@@ -4882,11 +4862,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c052d43a42d52148badd31c93953a18, type: 3}
---- !u!1 &1664678405342391976 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2441121023461670068, guid: 3c052d43a42d52148badd31c93953a18, type: 3}
-  m_PrefabInstance: {fileID: 3961683965812265500}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8125292862359698402 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5059913326737140222, guid: 3c052d43a42d52148badd31c93953a18, type: 3}

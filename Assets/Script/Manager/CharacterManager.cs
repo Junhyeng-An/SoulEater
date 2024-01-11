@@ -11,30 +11,10 @@ public class CharacterManager : MonoBehaviour
     private const int SIZE = 9;
 
     [SerializeField] public int Cur_Hp;
-    
+    private string Enemy_Name = "";
     
     public GameObject[] enemy_Prefab = new GameObject[SIZE];
     private string[] enemy_Name = new string[SIZE];
-
-    
-    
-    
-    
-    private void Awake()
-    {
-        #region Initialize_enemy_name
-
-        for (int i = 0; i < SIZE; i++)
-        {
-            enemy_Name[i] = enemy_Prefab[i].ToString();
-        }
-        
-
-        #endregion
-    }
-    
-    
-
 
     #region SingleTon
     
@@ -52,6 +32,71 @@ public class CharacterManager : MonoBehaviour
         }
     }
     #endregion
+    
+    
+    
+    private void Awake()
+    {
+        
+        #region Singleton
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+        DontDestroyOnLoad(this.gameObject);
+        #endregion
+        
+        #region Initialize_enemy_name
+
+        for (int i = 0; i < SIZE; i++)
+        {
+            enemy_Name[i] = enemy_Prefab[i].ToString();
+        }
+        
+        for (int i = 0; i < SIZE; i++)
+        {
+            if (enemy_Name[0] == enemy_Name[i]) 
+                Debug.Log("true");
+            else
+            {
+            }
+        }
+        
+        
+        
+        #endregion
+        
+    }
+
+    public void Spawn_Enemy_Type()
+    {
+    }
+
+
+    public void set_enemy(string enemy_name)
+    {
+        Enemy_Name = enemy_name;
+    }
+
+    public void Instantiate_Enemy(Transform Instantiate_Position)
+    {
+        
+       Instantiate(enemy_Prefab[1], Instantiate_Position.position, Quaternion.identity);
+
+    }
+    
+    
+    
+    
+    
+    
+    
+
+
 
     
 }

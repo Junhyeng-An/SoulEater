@@ -174,7 +174,7 @@ public class DataManager : MonoBehaviour
 
     public bool Save_File_Exist()
     {
-        Debug.Log(SAVE_FILE_EXIST);
+        Debug.Log("SAVE_FILE_EXIST");
         return SAVE_FILE_EXIST;
     }
 

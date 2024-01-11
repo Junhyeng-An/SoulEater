@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using PixelCrushers;
@@ -100,12 +101,18 @@ public class Movement : MonoBehaviour
     }
     public void Jump_Down()
     {
-        if (rayHit_Jump.collider.gameObject.layer == LayerMask.NameToLayer("Platform"))
+        try
         {
-            Debug.Log(rayHit_Jump.collider.gameObject.layer);
+            if (rayHit_Jump.collider.gameObject.layer == LayerMask.NameToLayer("Platform"))
+            {
+                Debug.Log(rayHit_Jump.collider.gameObject.layer);
 
-            isDown = true;
-            time_down = 0;
+                isDown = true;
+                time_down = 0;
+            } }
+        catch (NullReferenceException e)
+        {
+
         }
     }
     public void Move(float x)

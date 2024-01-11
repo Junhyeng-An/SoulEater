@@ -107,7 +107,7 @@ public class SkillController : MonoBehaviour
     {
         if (player_skill == Skill_Active.DashAttack)
         {
-            if (Input.GetKey(KeyCode.LeftShift) && Input.GetMouseButtonDown(0))
+            if (Input.GetKey(KeyCode.LeftShift) )
             {
                 Active();
             }
@@ -121,7 +121,7 @@ public class SkillController : MonoBehaviour
         }
         if (player_skill == Skill_Active.Smash)
         {
-            if (Input.GetKey(KeyCode.S) && Input.GetMouseButtonDown(0))
+            if (Input.GetKey(KeyCode.F))
             {
                 Active();
             }

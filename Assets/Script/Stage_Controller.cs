@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Stage_Controller : MonoBehaviour
@@ -16,12 +17,24 @@ public class Stage_Controller : MonoBehaviour
     // Update is called once per frame
     private void OnTriggerEnter2D(Collider2D other)
     {
+  
+        GameObject[] controlledObjects = GameObject.FindGameObjectsWithTag("Controlled");
+
+   
+        
+        
         // Check if the object entering the portal is the player
         if (other.CompareTag("Player"))
         {
             // Check if there are no enemies in the scene
             if (NoEnemiesInScene())
             {
+
+                foreach (GameObject obj in controlledObjects)
+                {
+                    //DontDestroyOnLoad(obj);
+                    DontDestroyOnLoad(obj.transform.parent);
+                }
                 LoadingScene.LoadScene(Scene_Name);
             }
             else
@@ -35,7 +48,6 @@ public class Stage_Controller : MonoBehaviour
     {
         // Check if there are no game objects with the "Enemy" tag in the scene
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        Debug.Log(enemies);
         return enemies.Length == 0;
     }
 
@@ -44,4 +56,8 @@ public class Stage_Controller : MonoBehaviour
         // Load the scene named "main2"
         SceneManager.LoadScene(Scene_Name);
     }
+    
+    
+    
+    
 }

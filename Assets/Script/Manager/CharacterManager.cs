@@ -10,12 +10,13 @@ public class CharacterManager : MonoBehaviour
 {
     private const int SIZE = 9;
 
-    [SerializeField] public int Cur_Hp;
+    [SerializeField] public int Cur_Hp = 10;
     private string Enemy_Name = "";
     
     public GameObject[] enemy_Prefab = new GameObject[SIZE];
     private string[] enemy_Name = new string[SIZE];
 
+    
     #region SingleTon
     
     private static CharacterManager instance = null;
@@ -82,14 +83,7 @@ public class CharacterManager : MonoBehaviour
         Enemy_Name = enemy_name;
     }
 
-    public void Instantiate_Enemy(Transform Instantiate_Position)
-    {
-        
-       Instantiate(enemy_Prefab[1], Instantiate_Position.position, Quaternion.identity);
 
-    }
-    
-    
     
     
     

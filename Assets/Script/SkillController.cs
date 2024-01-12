@@ -76,7 +76,7 @@ public class SkillController : MonoBehaviour
 
 
 
-    void Update()
+    void LateUpdate()
     {
         Check_PlayerSkill();
 

@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
         isThrowing = true;
     }
-    void LateUpdate()
+    void Update()
     {
         movement.Return();
         movement.Landing();

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4ba8d05d98f22304e98f0c90d2efc3bb
+guid: a34d3eeefa2cdbf4a8d49cc7fedac6e6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: head 1_0
+      name: Enemy_b_Run 1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 32
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00afe1b51cfea0144a6917fd32e4c1a1
-      internalID: -1666056842
+      spriteID: 3c6820ec68eb7ab4b98bb88a353fd653
+      internalID: -1755799635
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: head 1_1
+      name: Enemy_b_Run 1_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
+        x: 16
+        y: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,8 +145,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4770d1d89e7378647b9720c501218e5a
-      internalID: 185231126
+      spriteID: b935b1ed110c1d34e8ea65d302e802c0
+      internalID: 744734008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_b_Run 1_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51903cd7a089d7b498c7af702486d4ea
+      internalID: -1744567140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_b_Run 1_3
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba7c7efff8bb3bf4aa482a1d7aeba7fc
+      internalID: -1079367771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_b_Run 1_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29bd947f2f2a1084b8d2d18351178b79
+      internalID: -1728965886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_b_Run 1_5
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e877d48341bcbb47a5a3a0c1fcc9049
+      internalID: -1251064277
       vertices: []
       indices: 
       edges: []
@@ -162,8 +246,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      head 1_0: -1666056842
-      head 1_1: 185231126
+      Enemy_b_Run 1_0: -1755799635
+      Enemy_b_Run 1_1: 744734008
+      Enemy_b_Run 1_2: -1744567140
+      Enemy_b_Run 1_3: -1079367771
+      Enemy_b_Run 1_4: -1728965886
+      Enemy_b_Run 1_5: -1251064277
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

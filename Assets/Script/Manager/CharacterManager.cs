@@ -8,14 +8,7 @@ using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
-    private const int SIZE = 9;
-
-    [SerializeField] public int Cur_Hp = 10;
-    private string Enemy_Name = "";
-    
-    public GameObject[] enemy_Prefab = new GameObject[SIZE];
-    private string[] enemy_Name = new string[SIZE];
-
+    public GameObject Player;
     
     #region SingleTon
     
@@ -51,39 +44,17 @@ public class CharacterManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         #endregion
         
-        #region Initialize_enemy_name
-
-        for (int i = 0; i < SIZE; i++)
-        {
-            enemy_Name[i] = enemy_Prefab[i].ToString();
-        }
-        
-        for (int i = 0; i < SIZE; i++)
-        {
-            if (enemy_Name[0] == enemy_Name[i]) 
-                Debug.Log("true");
-            else
-            {
-            }
-        }
+   
         
         
-        
-        #endregion
         
     }
 
-    public void Spawn_Enemy_Type()
+    public void PlayerPosition(Transform transform)
     {
+        Player.transform.position = transform.position;
     }
-
-
-    public void set_enemy(string enemy_name)
-    {
-        Enemy_Name = enemy_name;
-    }
-
-
+ 
     
     
     

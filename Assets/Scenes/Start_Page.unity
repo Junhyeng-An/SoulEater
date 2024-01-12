@@ -2779,7 +2779,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 16317495
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -6531,17 +6531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bea748443baaf4a81a0522286c2328fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cur_Hp: 0
-  enemy_Prefab:
-  - {fileID: 6983596940868447169, guid: 6592434b14cbc634b8575627bf6cb3fd, type: 3}
-  - {fileID: 8650634146397988401, guid: afea87827d9724041aa9ba6a8d3f0d75, type: 3}
-  - {fileID: 5506075672461619230, guid: c3628db66917cb64e808b88a176d21d6, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  Player: {fileID: 884594756}
 --- !u!1 &2079112172
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,34 +8,8 @@ using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
-    private const int SIZE = 9;
-
-    [SerializeField] public int Cur_Hp;
+    public GameObject Player;
     
-    
-    public GameObject[] enemy_Prefab = new GameObject[SIZE];
-    private string[] enemy_Name = new string[SIZE];
-
-    
-    
-    
-    
-    private void Awake()
-    {
-        #region Initialize_enemy_name
-
-        for (int i = 0; i < SIZE; i++)
-        {
-            enemy_Name[i] = enemy_Prefab[i].ToString();
-        }
-        
-
-        #endregion
-    }
-    
-    
-
-
     #region SingleTon
     
     private static CharacterManager instance = null;
@@ -52,6 +26,42 @@ public class CharacterManager : MonoBehaviour
         }
     }
     #endregion
+    
+    
+    
+    private void Awake()
+    {
+        
+        #region Singleton
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+        DontDestroyOnLoad(this.gameObject);
+        #endregion
+        
+   
+        
+        
+        
+    }
+
+    public void PlayerPosition(Transform transform)
+    {
+        Player.transform.position = transform.position;
+    }
+ 
+    
+    
+    
+    
+    
+
+
 
     
 }

@@ -11,33 +11,8 @@ public class Start_UI : MonoBehaviour
 {
     public Button Load_Button;
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    private void Start()
-    {
-        if (DataManager.Instance.Save_File_Exist())
-            Load_Button.gameObject.SetActive(true);
-        else
-            Load_Button.gameObject.SetActive(false);
-    }
 
-    public void load_Game()
-    {
-        DataManager.Instance.LoadData();
-        SceneManager.LoadScene("Dorf");
-    }
-
-    public void new_Game()
+    private void Awake()
     {
         #region Player_Data
         DataManager.Instance._PlayerData.soul_Count = 0;
@@ -73,6 +48,26 @@ public class Start_UI : MonoBehaviour
         #endregion
 
 
+    }
+
+
+    private void Start()
+    {
+        if (DataManager.Instance.Save_File_Exist())
+            Load_Button.gameObject.SetActive(true);
+        else
+            Load_Button.gameObject.SetActive(false);
+    }
+
+    public void load_Game()
+    {
+        DataManager.Instance.LoadData();
+        SceneManager.LoadScene("Dorf");
+    }
+
+    public void new_Game()
+    {
+    
 
         
 

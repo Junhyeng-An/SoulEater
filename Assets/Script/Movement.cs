@@ -43,7 +43,6 @@ public class Movement : MonoBehaviour
         
         
         
-        
         rigid = GetComponent<Rigidbody2D>();
         line = GetComponent<LineRenderer>();
         timeScale = GameObject.Find("GameManager").GetComponent<TimeScale>();
@@ -51,6 +50,7 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
+        
         Vector2 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition); //mouse position
         angle = Mathf.Atan2(mouse.y - transform.position.y, mouse.x - transform.position.x);
         Debug.DrawRay(transform.position, Vector2.down, new Color(1, 0, 0));
@@ -89,6 +89,9 @@ public class Movement : MonoBehaviour
         {
             if (dashForce < 5.0f)
                 dashForce += 0.1f;
+            
+            
+            
         }
     }
     public void Jump()

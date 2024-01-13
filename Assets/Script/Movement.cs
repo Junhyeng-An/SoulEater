@@ -22,7 +22,7 @@ public class Movement : MonoBehaviour
     bool isThrowing = false;
     bool isDown = false;
     float time_down = 0;
-
+    float Dash_D;
     public Vector2 posMid;
 
     Rigidbody2D rigid;
@@ -41,7 +41,7 @@ public class Movement : MonoBehaviour
         jumpForce = DataManager.Instance._PlayerData.jump;
         speed = DataManager.Instance._PlayerData.speed;
         
-        
+        Dash_D = DataManager.Instance._Player_Skill.Dash;
         
         
         rigid = GetComponent<Rigidbody2D>();
@@ -51,6 +51,9 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
+        Dash_D = DataManager.Instance._Player_Skill.Dash;
+        Debug.Log(Dash_D);
+        Debug.Log(dashForce);
         Vector2 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition); //mouse position
         angle = Mathf.Atan2(mouse.y - transform.position.y, mouse.x - transform.position.x);
         Debug.DrawRay(transform.position, Vector2.down, new Color(1, 0, 0));
@@ -87,7 +90,7 @@ public class Movement : MonoBehaviour
         }
         else
         {
-            if (dashForce < 5.0f)
+            if (dashForce < Dash_D)
                 dashForce += 0.1f;
         }
     }

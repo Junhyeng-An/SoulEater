@@ -8,20 +8,18 @@ using UnityEngine;
 public class Map_Create : MonoBehaviour
 {
     bool[] Room = new bool[9];
-    int start_pos, cur_pos, count = 0;
-    bool Up,Down,Left,Right = false;
+    int start_pos, cur_pos, count;
     bool[] Direction = new bool[4];
-    int Num_true = 4;
+    int Num_true;
 
     public List<Transform> mapPositions; // ¸ÊÀÇ À§Ä¡ ¸®½ºÆ®
     public GameObject mapPrefab; // ¸Ê ÇÁ¸®ÆÕ
 
     void Start()
     {
-        start_pos = UnityEngine.Random.Range(1, 10);
+        /*start_pos = UnityEngine.Random.Range(1, 10);
         cur_pos = start_pos;
-
-        Debug.Log("cur = " + cur_pos);
+        count = 0;
 
         for (int i = 0; i < Direction.Length; i++)
         {
@@ -34,12 +32,34 @@ public class Map_Create : MonoBehaviour
 
         Room[cur_pos - 1] = true;
         Pos_Check();
-        map();
+        map();*/
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.M))
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                Destroy(GameObject.Find("Room(Clone)"));
+            }
+
+            start_pos = UnityEngine.Random.Range(1, 10);
+            cur_pos = start_pos;
+            for (int i = 0; i < Direction.Length; i++)
+            {
+                Direction[i] = true;
+            }
+            for (int i = 0; i < Room.Length; i++)
+            {
+                Room[i] = false;
+            }
+
+            Room[cur_pos - 1] = true;
+            Pos_Check();
+            map();
+        }
     }
 
     void Pos_Check()
@@ -104,20 +124,13 @@ public class Map_Create : MonoBehaviour
                     Direction[0] = false;
                 }
 
-                Debug.Log("up = " + Direction[0]);
-                Debug.Log("down = " + Direction[1]);
-                Debug.Log("left = " + Direction[2]);
-                Debug.Log("right = " + Direction[3]);
-
                 num_Random();
             }
+
             test++;
 
             if (test >= 1000)
-            {
-                Debug.Log("roop 1 error");
                 break;
-            }
         }
     }
 
@@ -125,23 +138,6 @@ public class Map_Create : MonoBehaviour
     {
         Room[i+num] = true;
         count++;
-
-        Debug.Log("room" + (i + num + 1) + " = " + Room[i + num]);
-        Debug.Log("count = " + count);
-    }
-
-    void Next(int i, int num)
-    {
-        Room[i + num] = true;
-        count++;
-    }
-
-    void n_Random(bool U, bool D, bool L, bool R)
-    {
-        if (U == true) { Jump(cur_pos - 1, -3); }
-        if (D == true) { Jump(cur_pos - 1, 3); }
-        if (L == true) { Next(cur_pos - 1, -1); }
-        if (R == true) { Next(cur_pos - 1, 1); }
     }
 
     void num_Random()
@@ -149,7 +145,6 @@ public class Map_Create : MonoBehaviour
         int num_r = Mathf.Min(4 - count, Num_true);
 
         num_r= UnityEngine.Random.Range(1, num_r + 1);
-        Debug.Log("ran_count = " + num_r);
 
         int test = 0;
         for (int i = num_r; i>0;) 
@@ -158,8 +153,6 @@ public class Map_Create : MonoBehaviour
 
             if (Direction[ran] == true)
             {
-                Debug.Log("ran = " + ran);
-
                 if (ran == 0)
                 {
                     Direction[ran] = false;
@@ -168,11 +161,7 @@ public class Map_Create : MonoBehaviour
                     Jump(cur_pos - 1, -3);
 
                     if (i == 0)
-                    {
                         cur_pos -= 3;
-
-                        Debug.Log("cur = " + cur_pos);
-                    }
                 }
                 if (ran == 1)
                 {
@@ -182,11 +171,7 @@ public class Map_Create : MonoBehaviour
                     Jump(cur_pos - 1, 3);
 
                     if (i == 0)
-                    {
                         cur_pos += 3;
-
-                        Debug.Log("cur = " + cur_pos);
-                    }
                 }
                 if (ran == 2)
                 {
@@ -196,11 +181,7 @@ public class Map_Create : MonoBehaviour
                     Jump(cur_pos - 1, -1);
 
                     if (i == 0)
-                    {
                         cur_pos -= 1;
-
-                        Debug.Log("cur = " + cur_pos);
-                    }
                 }
                 if (ran == 3)
                 {
@@ -210,21 +191,14 @@ public class Map_Create : MonoBehaviour
                     Jump(cur_pos - 1, 1);
 
                     if (i == 0)
-                    {
                         cur_pos += 1;
-
-                        Debug.Log("cur = " + cur_pos);
-                    }
                 }
             }
 
             test++;
 
             if (test >= 100)
-            {
-                Debug.Log("roop 2 error");
                 break;
-            }
         }
     }
 
@@ -234,7 +208,6 @@ public class Map_Create : MonoBehaviour
         {
             if (Room[i] == true)
             {
-                Debug.Log("Room = " + (i + 1));
                 GameObject map = Instantiate(mapPrefab, mapPositions[i].position, Quaternion.identity);
                 map.SetActive(true);
             }

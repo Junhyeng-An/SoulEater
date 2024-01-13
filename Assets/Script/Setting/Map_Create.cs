@@ -7,18 +7,18 @@ using UnityEngine;
 
 public class Map_Create : MonoBehaviour
 {
-    bool[] Room = new bool[9];
+    bool[] Room = new bool[9]; //방 개수
     int start_pos, cur_pos, count = 0;
     bool Up,Down,Left,Right = false;
-    bool[] Direction = new bool[4];
-    int Num_true = 4;
+    bool[] Direction = new bool[4]; //방향개수
+    int Num_true = 4; //참 개수
 
     public List<Transform> mapPositions; // 맵의 위치 리스트
     public GameObject mapPrefab; // 맵 프리팹
 
     void Start()
     {
-        start_pos = UnityEngine.Random.Range(1, 10);
+        start_pos = UnityEngine.Random.Range(4, 13);
         cur_pos = start_pos;
         for (int i = 0; i < Direction.Length; i++)
         {
@@ -50,7 +50,7 @@ public class Map_Create : MonoBehaviour
                     Num_true -= 1;
                     Direction[3] = false;
                 }
-                else if (Room[cur_pos + 1] == true && cur_pos % 3 != 0)
+                else if (Room[cur_pos + 1] == true)
                 {
                     Num_true -= 1;
                     Direction[3] = false;
@@ -62,7 +62,7 @@ public class Map_Create : MonoBehaviour
                     Num_true -= 1;
                     Direction[2] = false;
                 }
-                else if (Room[cur_pos - 1] == true && cur_pos % 3 != 1)
+                else if (Room[cur_pos - 1] == true)
                 {
                     Num_true -= 1;
                     Direction[2] = false;
@@ -74,7 +74,7 @@ public class Map_Create : MonoBehaviour
                     Num_true -= 1;
                     Direction[1] = false;
                 }
-                else if(Room[cur_pos + 3] == true && cur_pos + 3 <= Room.Length)
+                else if(Room[cur_pos + 3] == true)
                 {
                     Num_true -= 1;
                     Direction[1] = false;
@@ -86,7 +86,7 @@ public class Map_Create : MonoBehaviour
                     Num_true -= 1;
                     Direction[0] = false;
                 }
-                else if(Room[cur_pos - 3] == true && cur_pos - 3 >= 1)
+                else if(Room[cur_pos - 3] == true)
                 {
                     Num_true -= 1;
                     Direction[0] = false;
@@ -164,11 +164,11 @@ public class Map_Create : MonoBehaviour
 
     void map()
     {
-        for (int i = 1; i <= 9; i++)
+        for (int i = 4; i <= 12; i++)
         {
             if (Room[i] == true)
             {
-                GameObject map = Instantiate(mapPrefab, mapPositions[i-1].position, Quaternion.identity);
+                GameObject map = Instantiate(mapPrefab, mapPositions[i-3].position, Quaternion.identity);
             }
         }
     }

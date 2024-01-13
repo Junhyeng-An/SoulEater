@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,24 +6,23 @@ using TMPro;
 
 public class Skill_Select : MonoBehaviour
 {
-    private List<Skill_Card> skillCards = new List<Skill_Card>();  // List of skill cards
-    List<Skill_Card> selectedCards = new List<Skill_Card>(); // List of selected skill cards
+    private List<Skill_Card> skillCards = new List<Skill_Card>();  // 스킬 카드 목록
+    List<Skill_Card> selectedCards = new List<Skill_Card>(); // 선택된 스킬 카드 목록
 
     public List<Text> Card;
     public List<Button> Button;
-    public List<Image> CardImages; // UI �̹��� ������Ʈ ����Ʈ
+    public List<Image> CardImages; // UI 이미지 표시용 이미지 목록
     bool isShow = false;
 
     class Skill_Card
     {
-        public string name; // Skill name
-        public int card_level; //0 = rare 1 = epic 2 = legendary
-        public string skillContent; // Skill description
-        public float upgradeCount; // Add ability
-        public int skill_level; //skill_level
+        public string name; // 스킬 이름
+        public int card_level; // 0 = 레어, 1 = 에픽, 2 = 레전더리
+        public string skillContent; // 스킬 설명
+        public float upgradeCount; // 능력 추가
+        public int skill_level; // 스킬 레벨
 
-
-        public Skill_Card(string N, int CL ,string SC, float UC, int SL)
+        public Skill_Card(string N, int CL, string SC, float UC, int SL)
         {
             name = N;
             card_level = CL;
@@ -46,78 +45,79 @@ public class Skill_Select : MonoBehaviour
     {
 
     }
+
     void GenerateSkillCards()
     {
-        // ���ο� ī�带 �����ϱ� ���� ������ ī�� ����Ʈ�� ���
+        // 전체 카드 목록 초기화
         skillCards.Clear();
 
-        // ���� ī�带 85% Ȯ��
+        // 레어 카드 85%
         for (int i = 0; i < 85; i++)
         {
-            skillCards.Add(new Skill_Card("Healing", 0, "��� �� HP�� ȸ���մϴ�", 10, 1));
-            skillCards.Add(new Skill_Card("Absorption", 0, "���� �� HP�� ȸ���մϴ�", 10, 1));
-            skillCards.Add(new Skill_Card("Poison", 0, "���� �� ������ �� �������� �����ϴ�", 10, 1));
-            skillCards.Add(new Skill_Card("Dash Distance", 0, "�뽬�Ÿ��� �����մϴ�", 10, 1));
-            skillCards.Add(new Skill_Card("Max Health", 0, "Į ���� �����մϴ�", 10, 1));
-            skillCards.Add(new Skill_Card("Discount", 0, "���� ��ȭ����� �����մϴ�", 10, 1));
+                                        //스킬이름 , 등급기준 , 스킬내용 , 강화량 ,강화수치
+            skillCards.Add(new Skill_Card("Healing", 0, "체력을 회복합니다", 10, 1));
+            skillCards.Add(new Skill_Card("Absorption", 0, "체력을 흡수합니다", 10, 1));
+            skillCards.Add(new Skill_Card("Poison", 0, "적에게 독을 입힙니다", 10, 1));
+            skillCards.Add(new Skill_Card("Dash Distance", 0, "대쉬 거리를 늘립니다", 1, 1)); //clear
+            skillCards.Add(new Skill_Card("Max Health", 0, "최대 체력을 증가시킵니다", 20, 1));
+            skillCards.Add(new Skill_Card("Discount", 0, "상점에서 할인을 받습니다", 10, 1));
         }
 
-        // Epic cards with a 13% chance
+        // 에픽 카드 13%
         for (int i = 0; i < 13; i++)
         {
-            skillCards.Add(new Skill_Card("Healing", 1, "��� �� HP�� ȸ���մϴ�", 20, 2));
-            skillCards.Add(new Skill_Card("Absorption", 1, "���� �� HP�� ȸ���մϴ�", 20, 2));
-            skillCards.Add(new Skill_Card("Poison", 1, "���� �� ������ �� �������� �����ϴ�", 20, 2));
-            skillCards.Add(new Skill_Card("Dash Distance", 1, "�뽬�Ÿ��� �����մϴ�", 20, 2));
-            skillCards.Add(new Skill_Card("Max Health", 1, "Į ���� �����մϴ�", 20, 2));
-            skillCards.Add(new Skill_Card("Discount", 1, "���� ��ȭ����� �����մϴ�", 20, 2));
+            skillCards.Add(new Skill_Card("Healing", 1, "체력을 회복합니다", 20, 2));
+            skillCards.Add(new Skill_Card("Absorption", 1, "체력을 흡수합니다", 20, 2));
+            skillCards.Add(new Skill_Card("Poison", 1, "적에게 독을 입힙니다", 20, 2));
+            skillCards.Add(new Skill_Card("Dash Distance", 1, "대쉬 거리를 늘립니다", 2, 2));
+            skillCards.Add(new Skill_Card("Max Health", 1, "최대 체력을 증가시킵니다", 50, 2));
+            skillCards.Add(new Skill_Card("Discount", 1, "상점에서 할인을 받습니다", 20, 2));
         }
 
-        // Legendary cards with a 2% chance
+        // 레전더리 카드 2%
         for (int i = 0; i < 2; i++)
         {
-            skillCards.Add(new Skill_Card("Healing", 2, "��� �� HP�� ȸ���մϴ�", 30, 3));
-            skillCards.Add(new Skill_Card("Absorption", 2, "���� �� HP�� ȸ���մϴ�", 30, 3));
-            skillCards.Add(new Skill_Card("Poison", 2, "���� �� ������ �� �������� �����ϴ�", 30, 3));
-            skillCards.Add(new Skill_Card("Dash Distance", 2, "�뽬�Ÿ��� �����մϴ�", 30, 3));
-            skillCards.Add(new Skill_Card("Max Health", 2, "Į ���� �����մϴ�", 30, 3));
-            skillCards.Add(new Skill_Card("Discount", 2, "���� ��ȭ����� �����մϴ�", 30, 3));
+            skillCards.Add(new Skill_Card("Healing", 2, "체력을 회복합니다", 30, 3));
+            skillCards.Add(new Skill_Card("Absorption", 2, "체력을 흡수합니다", 30, 3));
+            skillCards.Add(new Skill_Card("Poison", 2, "적에게 독을 입힙니다", 30, 3));
+            skillCards.Add(new Skill_Card("Dash Distance", 2, "대쉬 거리를 늘립니다", 3, 3));
+            skillCards.Add(new Skill_Card("Max Health", 2, "최대 체력을 증가시킵니다", 100, 3));
+            skillCards.Add(new Skill_Card("Discount", 2, "상점에서 할인을 받습니다", 30, 3));
         }
 
+        // 다양한 스킬 추가 및 수정 가능
 
-        // �ٸ� ��ų�� ���� ��ϵ� �����ϰ� �߰� ����
-
-        // ��� ī�带 ������ �Ŀ� ī�� ����Ʈ�� ����
+        // 전체 카드를 섞음
         skillCards = ShuffleList(skillCards);
     }
 
     void CardShuffle()
     {
-        List<int> selectedIndices = new List<int>(); // ���õ� �ε��� ����Ʈ
+        List<int> selectedIndices = new List<int>(); // 선택된 인덱스 목록
         for (int i = 0; i < 3; i++)
         {
             int randomIndex;
 
-            // ������ �ε��� �Ǵ� ������ �̸��� ī�尡 �ٽ� ���õ��� �ʵ��� ����
+            // 중복된 카드가 선택되지 않도록 랜덤한 인덱스 선택
             do
             {
                 randomIndex = Random.Range(0, skillCards.Count);
             } while (selectedIndices.Contains(randomIndex) || IsNameAlreadySelected(skillCards[randomIndex].name));
 
-            // ���õ� �ε����� ����Ʈ�� �߰��ϰ� �ش��ϴ� ī�带 selectedCards ����Ʈ�� �߰�
+            // 선택된 인덱스를 목록에 추가하고 해당 카드를 선택된 목록에 추가
             selectedIndices.Add(randomIndex);
             selectedCards.Add(skillCards[randomIndex]);
         }
     }
 
-    // ���õ� ī�� ������ ȭ�鿡 ǥ���ϴ� �Լ�
+    // 선택된 카드를 화면에 표시하는 함수
     void CardShow()
     {
         for (int i = 0; i < selectedCards.Count; i++)
         {
-            Card[i].text = $"{selectedCards[i].name}\n\n{selectedCards[i].skillContent}\n\n���׷��̵� Ƚ��: {selectedCards[i].upgradeCount}";
+            Card[i].text = $"{selectedCards[i].name}\n\n{selectedCards[i].skillContent}\n\n능력 강화량: {selectedCards[i].upgradeCount}";
 
-            // ��޿� ���� �ٸ� ������ ����
+            // 카드 색상 설정
             SetCardColor(i, selectedCards[i].card_level);
         }
     }
@@ -126,7 +126,7 @@ public class Skill_Select : MonoBehaviour
     {
         Skill_Card selectedSkill = selectedCards[selectedIndex];
 
-        // Apply the effects based on the selected skill
+        // 선택된 스킬에 따라 효과 적용
         switch (selectedSkill.name)
         {
             case "Healing":
@@ -141,12 +141,11 @@ public class Skill_Select : MonoBehaviour
                 DataManager.Instance._Player_Skill.poison_damage += selectedSkill.upgradeCount;
                 DataManager.Instance._Player_Skill.Poision_Damage_Level += 1;
                 break;
-            case "Dash":
+            case "Dash Distance":
                 DataManager.Instance._Player_Skill.Dash += selectedSkill.upgradeCount;
                 DataManager.Instance._Player_Skill.Dash += 1;
                 break;
             case "Max Health":
-                DataManager.Instance._Player_Skill.MaxHP += selectedSkill.upgradeCount;
                 DataManager.Instance._Player_Skill.MaxHP_Level += 1;
                 break;
             case "Discount":
@@ -154,12 +153,9 @@ public class Skill_Select : MonoBehaviour
                 DataManager.Instance._Player_Skill.Discount_Level += 1;
                 break;
         }
-
-
-      
     }
 
-    public void ButtonClick(int buttonIndex) // Button event, calls CardEffect(int selectedIndex)
+    public void ButtonClick(int buttonIndex) // 버튼 클릭 이벤트, CardEffect(int selectedIndex) 호출
     {
         CardEffect(buttonIndex);
         DataManager.Instance._PlayerData.soul_Count -= SelectManager.Instance.upgrade_soul;
@@ -172,13 +168,13 @@ public class Skill_Select : MonoBehaviour
 
         switch (cardLevel)
         {
-            case 0: // ����
+            case 0: // 레어
                 cardImage.color = Color.blue;
                 break;
-            case 1: // ����
+            case 1: // 에픽
                 cardImage.color = Color.magenta;
                 break;
-            case 2: // ��������
+            case 2: // 레전더리
                 cardImage.color = Color.yellow;
                 break;
             default:
@@ -192,6 +188,7 @@ public class Skill_Select : MonoBehaviour
         CardShuffle();
         CardShow();
     }
+
     List<T> ShuffleList<T>(List<T> inputList)
     {
         List<T> randomList = new List<T>();
@@ -200,16 +197,17 @@ public class Skill_Select : MonoBehaviour
         int randomIndex = 0;
         while (inputList.Count > 0)
         {
-            randomIndex = r.Next(0, inputList.Count); // ����Ʈ���� ������ ��ü ����
-            randomList.Add(inputList[randomIndex]); // ���ο� ���� ����Ʈ�� �߰�
-            inputList.RemoveAt(randomIndex); // �ߺ��� ���ϱ� ���� ����
+            randomIndex = r.Next(0, inputList.Count);
+            randomList.Add(inputList[randomIndex]);
+            inputList.RemoveAt(randomIndex);
         }
 
-        return randomList; // ���ο� ���� ����Ʈ ��ȯ
+        return randomList;
     }
+
     bool IsNameAlreadySelected(string cardName)
     {
-        // �̹� ���õ� ī��� �߿� ������ �̸��� ī�尡 �ִ��� Ȯ��
+        // 이미 선택된 카드들 중에서 중복된 이름이 있는지 확인
         foreach (Skill_Card selectedCard in selectedCards)
         {
             if (selectedCard.name == cardName)

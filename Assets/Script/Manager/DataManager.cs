@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using PixelCrushers.DialogueSystem.UnityGUI.Wrappers;
+using UnityEngine.Experimental.GlobalIllumination;
 
 public class Player_Data
 {
@@ -10,6 +12,7 @@ public class Player_Data
     public int soul_Count;
     public float speed;
     public float jump;
+    public string controll_enemy;
 }
 
 public class Sword_Data
@@ -71,8 +74,10 @@ public class DataManager : MonoBehaviour
     public Sword_Data _SwordData = new Sword_Data();
     public Player_Skill _Player_Skill = new Player_Skill();
     public Sound_Volume _Sound_Volume = new Sound_Volume();
-       
-    
+
+
+
+    public bool Load = false;
     
     
     private static DataManager instance = null;

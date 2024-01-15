@@ -61,6 +61,7 @@ public class Start_UI : MonoBehaviour
 
     public void load_Game()
     {
+        DataManager.Instance.Load = true;
         DataManager.Instance.LoadData();
         SceneManager.LoadScene("Dorf");
     }

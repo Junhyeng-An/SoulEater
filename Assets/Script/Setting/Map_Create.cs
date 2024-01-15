@@ -16,7 +16,7 @@ public class Map_Create : MonoBehaviour
     GameObject[] map;
     GameObject[,] way;
 
-    Vector2[] mapPositions; // ¸ÊÀÇ À§Ä¡ ¸®½ºÆ®
+    Vector2[] mapPositions; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½Æ®
     Vector2[,] wayPositions;
 
     public int maxCount;
@@ -30,14 +30,13 @@ public class Map_Create : MonoBehaviour
 
     GameObject map_start, map_end;
 
-    GameObject[] mapPrefab; // ¸Ê ÇÁ¸®ÆÕ
+    GameObject[] mapPrefab; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     GameObject wayPrefab;
     GameObject curPrefab;
     GameObject startPrefab;
     GameObject endPrefab;
 
     GameObject miniMap;
-    GameObject cam;
 
     int Num_true;
     bool error = false;
@@ -75,6 +74,8 @@ public class Map_Create : MonoBehaviour
 
     void Awake()
     {
+     
+        
         map_MaxCount = map_width * map_height;
         Room = new bool[map_MaxCount];
         Road = new bool[map_MaxCount, 4];
@@ -94,7 +95,12 @@ public class Map_Create : MonoBehaviour
         startPrefab = GameObject.Find("Start_Position");
         endPrefab = GameObject.Find("End_Position");
         miniMap = GameObject.Find("Mini Map");
-        cam = GameObject.FindGameObjectWithTag("MainCamera");
+        
+        
+        MapReroll();
+        
+        CharacterManager.Instance.spawnPosition = mapPositions[room_turn[0]];
+        Debug.Log( mapPositions[room_turn[0]]);
     }
 
     void MapReroll()
@@ -171,9 +177,6 @@ public class Map_Create : MonoBehaviour
         }
         
 
-        miniMap.transform.position = new Vector3(curPrefab.transform.position.x, curPrefab.transform.position.y, -500);
-        cam.transform.position = miniMap.transform.position;
-        //cam.transform.position = new Vector3((map_width - 1) * map_distance / 2, (map_height - 1) * map_distance / 2, -10);
     }
 
     void Pos_Check()
@@ -190,7 +193,7 @@ public class Map_Create : MonoBehaviour
 
             if (count < maxCount)
             {
-                //¿À¸¥ÂÊ
+                //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 if (main_way % map_width == 0)
                 {
                     Num_true -= 1;
@@ -202,7 +205,7 @@ public class Map_Create : MonoBehaviour
                     Direction[3] = false;
                 }
 
-                //¿ÞÂÊ
+                //ï¿½ï¿½ï¿½ï¿½
                 if (main_way % map_width == 1)
                 {
                     Num_true -= 1;
@@ -214,7 +217,7 @@ public class Map_Create : MonoBehaviour
                     Direction[2] = false;
                 }
 
-                //¾Æ·¡ÂÊ
+                //ï¿½Æ·ï¿½ï¿½ï¿½
                 if (main_way + map_width > Room.Length)
                 {
                     Num_true -= 1;
@@ -226,7 +229,7 @@ public class Map_Create : MonoBehaviour
                     Direction[1] = false;
                 }
 
-                //À§ÂÊ
+                //ï¿½ï¿½ï¿½ï¿½
                 if (main_way - map_width < 1)
                 {
                     Num_true -= 1;

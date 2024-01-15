@@ -9,6 +9,9 @@ using UnityEngine;
 public class CharacterManager : MonoBehaviour
 {
     public GameObject Player;
+
+    public Vector2 spawnPosition;
+    
     
 
     
@@ -53,6 +56,11 @@ public class CharacterManager : MonoBehaviour
     public void PlayerPosition(Transform transform)
     {
         Player.transform.position = transform.position;
+    }
+
+    public void PlayerPosition(Vector3 pos)
+    {
+        Player.transform.position = pos;
     }
  
     

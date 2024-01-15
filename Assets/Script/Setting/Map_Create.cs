@@ -7,20 +7,109 @@ using UnityEngine;
 
 public class Map_Create : MonoBehaviour
 {
-    bool[] Room = new bool[9];
-    int start_pos, cur_pos, count;
+    public int map_width;
+    public int map_height;
+    int map_MaxCount;
+
+    bool[] Room;
+    bool[,] Road;
+    GameObject[] map;
+    GameObject[,] way;
+
+    Vector2[] mapPositions; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½Æ®
+    Vector2[,] wayPositions;
+
+    public int maxCount;
+    int[] room_turn;
+
+    public float map_distance;
+
+    int start_pos, main_way, count;
+
     bool[] Direction = new bool[4];
+
+    GameObject map_start, map_end;
+
+    GameObject[] mapPrefab; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    GameObject wayPrefab;
+    GameObject curPrefab;
+    GameObject startPrefab;
+    GameObject endPrefab;
+
+    GameObject miniMap;
+
     int Num_true;
+    bool error = false;
 
-    public List<Transform> mapPositions; // ¸ÊÀÇ À§Ä¡ ¸®½ºÆ®
-    public GameObject mapPrefab; // ¸Ê ÇÁ¸®ÆÕ
-
-    void Start()
+    void MapPos()
     {
-        /*start_pos = UnityEngine.Random.Range(1, 10);
-        cur_pos = start_pos;
-        count = 0;
+        int pos = 0;
+        for(int i = 0; i < map_height; i++)
+        {
+            for(int j = 0; j <  map_width; j++)
+            {
+                mapPositions[pos] = new Vector2(j * map_distance, i * map_distance);
+                pos++;
+            }
+        }
+    }
+    void WayPos()
+    {
+        for(int i = 0; i<map_MaxCount; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                float ud = 0;
+                float lr = 0;
 
+                if (j == 0) ud = map_distance / 2;
+                if (j == 1) ud = - map_distance / 2;
+                if (j == 2) lr = - map_distance / 2;
+                if (j == 3) lr = map_distance / 2;
+
+                wayPositions[i, j] = mapPositions[i] + new Vector2(lr, ud);
+            }
+        }
+    }
+
+    void Awake()
+    {
+     
+        
+        map_MaxCount = map_width * map_height;
+        Room = new bool[map_MaxCount];
+        Road = new bool[map_MaxCount, 4];
+        map = new GameObject[map_MaxCount];
+        way = new GameObject[map_MaxCount, 4];
+
+        mapPositions = new Vector2[map_MaxCount];
+        wayPositions = new Vector2[map_MaxCount, 4];
+
+        room_turn = new int[maxCount];
+
+        Transform map_type = GameObject.Find("Map_Type").transform;
+        mapPrefab = new GameObject[map_type.childCount];
+        for (int i = 0; i < map_type.childCount; i++) { mapPrefab[i] = map_type.GetChild(i).gameObject; }
+        wayPrefab = GameObject.Find("Way");
+        curPrefab = GameObject.Find("Cur_Position");
+        startPrefab = GameObject.Find("Start_Position");
+        endPrefab = GameObject.Find("End_Position");
+        miniMap = GameObject.Find("Mini Map");
+        
+        
+        MapReroll();
+        
+        CharacterManager.Instance.spawnPosition = mapPositions[room_turn[0]];
+        Debug.Log( mapPositions[room_turn[0]]);
+    }
+
+    void MapReroll()
+    {
+        Clear();
+
+        start_pos = UnityEngine.Random.Range(1, map_MaxCount + 1);
+        main_way = start_pos;
+        count = 0;
         for (int i = 0; i < Direction.Length; i++)
         {
             Direction[i] = true;
@@ -29,44 +118,72 @@ public class Map_Create : MonoBehaviour
         {
             Room[i] = false;
         }
-
-        Room[cur_pos - 1] = true;
+        for (int i = 0; i < map_MaxCount; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                Road[i, j] = false;
+            }
+        }
+        Jump(main_way - 1, 0);
         Pos_Check();
-        map();*/
+        if (error == false)
+        {
+            Map_open();
+            curPrefab.transform.position = mapPositions[start_pos - 1];
+        }
     }
-
+    void Clear()
+    {
+        for (int i = 0; i < map.Length; i++)
+        {
+            if (map[i] != null)
+                Destroy(map[i]);
+        }
+        for (int i = 0; i < map.Length; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                if (way[i, j] != null)
+                    Destroy(way[i, j]);
+            }
+        }
+        Destroy(map_start);
+        Destroy(map_end);
+    }
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.M))
+        if(Input.GetKeyDown(KeyCode.M) && error == false)
         {
-            for (int i = 0; i < 10; i++)
-            {
-                Destroy(GameObject.Find("Room(Clone)"));
-            }
-
-            start_pos = UnityEngine.Random.Range(1, 10);
-            cur_pos = start_pos;
-            for (int i = 0; i < Direction.Length; i++)
-            {
-                Direction[i] = true;
-            }
-            for (int i = 0; i < Room.Length; i++)
-            {
-                Room[i] = false;
-            }
-
-            Room[cur_pos - 1] = true;
-            Pos_Check();
-            map();
+            MapReroll();
         }
+
+        if(Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            curPrefab.transform.position += Vector3.up * map_distance;
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            curPrefab.transform.position += Vector3.down * map_distance;
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            curPrefab.transform.position += Vector3.left * map_distance;
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            curPrefab.transform.position += Vector3.right * map_distance;
+        }
+        
+
     }
 
     void Pos_Check()
     {
         int test = 0;
 
-        for (count = 0; count < 4;)
+        for (count = 1; count < maxCount;)
         {
             for (int i = 0; i < Direction.Length; i++)
             {
@@ -74,78 +191,114 @@ public class Map_Create : MonoBehaviour
             }
             Num_true = 4;
 
-            if (count < 4)
+            if (count < maxCount)
             {
-                //¿À¸¥ÂÊ
-                if (cur_pos % 3 == 0)
+                //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                if (main_way % map_width == 0)
                 {
                     Num_true -= 1;
                     Direction[3] = false;
                 }
-                else if (Room[cur_pos] == true)
+                else if (Room[main_way] == true)
                 {
                     Num_true -= 1;
                     Direction[3] = false;
                 }
 
-                //¿ÞÂÊ
-                if (cur_pos % 3 == 1)
+                //ï¿½ï¿½ï¿½ï¿½
+                if (main_way % map_width == 1)
                 {
                     Num_true -= 1;
                     Direction[2] = false;
                 }
-                else if (Room[cur_pos - 2] == true)
+                else if (Room[main_way - 2] == true)
                 {
                     Num_true -= 1;
                     Direction[2] = false;
                 }
 
-                //¾Æ·¡ÂÊ
-                if (cur_pos + 3 > Room.Length)
+                //ï¿½Æ·ï¿½ï¿½ï¿½
+                if (main_way + map_width > Room.Length)
                 {
                     Num_true -= 1;
                     Direction[1] = false;
                 }
-                else if(Room[cur_pos + 2] == true)
+                else if(Room[main_way + map_width - 1] == true)
                 {
                     Num_true -= 1;
                     Direction[1] = false;
                 }
 
-                //À§ÂÊ
-                if (cur_pos - 3 < 1)
+                //ï¿½ï¿½ï¿½ï¿½
+                if (main_way - map_width < 1)
                 {
                     Num_true -= 1;
                     Direction[0] = false;
                 }
-                else if(Room[cur_pos - 4] == true)
+                else if(Room[main_way - map_width - 1] == true)
                 {
                     Num_true -= 1;
                     Direction[0] = false;
                 }
 
-                num_Random();
+                if (Num_true != 0)
+                {
+                    num_Random();
+                    error = false;
+                }
+                else
+                {
+                    error = true;
+                    Invoke("MapReroll", 0.01f);
+                    break;
+                }
             }
 
             test++;
 
-            if (test >= 1000)
+            if (test >= 100)
                 break;
         }
     }
 
     void Jump(int i,int num)
     {
-        Room[i+num] = true;
+        Debug.Log("cur = " + main_way);
+        room_turn[count] = i + num;
+        Room[i + num] = true;
         count++;
+
+        if (Mathf.Abs(num) == 1)
+        {
+            if(num > 0)
+            {
+                Road[main_way - 1, 3] = true;
+            }
+            else
+            {
+                Road[main_way - 1, 2] = true;
+            }
+        }
+        else if(num != 0)
+        {
+            if (num > 0)
+            {
+                Road[main_way - 1, 0] = true;
+            }
+            else
+            {
+                Road[main_way - 1, 1] = true;
+            }
+        }
     }
 
     void num_Random()
     {
-        int num_r = Mathf.Min(4 - count, Num_true);
+        int num_r = Mathf.Min(maxCount - count, Num_true);
 
-        num_r= UnityEngine.Random.Range(1, num_r + 1);
+        num_r = UnityEngine.Random.Range(1, num_r + 1);
 
+        Debug.Log("choice = " + num_r);
         int test = 0;
         for (int i = num_r; i>0;) 
         {
@@ -158,59 +311,94 @@ public class Map_Create : MonoBehaviour
                     Direction[ran] = false;
                     i--;
 
-                    Jump(cur_pos - 1, -3);
+                    Jump(main_way - 1, -map_width);
 
                     if (i == 0)
-                        cur_pos -= 3;
+                    {
+                        main_way -= map_width;
+                    }
                 }
                 if (ran == 1)
                 {
                     Direction[ran] = false;
                     i--;
 
-                    Jump(cur_pos - 1, 3);
+                    Jump(main_way - 1, map_width);
 
                     if (i == 0)
-                        cur_pos += 3;
+                    {
+                        main_way += map_width;
+                    }
                 }
                 if (ran == 2)
                 {
                     Direction[ran] = false;
                     i--;
 
-                    Jump(cur_pos - 1, -1);
+                    Jump(main_way - 1, -1);
 
                     if (i == 0)
-                        cur_pos -= 1;
+                    {
+                        main_way -= 1;
+                    }
                 }
                 if (ran == 3)
                 {
                     Direction[ran] = false;
                     i--;
 
-                    Jump(cur_pos - 1, 1);
+                    Jump(main_way - 1, 1);
 
                     if (i == 0)
-                        cur_pos += 1;
+                    {
+                        main_way += 1;
+                    }
                 }
             }
 
             test++;
 
-            if (test >= 100)
+            if (test >= 1000)
                 break;
         }
     }
 
-    void map()
+    void Map_open()
     {
-        for (int i = 0; i < 9; i++)
+        MapPos();
+        WayPos();
+        for (int i = 0; i < map_MaxCount; i++)
         {
             if (Room[i] == true)
             {
-                GameObject map = Instantiate(mapPrefab, mapPositions[i].position, Quaternion.identity);
-                map.SetActive(true);
+                int mapType = UnityEngine.Random.Range(0, mapPrefab.Length);
+                map[i] = Instantiate(mapPrefab[mapType], mapPositions[i], Quaternion.identity);
+                map[i].SetActive(true);
             }
         }
+        for (int i = 0; i < map_MaxCount; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                if (Road[i, j] == true)
+                {
+                    float angle;
+                    if (j == 0)      angle = 90;
+                    else if (j == 1) angle = -90;
+                    else if (j == 2) angle = 180;
+                    else             angle = 0;
+
+                    way[i, j] = Instantiate(wayPrefab, wayPositions[i, j], Quaternion.Euler(0, 0, angle));
+                    way[i, j].SetActive(true);
+                }
+
+            }
+        }
+
+        map_start = Instantiate(startPrefab, mapPositions[room_turn[0]], Quaternion.identity);
+        map_end = Instantiate(endPrefab, mapPositions[room_turn[maxCount - 1]], Quaternion.identity);
+
+        map_start.SetActive(true);
+        map_end.SetActive(true);
     }
 }

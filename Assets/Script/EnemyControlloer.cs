@@ -271,12 +271,10 @@ public class EnemyController : MonoBehaviour
 
             if (pos.x - playerPos.x < 0)
             {
-                transform.rotation = Quaternion.Euler(0f, 0f, 0f);
                 transform.Translate((pos - playerPos).normalized * runSpeed * Time.deltaTime);
             }
             else if (pos.x - playerPos.x >= 0)
             {
-                transform.rotation = Quaternion.Euler(0f, 180f, 0f);
                 transform.Translate((playerPos - pos).normalized * runSpeed * Time.deltaTime);
             }
         }
@@ -288,7 +286,7 @@ public class EnemyController : MonoBehaviour
 
         if (isPlayer == true)
         {
-            transform.position = playerPos - Vector2.up * 0.5f;
+            transform.position = playerPos;
 
             if (playerController.isThrowing == true)
             {
@@ -454,14 +452,6 @@ public class EnemyController : MonoBehaviour
         Vector2 frontVec = new Vector2(rigid.position.x + nextMove * 1.2f, rigid.position.y);
 
         RaycastHit2D rayHit = Physics2D.Raycast(frontVec, Vector3.down, 1, LayerMask.GetMask("Floor"));
-        if (pos.x - frontVec.x < 0)
-        {
-            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-        }
-        else if (pos.x - frontVec.x > 0)
-        {
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-        }
 
         if (rayHit.collider == null)
         {
@@ -506,16 +496,6 @@ public class EnemyController : MonoBehaviour
         float distance = Vector2.Distance(pos, playerPos);
         if (isAttake == false && CurHP > 0)
         {
-            // flip
-            if (pos.x - playerPos.x < 0)
-            {
-                transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-            }
-            else if (pos.x - playerPos.x >= 0)
-            {
-                transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-            }
-
             if (distance <= detect_distance && distance >= attack_distance)
             {
                 transform.position = Vector2.Lerp(pos, playerPos, 0.4f * Time.deltaTime);

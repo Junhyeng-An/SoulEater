@@ -53,7 +53,6 @@ public class SelectManager : MonoBehaviour
           {
               settingWindowInstance = Instantiate(settingWindowPrefab, Setting_Canvas);
           }
-          
     }
 
     

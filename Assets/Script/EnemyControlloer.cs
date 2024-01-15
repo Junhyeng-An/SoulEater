@@ -407,6 +407,7 @@ public class EnemyController : MonoBehaviour
                 if (col.gameObject.tag == "Attack" && gameObject.tag != "Controlled")
                 {
                     CurHP -= sword.damage_playerAttack;
+                    HP_Drain();
                     //stat.Stat("ST", 3);
 
                     isDamage = true;
@@ -458,7 +459,22 @@ public class EnemyController : MonoBehaviour
             gameObject.tag = "Disarmed";
         }
     }
-    
+
+    void HP_Drain()
+    {
+        GameObject controlledObject = GameObject.FindWithTag("Controlled");
+
+        if (controlledObject != null)
+        {
+            EnemyController enemyController = controlledObject.GetComponent<EnemyController>();
+
+            if (enemyController != null)
+            {
+                enemyController.CurHP += sword.damage_playerAttack * DataManager.Instance._Player_Skill.HP_Drain/100;
+            }
+        }
+    }
+
     /// [ AI ] ///
     void Idle() //Enemy ai Idle
     {

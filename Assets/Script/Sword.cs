@@ -14,6 +14,7 @@ public class Sword : MonoBehaviour
     public float limitSpeed;
 
     private StatController stat;
+    GameObject controlledObject;
     GameObject target;
     Rigidbody2D rigid;
     
@@ -49,7 +50,6 @@ public class Sword : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
 
         stat = GameObject.Find("GameManager").GetComponent<StatController>();
-
         stretch = 1.4f;
         stretch_Min = 1.4f;
         stretch_Max = 2.2f;
@@ -152,6 +152,7 @@ public class Sword : MonoBehaviour
             //stat.Stat("ST", -3);
             gameObject.tag = "Attack";
             GetComponent<SpriteRenderer>().color = Color.red;
+            
             attack_Ani = true;
         }
     }

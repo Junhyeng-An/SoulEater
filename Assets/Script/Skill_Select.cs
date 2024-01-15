@@ -130,34 +130,190 @@ public class Skill_Select : MonoBehaviour
         switch (selectedSkill.name)
         {
             case "Healing":
-                DataManager.Instance._Player_Skill.HP_Drain += selectedSkill.upgradeCount;
-                DataManager.Instance._Player_Skill.HP_Drain_Level += 1;
+                switch (selectedSkill.card_level)
+                {
+                    case 0:
+                        DataManager.Instance._Player_Skill.HP_Up_Level += 1;
+                        break;
+                    case 1:
+                        DataManager.Instance._Player_Skill.HP_Up_Level += 2;
+                        break;
+                    case 2:
+                        DataManager.Instance._Player_Skill.HP_Up_Level += 3;
+                        break;
+                }
                 break;
             case "Absorption":
-                DataManager.Instance._Player_Skill.Hp_Up += selectedSkill.upgradeCount;
-                DataManager.Instance._Player_Skill.HP_Up_Level += 1;
+                switch (selectedSkill.card_level)
+                {
+                    case 0:
+                        DataManager.Instance._Player_Skill.HP_Drain_Level += 1;
+                        break;
+                    case 1:
+                        DataManager.Instance._Player_Skill.HP_Drain_Level += 2;
+                        break;
+                    case 2:
+                        DataManager.Instance._Player_Skill.HP_Drain_Level += 3;
+                        break;
+                }
                 break;
             case "Poison":
-                DataManager.Instance._Player_Skill.poison_damage += selectedSkill.upgradeCount;
-                DataManager.Instance._Player_Skill.Poision_Damage_Level += 1;
+                switch (selectedSkill.card_level)
+                {
+                    case 0:
+                        DataManager.Instance._Player_Skill.Poision_Damage_Level += 1;
+                        break;
+                    case 1:
+                        DataManager.Instance._Player_Skill.Poision_Damage_Level += 2;
+                        break;
+                    case 2:
+                        DataManager.Instance._Player_Skill.Poision_Damage_Level += 3;
+                        break;
+                }
                 break;
             case "Dash Distance":
-                DataManager.Instance._Player_Skill.Dash += selectedSkill.upgradeCount;
-                DataManager.Instance._Player_Skill.Dash += 1;
+                switch (selectedSkill.card_level)
+                {
+                    case 0:
+                        DataManager.Instance._Player_Skill.Dash_Level += 1;
+                        break;
+                    case 1:
+                        DataManager.Instance._Player_Skill.Dash_Level += 2;
+                        break;
+                    case 2:
+                        DataManager.Instance._Player_Skill.Dash_Level += 3;
+                        break;
+                }
                 break;
             case "Max Health":
-                DataManager.Instance._Player_Skill.MaxHP_Level += 1;
+                switch (selectedSkill.card_level)
+                {
+                    case 0:
+                        DataManager.Instance._Player_Skill.MaxHP_Level += 1;
+                        SelectManager.Instance.isHPupadate = true;
+                        break;
+                    case 1:
+                        DataManager.Instance._Player_Skill.MaxHP_Level += 2;
+                        SelectManager.Instance.isHPupadate = true;
+                        break;
+                    case 2:
+                        DataManager.Instance._Player_Skill.MaxHP_Level += 3;
+                        SelectManager.Instance.isHPupadate = true;
+                        break;
+                }
                 break;
             case "Discount":
-                DataManager.Instance._Player_Skill.Discount += selectedSkill.upgradeCount;
-                DataManager.Instance._Player_Skill.Discount_Level += 1;
+                switch (selectedSkill.card_level)
+                {
+                    case 0:
+                        DataManager.Instance._Player_Skill.Discount += 1;
+                        break;
+                    case 1:
+                        DataManager.Instance._Player_Skill.Discount += 2;
+                        break;
+                    case 2:
+                        DataManager.Instance._Player_Skill.Discount += 3;
+                        break;
+                }
                 break;
         }
     }
 
+    void skill_organize()
+    {
+        // hp 회복
+        if (DataManager.Instance._Player_Skill.HP_Up_Level == 1)
+        {
+
+        }
+        else if (DataManager.Instance._Player_Skill.HP_Up_Level == 2)
+        {
+            // HP 회복 레벨 2에 대한 처리
+        }
+        else if (DataManager.Instance._Player_Skill.HP_Up_Level >= 3)
+        {
+            DataManager.Instance._Player_Skill.HP_Up_Level = 3;
+            // HP 회복 레벨 3 이상에 대한 처리
+        }
+
+        // 흡수
+        if (DataManager.Instance._Player_Skill.HP_Drain_Level == 1)
+        {
+            // 흡수 레벨 1에 대한 처리
+        }
+        else if (DataManager.Instance._Player_Skill.HP_Drain_Level == 2)
+        {
+            // 흡수 레벨 2에 대한 처리
+        }
+        else if (DataManager.Instance._Player_Skill.HP_Drain_Level >= 3)
+        {
+            DataManager.Instance._Player_Skill.HP_Drain_Level = 3;
+            // 흡수 레벨 3 이상에 대한 처리
+        }
+
+        // 독
+        if (DataManager.Instance._Player_Skill.Poision_Damage_Level == 1)
+        {
+            // 독 레벨 1에 대한 처리
+        }
+        else if (DataManager.Instance._Player_Skill.Poision_Damage_Level == 2)
+        {
+            // 독 레벨 2에 대한 처리
+        }
+        else if (DataManager.Instance._Player_Skill.Poision_Damage_Level >= 3)
+        {
+            DataManager.Instance._Player_Skill.Poision_Damage_Level = 3;
+            // 독 레벨 3 이상에 대한 처리
+        }
+
+        // 대쉬
+        if (DataManager.Instance._Player_Skill.Dash_Level == 1)
+        {
+            DataManager.Instance._Player_Skill.Dash = 5;
+        }
+        else if (DataManager.Instance._Player_Skill.Dash_Level == 2)
+        {
+            DataManager.Instance._Player_Skill.Dash = 8;
+        }
+        else if (DataManager.Instance._Player_Skill.Dash_Level >= 3)
+        {
+            DataManager.Instance._Player_Skill.Dash_Level = 3;
+            DataManager.Instance._Player_Skill.Dash = 10;
+        }
+
+        // 최대 체력
+        if (DataManager.Instance._Player_Skill.MaxHP_Level == 1)
+        {
+            DataManager.Instance._Player_Skill.MaxHP = 20;
+        }
+        else if (DataManager.Instance._Player_Skill.MaxHP_Level == 2)
+        {
+            DataManager.Instance._Player_Skill.MaxHP = 50;
+        }
+        else if (DataManager.Instance._Player_Skill.MaxHP_Level >= 3)
+        {
+            DataManager.Instance._Player_Skill.MaxHP = 100;
+        }
+
+        // 할인
+        if (DataManager.Instance._Player_Skill.Discount_Level == 1)
+        {
+            // 할인 레벨 1에 대한 처리
+        }
+        else if (DataManager.Instance._Player_Skill.Discount_Level == 2)
+        {
+            // 할인 레벨 2에 대한 처리
+        }
+        else if (DataManager.Instance._Player_Skill.Discount_Level >= 3)
+        {
+            DataManager.Instance._Player_Skill.Discount_Level = 3;
+            // 할인 레벨 3 이상에 대한 처리
+        }
+    }
     public void ButtonClick(int buttonIndex) // 버튼 클릭 이벤트, CardEffect(int selectedIndex) 호출
     {
         CardEffect(buttonIndex);
+        skill_organize();
         DataManager.Instance._PlayerData.soul_Count -= SelectManager.Instance.upgrade_soul;
         SelectManager.Instance.Destroy_Prefab();
     }

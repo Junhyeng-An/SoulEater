@@ -18,6 +18,8 @@ public class EnemyController : MonoBehaviour
     public float detect_distance = 4.0f;
     public float attack_distance = 2.0f;
     int nextMove;//행동지표를 결정할 변수
+    float skill_MaxHP;
+    float result_MaxHP;
 
     [Header("Bar_Position")]
     public Vector3 XYSpace = new Vector3(0, 1, 0.15f); // Z = between space X, Y
@@ -184,7 +186,45 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         //Debug.Log(CurSkill);
-
+        //최대체력 증가
+        if (gameObject.tag == "Controlled" && SelectManager.Instance.isHPupadate)
+        {
+            skill_MaxHP = DataManager.Instance._Player_Skill.MaxHP;
+            switch (enemyType)
+            {
+                case EnemyType.Enemy_A:
+                    result_MaxHP = 100 + skill_MaxHP;
+                    MaxHP = result_MaxHP;
+                    if (CurHP == MaxHP)
+                    {
+                        CurHP = MaxHP;
+                    }
+                    SelectManager.Instance.isHPupadate = false;
+                    break;
+                case EnemyType.Enemy_B:
+                    result_MaxHP = 80 + skill_MaxHP;
+                    MaxHP = result_MaxHP;
+                    if (CurHP == MaxHP)
+                    {
+                        CurHP = MaxHP;
+                    }
+                    SelectManager.Instance.isHPupadate = false;
+                    break;
+                case EnemyType.Enemy_C:
+                    result_MaxHP = 50 + skill_MaxHP;
+                    MaxHP = result_MaxHP;
+                    if (CurHP == MaxHP)
+                    {
+                        CurHP = MaxHP;
+                    }
+                    SelectManager.Instance.isHPupadate = false;
+                    break;
+            }
+        }
+        else if (gameObject.tag != "Controlled")
+        {
+            SelectManager.Instance.isHPupadate = false;
+        }
         pos = transform.position;
         playerPos = Player.transform.position;
 

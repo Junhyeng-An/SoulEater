@@ -10,6 +10,7 @@ public class SelectManager : MonoBehaviour
     public Transform Setting_Canvas;
 
     public int upgrade_soul = 2;
+    public bool isHPupadate;
 
     private static SelectManager instance = null;
 

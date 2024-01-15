@@ -52,8 +52,6 @@ public class Movement : MonoBehaviour
     private void Update()
     {
         Dash_D = DataManager.Instance._Player_Skill.Dash;
-        Debug.Log(Dash_D);
-        Debug.Log(dashForce);
         Vector2 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition); //mouse position
         angle = Mathf.Atan2(mouse.y - transform.position.y, mouse.x - transform.position.x);
         Debug.DrawRay(transform.position, Vector2.down, new Color(1, 0, 0));

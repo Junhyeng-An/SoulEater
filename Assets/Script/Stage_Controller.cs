@@ -32,7 +32,7 @@ public class Stage_Controller : MonoBehaviour
 
                 foreach (GameObject obj in controlledObjects)
                 {
-                    //DontDestroyOnLoad(obj);
+                    DataManager.Instance._PlayerData.controll_enemy =obj.name.ToString();
                     DontDestroyOnLoad(obj.transform.parent);
                 }
                 LoadingScene.LoadScene(Scene_Name);

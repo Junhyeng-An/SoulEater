@@ -10,6 +10,8 @@ public class CharacterManager : MonoBehaviour
 {
     public GameObject Player;
     
+
+    
     #region SingleTon
     
     private static CharacterManager instance = null;
@@ -43,9 +45,7 @@ public class CharacterManager : MonoBehaviour
         }
         DontDestroyOnLoad(this.gameObject);
         #endregion
-        
-   
-        
+
         
         
     }

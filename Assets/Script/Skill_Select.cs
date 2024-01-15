@@ -191,6 +191,7 @@ public class Skill_Select : MonoBehaviour
                     case 0:
                         DataManager.Instance._Player_Skill.MaxHP_Level += 1;
                         SelectManager.Instance.isHPupadate = true;
+                        Debug.Log(SelectManager.Instance.isHPupadate);
                         break;
                     case 1:
                         DataManager.Instance._Player_Skill.MaxHP_Level += 2;

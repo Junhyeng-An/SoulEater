@@ -64,7 +64,6 @@ public class Movement : MonoBehaviour
             GameObject Clone = GameObject.Find(clone_Name);
             Destroy(Clone, 0.1f);
         }
-
     }
     public void Landing() //check can jump and can distance dash
     {

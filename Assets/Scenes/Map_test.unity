@@ -1578,6 +1578,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   map_width: 3
   map_height: 3
+  map_MaxCount: 0
+  map: []
   maxCount: 6
   map_distance: 200
 --- !u!114 &1305445660
@@ -1587,7 +1589,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1305445656}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8055ddc5fc12254a844f91e5e5ba79c, type: 3}
   m_Name: 

@@ -9,11 +9,11 @@ public class Map_Create : MonoBehaviour
 {
     public int map_width;
     public int map_height;
-    int map_MaxCount;
+    public int map_MaxCount;
 
     bool[] Room;
     bool[,] Road;
-    GameObject[] map;
+    public GameObject[] map;
     GameObject[,] way;
 
     Vector2[] mapPositions; // ���� ��ġ ����Ʈ
@@ -97,8 +97,7 @@ public class Map_Create : MonoBehaviour
         
         MapReroll();
         
-       // CharacterManager.Instance.spawnPosition = mapPositions[room_turn[0]];
-        //Debug.Log( mapPositions[room_turn[0]]);
+       CharacterManager.Instance.spawnPosition = mapPositions[room_turn[0]];
     }
 
     void MapReroll()

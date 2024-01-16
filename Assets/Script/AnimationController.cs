@@ -8,6 +8,7 @@ public class AnimaionController : MonoBehaviour
     Animator ani_eye;
     GameObject player;
     Rigidbody2D rigid;
+    Rigidbody2D rigid_player;
     SpriteRenderer render_body;
     SpriteRenderer render_head;
     SpriteRenderer render_eye;
@@ -29,7 +30,7 @@ public class AnimaionController : MonoBehaviour
     float moveBody;
 
     Vector2 moveHead;
-    Vector2 moveHead_basic = new Vector2(0.0f, 0.95f);
+    Vector2 moveHead_basic;
     Vector2 moveHead_ani;
     Vector2 moveHead_view;
 
@@ -44,6 +45,7 @@ public class AnimaionController : MonoBehaviour
         player = GameObject.Find("Player");
 
         rigid = GetComponent<Rigidbody2D>();
+        rigid_player = player.GetComponent<Rigidbody2D>();
 
         render_body = body.GetComponent<SpriteRenderer>();
         render_head = head.GetComponent<SpriteRenderer>();
@@ -53,9 +55,11 @@ public class AnimaionController : MonoBehaviour
 
     void Update()
     {
+        moveHead_basic = new Vector2(0.0f, 0.95f);
+
         if (CompareTag("Controlled"))
         {
-            vel = rigid.velocity;
+            vel = rigid_player.velocity;
 
             Debug.Log(vel);
 
@@ -184,6 +188,8 @@ public class AnimaionController : MonoBehaviour
         }
         if (CompareTag("Enemy"))
         {
+            moveHead_basic = new Vector2(0.0f, 1.45f);
+
             vel = rigid.velocity;
             ani_body.SetFloat("TestAni_Run", Mathf.Abs(vel.x));
 
@@ -239,7 +245,7 @@ public class AnimaionController : MonoBehaviour
 
             moveHead = new Vector3(moveHead_basic.x + moveHead_ani.x, moveHead_basic.y + moveHead_ani.y);
             head.transform.position = transform.position + new Vector3(moveHead.x, moveHead.y);
-            body.transform.position = transform.position + Vector3.up * moveBody;
+            body.transform.position = transform.position + Vector3.up * (moveBody + 0.5f);
         }
     }
 }

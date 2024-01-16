@@ -556,7 +556,7 @@ MonoBehaviour:
   enemyType: 2
   detect_distance: 4
   attack_distance: 2
-  XYSpace: {x: 0, y: 1, z: 0.15}
+  XYSpace: {x: 0, y: 2, z: 0.15}
   CurHP: 0
   MaxHP: 0
   CurWP: 0
@@ -2751,7 +2751,7 @@ MonoBehaviour:
   enemyType: 0
   detect_distance: 4
   attack_distance: 2
-  XYSpace: {x: 0, y: 1, z: 0.15}
+  XYSpace: {x: 0, y: 2, z: 0.15}
   CurHP: 0
   MaxHP: 0
   CurWP: 0
@@ -8312,7 +8312,7 @@ MonoBehaviour:
   enemyType: 1
   detect_distance: 4
   attack_distance: 2
-  XYSpace: {x: 0, y: 1, z: 0.15}
+  XYSpace: {x: 0, y: 2, z: 0.15}
   CurHP: 0
   MaxHP: 0
   CurWP: 0

@@ -26,9 +26,11 @@ public class Test_Ani : MonoBehaviour
     float cycle;
 
     float moveBody;
+
     Vector2 moveHead;
+    Vector2 moveHead_basic = new Vector2(0.0f, 0.95f);
     Vector2 moveHead_ani;
-    Vector2 moveHead_;
+    Vector2 moveHead_view;
 
     void Awake()
     {
@@ -47,12 +49,6 @@ public class Test_Ani : MonoBehaviour
 
     void LateUpdate()
     {
-        float posX = 0;
-        float posY = 0;
-
-        float basicX = 0.0f;
-        float basicY = 0.95f;
-
         vel = rigid.velocity;
 
         if (vel.y > -1 && vel.y < 1)
@@ -94,17 +90,17 @@ public class Test_Ani : MonoBehaviour
         float change_run = 0.015f;
 
         if(check.x > 0)
-            posX = change;
+            moveHead_view.x = change;
         else
-            posX = -change;
+            moveHead_view.x = -change;
 
 
         if (check.y > 1.5)
-            posY = change;
+            moveHead_view.y = change;
         else if (check.y < -1.5)
-            posY = -change;
+            moveHead_view.y = -change;
         else
-            posY = 0;
+            moveHead_view.y = 0;
 
         if (Mathf.Abs(vel.x) > 0.1f && ani_body.GetCurrentAnimatorStateInfo(0).IsName("TestAni_Run"))
         {
@@ -113,12 +109,12 @@ public class Test_Ani : MonoBehaviour
             if (time < cycle)
             {
                 moveBody = change_run;
-                moveHead.y = -change_run;
+                moveHead_ani.y = -change_run;
             }
             else if (time > cycle)
             {
                 moveBody = -change_run;
-                moveHead.y = change_run;
+                moveHead_ani.y = change_run;
             }
             
             if (time > cycle * 2)
@@ -126,39 +122,39 @@ public class Test_Ani : MonoBehaviour
 
             if (vel.x > 0)
             {
-                moveHead.x = 0.1f;
+                moveHead_ani.x = 0.1f;
             }
             else
             {
-                moveHead.x = -0.1f;
+                moveHead_ani.x = -0.1f;
             }
         }
         else
         {
             time = 0;
             moveBody = 0;
-            moveHead.x = 0;
-            moveHead.y = 0;
+            moveHead_ani.x = 0;
+            moveHead_ani.y = 0;
         }
 
         if (ani_body.GetCurrentAnimatorStateInfo(0).IsName("TestAni_Jump01"))
         {
-            moveHead.y = 0.1f;
+            moveHead_ani.y = 0.1f;
 
             if (render_head.flipX == false)
-                moveHead.x = 0.075f;
+                moveHead_ani.x = 0.075f;
             else
-                moveHead.x = -0.075f;
+                moveHead_ani.x = -0.075f;
         }
 
         if (ani_body.GetCurrentAnimatorStateInfo(0).IsName("TestAni_Jump02"))
         {
-            moveHead.y = 0.1f;
+            moveHead_ani.y = 0.1f;
 
             if (render_head.flipX == false)
-                moveHead.x = -0.025f;
+                moveHead_ani.x = -0.025f;
             else
-                moveHead.x = 0.025f;
+                moveHead_ani.x = 0.025f;
         }
 
         time_blink += Time.deltaTime;
@@ -174,8 +170,8 @@ public class Test_Ani : MonoBehaviour
             }
         }
 
-
-        head.transform.position = transform.parent.position + new Vector3(posX + basicX + moveHead.x, posY + basicY + moveHead.y);
+        moveHead = new Vector3(moveHead_view.x + moveHead_basic.x + moveHead_ani.x, moveHead_view.y + moveHead_basic.y + moveHead_ani.y);
+        head.transform.position = transform.parent.position + new Vector3(moveHead.x, moveHead.y);
         transform.position = transform.parent.position + Vector3.up * moveBody;
     }
 }

@@ -51,6 +51,9 @@ public class Start_UI : MonoBehaviour
         DataManager.Instance._Player_Skill.Skill_Speed = 0.0f;
         DataManager.Instance._Player_Skill.Skill_Speed_Level = 0;
 
+        DataManager.Instance._Player_Skill.Upgrade_Cost = 10;
+        DataManager.Instance._Player_Skill.Upgrade_Cost_Level = 0;
+
         #endregion
     }
 

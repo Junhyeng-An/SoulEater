@@ -51,6 +51,8 @@ public class Player_Skill
     public float MaxHP;
     public int MaxHP_Level;
 
+    public int Upgrade_Cost;
+    public int Upgrade_Cost_Level;
 }
 
 public class Sound_Volume

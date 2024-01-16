@@ -32,8 +32,8 @@ public class Player_Skill
     public float HP_Drain;
     public int HP_Drain_Level;
 
-    public float Hp_Up;
-    public int HP_Up_Level;
+    public float Reduce_damage;
+    public int Reduce_damage_Level;
 
     public float poison_damage;
     public int Poision_Damage_Level;

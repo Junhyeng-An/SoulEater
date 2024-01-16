@@ -39,8 +39,8 @@ public class Start_UI : MonoBehaviour
         DataManager.Instance._Player_Skill.HP_Drain = 0.0f;
         DataManager.Instance._Player_Skill.HP_Drain_Level =0;
 
-        DataManager.Instance._Player_Skill.Hp_Up =0.0f;
-        DataManager.Instance._Player_Skill.HP_Up_Level = 0;
+        DataManager.Instance._Player_Skill.Reduce_damage =0.0f;
+        DataManager.Instance._Player_Skill.Reduce_damage_Level = 0;
 
         DataManager.Instance._Player_Skill.poison_damage = 0.0f;
         DataManager.Instance._Player_Skill.Poision_Damage_Level = 0;

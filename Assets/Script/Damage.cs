@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Damage : MonoBehaviour
 {
-    float closeDamage = 10;
+
+    Sword sword;
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         EnemyController enemyController = GetComponentInParent<EnemyController>();
@@ -12,8 +14,11 @@ public class Damage : MonoBehaviour
         {
             if (collision.CompareTag("closehit") && enemyController.isHit == false)
             {
-                enemyController.CurHP -= closeDamage;
-                enemyController.isHit = true;
+                Debug.Log("적 공격력 : "+collision.GetComponentInParent<EnemyController>().damage_enemyAttack);
+                 enemyController.CurHP -= collision.GetComponentInParent<EnemyController>().damage_enemyAttack;
+                 enemyController.CurHP += (collision.GetComponentInParent<EnemyController>().damage_enemyAttack * (DataManager.Instance._Player_Skill.Reduce_damage / 100));
+                
+                 enemyController.isHit = true;
             }
         }
         else

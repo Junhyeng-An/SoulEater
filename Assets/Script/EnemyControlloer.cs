@@ -588,12 +588,12 @@ public class EnemyController : MonoBehaviour
         E_filePath = Application.persistentDataPath + "/EnemyA_data.json";
         E_filePath1 = Application.persistentDataPath + "/EnemyB_data.json";
         E_filePath2 = Application.persistentDataPath + "/EnemyC_data.json";
-        Debug.Log("File path: " + E_filePath);
-        Debug.Log("File path: " + E_filePath1);
-        Debug.Log("File path: " + E_filePath2);
+        //Debug.Log("File path: " + E_filePath);
+        //Debug.Log("File path: " + E_filePath1);
+        //Debug.Log("File path: " + E_filePath2);
          EnemyA = new EnemyData(100, 100,20,20,5,2, 10, SkillController.Skill_Active.Smash);
-         EnemyB = new EnemyData(80, 80,20,20,5,2, 10, SkillController.Skill_Active.DashAttack);
-         EnemyC = new EnemyData(50, 50,20,20,5,2, 10, SkillController.Skill_Active.Slash);
+         EnemyB = new EnemyData(80, 80,20,20,5,2, 20, SkillController.Skill_Active.DashAttack);
+         EnemyC = new EnemyData(50, 50,20,20,5,2, 30, SkillController.Skill_Active.Slash);
         string jsonA = JsonUtility.ToJson(EnemyA);
         string jsonB = JsonUtility.ToJson(EnemyB);
         string jsonC = JsonUtility.ToJson(EnemyC);
@@ -614,6 +614,7 @@ public class EnemyController : MonoBehaviour
             MaxWP = enemyData.MaxWP;
             detect_distance = enemyData.detect_distance;
             attack_distance = enemyData.attack_distance;
+            damage_enemyAttack = enemyData.damage_enemyAttack;
             CurSkill = enemyData.CurSkill;
         }
     }

@@ -9,11 +9,11 @@ public class Map_Create : MonoBehaviour
 {
     public int map_width;
     public int map_height;
-    int map_MaxCount;
+    public int map_MaxCount;
 
     bool[] Room;
     bool[,] Road;
-    GameObject[] map;
+    public GameObject[] map;
     GameObject[,] way;
 
     Vector2[] mapPositions; // ���� ��ġ ����Ʈ
@@ -36,7 +36,6 @@ public class Map_Create : MonoBehaviour
     GameObject startPrefab;
     GameObject endPrefab;
 
-    GameObject miniMap;
 
     int Num_true;
     bool error = false;
@@ -62,10 +61,10 @@ public class Map_Create : MonoBehaviour
                 float ud = 0;
                 float lr = 0;
 
-                if (j == 0) ud = map_distance / 2;
-                if (j == 1) ud = - map_distance / 2;
-                if (j == 2) lr = - map_distance / 2;
-                if (j == 3) lr = map_distance / 2;
+                if (j == 0) ud = map_distance / 2;  //UP
+                if (j == 1) ud = - map_distance / 2;  //DOWN
+                if (j == 2) lr = - map_distance / 2;  //LEFT
+                if (j == 3) lr = map_distance / 2;      //RIGHT
 
                 wayPositions[i, j] = mapPositions[i] + new Vector2(lr, ud);
             }
@@ -94,13 +93,11 @@ public class Map_Create : MonoBehaviour
         curPrefab = GameObject.Find("Cur_Position");
         startPrefab = GameObject.Find("Start_Position");
         endPrefab = GameObject.Find("End_Position");
-        miniMap = GameObject.Find("Mini Map");
         
         
         MapReroll();
         
-        CharacterManager.Instance.spawnPosition = mapPositions[room_turn[0]];
-        Debug.Log( mapPositions[room_turn[0]]);
+       CharacterManager.Instance.spawnPosition = mapPositions[room_turn[0]];
     }
 
     void MapReroll()
@@ -363,6 +360,7 @@ public class Map_Create : MonoBehaviour
         }
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     void Map_open()
     {
         MapPos();
@@ -383,10 +381,45 @@ public class Map_Create : MonoBehaviour
                 if (Road[i, j] == true)
                 {
                     float angle;
-                    if (j == 0)      angle = 90;
-                    else if (j == 1) angle = -90;
-                    else if (j == 2) angle = 180;
-                    else             angle = 0;
+                    if (j == 0)
+                    {
+                        angle = 90;
+                        Transform child = map[i].transform.Find("North");
+                        child.gameObject.SetActive(true);
+
+                        Transform opposite = map[i + map_height].transform.Find("South");
+                        opposite.gameObject.SetActive(true);
+
+                    } 
+                    else if (j == 1)
+                    {
+                        angle = -90; //south 
+                        Transform child = map[i].transform.Find("South");
+                        child.gameObject.SetActive(true);
+
+                        Transform opposite = map[i - map_height].transform.Find("North");
+                        opposite.gameObject.SetActive(true);
+
+                    }
+                    else if (j == 2)
+                    {
+                        angle = 180; // left
+                        Transform origin = map[i].transform.Find("West");
+                        origin.gameObject.SetActive(true);
+
+                        Transform opposite = map[i - 1].transform.Find("East");
+                        opposite.gameObject.SetActive(true);
+
+                    }
+                    else
+                    {
+                        angle = 0; //right
+                        Transform origin = map[i].transform.Find("East");
+                        origin.gameObject.SetActive(true);
+                        
+                        Transform opposite = map[i+1].transform.Find("West");
+                        opposite.gameObject.SetActive(true);
+                    }
 
                     way[i, j] = Instantiate(wayPrefab, wayPositions[i, j], Quaternion.Euler(0, 0, angle));
                     way[i, j].SetActive(true);

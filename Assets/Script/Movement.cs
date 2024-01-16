@@ -59,7 +59,7 @@ public class Movement : MonoBehaviour
         ///
         if (GameObject.FindGameObjectWithTag("Controlled") != null)
         {
-            GameObject controlled = GameObject.FindGameObjectWithTag("Controlled");
+            GameObject controlled = GameObject.FindGameObjectWithTag("Controlled").transform.Find("TestAni").gameObject;
             string clone_Name = controlled.name + "(Clone)";
             GameObject Clone = GameObject.Find(clone_Name);
             Destroy(Clone, 0.1f);
@@ -122,7 +122,7 @@ public class Movement : MonoBehaviour
     }
     public void Dash()
     {
-        int cloneCount = 3;
+        int cloneCount = 5;
         Vector2 posBefore = transform.position;
 
         transform.Translate(new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * dashForce);
@@ -134,10 +134,12 @@ public class Movement : MonoBehaviour
 
         Vector3 posZ = new Vector3(0, 0, -2);
 
-        GameObject controlled = GameObject.FindGameObjectWithTag("Controlled");
+        GameObject controlled = GameObject.FindGameObjectWithTag("Controlled").transform.Find("TestAni").gameObject;
         for (int i = 0; i < cloneCount; i++)
         {
-            GameObject clone = Instantiate(controlled, posAfter - posMid / Mathf.Pow(2, i + 1), transform.rotation);
+            GameObject clone = Instantiate(controlled, posAfter - posMid / Mathf.Pow(1.8f, i + 1), transform.rotation);
+
+            clone.transform.localScale = Vector3.one;
 
             ChangeColorRecursive(clone.transform, i);
         }
@@ -152,7 +154,7 @@ public class Movement : MonoBehaviour
             // Renderer 컴포넌트가 있다면 색상 변경
             if (childRenderer != null)
             {
-                childRenderer.material.color = new Color(0.75f, 0.5f, 1, 0.1f * (i + 1) * 2);
+                childRenderer.material.color = new Color(0.75f, 0.5f, 1, 0.1f * (i + 1));
             }
 
             ChangeColorRecursive(child, i);

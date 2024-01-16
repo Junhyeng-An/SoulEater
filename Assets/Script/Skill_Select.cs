@@ -56,8 +56,8 @@ public class Skill_Select : MonoBehaviour
         {
                                         //스킬이름 , 등급기준 , 스킬내용 , 강화량 ,강화수치
             skillCards.Add(new Skill_Card("Reduce damage", 0, "방어도를 얻어 데미지를 적게있습니다", 10, 1));
-            skillCards.Add(new Skill_Card("Hermes", 0, "이동속도를 늘립니다", 1, 1));
-            skillCards.Add(new Skill_Card("Poison", 0, "적에게 독을 입힙니다", 10, 1));
+            skillCards.Add(new Skill_Card("Absorption", 0, "체력을 흡수합니다", 1, 1));
+            skillCards.Add(new Skill_Card("Hermes", 0, "이동속도가 증가합니다", 1, 1));
             skillCards.Add(new Skill_Card("Dash Distance", 0, "대쉬 거리를 늘립니다", 1, 1)); //clear
             skillCards.Add(new Skill_Card("Max Health", 0, "최대 체력을 증가시킵니다", 20, 1));
             skillCards.Add(new Skill_Card("Discount", 0, "상점에서 할인을 받습니다", 10, 1));
@@ -67,8 +67,8 @@ public class Skill_Select : MonoBehaviour
         for (int i = 0; i < 13; i++)
         {
             skillCards.Add(new Skill_Card("Reduce damage", 1, "방어도를 얻어 데미지를 적게있습니다", 20, 2));
-            skillCards.Add(new Skill_Card("Hermes", 1, "체력을 흡수합니다", 5, 2));
-            skillCards.Add(new Skill_Card("Poison", 1, "적에게 독을 입힙니다", 20, 2));
+            skillCards.Add(new Skill_Card("Absorption", 1, "체력을 흡수합니다", 5, 2));
+            skillCards.Add(new Skill_Card("Hermes", 1, "이동속도가 증가합니다", 2, 2));
             skillCards.Add(new Skill_Card("Dash Distance", 1, "대쉬 거리를 늘립니다", 2, 2));
             skillCards.Add(new Skill_Card("Max Health", 1, "최대 체력을 증가시킵니다", 50, 2));
             skillCards.Add(new Skill_Card("Discount", 1, "상점에서 할인을 받습니다", 20, 2));
@@ -79,7 +79,7 @@ public class Skill_Select : MonoBehaviour
         {
             skillCards.Add(new Skill_Card("Reduce damage", 2, "방어도를 얻어 데미지를 적게있습니다", 50, 3));
             skillCards.Add(new Skill_Card("Absorption", 2, "체력을 흡수합니다", 10, 3));
-            skillCards.Add(new Skill_Card("Poison", 2, "적에게 독을 입힙니다", 30, 3));
+            skillCards.Add(new Skill_Card("Hermes", 2, "이동속도가 증가합니다", 3, 3));
             skillCards.Add(new Skill_Card("Dash Distance", 2, "대쉬 거리를 늘립니다", 3, 3));
             skillCards.Add(new Skill_Card("Max Health", 2, "최대 체력을 증가시킵니다", 100, 3));
             skillCards.Add(new Skill_Card("Discount", 2, "상점에서 할인을 받습니다", 30, 3));
@@ -157,17 +157,17 @@ public class Skill_Select : MonoBehaviour
                         break;
                 }
                 break;
-            case "Poison":
+            case "Hermes":
                 switch (selectedSkill.card_level)
                 {
                     case 0:
-                        DataManager.Instance._Player_Skill.Poision_Damage_Level += 1;
+                        DataManager.Instance._Player_Skill.Skill_Speed_Level += 1;
                         break;
                     case 1:
-                        DataManager.Instance._Player_Skill.Poision_Damage_Level += 2;
+                        DataManager.Instance._Player_Skill.Skill_Speed_Level += 2;
                         break;
                     case 2:
-                        DataManager.Instance._Player_Skill.Poision_Damage_Level += 3;
+                        DataManager.Instance._Player_Skill.Skill_Speed_Level += 3;
                         break;
                 }
                 break;
@@ -252,19 +252,19 @@ public class Skill_Select : MonoBehaviour
             DataManager.Instance._Player_Skill.HP_Drain = 10;
         }
 
-        // 독
-        if (DataManager.Instance._Player_Skill.Poision_Damage_Level == 1)
+        // 이동속도 증가
+        if (DataManager.Instance._Player_Skill.Skill_Speed_Level == 1)
         {
-            // 독 레벨 1에 대한 처리
+            DataManager.Instance._Player_Skill.Skill_Speed = 1;
         }
-        else if (DataManager.Instance._Player_Skill.Poision_Damage_Level == 2)
+        else if (DataManager.Instance._Player_Skill.Skill_Speed_Level == 2)
         {
-            // 독 레벨 2에 대한 처리
+            DataManager.Instance._Player_Skill.Skill_Speed = 2;
         }
-        else if (DataManager.Instance._Player_Skill.Poision_Damage_Level >= 3)
+        else if (DataManager.Instance._Player_Skill.Skill_Speed_Level >= 3)
         {
-            DataManager.Instance._Player_Skill.Poision_Damage_Level = 3;
-            // 독 레벨 3 이상에 대한 처리
+            DataManager.Instance._Player_Skill.Skill_Speed_Level = 3;
+            DataManager.Instance._Player_Skill.Skill_Speed = 3;
         }
 
         // 대쉬

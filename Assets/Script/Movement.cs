@@ -117,7 +117,8 @@ public class Movement : MonoBehaviour
     }
     public void Move(float x)
     {
-        rigid.velocity = new Vector2(x * speed, rigid.velocity.y);
+        rigid.velocity = new Vector2(x * (speed+DataManager.Instance._Player_Skill.Skill_Speed), rigid.velocity.y);
+        Debug.Log(rigid.velocity.x);
     }
     public void Dash()
     {

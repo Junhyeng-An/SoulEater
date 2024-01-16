@@ -35,6 +35,10 @@ public class Player_Skill
     public float Reduce_damage;
     public int Reduce_damage_Level;
 
+    public float Skill_Speed;
+    public int Skill_Speed_Level;
+
+
     public float poison_damage;
     public int Poision_Damage_Level;
 

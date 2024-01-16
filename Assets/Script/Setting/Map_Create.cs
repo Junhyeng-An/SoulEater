@@ -431,6 +431,9 @@ public class Map_Create : MonoBehaviour
         map_start = Instantiate(startPrefab, mapPositions[room_turn[0]], Quaternion.identity);
         map_end = Instantiate(endPrefab, mapPositions[room_turn[maxCount - 1]], Quaternion.identity);
 
+        map[room_turn[maxCount-1]].transform.Find("Grid_Portal").gameObject.SetActive(true);
+        
+        
         map_start.SetActive(true);
         map_end.SetActive(true);
     }

@@ -37,6 +37,23 @@ public class Sword_Data
     
 }
 
+
+
+public class Active_Skill
+{
+    public int Slash_Damage;
+    public int Slash_Damage_Level;
+
+    public int Smash_Damage;
+    public int Smash_Damage_Level;
+
+    public int Dash_Damage;
+    public int Dash_Damage_Level;
+
+
+}
+
+
 public class Player_Skill
 {
     public float HP_Drain;
@@ -79,6 +96,7 @@ public class Sound_Volume
 
 
 
+
 public class DataManager : MonoBehaviour
 {
     private string path;
@@ -86,6 +104,7 @@ public class DataManager : MonoBehaviour
     private string Sword_Data_filename = "SwordData";
     private string Player_Skill_filename = "PlayerSkill";
     private string Sound_Volume_filename = "Sound_Volume";
+    private string Player_ASkill_filename = "Player_Active_Skill";
     private bool SAVE_FILE_EXIST = false;
 
     
@@ -93,6 +112,7 @@ public class DataManager : MonoBehaviour
     public Sword_Data _SwordData = new Sword_Data();
     public Player_Skill _Player_Skill = new Player_Skill();
     public Sound_Volume _Sound_Volume = new Sound_Volume();
+    public Active_Skill _Active_Skill = new Active_Skill();
 
 
 
@@ -176,6 +196,10 @@ public class DataManager : MonoBehaviour
         
         File.WriteAllText(path + Sound_Volume_filename,json_Volume_Sound);
         
+        string json_active_Skill = JsonUtility.ToJson(_Active_Skill);
+        
+        File.WriteAllText(path + Player_ASkill_filename,json_active_Skill);
+        
     }
 
     public void LoadData()
@@ -188,6 +212,10 @@ public class DataManager : MonoBehaviour
         
         string load_skill_Data = File.ReadAllText(path + Player_Skill_filename);
         _Player_Skill = JsonUtility.FromJson<Player_Skill>(load_skill_Data);
+        
+        string load_active_Data = File.ReadAllText(path + Player_ASkill_filename);
+        _Active_Skill = JsonUtility.FromJson<Active_Skill>(load_active_Data);
+
         
         //Sound is load when game was start 
         
@@ -218,6 +246,7 @@ public class DataManager : MonoBehaviour
         File.Delete(path + Player_Data_filename);
         File.Delete(path + Sword_Data_filename);
         File.Delete(path + Player_Skill_filename);
+        File.Delete(path + Player_ASkill_filename);
     }
 
     

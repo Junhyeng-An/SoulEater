@@ -58,6 +58,24 @@ public class Start_UI : MonoBehaviour
         DataManager.Instance._Player_Skill.Discount_Cost_Level = 0;
 
         #endregion
+
+        #region Active_SKill
+
+        DataManager.Instance._Active_Skill.Dash_Damage = 10;
+        DataManager.Instance._Active_Skill.Dash_Damage_Level = 1;
+
+
+        DataManager.Instance._Active_Skill.Slash_Damage = 10;
+        DataManager.Instance._Active_Skill.Dash_Damage_Level = 1;
+
+
+        DataManager.Instance._Active_Skill.Smash_Damage = 1;
+        DataManager.Instance._Active_Skill.Smash_Damage_Level = 1;
+
+
+        #endregion
+
+
     }
 
 

@@ -145,7 +145,7 @@ public class SkillController : MonoBehaviour
         if(condition == false)
         {
             Check_Condition(3, coolTime);
-            damage = 10;
+            damage = DataManager.Instance._Active_Skill.Slash_Damage;
         }
         else
         {
@@ -180,7 +180,7 @@ public class SkillController : MonoBehaviour
                 size_smash = height / 2;
                 if (size_smash >= 4)
                     size_smash = 4;
-                damage = height * 3;
+                damage = height * 3 * DataManager.Instance._Active_Skill.Smash_Damage;
             }
             else
                 End_Skill();
@@ -204,7 +204,7 @@ public class SkillController : MonoBehaviour
         if (condition == false && stat.Player_CurST >= 3)
         {
             condition = true;
-            damage = 10;
+            damage = DataManager.Instance._Active_Skill.Dash_Damage;
         }
         else
         {

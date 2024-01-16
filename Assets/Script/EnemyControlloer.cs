@@ -26,7 +26,7 @@ public class EnemyController : MonoBehaviour
     public Vector3 XYSpace = new Vector3(0, 1, 0.15f); // Z = between space X, Y
 
     GameObject Player;
-    GameObject Weapon;
+    //GameObject Weapon;
     GameObject Attack_area;
     GameObject UI_EnemyStat;
     GameObject bar_EnemyHP;
@@ -35,7 +35,7 @@ public class EnemyController : MonoBehaviour
     RectTransform bar_PosWP;
     Slider Enemy_HP;
     Slider Enemy_WP;
-    Animator animator;
+    //Animator animator;
     Rigidbody2D rigid;
     Rigidbody2D rigidPlayer;
     SpriteRenderer spriteRenderer;
@@ -153,7 +153,7 @@ public class EnemyController : MonoBehaviour
     void Components()       // GetComponent<>()
     {
         rigid = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
         collider = GetComponent<CircleCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -181,7 +181,7 @@ public class EnemyController : MonoBehaviour
         bar_EnemyWP = UI_EnemyStat.transform.Find("EnemyWP").gameObject;
 
         Attack_area = transform.Find("Attack_area").gameObject;
-        Weapon = transform.Find("Root").Find("BodySet").Find("P_Body").Find("ArmSet").gameObject;
+        //Weapon = transform.Find("Root").Find("BodySet").Find("P_Body").Find("ArmSet").gameObject;
     }
     void Update()
     {
@@ -242,7 +242,7 @@ public class EnemyController : MonoBehaviour
         pos = transform.position;
         playerPos = Player.transform.position;
 
-        Weapon.SetActive(true);
+        //Weapon.SetActive(true);
         UI_EnemyStat.SetActive(true);
 
         Check_HW();
@@ -255,7 +255,7 @@ public class EnemyController : MonoBehaviour
         if (gameObject.tag == "Controlled")
             Tag_Controlled();
         else
-            animator.SetFloat("RunState", 0.1f); //Run Animation//
+            //animator.SetFloat("RunState", 0.1f); //Run Animation//
 
         if (sword.isSwing == false)
         {
@@ -276,11 +276,11 @@ public class EnemyController : MonoBehaviour
     void Tag_Disarmed()     // tag == DisArmed
     {
         CurWP = 0;
-        Weapon.SetActive(false);
+        //Weapon.SetActive(false);
 
         if (isAni == true)
         {
-            animator.SetTrigger("parrying");
+            //animator.SetTrigger("parrying");
             StartCoroutine(StopForSeconds(1f));
         }
         else
@@ -299,7 +299,7 @@ public class EnemyController : MonoBehaviour
     }
     void Tag_Controlled()   // tag == Controlled
     {
-        Weapon.SetActive(false);
+        //Weapon.SetActive(false);
         UI_EnemyStat.SetActive(false);
 
         if (isPlayer == true)
@@ -312,7 +312,7 @@ public class EnemyController : MonoBehaviour
                 collider.enabled = true;
                 rigid.gravityScale = 5;
                 UI_EnemyStat.SetActive(false);
-                Weapon.SetActive(false);
+                //Weapon.SetActive(false);
             }
         }
     }
@@ -347,7 +347,7 @@ public class EnemyController : MonoBehaviour
                 }
 
                 CurHP = 0;
-                animator.SetTrigger("Die");
+                //animator.SetTrigger("Die");
                 Invoke("Die_Enemy", 1.4f);
             }
         }
@@ -532,7 +532,9 @@ public class EnemyController : MonoBehaviour
         {
             if (distance <= detect_distance && distance >= attack_distance)
             {
-                transform.position = Vector2.Lerp(pos, playerPos, 0.4f * Time.deltaTime);
+                Vector3 direction = (Player.transform.position - transform.position).normalized;
+                direction.y = 0;
+                rigid.velocity = direction;
             }
             else if (distance <= attack_distance) //Attack AI start
             {
@@ -554,7 +556,7 @@ public class EnemyController : MonoBehaviour
                     Attack_area.SetActive(true);
                     if (isAni == false)
                     {
-                        animator.SetTrigger("Attack");//<-------- Attack Animation Here
+                        //animator.SetTrigger("Attack");//<-------- Attack Animation Here
                         isAni = true;
                     }
                 }
@@ -562,7 +564,7 @@ public class EnemyController : MonoBehaviour
                 {
                     if (isAni == true)
                     {
-                        animator.SetTrigger("parrying");
+                        //animator.SetTrigger("parrying");
                         isAni = false;
                     }
 
@@ -571,7 +573,7 @@ public class EnemyController : MonoBehaviour
             else if (timer >= 2.0f)
             {
                 Attack_area.SetActive(false);
-                animator.SetFloat("RunState", 0.1f);
+                //animator.SetFloat("RunState", 0.1f);
                 if (GameObject.FindGameObjectWithTag("Controlled") != null)
                     GameObject.FindGameObjectWithTag("Controlled").GetComponentInChildren<EnemyController>().isHit = false;
                 timer = 0.0f;

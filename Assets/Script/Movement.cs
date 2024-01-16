@@ -59,7 +59,7 @@ public class Movement : MonoBehaviour
         ///
         if (GameObject.FindGameObjectWithTag("Controlled") != null)
         {
-            GameObject controlled = GameObject.FindGameObjectWithTag("Controlled").transform.Find("TestAni").gameObject;
+            GameObject controlled = GameObject.FindGameObjectWithTag("Controlled").transform.Find("Root").gameObject;
             string clone_Name = controlled.name + "(Clone)";
             GameObject Clone = GameObject.Find(clone_Name);
             Destroy(Clone, 0.1f);
@@ -134,7 +134,7 @@ public class Movement : MonoBehaviour
 
         Vector3 posZ = new Vector3(0, 0, -2);
 
-        GameObject controlled = GameObject.FindGameObjectWithTag("Controlled").transform.Find("TestAni").gameObject;
+        GameObject controlled = GameObject.FindGameObjectWithTag("Controlled").transform.Find("Root").gameObject;
         for (int i = 0; i < cloneCount; i++)
         {
             GameObject clone = Instantiate(controlled, posAfter - posMid / Mathf.Pow(1.8f, i + 1), transform.rotation);

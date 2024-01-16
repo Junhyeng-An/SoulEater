@@ -2414,6 +2414,8 @@ MonoBehaviour:
   settingWindowPrefab: {fileID: 464575272059657230, guid: 01b27162de120484abb904f280e8033c, type: 3}
   Setting_Canvas: {fileID: 2004728817}
   upgrade_soul: 2
+  isHPupadate: 0
+  isChange_C: 0
 --- !u!4 &777871167
 Transform:
   m_ObjectHideFlags: 0
@@ -2811,7 +2813,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2994,6 +2996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8d592340edc4d04fbc7fbb27d5d8aa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Load: 0
 --- !u!1 &936740559
 GameObject:
   m_ObjectHideFlags: 0
@@ -6692,6 +6695,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 884594756}
+  spawnPosition: {x: 0, y: 0}
 --- !u!1 &2079112172
 GameObject:
   m_ObjectHideFlags: 0

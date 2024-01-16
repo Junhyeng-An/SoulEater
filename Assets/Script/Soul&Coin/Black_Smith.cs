@@ -40,7 +40,48 @@ public class Black_Smith : MonoBehaviour
             }
         }
     }
-    
-    
+
+
+
+
+
+    public void Player_attack_damage_upgrade()
+    {
+        if (DataManager.Instance._PlayerData.coin >= DataManager.Instance._SwordData.Upgrade_attack_Cost)
+        {
+            DataManager.Instance._PlayerData.coin -= DataManager.Instance._SwordData.Upgrade_attack_Cost;
+            DataManager.Instance._SwordData.player_damage_attack += 2;
+            DataManager.Instance._SwordData.player_attack_level += 1;
+            DataManager.Instance._SwordData.Upgrade_attack_Cost++;
+            SoundManager.Instance.Playsfx(SoundManager.SFX.upgrade);
+        }
+    }
+
+    public void Player_parrying_damage_upgrade()
+    {
+        if (DataManager.Instance._PlayerData.coin >= DataManager.Instance._SwordData.Upgrade_parrying_Cost)
+        {
+            DataManager.Instance._PlayerData.coin -= DataManager.Instance._SwordData.Upgrade_parrying_Cost;
+            DataManager.Instance._SwordData.player_parrying_attack += 1;
+            DataManager.Instance._SwordData.player_parrying_level += 1;
+            DataManager.Instance._SwordData.Upgrade_parrying_Cost++;
+            SoundManager.Instance.Playsfx(SoundManager.SFX.upgrade);
+        }
+    }
+
+    public void Player_sword_reach_upgrade()
+    {
+        if (DataManager.Instance._PlayerData.coin >= DataManager.Instance._SwordData.Upgrade_reach_Cost)
+        {
+            DataManager.Instance._PlayerData.coin -= DataManager.Instance._SwordData.Upgrade_reach_Cost;
+            DataManager.Instance._SwordData.player_sword_reach += 0.1f;
+            DataManager.Instance._SwordData.player_sword_level += 1;
+            DataManager.Instance._SwordData.Upgrade_reach_Cost++;
+            SoundManager.Instance.Playsfx(SoundManager.SFX.upgrade);
+        }
+    }
+
+
+
 }
 

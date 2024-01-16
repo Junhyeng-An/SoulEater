@@ -19,12 +19,22 @@ public class Sword_Data
 {
     public float player_damage_attack;
     public int player_attack_level;
-
+    public int Upgrade_attack_Cost;
+    
+    
     public float player_sword_reach;
     public int player_sword_level;
+    public int Upgrade_reach_Cost;
+    
     
     public float player_parrying_attack;
     public int player_parrying_level;
+    public int Upgrade_parrying_Cost;
+    
+   
+    
+    
+    
 }
 
 public class Player_Skill
@@ -51,8 +61,11 @@ public class Player_Skill
     public float MaxHP;
     public int MaxHP_Level;
 
-    public int Upgrade_Cost;
-    public int Upgrade_Cost_Level;
+   
+
+    public int Discount_Cost;
+    public int Discount_Cost_Level;
+
 }
 
 public class Sound_Volume
@@ -207,5 +220,7 @@ public class DataManager : MonoBehaviour
         File.Delete(path + Player_Skill_filename);
     }
 
+    
+    
 
 }

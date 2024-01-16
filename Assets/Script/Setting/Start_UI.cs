@@ -48,6 +48,9 @@ public class Start_UI : MonoBehaviour
         DataManager.Instance._Player_Skill.MaxHP = 0.0f;
         DataManager.Instance._Player_Skill.MaxHP_Level = 0;
 
+        DataManager.Instance._Player_Skill.Skill_Speed = 0.0f;
+        DataManager.Instance._Player_Skill.Skill_Speed_Level = 0;
+
         #endregion
     }
 

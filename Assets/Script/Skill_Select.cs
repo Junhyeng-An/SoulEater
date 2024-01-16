@@ -56,7 +56,7 @@ public class Skill_Select : MonoBehaviour
         {
                                         //스킬이름 , 등급기준 , 스킬내용 , 강화량 ,강화수치
             skillCards.Add(new Skill_Card("Healing", 0, "체력을 회복합니다", 10, 1));
-            skillCards.Add(new Skill_Card("Absorption", 0, "체력을 흡수합니다", 10, 1));
+            skillCards.Add(new Skill_Card("Absorption", 0, "체력을 흡수합니다", 2, 1));
             skillCards.Add(new Skill_Card("Poison", 0, "적에게 독을 입힙니다", 10, 1));
             skillCards.Add(new Skill_Card("Dash Distance", 0, "대쉬 거리를 늘립니다", 1, 1)); //clear
             skillCards.Add(new Skill_Card("Max Health", 0, "최대 체력을 증가시킵니다", 20, 1));
@@ -67,7 +67,7 @@ public class Skill_Select : MonoBehaviour
         for (int i = 0; i < 13; i++)
         {
             skillCards.Add(new Skill_Card("Healing", 1, "체력을 회복합니다", 20, 2));
-            skillCards.Add(new Skill_Card("Absorption", 1, "체력을 흡수합니다", 20, 2));
+            skillCards.Add(new Skill_Card("Absorption", 1, "체력을 흡수합니다", 5, 2));
             skillCards.Add(new Skill_Card("Poison", 1, "적에게 독을 입힙니다", 20, 2));
             skillCards.Add(new Skill_Card("Dash Distance", 1, "대쉬 거리를 늘립니다", 2, 2));
             skillCards.Add(new Skill_Card("Max Health", 1, "최대 체력을 증가시킵니다", 50, 2));
@@ -78,7 +78,7 @@ public class Skill_Select : MonoBehaviour
         for (int i = 0; i < 2; i++)
         {
             skillCards.Add(new Skill_Card("Healing", 2, "체력을 회복합니다", 30, 3));
-            skillCards.Add(new Skill_Card("Absorption", 2, "체력을 흡수합니다", 30, 3));
+            skillCards.Add(new Skill_Card("Absorption", 2, "체력을 흡수합니다", 10, 3));
             skillCards.Add(new Skill_Card("Poison", 2, "적에게 독을 입힙니다", 30, 3));
             skillCards.Add(new Skill_Card("Dash Distance", 2, "대쉬 거리를 늘립니다", 3, 3));
             skillCards.Add(new Skill_Card("Max Health", 2, "최대 체력을 증가시킵니다", 100, 3));
@@ -191,6 +191,7 @@ public class Skill_Select : MonoBehaviour
                     case 0:
                         DataManager.Instance._Player_Skill.MaxHP_Level += 1;
                         SelectManager.Instance.isHPupadate = true;
+                        Debug.Log(SelectManager.Instance.isHPupadate);
                         break;
                     case 1:
                         DataManager.Instance._Player_Skill.MaxHP_Level += 2;
@@ -239,16 +240,16 @@ public class Skill_Select : MonoBehaviour
         // 흡수
         if (DataManager.Instance._Player_Skill.HP_Drain_Level == 1)
         {
-            // 흡수 레벨 1에 대한 처리
+            DataManager.Instance._Player_Skill.HP_Drain = 2;
         }
         else if (DataManager.Instance._Player_Skill.HP_Drain_Level == 2)
         {
-            // 흡수 레벨 2에 대한 처리
+            DataManager.Instance._Player_Skill.HP_Drain = 5;
         }
         else if (DataManager.Instance._Player_Skill.HP_Drain_Level >= 3)
         {
             DataManager.Instance._Player_Skill.HP_Drain_Level = 3;
-            // 흡수 레벨 3 이상에 대한 처리
+            DataManager.Instance._Player_Skill.HP_Drain = 10;
         }
 
         // 독

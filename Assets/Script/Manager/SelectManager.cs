@@ -11,6 +11,7 @@ public class SelectManager : MonoBehaviour
 
     public int upgrade_soul = 2;
     public bool isHPupadate;
+    public bool isChange_C;
 
     private static SelectManager instance = null;
 
@@ -52,7 +53,6 @@ public class SelectManager : MonoBehaviour
           {
               settingWindowInstance = Instantiate(settingWindowPrefab, Setting_Canvas);
           }
-          
     }
 
     

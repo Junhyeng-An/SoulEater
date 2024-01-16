@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 using static SoonsoonData;
+using Com.LuisPedroFonseca.ProCamera2D;
 
 public class EnemyController : MonoBehaviour
 {
@@ -182,13 +183,13 @@ public class EnemyController : MonoBehaviour
         Attack_area = transform.Find("Attack_area").gameObject;
         Weapon = transform.Find("Root").Find("BodySet").Find("P_Body").Find("ArmSet").gameObject;
     }
-
     void Update()
     {
         //Debug.Log(CurSkill);
         //최대체력 증가
-        if (gameObject.tag == "Controlled" && SelectManager.Instance.isHPupadate)
+        if ((gameObject.tag == "Controlled") || SelectManager.Instance.isChange_C)
         {
+            SelectManager.Instance.isChange_C = false;
             skill_MaxHP = DataManager.Instance._Player_Skill.MaxHP;
             switch (enemyType)
             {
@@ -208,6 +209,7 @@ public class EnemyController : MonoBehaviour
                     {
                         CurHP = MaxHP;
                     }
+                    Debug.Log(MaxHP);
                     SelectManager.Instance.isHPupadate = false;
                     break;
                 case EnemyType.Enemy_C:
@@ -224,6 +226,18 @@ public class EnemyController : MonoBehaviour
         else if (gameObject.tag != "Controlled")
         {
             SelectManager.Instance.isHPupadate = false;
+            switch (enemyType)
+            {
+                case EnemyType.Enemy_A:
+                    MaxHP = 100;
+                    break;
+                case EnemyType.Enemy_B:
+                    MaxHP = 80;
+                    break;
+                case EnemyType.Enemy_C:
+                    MaxHP = 50;
+                    break;
+            }
         }
         pos = transform.position;
         playerPos = Player.transform.position;
@@ -247,6 +261,10 @@ public class EnemyController : MonoBehaviour
         {
             isDamage = false;
         }
+    }
+
+    private void LateUpdate()
+    {
     }
     void Tag_Enemy()        // tag == Enemy
     {
@@ -372,7 +390,7 @@ public class EnemyController : MonoBehaviour
                 collider.enabled = false;
                 rigid.gravityScale = 0;
                 gameObject.tag = "Controlled";
-
+                SelectManager.Instance.isChange_C = true;
                 if (Attack_area != null)
                     Attack_area.SetActive(false);
                 timer = 0.0f;
@@ -389,6 +407,7 @@ public class EnemyController : MonoBehaviour
                 if (col.gameObject.tag == "Attack" && gameObject.tag != "Controlled")
                 {
                     CurHP -= sword.damage_playerAttack;
+                    HP_Drain();
                     //stat.Stat("ST", 3);
 
                     isDamage = true;
@@ -440,7 +459,22 @@ public class EnemyController : MonoBehaviour
             gameObject.tag = "Disarmed";
         }
     }
-    
+
+    void HP_Drain()
+    {
+        GameObject controlledObject = GameObject.FindWithTag("Controlled");
+
+        if (controlledObject != null)
+        {
+            EnemyController enemyController = controlledObject.GetComponent<EnemyController>();
+
+            if (enemyController != null)
+            {
+                enemyController.CurHP += sword.damage_playerAttack * DataManager.Instance._Player_Skill.HP_Drain/100;
+            }
+        }
+    }
+
     /// [ AI ] ///
     void Idle() //Enemy ai Idle
     {

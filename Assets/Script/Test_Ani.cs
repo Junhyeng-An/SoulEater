@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class Test_Ani : MonoBehaviour
 {
-    Animator ani;
+    Animator ani_body;
     Animator ani_eye;
     GameObject player;
     Rigidbody2D rigid;
-    SpriteRenderer render;
+    SpriteRenderer render_body;
     SpriteRenderer render_head;
     SpriteRenderer render_eye;
     Vector2 vel;
 
-    public GameObject head;
-    public GameObject eye;
+    GameObject body;
+    GameObject head;
+    GameObject eye;
 
     bool isAni = false;
     bool isRun = false;
@@ -26,14 +27,19 @@ public class Test_Ani : MonoBehaviour
 
     float moveBody;
     Vector2 moveHead;
+    Vector2 moveHead_ani;
+    Vector2 moveHead_;
 
     void Awake()
     {
-        ani = GetComponent<Animator>();
+        body = transform.Find("Body").gameObject;
+        head = transform.Find("Head").gameObject;
+        eye = head.transform.Find("Eye").gameObject;
+        ani_body = body.GetComponent<Animator>();
         ani_eye = eye.GetComponent<Animator>();
         player = GameObject.Find("Player");
         rigid = player.GetComponent<Rigidbody2D>();
-        render = GetComponent<SpriteRenderer>();
+        render_body = body.GetComponent<SpriteRenderer>();
         render_head = head.GetComponent<SpriteRenderer>();
         render_eye = eye.GetComponent<SpriteRenderer>();
         cycle = 0.1f;
@@ -41,8 +47,8 @@ public class Test_Ani : MonoBehaviour
 
     void LateUpdate()
     {
-        float posX;
-        float posY;
+        float posX = 0;
+        float posY = 0;
 
         float basicX = 0.0f;
         float basicY = 0.95f;
@@ -51,31 +57,31 @@ public class Test_Ani : MonoBehaviour
 
         if (vel.y > -1 && vel.y < 1)
         {
-            ani.SetFloat("TestAni_Run", Mathf.Abs(vel.x));
+            ani_body.SetFloat("TestAni_Run", Mathf.Abs(vel.x));
             isRun = true;
         }
         else
         {
-            ani.SetFloat("TestAni_Run", Mathf.Abs(0));
-            ani.SetFloat("TestAni_Jump", vel.y);
+            ani_body.SetFloat("TestAni_Run", Mathf.Abs(0));
+            ani_body.SetFloat("TestAni_Jump", vel.y);
             isRun = false;
         }
 
 
         if (vel.y == 0)
-            ani.SetFloat("TestAni_Jump", vel.y);
+            ani_body.SetFloat("TestAni_Jump", vel.y);
 
 
 
         if (vel.x < 0)
         {
-            render.flipX = true;
+            render_body.flipX = true;
             render_head.flipX = true;
             render_eye.flipX = true;
         }
         else if (vel.x > 0)
         {
-            render.flipX = false;
+            render_body.flipX = false;
             render_head.flipX = false;
             render_eye.flipX = false;
         }
@@ -100,7 +106,7 @@ public class Test_Ani : MonoBehaviour
         else
             posY = 0;
 
-        if (Mathf.Abs(vel.x) > 0.1f && ani.GetCurrentAnimatorStateInfo(0).IsName("TestAni_Run"))
+        if (Mathf.Abs(vel.x) > 0.1f && ani_body.GetCurrentAnimatorStateInfo(0).IsName("TestAni_Run"))
         {
             time += Time.deltaTime;
 
@@ -135,7 +141,7 @@ public class Test_Ani : MonoBehaviour
             moveHead.y = 0;
         }
 
-        if (ani.GetCurrentAnimatorStateInfo(0).IsName("TestAni_Jump01"))
+        if (ani_body.GetCurrentAnimatorStateInfo(0).IsName("TestAni_Jump01"))
         {
             moveHead.y = 0.1f;
 
@@ -145,7 +151,7 @@ public class Test_Ani : MonoBehaviour
                 moveHead.x = -0.075f;
         }
 
-        if (ani.GetCurrentAnimatorStateInfo(0).IsName("TestAni_Jump02"))
+        if (ani_body.GetCurrentAnimatorStateInfo(0).IsName("TestAni_Jump02"))
         {
             moveHead.y = 0.1f;
 

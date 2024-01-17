@@ -12,7 +12,10 @@ public class AnimaionController : MonoBehaviour
     SpriteRenderer render_body;
     SpriteRenderer render_head;
     SpriteRenderer render_eye;
-    Vector2 vel;
+
+    EnemyController.EnemyType enemyType;
+    public AnimatorOverrideController ani_body_over;
+    List<AnimationClipPair> clips;
 
     GameObject root;
     GameObject body;
@@ -29,6 +32,7 @@ public class AnimaionController : MonoBehaviour
 
     float moveBody;
 
+    Vector2 vel;
     Vector2 moveHead;
     Vector2 moveHead_basic;
     Vector2 moveHead_ani;
@@ -51,11 +55,16 @@ public class AnimaionController : MonoBehaviour
         render_head = head.GetComponent<SpriteRenderer>();
         render_eye = eye.GetComponent<SpriteRenderer>();
         cycle = 0.1f;
+
+        enemyType = GetComponent<EnemyController>().enemyType;
+        clips = new List<AnimationClipPair>(ani_body_over.clips);
     }
 
     void Update()
     {
         moveHead_basic = new Vector2(0.0f, 0.95f);
+
+        Check_EnemyType();
 
         if (CompareTag("Controlled"))
         {
@@ -132,13 +141,19 @@ public class AnimaionController : MonoBehaviour
                 if (time > cycle * 2)
                     time = 0;
 
-                if (vel.x > 0)
+                float headAni = 0.1f;
+                if (enemyType == EnemyController.EnemyType.Enemy_B) // basic
                 {
-                    moveHead_ani.x = 0.1f;
+                    headAni = 0.4f;
+                    moveHead_ani.y -= 0.1f;
+                }
+                    if (vel.x > 0)
+                {
+                    moveHead_ani.x = headAni;
                 }
                 else
                 {
-                    moveHead_ani.x = -0.1f;
+                    moveHead_ani.x = -headAni;
                 }
             }
             else
@@ -247,5 +262,36 @@ public class AnimaionController : MonoBehaviour
             head.transform.position = transform.position + new Vector3(moveHead.x, moveHead.y);
             body.transform.position = transform.position + Vector3.up * (moveBody + 0.5f);
         }
+    }
+    void Check_EnemyType()
+    {
+        //Debug.Log("clip 0 = " + clips[0].overrideClip.name);
+        //Debug.Log("clip 1 = " + clips[1].overrideClip.name);
+        //Debug.Log("clip 2 = " + clips[2].overrideClip.name);
+        //Debug.Log("clip 3 = " + clips[3].overrideClip.name);
+        /*if (enemyType == EnemyController.EnemyType.Enemy_A) // basic
+        {
+            clips[3].overrideClip = Resources.Load<AnimationClip>("Animation/Enemy_A/Ani_A_Idle");
+            ani_body_over.clips = clips.ToArray();
+            ani_body.runtimeAnimatorController = ani_body_over;
+
+            Debug.Log("AAA");
+        }
+        if (enemyType == EnemyController.EnemyType.Enemy_B) // fast
+        {
+            clips[3].overrideClip = Resources.Load<AnimationClip>("Animation/Enemy_B/Ani_B_Idle");
+            ani_body_over.clips = clips.ToArray();
+            ani_body.runtimeAnimatorController = ani_body_over;
+
+            Debug.Log("BBB");
+        }
+        if (enemyType == EnemyController.EnemyType.Enemy_C) // big
+        {
+            clips[].overrideClip = Resources.Load<AnimationClip>("Animation/Enemy_C/Ani_C_Idle");
+            ani_body_over.clips = clips.ToArray();
+            ani_body.runtimeAnimatorController = ani_body_over;
+
+            Debug.Log("CCC");
+        }*/
     }
 }

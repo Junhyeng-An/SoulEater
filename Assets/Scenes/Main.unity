@@ -2133,7 +2133,7 @@ Animator:
   m_GameObject: {fileID: 717716172}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f4a9f58e6bceb1f48840c10be20a9c6b, type: 2}
+  m_Controller: {fileID: 22100000, guid: 906715e30bd20e749b8cd236335d639b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2247,6 +2247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10211c949e844944a8ee595742de0529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ani_body_over: {fileID: 22100000, guid: 906715e30bd20e749b8cd236335d639b, type: 2}
 --- !u!114 &814086451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2274,7 +2275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 516a699585d9f3f4a9f4baa96ccb6558, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 0
+  enemyType: 2
   detect_distance: 4
   attack_distance: 2
   XYSpace: {x: 0, y: 2, z: 0.15}
@@ -6804,7 +6805,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1559430563}
   - component: {fileID: 1559430562}
-  - component: {fileID: 1559430561}
   - component: {fileID: 1559430560}
   - component: {fileID: 1559430558}
   - component: {fileID: 1559430556}
@@ -6832,6 +6832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10211c949e844944a8ee595742de0529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ani_body_over: {fileID: 22100000, guid: b2ca7f9b623e57f4d8dbf821097c9856, type: 2}
 --- !u!114 &1559430552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7019,27 +7020,6 @@ MonoBehaviour:
   isParried: 0
   isDamage: 0
   isDamage_skill: 0
---- !u!95 &1559430561
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1559430550}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c2fc0aafc4ba14749a6cc196ffeb52b8, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!210 &1559430562
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -7581,7 +7561,7 @@ Animator:
   m_GameObject: {fileID: 1674657121}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f4a9f58e6bceb1f48840c10be20a9c6b, type: 2}
+  m_Controller: {fileID: 22100000, guid: b2ca7f9b623e57f4d8dbf821097c9856, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -8883,6 +8863,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4047558784339492979, guid: 5ea6eddf6d9c3ba4eac4f19e62e400e3, type: 3}
+      propertyPath: enemyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5120285690574400386, guid: 5ea6eddf6d9c3ba4eac4f19e62e400e3, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 6afed534d6308e543ae83f0380b77d19, type: 2}
     - target: {fileID: 6349487994429233070, guid: 5ea6eddf6d9c3ba4eac4f19e62e400e3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -8935,6 +8923,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6676908920881935479, guid: 5ea6eddf6d9c3ba4eac4f19e62e400e3, type: 3}
+      propertyPath: ani_body_over
+      value: 
+      objectReference: {fileID: 22100000, guid: 6afed534d6308e543ae83f0380b77d19, type: 2}
     - target: {fileID: 7874231923124112010, guid: 5ea6eddf6d9c3ba4eac4f19e62e400e3, type: 3}
       propertyPath: m_Name
       value: Enemy_1

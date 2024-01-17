@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ani_b_Jump_Land
+  m_Name: Ani_C_Idle
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,9 +21,9 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -331082531, guid: 549f42eddfde65c4b8e66a0d901c537a, type: 3}
+      value: {fileID: -995554197, guid: 5a8b3fdfe5adcd542a63ce897150de0c, type: 3}
     - time: 0.083333336
-      value: {fileID: -425020601, guid: 549f42eddfde65c4b8e66a0d901c537a, type: 3}
+      value: {fileID: -339473647, guid: 5a8b3fdfe5adcd542a63ce897150de0c, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -46,8 +46,8 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -331082531, guid: 549f42eddfde65c4b8e66a0d901c537a, type: 3}
-    - {fileID: -425020601, guid: 549f42eddfde65c4b8e66a0d901c537a, type: 3}
+    - {fileID: -995554197, guid: 5a8b3fdfe5adcd542a63ce897150de0c, type: 3}
+    - {fileID: -339473647, guid: 5a8b3fdfe5adcd542a63ce897150de0c, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

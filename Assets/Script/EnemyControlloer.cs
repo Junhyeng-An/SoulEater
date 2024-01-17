@@ -593,9 +593,9 @@ public class EnemyController : MonoBehaviour
         //Debug.Log("File path: " + E_filePath);
         //Debug.Log("File path: " + E_filePath1);
         //Debug.Log("File path: " + E_filePath2);
-         EnemyA = new EnemyData(100, 100,20,20,5,2, 10, SkillController.Skill_Active.Smash);
+         EnemyA = new EnemyData(100, 100,20,20,5,2, 10, SkillController.Skill_Active.Slash);
          EnemyB = new EnemyData(80, 80,20,20,5,2, 20, SkillController.Skill_Active.DashAttack);
-         EnemyC = new EnemyData(50, 50,20,20,5,2, 30, SkillController.Skill_Active.Slash);
+         EnemyC = new EnemyData(50, 50,20,20,5,2, 30, SkillController.Skill_Active.Smash);
         string jsonA = JsonUtility.ToJson(EnemyA);
         string jsonB = JsonUtility.ToJson(EnemyB);
         string jsonC = JsonUtility.ToJson(EnemyC);

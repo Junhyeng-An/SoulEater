@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,14 +7,15 @@ using UnityEngine.SceneManagement;
 public class Stage_Controller : MonoBehaviour
 {
     public string Scene_Name;
-    GameObject pl;
 
 
-    private void Update()
+    private void Awake()
     {
-        if(Input.GetKeyDown(KeyCode.O))
-            LoadingScene.LoadScene("Main");
+        if (SceneManager.GetActiveScene().name == "Map_test")
+            Scene_Name = "Main";
     }
+
+
     // Update is called once per frame
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -33,7 +35,7 @@ public class Stage_Controller : MonoBehaviour
                 foreach (GameObject obj in controlledObjects)
                 {
                     DataManager.Instance._PlayerData.controll_enemy =obj.name.ToString();
-                    DontDestroyOnLoad(obj.transform.parent);
+                    DontDestroyOnLoad(obj);
                 }
                 LoadingScene.LoadScene(Scene_Name);
             }

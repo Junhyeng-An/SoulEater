@@ -82,7 +82,7 @@ public class Skill_Select : MonoBehaviour
             skillCards.Add(new Skill_Card("Hermes", 2, "이동속도가 증가합니다", 3, 3));
             skillCards.Add(new Skill_Card("Dash Distance", 2, "대쉬 거리를 늘립니다", 3, 3));
             skillCards.Add(new Skill_Card("Max Health", 2, "최대 체력을 증가시킵니다", 100, 3));
-            skillCards.Add(new Skill_Card("Discount", 2, "상점에서 할인을 받습니다", 30, 3));
+            skillCards.Add(new Skill_Card("Discount", 2, "상점에서 할인을 받습니다", 50, 3));
         }
 
         // 다양한 스킬 추가 및 수정 가능
@@ -207,13 +207,13 @@ public class Skill_Select : MonoBehaviour
                 switch (selectedSkill.card_level)
                 {
                     case 0:
-                        DataManager.Instance._Player_Skill.Discount += 1;
+                        DataManager.Instance._Player_Skill.Discount_Cost_Level += 1;
                         break;
                     case 1:
-                        DataManager.Instance._Player_Skill.Discount += 2;
+                        DataManager.Instance._Player_Skill.Discount_Cost_Level += 2;
                         break;
                     case 2:
-                        DataManager.Instance._Player_Skill.Discount += 3;
+                        DataManager.Instance._Player_Skill.Discount_Cost_Level += 3;
                         break;
                 }
                 break;
@@ -293,22 +293,23 @@ public class Skill_Select : MonoBehaviour
         }
         else if (DataManager.Instance._Player_Skill.MaxHP_Level >= 3)
         {
+            DataManager.Instance._Player_Skill.MaxHP_Level = 3;
             DataManager.Instance._Player_Skill.MaxHP = 100;
         }
 
         // 할인
-        if (DataManager.Instance._Player_Skill.Discount_Level == 1)
+        if (DataManager.Instance._Player_Skill.Discount_Cost_Level == 1)
         {
-            // 할인 레벨 1에 대한 처리
+            DataManager.Instance._Player_Skill.Discount_Cost = 10;
         }
-        else if (DataManager.Instance._Player_Skill.Discount_Level == 2)
+        else if (DataManager.Instance._Player_Skill.Discount_Cost_Level == 2)
         {
-            // 할인 레벨 2에 대한 처리
+            DataManager.Instance._Player_Skill.Discount_Cost = 20;
         }
-        else if (DataManager.Instance._Player_Skill.Discount_Level >= 3)
+        else if (DataManager.Instance._Player_Skill.Discount_Cost_Level >= 3)
         {
-            DataManager.Instance._Player_Skill.Discount_Level = 3;
-            // 할인 레벨 3 이상에 대한 처리
+            DataManager.Instance._Player_Skill.Discount_Cost_Level = 3;
+            DataManager.Instance._Player_Skill.Discount_Cost = 50;
         }
     }
     public void ButtonClick(int buttonIndex) // 버튼 클릭 이벤트, CardEffect(int selectedIndex) 호출

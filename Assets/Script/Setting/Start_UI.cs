@@ -26,12 +26,15 @@ public class Start_UI : MonoBehaviour
         
         DataManager.Instance._SwordData.player_damage_attack = 10.0f;
         DataManager.Instance._SwordData.player_attack_level = 1;
-
+        DataManager.Instance._SwordData.Upgrade_attack_Cost = 10;
+        
         DataManager.Instance._SwordData.player_sword_reach = 1.0f;
         DataManager.Instance._SwordData.player_sword_level = 1;
+        DataManager.Instance._SwordData.Upgrade_reach_Cost = 10;
         
         DataManager.Instance._SwordData.player_parrying_attack = 50.0f;
         DataManager.Instance._SwordData.player_parrying_level = 1;
+        DataManager.Instance._SwordData.Upgrade_parrying_Cost = 10;
         #endregion
 
 
@@ -51,7 +54,28 @@ public class Start_UI : MonoBehaviour
         DataManager.Instance._Player_Skill.Skill_Speed = 0.0f;
         DataManager.Instance._Player_Skill.Skill_Speed_Level = 0;
 
+        DataManager.Instance._Player_Skill.Discount_Cost = 0.0f;
+        DataManager.Instance._Player_Skill.Discount_Cost_Level = 0;
+
         #endregion
+
+        #region Active_SKill
+
+        DataManager.Instance._Active_Skill.Dash_Damage = 10;
+        DataManager.Instance._Active_Skill.Dash_Damage_Level = 1;
+
+
+        DataManager.Instance._Active_Skill.Slash_Damage = 10;
+        DataManager.Instance._Active_Skill.Dash_Damage_Level = 1;
+
+
+        DataManager.Instance._Active_Skill.Smash_Damage = 1;
+        DataManager.Instance._Active_Skill.Smash_Damage_Level = 1;
+
+
+        #endregion
+
+
     }
 
 

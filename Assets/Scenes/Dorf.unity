@@ -299,7 +299,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 12603574}
-        m_TargetAssemblyTypeName: Upgrade_Button_On_Off, Assembly-CSharp
+        m_TargetAssemblyTypeName: Parrying_Upgrade_On_Off, Assembly-CSharp
         m_MethodName: Upgrade_Click
         m_Mode: 1
         m_Arguments:
@@ -357,11 +357,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 12603569}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3b71a5d10a12b54eb2b058cb7429996, type: 3}
+  m_Script: {fileID: 11500000, guid: e7b8ba51f8facd945bd57baad27d6587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Yes_No_Button: {fileID: 2143754114}
   Not_Enough_Coin: {fileID: 1049161017}
+  upgrade_cost: {fileID: 1704128531}
 --- !u!1001 &27831919
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -596,7 +597,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 36691702}
-        m_TargetAssemblyTypeName: Upgrade_Button_On_Off, Assembly-CSharp
+        m_TargetAssemblyTypeName: Damage_Upgrade_On_Off, Assembly-CSharp
         m_MethodName: Upgrade_Click
         m_Mode: 1
         m_Arguments:
@@ -654,11 +655,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 36691697}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3b71a5d10a12b54eb2b058cb7429996, type: 3}
+  m_Script: {fileID: 11500000, guid: 456a316ab40ba6a4a9aab21088677ce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Yes_No_Button: {fileID: 1550766089}
   Not_Enough_Coin: {fileID: 1124827591}
+  upgrade_cost: {fileID: 1623710569}
 --- !u!1 &83446279
 GameObject:
   m_ObjectHideFlags: 0
@@ -1222,7 +1224,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 191666146}
-        m_TargetAssemblyTypeName: Upgrade_Button_On_Off, Assembly-CSharp
+        m_TargetAssemblyTypeName: Reach_Upgrade_On_Off, Assembly-CSharp
         m_MethodName: Upgrade_Click
         m_Mode: 1
         m_Arguments:
@@ -1280,11 +1282,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 191666141}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3b71a5d10a12b54eb2b058cb7429996, type: 3}
+  m_Script: {fileID: 11500000, guid: 996a6928b6695014ab05fae7639ad7cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Yes_No_Button: {fileID: 1734614171}
   Not_Enough_Coin: {fileID: 133457892}
+  upgrade_cost: {fileID: 551481307}
 --- !u!1 &203031698
 GameObject:
   m_ObjectHideFlags: 0
@@ -2104,8 +2107,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Sword, Assembly-CSharp
+      - m_Target: {fileID: 506470237}
+        m_TargetAssemblyTypeName: Black_Smith, Assembly-CSharp
         m_MethodName: Player_attack_damage_upgrade
         m_Mode: 1
         m_Arguments:
@@ -3170,108 +3173,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &649649457
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 649649461}
-  - component: {fileID: 649649460}
-  - component: {fileID: 649649459}
-  - component: {fileID: 649649458}
-  m_Layer: 5
-  m_Name: Player_Canvas
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &649649458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 649649457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
---- !u!114 &649649459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 649649457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UiScaleMode: 1
-  m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1920, y: 1080}
-  m_ScreenMatchMode: 1
-  m_MatchWidthOrHeight: 0.5
-  m_PhysicalUnit: 3
-  m_FallbackScreenDPI: 96
-  m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
---- !u!223 &649649460
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 649649457}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 25
-  m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_TargetDisplay: 0
---- !u!224 &649649461
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 649649457}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2065813026}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
 --- !u!1 &667859138
 GameObject:
   m_ObjectHideFlags: 0
@@ -4410,8 +4311,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Sword, Assembly-CSharp
+      - m_Target: {fileID: 506470237}
+        m_TargetAssemblyTypeName: Black_Smith, Assembly-CSharp
         m_MethodName: Player_sword_reach_upgrade
         m_Mode: 1
         m_Arguments:
@@ -6288,8 +6189,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Sword, Assembly-CSharp
+      - m_Target: {fileID: 506470237}
+        m_TargetAssemblyTypeName: Black_Smith, Assembly-CSharp
         m_MethodName: Player_parrying_damage_upgrade
         m_Mode: 1
         m_Arguments:
@@ -8372,6 +8273,7 @@ GameObject:
   - component: {fileID: 1842998311}
   - component: {fileID: 1842998313}
   - component: {fileID: 1842998312}
+  - component: {fileID: 1842998314}
   m_Layer: 5
   m_Name: Coin_Count
   m_TagString: Untagged
@@ -8495,6 +8397,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1842998310}
   m_CullTransparentMesh: 1
+--- !u!114 &1842998314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1842998310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d26342473691404c8f6db5f4912b1d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgrade_cost: {fileID: 1842998312}
 --- !u!1 &1857633831
 GameObject:
   m_ObjectHideFlags: 0
@@ -9297,78 +9212,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6983596940868447169, guid: 6592434b14cbc634b8575627bf6cb3fd, type: 3}
   m_PrefabInstance: {fileID: 2064119250}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2065813025
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2065813026}
-  - component: {fileID: 2065813028}
-  - component: {fileID: 2065813027}
-  m_Layer: 18
-  m_Name: Minimap
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &2065813026
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2065813025}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 649649461}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -117.77026, y: 105.640625}
-  m_SizeDelta: {x: 235.5405, y: 211.2813}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2065813027
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2065813025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Texture: {fileID: 8400000, guid: 30c6ebf03f5259d4f89d12d660e99640, type: 2}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
---- !u!222 &2065813028
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2065813025}
-  m_CullTransparentMesh: 1
 --- !u!1 &2079133708
 GameObject:
   m_ObjectHideFlags: 0
@@ -9841,7 +9684,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 619394802}
-  - {fileID: 649649461}
   - {fileID: 2519247440787055685}
   - {fileID: 1061287212}
   - {fileID: 486299899}

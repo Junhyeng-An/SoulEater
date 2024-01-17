@@ -9,10 +9,11 @@ public class Parrying_Upgrade_On_Off : MonoBehaviour
     public GameObject Not_Enough_Coin;
     public TextMeshProUGUI upgrade_cost;
 
-
+    float parrying_cost_final;
     private void Update()
     {
-        upgrade_cost.text = DataManager.Instance._SwordData.Upgrade_parrying_Cost.ToString()+ "coin";
+        parrying_cost_final = DataManager.Instance._SwordData.Upgrade_parrying_Cost - Mathf.RoundToInt(DataManager.Instance._SwordData.Upgrade_parrying_Cost * DataManager.Instance._Player_Skill.Discount_Cost / 100);
+        upgrade_cost.text = parrying_cost_final.ToString()+ "coin";
     }
 
     public void Upgrade_Click()

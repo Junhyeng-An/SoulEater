@@ -30,11 +30,8 @@ public class Sword_Data
     public float player_parrying_attack;
     public int player_parrying_level;
     public int Upgrade_parrying_Cost;
-    
-   
-    
-    
-    
+
+
 }
 
 
@@ -72,15 +69,10 @@ public class Player_Skill
     public float Dash = 5;
     public int Dash_Level;
 
-    public float Discount;
-    public int Discount_Level;
-
     public float MaxHP;
     public int MaxHP_Level;
 
-   
-
-    public int Discount_Cost;
+    public float Discount_Cost;
     public int Discount_Cost_Level;
 
 }

@@ -26,7 +26,10 @@ public class Load_Last_CHaracter : MonoBehaviour
         if (DataManager.Instance.Load)
         {
             if (DataManager.Instance._PlayerData.controll_enemy == character_name0)
+            {
+                Debug.Log("asdasdasdasd");
                 enemy_Prefab[0].SetActive(true);
+            }
             else if (DataManager.Instance._PlayerData.controll_enemy == character_name1)
                 enemy_Prefab[1].SetActive(true);
             else if (DataManager.Instance._PlayerData.controll_enemy == character_name2)

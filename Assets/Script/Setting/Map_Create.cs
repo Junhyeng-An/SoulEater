@@ -260,7 +260,6 @@ public class Map_Create : MonoBehaviour
 
     void Jump(int i,int num)
     {
-        Debug.Log("cur = " + main_way);
         room_turn[count] = i + num;
         Room[i + num] = true;
         count++;

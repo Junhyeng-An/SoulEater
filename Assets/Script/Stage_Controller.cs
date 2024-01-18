@@ -20,7 +20,7 @@ public class Stage_Controller : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
   
-        GameObject[] controlledObjects = GameObject.FindGameObjectsWithTag("Controlled");
+        GameObject controlledObjects = GameObject.FindGameObjectWithTag("Controlled");
 
    
         
@@ -32,11 +32,10 @@ public class Stage_Controller : MonoBehaviour
             if (NoEnemiesInScene())
             {
 
-                foreach (GameObject obj in controlledObjects)
-                {
-                    DataManager.Instance._PlayerData.controll_enemy =obj.name.ToString();
-                    DontDestroyOnLoad(obj);
-                }
+              
+                    DataManager.Instance._PlayerData.controll_enemy =controlledObjects.name.ToString();
+                    DontDestroyOnLoad(controlledObjects);
+                
                 LoadingScene.LoadScene(Scene_Name);
             }
             else

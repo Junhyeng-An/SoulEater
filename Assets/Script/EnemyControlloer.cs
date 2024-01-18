@@ -209,7 +209,6 @@ public class EnemyController : MonoBehaviour
                     {
                         CurHP = MaxHP;
                     }
-                    Debug.Log(MaxHP);
                     SelectManager.Instance.isHPupadate = false;
                     break;
                 case EnemyType.Enemy_C:

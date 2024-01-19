@@ -672,7 +672,7 @@ GameObject:
   m_Component:
   - component: {fileID: 470836173}
   - component: {fileID: 470836172}
-  m_Layer: 0
+  m_Layer: 27
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1155,7 +1155,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 861687270}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Way
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1780,7 +1780,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1484489538}
   - component: {fileID: 1484489539}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: 333
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2014,7 +2014,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1578157842}
   - component: {fileID: 1578157843}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: 111
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2182,7 +2182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1686418598}
   - component: {fileID: 1686418599}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: 222
   m_TagString: Untagged
   m_Icon: {fileID: 0}

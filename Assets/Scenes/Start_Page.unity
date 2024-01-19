@@ -671,6 +671,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 117821016}
   m_CullTransparentMesh: 1
+--- !u!1 &198588517 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7568807408662264302, guid: 85e926b38b3bb7c4bb293b89f11a8c4c, type: 3}
+  m_PrefabInstance: {fileID: 1543936235}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &211651676
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1485,6 +1490,8 @@ MonoBehaviour:
   Coun_text_Name: {fileID: 1492855149}
   Start_Coin: {fileID: 1854563371}
   Start_Soul: {fileID: 1287049948}
+  Minimap: {fileID: 198588517}
+  HP_ST: {fileID: 2117483626}
   Coin: {fileID: 3785702487689017820, guid: 07c4e84eb2ac8424a9d5d20a7da092a0, type: 3}
   Soul: {fileID: 6881506416508319521, guid: b9ad29b4c16028e4eb4b9bc4e3e07e8c, type: 3}
 --- !u!1 &468476274
@@ -1705,6 +1712,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5266434637195166093, guid: 835c29568c68a3f488e17e803e251efc, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 134479872
+      objectReference: {fileID: 0}
     - target: {fileID: 6543928798861480122, guid: 835c29568c68a3f488e17e803e251efc, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -1745,6 +1756,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1184762609553349082, guid: 835c29568c68a3f488e17e803e251efc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 884594765}
+    - targetCorrespondingSourceObject: {fileID: 3391391268979525630, guid: 835c29568c68a3f488e17e803e251efc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1103964015}
   m_SourcePrefab: {fileID: 100100000, guid: 835c29568c68a3f488e17e803e251efc, type: 3}
 --- !u!4 &500520746 stripped
 Transform:
@@ -2724,8 +2738,8 @@ MonoBehaviour:
   color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   textStyle: 1
   textStyleColor: {r: 0, g: 0, b: 0, a: 1}
-  defaultUseMessage: (spacebar to interact)
-  useKey: 32
+  defaultUseMessage: "\uC0C1\uD638\uC791\uC6A9\uC744 \uC704\uD574 V\uB97C \uC785\uB825\uD558\uC138\uC694."
+  useKey: 118
   useButton: Fire2
   enableTouch: 0
   touchArea:
@@ -2814,7 +2828,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 16317495
+    m_Bits: 150535223
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -3698,6 +3712,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1062867276}
   m_CullTransparentMesh: 1
+--- !u!1 &1103964011 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3391391268979525630, guid: 835c29568c68a3f488e17e803e251efc, type: 3}
+  m_PrefabInstance: {fileID: 500520745}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1103964015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103964011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa0dcbdfdbc2b7b4ea07f6d65897dae2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1124919223
 GameObject:
   m_ObjectHideFlags: 0
@@ -5391,6 +5422,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Minimap
       objectReference: {fileID: 0}
+    - target: {fileID: 7568807408662264302, guid: 85e926b38b3bb7c4bb293b89f11a8c4c, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6991,6 +7026,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2112180574}
   m_CullTransparentMesh: 1
+--- !u!1 &2117483626 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7748142349088559114, guid: abbc7fb0e28908b4fb9820bc6e36af8b, type: 3}
+  m_PrefabInstance: {fileID: 1845864509}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2141936317
 GameObject:
   m_ObjectHideFlags: 0

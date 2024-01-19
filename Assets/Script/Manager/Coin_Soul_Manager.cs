@@ -31,6 +31,9 @@ public class Coin_Soul_Manager : MonoBehaviour
 
     public GameObject Start_Coin;
     public GameObject Start_Soul;
+    public GameObject Minimap;
+    public GameObject HP_ST;
+    
     
     
     
@@ -72,11 +75,15 @@ public class Coin_Soul_Manager : MonoBehaviour
         {
             Start_Coin.SetActive(false);
             Start_Soul.SetActive(false);
+            Minimap.SetActive(false);
+            HP_ST.SetActive(false);
         }
         else
         {
             Start_Coin.SetActive(true);
             Start_Soul.SetActive(true);
+            Minimap.SetActive(true);
+            HP_ST.SetActive(true);
         }
         
         Show_Count();

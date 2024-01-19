@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Language.Lua;
 using Unity.VisualScripting;
 using UnityEngine;
 using Vector3 = System.Numerics.Vector3;
@@ -24,10 +25,12 @@ public class Portal : MonoBehaviour
             for(int i =0; i<_mapCreate.map_MaxCount; i++)
             try
             {
+
+                int count = 0;
+                if(GetChildrenWithTag(_mapCreate.map[i].transform, "Enemy") !=null)
+                     count = GetChildrenWithTag(_mapCreate.map[i].transform, "Enemy");
                 
-                
-                int count = GetChildrenWithTag(_mapCreate.map[i].transform, "Enemy");
-                
+                Debug.Log(count);
                 if (count == 0)
                 {
                     if (_mapCreate.map[i].transform.Find("East") == this.transform)
@@ -70,8 +73,11 @@ public class Portal : MonoBehaviour
         {
             if (child.CompareTag(tag))
             {
-                result[count] = child.gameObject;
-                count++;
+                if (child.gameObject.activeSelf) 
+                {
+                    result[count] = child.gameObject;
+                    count++;
+                }
             }
 
          
@@ -79,5 +85,8 @@ public class Portal : MonoBehaviour
 
         return count;
     }
+    
+    
+    
     
 }

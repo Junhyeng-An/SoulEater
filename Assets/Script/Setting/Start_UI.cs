@@ -57,6 +57,12 @@ public class Start_UI : MonoBehaviour
         DataManager.Instance._Player_Skill.Discount_Cost = 0.0f;
         DataManager.Instance._Player_Skill.Discount_Cost_Level = 0;
 
+        DataManager.Instance._Player_Skill.isDouble_Jump = false;
+        DataManager.Instance._Player_Skill.isDouble_Jump_Level = 0;
+
+        DataManager.Instance._Player_Skill.Miss = 0.0f;
+        DataManager.Instance._Player_Skill.Miss_Level = 0;
+
         #endregion
 
         #region Active_SKill

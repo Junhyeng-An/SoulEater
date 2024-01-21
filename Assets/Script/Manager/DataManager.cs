@@ -75,6 +75,11 @@ public class Player_Skill
     public float Discount_Cost;
     public int Discount_Cost_Level;
 
+    public bool isDouble_Jump;
+    public int isDouble_Jump_Level;
+
+    public float Miss;
+    public int Miss_Level;
 }
 
 public class Sound_Volume

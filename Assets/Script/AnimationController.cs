@@ -61,7 +61,7 @@ public class AnimaionController : MonoBehaviour
         {
             vel = rigid_player.velocity;
 
-            Debug.Log(vel);
+            //Debug.Log(vel);
 
             if (vel.y > -1 && vel.y < 1)
             {

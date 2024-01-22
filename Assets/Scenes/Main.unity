@@ -2207,9 +2207,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 0
+  enemyState: 0
   detect_distance: 4
   attack_distance: 2
   XYSpace: {x: 0, y: 2, z: 0.15}
+  Posion_Sprite: {fileID: 717716176}
   CurHP: 0
   MaxHP: 0
   CurWP: 0
@@ -6937,9 +6939,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 1
+  enemyState: 0
   detect_distance: 4
   attack_distance: 2
   XYSpace: {x: 0, y: 2, z: 0.15}
+  Posion_Sprite: {fileID: 1674657125}
   CurHP: 0
   MaxHP: 0
   CurWP: 0
@@ -8801,20 +8805,24 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2091710531500397461, guid: 5ea6eddf6d9c3ba4eac4f19e62e400e3, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2091710531500397461, guid: 5ea6eddf6d9c3ba4eac4f19e62e400e3, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2325954013506938038, guid: 5ea6eddf6d9c3ba4eac4f19e62e400e3, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2325954013506938038, guid: 5ea6eddf6d9c3ba4eac4f19e62e400e3, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4047558784339492979, guid: 5ea6eddf6d9c3ba4eac4f19e62e400e3, type: 3}
+      propertyPath: Posion_Sprite
+      value: 
+      objectReference: {fileID: 4885591648719927559}
     - target: {fileID: 6349487994429233070, guid: 5ea6eddf6d9c3ba4eac4f19e62e400e3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -8871,11 +8879,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_1
       objectReference: {fileID: 0}
+    - target: {fileID: 7874231923124112010, guid: 5ea6eddf6d9c3ba4eac4f19e62e400e3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ea6eddf6d9c3ba4eac4f19e62e400e3, type: 3}
+--- !u!212 &4885591648719927559 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3685659916465104432, guid: 5ea6eddf6d9c3ba4eac4f19e62e400e3, type: 3}
+  m_PrefabInstance: {fileID: 4885591648719927558}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6687418552430255192
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -105,7 +105,7 @@ public class Movement : MonoBehaviour
         {
             if (rayHit_Jump.collider.gameObject.layer == LayerMask.NameToLayer("Platform"))
             {
-                Debug.Log(rayHit_Jump.collider.gameObject.layer);
+                //Debug.Log(rayHit_Jump.collider.gameObject.layer);
 
                 isDown = true;
                 time_down = 0;

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -3936145179541177598}
   - component: {fileID: -9061717160039308384}
   m_Layer: 22
-  m_Name: GreenSkull_fire1
+  m_Name: Game_Soul
   m_TagString: Soul
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

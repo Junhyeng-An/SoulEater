@@ -64,6 +64,7 @@ public class Skill_Select : MonoBehaviour
             skillCards.Add(new Skill_Card("Double Jump", 0, "더블점프가 가능해집니다", 10, 1));
             skillCards.Add(new Skill_Card("Miss", 0, "공격을 빚 맞습니다", 10, 1));
             skillCards.Add(new Skill_Card("Posion", 0, "독 데미지를 가합니다", 5, 1));
+            skillCards.Add(new Skill_Card("Skill_Damage", 0, "액티브 스킬 데미지가 증가합니다", 10, 1));
         }
 
         // 에픽 카드 13%
@@ -77,6 +78,7 @@ public class Skill_Select : MonoBehaviour
             skillCards.Add(new Skill_Card("Discount", 1, "상점에서 할인을 받습니다", 20, 2));
             skillCards.Add(new Skill_Card("Miss", 1, "공격을 빚 맞습니다", 20, 2));
             skillCards.Add(new Skill_Card("Posion", 1, "독 데미지를 가합니다", 10, 2));
+            skillCards.Add(new Skill_Card("Skill_Damage", 0, "액티브 스킬 데미지가 증가합니다", 50, 2));
         }
 
         // 레전더리 카드 2%
@@ -90,6 +92,7 @@ public class Skill_Select : MonoBehaviour
             skillCards.Add(new Skill_Card("Discount", 2, "상점에서 할인을 받습니다", 50, 3));
             skillCards.Add(new Skill_Card("Miss", 2, "공격을 빚 맞습니다", 50, 3));
             skillCards.Add(new Skill_Card("Posion", 2, "독 데미지를 가합니다", 20, 3));
+            skillCards.Add(new Skill_Card("Skill_Damage", 0, "액티브 스킬 데미지가 증가합니다", 100, 3));
         }
 
         // 다양한 스킬 추가 및 수정 가능
@@ -260,6 +263,26 @@ public class Skill_Select : MonoBehaviour
                         break;
                 }
                 break;
+            case "Skill_Damage":
+                switch (selectedSkill.card_level)
+                {
+                    case 0:
+                        DataManager.Instance._Active_Skill.Slash_Damage_Level += 1;
+                        DataManager.Instance._Active_Skill.Smash_Damage_Level += 1;
+                        DataManager.Instance._Active_Skill.Dash_Damage_Level += 1;
+                        break;
+                    case 1:
+                        DataManager.Instance._Active_Skill.Slash_Damage_Level += 2;
+                        DataManager.Instance._Active_Skill.Smash_Damage_Level += 2;
+                        DataManager.Instance._Active_Skill.Dash_Damage_Level += 2;
+                        break;
+                    case 2:
+                        DataManager.Instance._Active_Skill.Slash_Damage_Level += 2;
+                        DataManager.Instance._Active_Skill.Smash_Damage_Level += 2;
+                        DataManager.Instance._Active_Skill.Dash_Damage_Level += 2;
+                        break;
+                }
+                break;
         }
     }
 
@@ -389,6 +412,29 @@ public class Skill_Select : MonoBehaviour
         {
             DataManager.Instance._Player_Skill.Poision_Damage_Level = 3;
             DataManager.Instance._Player_Skill.poison_damage = 20;
+        }
+
+        //스킬 데미지
+        if (DataManager.Instance._Active_Skill.Slash_Damage == 1)
+        {
+            DataManager.Instance._Active_Skill.Slash_Damage = DataManager.Instance._Active_Skill.Slash_Damage_default + (DataManager.Instance._Active_Skill.Slash_Damage_default * 0.1f);
+            DataManager.Instance._Active_Skill.Smash_Damage = DataManager.Instance._Active_Skill.Smash_Damage_default + (DataManager.Instance._Active_Skill.Smash_Damage_default * 0.1f);
+            DataManager.Instance._Active_Skill.Dash_Damage = DataManager.Instance._Active_Skill.Dash_Damage_default + (DataManager.Instance._Active_Skill.Dash_Damage_default * 0.1f);
+        }
+        else if (DataManager.Instance._Active_Skill.Slash_Damage_Level == 2)
+        {
+            DataManager.Instance._Active_Skill.Slash_Damage = DataManager.Instance._Active_Skill.Slash_Damage_default + (DataManager.Instance._Active_Skill.Slash_Damage_default * 0.5f);
+            DataManager.Instance._Active_Skill.Smash_Damage = DataManager.Instance._Active_Skill.Smash_Damage_default + (DataManager.Instance._Active_Skill.Smash_Damage_default * 0.5f);
+            DataManager.Instance._Active_Skill.Dash_Damage = DataManager.Instance._Active_Skill.Dash_Damage_default + (DataManager.Instance._Active_Skill.Dash_Damage_default * 0.5f);
+        }
+        else if (DataManager.Instance._Active_Skill.Slash_Damage_Level >= 3)
+        {
+            DataManager.Instance._Active_Skill.Slash_Damage_Level = 3;
+            DataManager.Instance._Active_Skill.Smash_Damage_Level = 3;
+            DataManager.Instance._Active_Skill.Dash_Damage_Level = 3;
+            DataManager.Instance._Active_Skill.Slash_Damage = DataManager.Instance._Active_Skill.Slash_Damage_default + (DataManager.Instance._Active_Skill.Slash_Damage_default * 1.0f);
+            DataManager.Instance._Active_Skill.Smash_Damage = DataManager.Instance._Active_Skill.Smash_Damage_default + (DataManager.Instance._Active_Skill.Smash_Damage_default * 1.0f);
+            DataManager.Instance._Active_Skill.Dash_Damage = DataManager.Instance._Active_Skill.Dash_Damage_default + (DataManager.Instance._Active_Skill.Dash_Damage_default * 1.0f);
         }
     }
     public void ButtonClick(int buttonIndex) // 버튼 클릭 이벤트, CardEffect(int selectedIndex) 호출

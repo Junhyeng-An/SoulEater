@@ -12,10 +12,10 @@ public class PlayerController : MonoBehaviour
     private EnemyController enemy;
     private SkillController skill;
     private VolumeController volume;
-
+    private int maxJumpCount = 2;
     [HideInInspector]
     public bool isThrowing;
-
+    bool hasDoubleJumpSkill;
     void Awake()
     {
         movement = GetComponent<Movement>();
@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
+        hasDoubleJumpSkill = DataManager.Instance._Player_Skill.isDouble_Jump;
         movement.Return();
         movement.Landing();
         movement.WallCheck();
@@ -48,13 +49,16 @@ public class PlayerController : MonoBehaviour
             movement.Move(x);
 
             //player jump
-            if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W))
+            if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W)) && movement.jumpCount < maxJumpCount)
             {
-                movement.Jump();
+                if (!movement.isJumping || hasDoubleJumpSkill)
+                {
+                    movement.Jump();
+                }
             }
 
             //player jump bottom
-            if(Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKeyDown(KeyCode.S))
             {
                 movement.Jump_Down();
             }

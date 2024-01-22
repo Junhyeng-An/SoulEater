@@ -18,11 +18,13 @@ public class Movement : MonoBehaviour
     public int bounceCount = 2;
     public bool gameover = false;
 
-    bool isJumping = false;
+    [HideInInspector] public bool isJumping = false;
+    [HideInInspector] public bool isDoubleJump = false;
     bool isThrowing = false;
     bool isDown = false;
     float time_down = 0;
     float Dash_D;
+    [HideInInspector] public int jumpCount = 0;
     public Vector2 posMid;
 
     Rigidbody2D rigid;
@@ -78,6 +80,7 @@ public class Movement : MonoBehaviour
             if (rayHit_Jump.distance <= 0.55f && rigid.velocity.y <= 0)
             {
                 isJumping = false;
+                jumpCount = 0;
             }
         }
 
@@ -97,6 +100,7 @@ public class Movement : MonoBehaviour
         {
             rigid.velocity = Vector2.up * jumpForce;
             isJumping = true;
+            jumpCount++;
         }
     }
     public void Jump_Down()
@@ -118,6 +122,7 @@ public class Movement : MonoBehaviour
     public void Move(float x)
     {
         rigid.velocity = new Vector2(x * (speed+DataManager.Instance._Player_Skill.Skill_Speed), rigid.velocity.y);
+        Debug.Log(rigid.velocity.x);
     }
     public void Dash()
     {

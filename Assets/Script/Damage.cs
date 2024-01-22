@@ -13,8 +13,8 @@ public class Damage : MonoBehaviour
     private void Update()
     {
         Miss_per = DataManager.Instance._Player_Skill.Miss;
-        Debug.Log("회피율 : " + Miss_per);
-        Debug.Log("회피상수 : " + Miss_const);
+        //Debug.Log("회피율 : " + Miss_per);
+        //Debug.Log("회피상수 : " + Miss_const);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -30,7 +30,7 @@ public class Damage : MonoBehaviour
         if (Miss_const <= Miss_per)
         {
             // 공격이 빗나간 경우, 아무 동작도 하지 않음
-            Debug.Log("빗나감");
+            //Debug.Log("빗나감");
             return;
         }
         else

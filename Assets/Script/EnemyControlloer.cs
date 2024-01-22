@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
@@ -14,13 +14,20 @@ public class EnemyController : MonoBehaviour
         Enemy_C,
         Boss_A
     }
+    public enum EnemyState
+    {
+        Idle,
+        Posion
+    }
     public EnemyType enemyType;
+    public EnemyState enemyState;
     [Header("AI")]
     public float detect_distance = 4.0f;
     public float attack_distance = 2.0f;
     int nextMove;//행동지표를 결정할 변수
     float skill_MaxHP;
     float result_MaxHP;
+    private System.Threading.Timer poisonTimer;  // 독 상태 지속 타이머
 
     [Header("Bar_Position")]
     public Vector3 XYSpace = new Vector3(0, 1, 0.15f); // Z = between space X, Y
@@ -39,6 +46,7 @@ public class EnemyController : MonoBehaviour
     Rigidbody2D rigid;
     Rigidbody2D rigidPlayer;
     SpriteRenderer spriteRenderer;
+    public SpriteRenderer Posion_Sprite;
     CircleCollider2D collider;
     CircleCollider2D colliderPlayer;
 
@@ -76,12 +84,26 @@ public class EnemyController : MonoBehaviour
     bool isAttake = false;
     bool issearch = false;
     bool hasDroppedItem = false;
+    bool ispoison = false;
 
     Vector2 pos;
     Vector2 playerPos;
     string E_filePath;
     string E_filePath1;
     string E_filePath2;
+
+    /// <summary>
+    /// Enemy Stat
+    /// </summary>
+    float EnemyA_MaxHP = 200;
+    float EnemyB_MaxHP = 200;
+    float EnemyC_MaxHP = 200;
+    /// <summary>
+    /// Enemy Stat
+    /// </summary>
+    float elapsedTime = 0f;
+    float poisonDuration = 5f; // 수정: 독 지속 시간을 5초로 변경
+
     public class EnemyData
     {
         public float curHP;
@@ -149,6 +171,7 @@ public class EnemyController : MonoBehaviour
             default:
                 break;
         }
+        enemyState = EnemyState.Idle;
     }
     void Components()       // GetComponent<>()
     {
@@ -194,7 +217,7 @@ public class EnemyController : MonoBehaviour
             switch (enemyType)
             {
                 case EnemyType.Enemy_A:
-                    result_MaxHP = 100 + skill_MaxHP;
+                    result_MaxHP = EnemyA_MaxHP + skill_MaxHP;
                     MaxHP = result_MaxHP;
                     if (CurHP == MaxHP)
                     {
@@ -228,7 +251,7 @@ public class EnemyController : MonoBehaviour
             switch (enemyType)
             {
                 case EnemyType.Enemy_A:
-                    MaxHP = 100;
+                    MaxHP = EnemyA_MaxHP;
                     break;
                 case EnemyType.Enemy_B:
                     MaxHP = 80;
@@ -238,6 +261,7 @@ public class EnemyController : MonoBehaviour
                     break;
             }
         }
+
         pos = transform.position;
         playerPos = Player.transform.position;
 
@@ -317,7 +341,7 @@ public class EnemyController : MonoBehaviour
     }
     void Check_HW()         // Check HP, WP
     {
-        Enemy_HP.value = CurHP / MaxHP;
+        Enemy_HP.value = Mathf.Clamp01(CurHP / MaxHP);
         Enemy_WP.value = CurWP / MaxWP;
 
         Vector3 bar_pos = transform.position + Vector3.right * XYSpace.x + Vector3.up * XYSpace.y;
@@ -407,6 +431,10 @@ public class EnemyController : MonoBehaviour
                 {
                     CurHP -= sword.damage_playerAttack;
                     HP_Drain();
+                    if (DataManager.Instance._Player_Skill.Poision_Damage_Level > 0 && !ispoison)
+                    {
+                        Posion(70);
+                    }
                     //stat.Stat("ST", 3);
 
                     isDamage = true;
@@ -470,6 +498,54 @@ public class EnemyController : MonoBehaviour
             if (enemyController != null)
             {
                 enemyController.CurHP += sword.damage_playerAttack * DataManager.Instance._Player_Skill.HP_Drain/100;
+            }
+        }
+    }
+    IEnumerator UpdatePoison()
+    {
+        float elapsedTime = 0f;
+        float poisonDuration = 0.047f; //독 유지시간 약 10초(9.4초)
+
+        while (elapsedTime < poisonDuration)
+        {
+            // 1초마다 10의 독 데미지
+            CurHP -= DataManager.Instance._Player_Skill.poison_damage;
+
+            // 초록색으로 변경
+            Posion_Sprite.color = Color.green;
+
+            elapsedTime += Time.deltaTime;
+
+            yield return new WaitForSeconds(1f);
+            Debug.Log(elapsedTime);
+            if (elapsedTime > poisonDuration ) { ispoison = false; break; }
+            // 독 상태가 종료되면 코루틴 중단
+            if (!ispoison)
+                yield break;
+
+        }
+
+        // 독 상태가 지속된 후에 실행될 부분
+        enemyState = EnemyState.Idle;
+        Posion_Sprite.color = Color.white; // 원래의 색상으로 변경
+        ispoison = false;
+    }
+
+    public void Posion(int Posion_per)
+    {
+        // 1부터 100까지의 무작위 숫자를 생성합니다.
+        int randomNum = Random.Range(1, 101);
+
+        // 생성된 숫자가 Posion_per보다 작거나 같은지 확인합니다.
+        if (randomNum <= Posion_per)
+        {
+            // 독 상태가 아니라면 독 상태로 변경
+            if (!ispoison)
+            {
+                // 적의 상태를 독으로 변경합니다.
+                enemyState = EnemyState.Posion;
+                StartCoroutine(UpdatePoison());
+                ispoison = true;
             }
         }
     }
@@ -592,9 +668,9 @@ public class EnemyController : MonoBehaviour
         //Debug.Log("File path: " + E_filePath);
         //Debug.Log("File path: " + E_filePath1);
         //Debug.Log("File path: " + E_filePath2);
-         EnemyA = new EnemyData(100, 100,20,20,5,2, 10, SkillController.Skill_Active.Smash);
-         EnemyB = new EnemyData(80, 80,20,20,5,2, 20, SkillController.Skill_Active.DashAttack);
-         EnemyC = new EnemyData(50, 50,20,20,5,2, 30, SkillController.Skill_Active.Slash);
+         EnemyA = new EnemyData(EnemyA_MaxHP, EnemyA_MaxHP,20,20,5,2, 10, SkillController.Skill_Active.Smash);
+         EnemyB = new EnemyData(EnemyB_MaxHP, EnemyB_MaxHP,20,20,5,2, 20, SkillController.Skill_Active.DashAttack);
+         EnemyC = new EnemyData(EnemyC_MaxHP, EnemyC_MaxHP,20,20,5,2, 30, SkillController.Skill_Active.Slash);
         string jsonA = JsonUtility.ToJson(EnemyA);
         string jsonB = JsonUtility.ToJson(EnemyB);
         string jsonC = JsonUtility.ToJson(EnemyC);

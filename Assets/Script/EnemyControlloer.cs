@@ -227,7 +227,7 @@ public class EnemyController : MonoBehaviour
                     SelectManager.Instance.isHPupadate = false;
                     break;
                 case EnemyType.Enemy_B:
-                    result_MaxHP = 80 + skill_MaxHP;
+                    result_MaxHP = EnemyB_MaxHP + skill_MaxHP;
                     MaxHP = result_MaxHP;
                     if (CurHP == MaxHP)
                     {
@@ -236,7 +236,7 @@ public class EnemyController : MonoBehaviour
                     SelectManager.Instance.isHPupadate = false;
                     break;
                 case EnemyType.Enemy_C:
-                    result_MaxHP = 50 + skill_MaxHP;
+                    result_MaxHP = EnemyC_MaxHP + skill_MaxHP;
                     MaxHP = result_MaxHP;
                     if (CurHP == MaxHP)
                     {
@@ -255,10 +255,10 @@ public class EnemyController : MonoBehaviour
                     MaxHP = EnemyA_MaxHP;
                     break;
                 case EnemyType.Enemy_B:
-                    MaxHP = 80;
+                    MaxHP = EnemyB_MaxHP;
                     break;
                 case EnemyType.Enemy_C:
-                    MaxHP = 50;
+                    MaxHP = EnemyC_MaxHP;
                     break;
             }
         }

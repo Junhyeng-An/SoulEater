@@ -5,7 +5,7 @@ public class Laser_Pattern : MonoBehaviour
 {
     public GameObject laserPrefab;
     public GameObject Start_pos;
-    private float speed = 5f; // ·¹ÀÌÀú ÀÌµ¿ ¼Óµµ
+    private float speed = 5f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½Óµï¿½
 
     [HideInInspector] public float Layzer_Damage = 10f;
 
@@ -18,14 +18,14 @@ public class Laser_Pattern : MonoBehaviour
     {
         while (true)
         {
-            // ·¹ÀÌÀú »ý¼º
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             GameObject laser = Instantiate(laserPrefab, Start_pos.transform.position, Quaternion.identity);
 
-            // ·¹ÀÌÀú ÀÌµ¿ ¼Óµµ ¼³Á¤
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½
             LaserMovement laserMovement = laser.AddComponent<LaserMovement>();
             laserMovement.speed = speed;
 
-            // ´ÙÀ½ ·¹ÀÌÀú±îÁö ´ë±â
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             yield return new WaitForSeconds(2.5f);
         }
     }
@@ -37,11 +37,11 @@ public class LaserMovement : MonoBehaviour
 
     void Update()
     {
-        // ·¹ÀÌÀú¸¦ ¿À¸¥ÂÊÀ¸·Î ÀÌµ¿
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
         transform.Translate(Vector3.right * speed * Time.deltaTime);
 
-        // ·¹ÀÌÀú°¡ È­¸éÀ» ¹þ¾î³ª¸é ÆÄ±«
-        if (transform.position.x > 20f)
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½î³ªï¿½ï¿½ ï¿½Ä±ï¿½
+        if (transform.position.x > 40f)
         {
             Destroy(gameObject);
         }

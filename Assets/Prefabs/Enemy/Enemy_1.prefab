@@ -494,7 +494,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3164927532044021299
 Transform:
   m_ObjectHideFlags: 0
@@ -1560,9 +1560,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 1
+  enemyState: 0
   detect_distance: 4
   attack_distance: 2
   XYSpace: {x: 0, y: 2, z: 0.15}
+  Hit_Area: {fileID: 2075597403872716499}
+  Posion_Sprite: {fileID: 0}
   CurHP: 0
   MaxHP: 0
   CurWP: 0

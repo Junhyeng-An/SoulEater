@@ -105,6 +105,9 @@ public class EnemyController : MonoBehaviour
     float elapsedTime = 0f;
     float poisonDuration = 5f; // 수정: 독 지속 시간을 5초로 변경
 
+    private bool Drop_Soul = false;
+    
+    
     public class EnemyData
     {
         public float curHP;
@@ -450,7 +453,12 @@ public class EnemyController : MonoBehaviour
 
                     if (CurWP <= 0)
                     {
-                        //Coin_Soul_Manager.Instance.Drop_Soul(transform);
+                        if (Drop_Soul == false)
+                        {
+                            Coin_Soul_Manager.Instance.Drop_Soul(transform);
+                            Drop_Soul = true;
+                        }
+
                         gameObject.tag = "Disarmed";
                     }
 

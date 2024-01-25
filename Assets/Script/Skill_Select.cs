@@ -14,6 +14,11 @@ public class Skill_Select : MonoBehaviour
     public List<Image> CardImages; // UI 이미지 표시용 이미지 목록
     bool isShow = false;
 
+    public Sprite blue;
+    public Sprite purple;
+    public Sprite yellow;
+    
+    
     class Skill_Card
     {
         public string name; // 스킬 이름
@@ -452,13 +457,13 @@ public class Skill_Select : MonoBehaviour
         switch (cardLevel)
         {
             case 0: // 레어
-                cardImage.color = Color.blue;
+                cardImage.sprite = blue;
                 break;
             case 1: // 에픽
-                cardImage.color = Color.magenta;
+                cardImage.sprite = purple;
                 break;
             case 2: // 레전더리
-                cardImage.color = Color.yellow;
+                cardImage.sprite = yellow;
                 break;
             default:
                 break;

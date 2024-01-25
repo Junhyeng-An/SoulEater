@@ -33,6 +33,7 @@ public class EnemyController : MonoBehaviour
     public Vector3 XYSpace = new Vector3(0, 1, 0.15f); // Z = between space X, Y
 
     GameObject Player;
+    public GameObject Hit_Area;
     //GameObject Weapon;
     GameObject Attack_area;
     GameObject UI_EnemyStat;

@@ -22,6 +22,7 @@ TagManager:
   - Skill_Smash
   - Layzer
   - Enemy_Vo
+  - Ground
   layers:
   - Default
   - TransparentFX

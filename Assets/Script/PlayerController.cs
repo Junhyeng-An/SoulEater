@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        hasDoubleJumpSkill = DataManager.Instance._Player_Skill.isDouble_Jump;
         movement.Return();
         movement.Landing();
         movement.WallCheck();
@@ -49,12 +48,19 @@ public class PlayerController : MonoBehaviour
             movement.Move(x);
 
             //player jump
-            if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W)) && movement.jumpCount < maxJumpCount)
+            if (Input.GetKey(KeyCode.Space) && DataManager.Instance._Player_Skill.isDouble_Jump != true)
             {
-                if (!movement.isJumping || hasDoubleJumpSkill)
+                Debug.Log("일반점프가 실행중입니다");
+                if (!movement.isJumping)
                 {
                     movement.Jump();
                 }
+            }
+            //player Double jump
+            if (Input.GetKeyDown(KeyCode.Space) && movement.jumpsRemaining > 0 && DataManager.Instance._Player_Skill.isDouble_Jump == true)
+            {
+                Debug.Log("더블 점프가 실행중입니다");
+                movement.Double_Jump();
             }
 
             //player jump bottom

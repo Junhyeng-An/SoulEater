@@ -61,7 +61,7 @@ public class Skill_Select : MonoBehaviour
             skillCards.Add(new Skill_Card("Dash Distance", 0, "대쉬 거리를 늘립니다", 1, 1)); //clear
             skillCards.Add(new Skill_Card("Max Health", 0, "최대 체력을 증가시킵니다", 20, 1));
             skillCards.Add(new Skill_Card("Discount", 0, "상점에서 할인을 받습니다", 10, 1));
-            skillCards.Add(new Skill_Card("Double Jump", 0, "더블점프가 가능해집니다", 10, 1));
+            skillCards.Add(new Skill_Card("Double_Jump", 0, "더블점프가 가능해집니다", 10, 1));
             skillCards.Add(new Skill_Card("Miss", 0, "공격을 빚 맞습니다", 10, 1));
             skillCards.Add(new Skill_Card("Posion", 0, "독 데미지를 가합니다", 5, 1));
             skillCards.Add(new Skill_Card("Skill_Damage", 0, "액티브 스킬 데미지가 증가합니다", 10, 1));
@@ -78,7 +78,7 @@ public class Skill_Select : MonoBehaviour
             skillCards.Add(new Skill_Card("Discount", 1, "상점에서 할인을 받습니다", 20, 2));
             skillCards.Add(new Skill_Card("Miss", 1, "공격을 빚 맞습니다", 20, 2));
             skillCards.Add(new Skill_Card("Posion", 1, "독 데미지를 가합니다", 10, 2));
-            skillCards.Add(new Skill_Card("Skill_Damage", 0, "액티브 스킬 데미지가 증가합니다", 50, 2));
+            skillCards.Add(new Skill_Card("Skill_Damage", 1, "액티브 스킬 데미지가 증가합니다", 50, 2));
         }
 
         // 레전더리 카드 2%
@@ -92,7 +92,7 @@ public class Skill_Select : MonoBehaviour
             skillCards.Add(new Skill_Card("Discount", 2, "상점에서 할인을 받습니다", 50, 3));
             skillCards.Add(new Skill_Card("Miss", 2, "공격을 빚 맞습니다", 50, 3));
             skillCards.Add(new Skill_Card("Posion", 2, "독 데미지를 가합니다", 20, 3));
-            skillCards.Add(new Skill_Card("Skill_Damage", 0, "액티브 스킬 데미지가 증가합니다", 100, 3));
+            skillCards.Add(new Skill_Card("Skill_Damage", 2, "액티브 스킬 데미지가 증가합니다", 100, 3));
         }
 
         // 다양한 스킬 추가 및 수정 가능
@@ -227,11 +227,11 @@ public class Skill_Select : MonoBehaviour
                         break;
                 }
                 break;
-            case "Double Jump":
+            case "Double_Jump":
                 switch (selectedSkill.card_level)
                 {
                     case 0:
-                        DataManager.Instance._Player_Skill.Discount_Cost_Level += 1;
+                        DataManager.Instance._Player_Skill.isDouble_Jump_Level += 1;
                         break;
                 }
                 break;
@@ -381,6 +381,7 @@ public class Skill_Select : MonoBehaviour
         // 더블점프
         if (DataManager.Instance._Player_Skill.isDouble_Jump_Level >= 1)
         {
+            DataManager.Instance._Player_Skill.isDouble_Jump_Level = 1;
             DataManager.Instance._Player_Skill.isDouble_Jump = true;
         }
 

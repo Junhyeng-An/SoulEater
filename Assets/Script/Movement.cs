@@ -12,12 +12,14 @@ public class Movement : MonoBehaviour
     private float speed;
     private float jumpForce ;
     private float throwForce = 12.0f;
+
     [HideInInspector] public float dashForce = 5.0f;
     public float angle;
 
     public int bounceCount = 2;
     public bool gameover = false;
-
+    public int maxJumps = 2;
+    public int jumpsRemaining;
     [HideInInspector] public bool isJumping = false;
     [HideInInspector] public bool isDoubleJump = false;
     bool isThrowing = false;
@@ -49,6 +51,8 @@ public class Movement : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         line = GetComponent<LineRenderer>();
         timeScale = GameObject.Find("GameManager").GetComponent<TimeScale>();
+
+        jumpsRemaining = maxJumps;
     }
 
     private void Update()
@@ -81,6 +85,7 @@ public class Movement : MonoBehaviour
             {
                 isJumping = false;
                 jumpCount = 0;
+                jumpsRemaining = maxJumps;
             }
         }
 
@@ -100,8 +105,12 @@ public class Movement : MonoBehaviour
         {
             rigid.velocity = Vector2.up * jumpForce;
             isJumping = true;
-            jumpCount++;
         }
+    }
+    public void Double_Jump()
+    {
+        rigid.velocity = Vector2.up * jumpForce;
+        jumpsRemaining--;
     }
     public void Jump_Down()
     {

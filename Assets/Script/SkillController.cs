@@ -4,9 +4,17 @@ using System.Collections.Generic;
 using System.Net;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class SkillController : MonoBehaviour
 {
+
+    
+    
+    
+    
+    
+    [Header("#other")] 
     Sword sword;
     StatController stat;
     EnemyController enemy;
@@ -24,6 +32,10 @@ public class SkillController : MonoBehaviour
 
     public float coolTime;
 
+
+        
+    
+    
     public enum Skill_Active
     {
         Slash,

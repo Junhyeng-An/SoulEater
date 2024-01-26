@@ -603,6 +603,10 @@ public class EnemyController : MonoBehaviour
     }
     void Turn() // if Enemyfront == fall_area
     {
+
+        
+        
+        
         nextMove = nextMove * (-1);
         spriteRenderer.flipX = (nextMove == 1);
         CancelInvoke();

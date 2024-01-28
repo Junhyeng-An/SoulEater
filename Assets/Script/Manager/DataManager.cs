@@ -6,6 +6,19 @@ using System.IO;
 using PixelCrushers.DialogueSystem.UnityGUI.Wrappers;
 using UnityEngine.Experimental.GlobalIllumination;
 
+enum stage
+{
+    Main,
+    stage1,
+    stage2,
+    stage3
+    
+    
+    
+}
+
+
+
 public class Player_Data
 {
     public int coin;
@@ -13,6 +26,9 @@ public class Player_Data
     public float speed;
     public float jump;
     public string controll_enemy;
+    public int clear_stage;
+
+
 }
 
 public class Sword_Data

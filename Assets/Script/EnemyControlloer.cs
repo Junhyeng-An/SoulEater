@@ -4,6 +4,9 @@ using TMPro;
 using System.Collections;
 using static SoonsoonData;
 using Com.LuisPedroFonseca.ProCamera2D;
+using Unity.VisualScripting;
+using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class EnemyController : MonoBehaviour
 {
@@ -96,9 +99,7 @@ public class EnemyController : MonoBehaviour
     /// <summary>
     /// Enemy Stat
     /// </summary>
-    float EnemyA_MaxHP = 200;
-    float EnemyB_MaxHP = 200;
-    float EnemyC_MaxHP = 200;
+ 
     /// <summary>
     /// Enemy Stat
     /// </summary>
@@ -132,20 +133,6 @@ public class EnemyController : MonoBehaviour
 
             CurSkill = skill;
         }
-
-        public static EnemyData LoadFromJSON(string filePath)
-        {
-            if (System.IO.File.Exists(filePath))
-            {
-                string json = System.IO.File.ReadAllText(filePath);
-                return JsonUtility.FromJson<EnemyData>(json);
-            }
-            else
-            {
-                Debug.LogError("File not found: " + filePath);
-                return null;
-            }
-        }
     }
 
     void Awake()
@@ -162,13 +149,13 @@ public class EnemyController : MonoBehaviour
         switch (enemyType)
         {
             case EnemyType.Enemy_A:
-                LoadEnemyData(E_filePath);
+                LoadEnemyData(EnemyA);
                 break;
             case EnemyType.Enemy_B:
-                LoadEnemyData(E_filePath1);
+                LoadEnemyData(EnemyB);
                 break;
             case EnemyType.Enemy_C:
-                LoadEnemyData(E_filePath2);
+                LoadEnemyData(EnemyC);
                 break;
             case EnemyType.Boss_A:
                 break;
@@ -221,16 +208,16 @@ public class EnemyController : MonoBehaviour
             switch (enemyType)
             {
                 case EnemyType.Enemy_A:
-                    result_MaxHP = EnemyA_MaxHP + skill_MaxHP;
+                    result_MaxHP = EnemyA.maxHP + skill_MaxHP;
                     MaxHP = result_MaxHP;
-                    if (CurHP == MaxHP)
+                    if (CurHP == MaxHP )
                     {
                         CurHP = MaxHP;
                     }
                     SelectManager.Instance.isHPupadate = false;
                     break;
                 case EnemyType.Enemy_B:
-                    result_MaxHP = EnemyB_MaxHP + skill_MaxHP;
+                    result_MaxHP =  EnemyB.maxHP + skill_MaxHP;
                     MaxHP = result_MaxHP;
                     if (CurHP == MaxHP)
                     {
@@ -239,7 +226,7 @@ public class EnemyController : MonoBehaviour
                     SelectManager.Instance.isHPupadate = false;
                     break;
                 case EnemyType.Enemy_C:
-                    result_MaxHP = EnemyC_MaxHP + skill_MaxHP;
+                    result_MaxHP =  EnemyC.maxHP + skill_MaxHP;
                     MaxHP = result_MaxHP;
                     if (CurHP == MaxHP)
                     {
@@ -255,13 +242,13 @@ public class EnemyController : MonoBehaviour
             switch (enemyType)
             {
                 case EnemyType.Enemy_A:
-                    MaxHP = EnemyA_MaxHP;
+                    MaxHP =  EnemyA.maxHP;
                     break;
                 case EnemyType.Enemy_B:
-                    MaxHP = EnemyB_MaxHP;
+                    MaxHP =  EnemyB.maxHP;
                     break;
                 case EnemyType.Enemy_C:
-                    MaxHP = EnemyC_MaxHP;
+                    MaxHP =  EnemyC.maxHP;
                     break;
             }
         }
@@ -288,6 +275,14 @@ public class EnemyController : MonoBehaviour
         {
             isDamage = false;
         }
+        
+        
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        if (currentSceneName == "Dorf")
+            CurHP = MaxHP;
+
+
+
     }
 
     private void LateUpdate()
@@ -688,26 +683,40 @@ public class EnemyController : MonoBehaviour
 
     private void Enemy_data_save()
     {
-        E_filePath = Application.persistentDataPath + "/EnemyA_data.json";
-        E_filePath1 = Application.persistentDataPath + "/EnemyB_data.json";
-        E_filePath2 = Application.persistentDataPath + "/EnemyC_data.json";
-        //Debug.Log("File path: " + E_filePath);
-        //Debug.Log("File path: " + E_filePath1);
-        //Debug.Log("File path: " + E_filePath2);
-         EnemyA = new EnemyData(EnemyA_MaxHP, EnemyA_MaxHP,20,20,5,2, 10, SkillController.Skill_Active.Smash);
-         EnemyB = new EnemyData(EnemyB_MaxHP, EnemyB_MaxHP,20,20,5,2, 20, SkillController.Skill_Active.DashAttack);
-         EnemyC = new EnemyData(EnemyC_MaxHP, EnemyC_MaxHP,20,20,5,2, 30, SkillController.Skill_Active.Slash);
-        string jsonA = JsonUtility.ToJson(EnemyA);
-        string jsonB = JsonUtility.ToJson(EnemyB);
-        string jsonC = JsonUtility.ToJson(EnemyC);
-        System.IO.File.WriteAllText(E_filePath , jsonA);
-        System.IO.File.WriteAllText(E_filePath1 ,jsonB);
-        System.IO.File.WriteAllText(E_filePath2 , jsonC);
+        //////////////////////////////////////Enemy Stat Change _ 
+        
+        
+        
+        float EnemyA_MaxHP = 200;
+        float EnemyB_MaxHP = 200;
+        float EnemyC_MaxHP = 200;   
+        
+        float EnemyA_MaxHP_2 = 400;
+        float EnemyB_MaxHP_2 = 400;
+        float EnemyC_MaxHP_2 = 400;
+        
+        
+        
+            
+         
+
+         if (DataManager.Instance._PlayerData.clear_stage == (int)stage.Main)
+         {
+             EnemyA = new EnemyData(EnemyA_MaxHP, EnemyA_MaxHP, 20, 20, 5, 2, 10, SkillController.Skill_Active.Smash);
+             EnemyB = new EnemyData(EnemyB_MaxHP, EnemyB_MaxHP, 20, 20, 5, 2, 20, SkillController.Skill_Active.DashAttack);
+             EnemyC = new EnemyData(EnemyC_MaxHP, EnemyC_MaxHP, 20, 20, 5, 2, 30, SkillController.Skill_Active.Slash);
+         }
+
+         else if(DataManager.Instance._PlayerData.clear_stage == (int)stage.stage1)
+         {
+             EnemyA = new EnemyData(EnemyA_MaxHP_2, EnemyA_MaxHP_2, 20, 20, 5, 2, 10, SkillController.Skill_Active.Smash);
+             EnemyB = new EnemyData(EnemyB_MaxHP_2, EnemyB_MaxHP_2, 20, 20, 5, 2, 20, SkillController.Skill_Active.DashAttack);
+             EnemyC = new EnemyData(EnemyC_MaxHP_2, EnemyC_MaxHP_2, 20, 20, 5, 2, 30, SkillController.Skill_Active.Slash);
+         }
     }
 
-    private void LoadEnemyData(string filePath)
+    private void LoadEnemyData(EnemyData enemyData)
     {
-        EnemyData enemyData = EnemyData.LoadFromJSON(filePath);
 
         if (enemyData != null)
         {

@@ -19,6 +19,7 @@ public class Start_UI : MonoBehaviour
         DataManager.Instance._PlayerData.jump = 12.0f;
         DataManager.Instance._PlayerData.coin = 1000;
         DataManager.Instance._PlayerData.speed = 5.0f;
+        DataManager.Instance._PlayerData.clear_stage = (int)stage.Main;
         #endregion
 
 

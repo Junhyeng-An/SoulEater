@@ -23,15 +23,15 @@ public class Start_UI : MonoBehaviour
 
 
         #region Sword_Data
-        
+
         DataManager.Instance._SwordData.player_damage_attack = 10.0f;
         DataManager.Instance._SwordData.player_attack_level = 1;
         DataManager.Instance._SwordData.Upgrade_attack_Cost = 10;
-        
+
         DataManager.Instance._SwordData.player_sword_reach = 1.0f;
         DataManager.Instance._SwordData.player_sword_level = 1;
         DataManager.Instance._SwordData.Upgrade_reach_Cost = 10;
-        
+
         DataManager.Instance._SwordData.player_parrying_attack = 50.0f;
         DataManager.Instance._SwordData.player_parrying_level = 1;
         DataManager.Instance._SwordData.Upgrade_parrying_Cost = 10;
@@ -40,9 +40,9 @@ public class Start_UI : MonoBehaviour
 
         #region Player_Skill;
         DataManager.Instance._Player_Skill.HP_Drain = 0.0f;
-        DataManager.Instance._Player_Skill.HP_Drain_Level =0;
+        DataManager.Instance._Player_Skill.HP_Drain_Level = 0;
 
-        DataManager.Instance._Player_Skill.Reduce_damage =0.0f;
+        DataManager.Instance._Player_Skill.Reduce_damage = 0.0f;
         DataManager.Instance._Player_Skill.Reduce_damage_Level = 0;
 
         DataManager.Instance._Player_Skill.poison_damage = 5.0f;
@@ -74,7 +74,7 @@ public class Start_UI : MonoBehaviour
 
         DataManager.Instance._Active_Skill.Slash_Damage = 10;
         DataManager.Instance._Active_Skill.Slash_Damage_Level = 1;
-        DataManager.Instance._Active_Skill.Slash_Damage_default= 10;
+        DataManager.Instance._Active_Skill.Slash_Damage_default = 10;
 
 
         DataManager.Instance._Active_Skill.Smash_Damage = 1;
@@ -105,16 +105,18 @@ public class Start_UI : MonoBehaviour
 
     public void new_Game()
     {
-    
 
-        
 
-        
+
+
+
         SceneManager.LoadScene("Main");
     }
 
-
-
+    public void Boss_room()
+    {
+        SceneManager.LoadScene("Boss2");
+    }
 
 
     public void Quit()

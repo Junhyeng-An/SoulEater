@@ -12,7 +12,11 @@ public class Spawn_Point : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         if(SceneManager.GetActiveScene().name == "Main"  )
             CharacterManager.Instance.PlayerPosition(transform);
-        else if( SceneManager.GetActiveScene().name == "Dorf")
+        else if(SceneManager.GetActiveScene().name == "Dorf")
+            CharacterManager.Instance.PlayerPosition(transform);
+        else if (SceneManager.GetActiveScene().name == "Boss")
+            CharacterManager.Instance.PlayerPosition(transform);
+        else if (SceneManager.GetActiveScene().name == "Boss2")
             CharacterManager.Instance.PlayerPosition(transform);
         else
             CharacterManager.Instance.PlayerPosition(CharacterManager.Instance.spawnPosition);

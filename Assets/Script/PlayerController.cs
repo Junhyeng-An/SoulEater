@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
             //player jump
             if (Input.GetKey(KeyCode.Space) && DataManager.Instance._Player_Skill.isDouble_Jump != true)
             {
-                Debug.Log("일반점프가 실행중입니다");
+                //Debug.Log("일반점프가 실행중입니다");
                 if (!movement.isJumping)
                 {
                     movement.Jump();
@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
             //player Double jump
             if (Input.GetKeyDown(KeyCode.Space) && movement.jumpsRemaining > 0 && DataManager.Instance._Player_Skill.isDouble_Jump == true)
             {
-                Debug.Log("더블 점프가 실행중입니다");
+                //Debug.Log("더블 점프가 실행중입니다");
                 movement.Double_Jump();
             }
 

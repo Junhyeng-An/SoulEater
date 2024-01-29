@@ -224,15 +224,15 @@ public class AnimaionController : MonoBehaviour
 
             if (vel.x < 0)
             {
-                render_body.flipX = true;
-                render_head.flipX = true;
-                render_eye.flipX = true;
+                //render_body.flipX = true;
+                //render_head.flipX = true;
+                //render_eye.flipX = true;
             }
             else if (vel.x > 0)
             {
-                render_body.flipX = false;
-                render_head.flipX = false;
-                render_eye.flipX = false;
+                //render_body.flipX = false;
+                //render_head.flipX = false;
+                //render_eye.flipX = false;
             }
 
             else

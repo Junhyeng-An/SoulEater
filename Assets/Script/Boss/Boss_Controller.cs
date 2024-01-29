@@ -82,20 +82,20 @@ public class Boss_Controller : MonoBehaviour
             yield return new WaitForSeconds(5f); // 1 번째 패턴 유지 시간
 
             // 대기 시간
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
 
             ActivatePattern(pattern_circle);
             yield return new WaitForSeconds(5f); // 2 번째 패턴 유지 시간
 
             // 대기 시간
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
 
             // 두 번째 패턴 활성화
             ActivatePattern(pattern_Square);
             yield return new WaitForSeconds(10f); // 3 번째 패턴 유지 시간
 
             // 대기 시간
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1.5f);
         }
     }
 
@@ -125,9 +125,10 @@ public class Boss_Controller : MonoBehaviour
     {
         if (pattern_circle != null)
             pattern_circle.enabled = false;
-
         if (pattern_Square != null)
             pattern_Square.enabled = false;
+        if (laserPattern != null)
+            laserPattern.enabled = false;
     }
 
     // 데미지를 받았을 때 호출되는 메서드

@@ -588,7 +588,16 @@ public class EnemyController : MonoBehaviour
         //change direct
         if (nextMove != 0)
         {
-            spriteRenderer.flipX = (nextMove == 1);
+            if (nextMove == -1)
+            {
+                //spriteRenderer.flipX = false;
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+            else if (nextMove == 1)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+                //spriteRenderer.flipX = (nextMove == 1);
+            }
         }
         if (nextMove == 0)
         {
@@ -603,10 +612,6 @@ public class EnemyController : MonoBehaviour
     }
     void Turn() // if Enemyfront == fall_area
     {
-
-        
-        
-        
         nextMove = nextMove * (-1);
         spriteRenderer.flipX = (nextMove == 1);
         CancelInvoke();
@@ -616,6 +621,14 @@ public class EnemyController : MonoBehaviour
     {
 
         float distance = Vector2.Distance(pos, playerPos);
+        if (playerPos.x - pos.x >= 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else if (playerPos.x - pos.x < 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
         if (isAttake == false && CurHP > 0)
         {
             if (distance <= detect_distance && distance >= attack_distance)

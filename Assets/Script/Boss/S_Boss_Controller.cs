@@ -58,7 +58,7 @@ public class S_Boss_Controller : MonoBehaviour
         while (true)
         {
             ActivatePattern(slime_Jump);
-            yield return new WaitForSeconds(12f); // 2 번째 패턴 유지 시간
+            yield return new WaitForSeconds(50f); // 2 번째 패턴 유지 시간
 
             yield return new WaitForSeconds(2f);
             ActivatePattern(slime_super_jump);

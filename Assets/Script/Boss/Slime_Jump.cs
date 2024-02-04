@@ -5,17 +5,16 @@ public class Slime_Jump : MonoBehaviour
 {
     private float jumpForce = 10f;  // 폴짝 뛰기 힘
 
-    private bool isJumping = false;
     private GameObject player;
     private Coroutine jump_pattern;
-
+    public Animator jump_animator;
     Vector2 leftVector;
     Vector2 rightVector;
 
     Vector2 direction;
     void Start()
     {
-       
+       jump_animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -28,6 +27,7 @@ public class Slime_Jump : MonoBehaviour
 
     IEnumerator JumpT()
     {
+
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
 
@@ -47,14 +47,17 @@ public class Slime_Jump : MonoBehaviour
         // 특정 조건에서 반복되는 루프를 사용하거나 원하는 횟수만큼 반복
         while (true)
         {
+            // 특정 시간 동안 대기
+            jump_animator.SetBool("isjump",true);
             Vector2 jumpForceVector;
             if (gameObject.transform.position.x - player.transform.position.x >= 0) { jumpForceVector = leftVector + Vector2.up * jumpForce; }
             else { jumpForceVector = rightVector + Vector2.up * jumpForce; }
             // 점프
             rb.AddForce(jumpForceVector, ForceMode2D.Impulse);
-
             // 특정 시간 동안 대기
-            yield return new WaitForSeconds(3f); // 예시: 1초 동안 대기
+            jump_animator.SetBool("isjump", false);
+
+            yield return new WaitForSecondsRealtime(3f); // 예시: 1초 동안 대기
         }
     }
 

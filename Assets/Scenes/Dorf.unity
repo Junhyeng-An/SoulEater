@@ -373,7 +373,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1193925309021148474, guid: 4e103f8c90e5c455eb27de836e8fb692, type: 3}
       propertyPath: m_Name
-      value: "\uB300\uC7A5\uC7A5\uC774"
+      value: BlackSmith
       objectReference: {fileID: 0}
     - target: {fileID: 3211337169907965590, guid: 4e103f8c90e5c455eb27de836e8fb692, type: 3}
       propertyPath: m_LocalScale.x
@@ -4958,7 +4958,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1927228243929599011, guid: 1ebc6ea006032490c90437581d136669, type: 3}
       propertyPath: m_Name
-      value: "\uCD0C\uC7A5"
+      value: Mayor
       objectReference: {fileID: 0}
     - target: {fileID: 1927228243929599011, guid: 1ebc6ea006032490c90437581d136669, type: 3}
       propertyPath: m_IsActive
@@ -5554,7 +5554,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3262215211454666132, guid: 84c5627355de24d4aa29e9dfe09c61ee, type: 3}
       propertyPath: m_Name
-      value: "\uBAA8\uD5D8\uAC00"
+      value: Advanture
       objectReference: {fileID: 0}
     - target: {fileID: 6660800028313951633, guid: 84c5627355de24d4aa29e9dfe09c61ee, type: 3}
       propertyPath: m_LocalScale.x
@@ -8305,7 +8305,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1857633832
 RectTransform:
   m_ObjectHideFlags: 0

@@ -127,13 +127,7 @@ public class Start_UI : MonoBehaviour
     }
 
 
-    public void ChangeLanguage()
-    {
-        DialogueManager.SetLanguage("en");
-        
-        
-    }
-    
+
 
 
 }

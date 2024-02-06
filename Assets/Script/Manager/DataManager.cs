@@ -12,9 +12,6 @@ enum stage
     stage1,
     stage2,
     stage3
-    
-    
-    
 }
 
 
@@ -104,6 +101,7 @@ public class Sound_Volume
     public float BGM_Volume;
     public float SFX_Volume;
     public bool Mute;
+    public int Language;
 }
 
 
@@ -131,7 +129,7 @@ public class DataManager : MonoBehaviour
 
     private string key = "qweqweqweqwe";
 
-    public bool Load = false;
+    [SerializeField]public bool Load = false;
     
     
     private static DataManager instance = null;
@@ -182,7 +180,7 @@ public class DataManager : MonoBehaviour
             _Sound_Volume.SFX_Volume = 0.2f;
             _Sound_Volume.BGM_Volume = 0.2f;
             _Sound_Volume.Mute = false; // true : mute , false : Sound On
-            
+            _Sound_Volume.Language = 0; // 0 : English 1 : Korea
             SAVE_FILE_EXIST = false;
         }
         

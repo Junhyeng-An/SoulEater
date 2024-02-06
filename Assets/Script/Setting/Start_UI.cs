@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using PixelCrushers;
+using PixelCrushers.DialogueSystem;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -124,6 +125,15 @@ public class Start_UI : MonoBehaviour
     {
         Application.Quit();
     }
+
+
+    public void ChangeLanguage()
+    {
+        DialogueManager.SetLanguage("en");
+        
+        
+    }
+    
 
 
 }

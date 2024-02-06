@@ -10,21 +10,21 @@ public class S_Boss_Controller : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI pText_hp;
 
-    [HideInInspector]public float maxHealth = 1000;  // ÃÖ´ë Ã¼·Â
-    private float currentHealth;    // ÇöÀç Ã¼·Â
+    [HideInInspector]public float maxHealth = 1000;  // ìµœëŒ€ ì²´ë ¥
+    private float currentHealth;    // í˜„ì¬ ì²´ë ¥
     [HideInInspector]public float slime_damage = 50f;
     float damage_playerAttack;
     private bool isDamage;
 
-    public Slime_Jump slime_Jump;  // ÆĞÅÏ1 ½ºÅ©¸³Æ®
-    public Slime_Super_Jump slime_super_jump;  // ÆĞÅÏ2 ½ºÅ©¸³Æ®
+    public Slime_Jump slime_Jump;  // íŒ¨í„´1 ìŠ¤í¬ë¦½íŠ¸
+    public Slime_Super_Jump slime_super_jump;  // íŒ¨í„´2 ìŠ¤í¬ë¦½íŠ¸
 
     private Sword sword;
     GameObject player;
 
     private void Awake()
     {
-        currentHealth = maxHealth;  // ½ÃÀÛ ½Ã ÇöÀç Ã¼·ÂÀ» ÃÖ´ë Ã¼·ÂÀ¸·Î ÃÊ±âÈ­
+        currentHealth = maxHealth;  // ì‹œì‘ ì‹œ í˜„ì¬ ì²´ë ¥ì„ ìµœëŒ€ ì²´ë ¥ìœ¼ë¡œ ì´ˆê¸°í™”
         sword = GameObject.Find("Sword").GetComponent<Sword>();
         slime_Jump = GetComponent<Slime_Jump>();
     }
@@ -42,15 +42,15 @@ public class S_Boss_Controller : MonoBehaviour
         {
             isDamage = false;
         }
-        // HP¿¡ µû¶ó ÆĞÅÏ ÀüÈ¯
+        // HPì— ë”°ë¼ íŒ¨í„´ ì „í™˜
         if (currentHealth <= 0)
         {
-            // º¸½º »ç¸Á Ã³¸® ¶Ç´Â ´ÙÀ½ ´Ü°è·Î ÁøÇà
+            // ë³´ìŠ¤ ì‚¬ë§ ì²˜ë¦¬ ë˜ëŠ” ë‹¤ìŒ ë‹¨ê³„ë¡œ ì§„í–‰
             Destroy(gameObject);
             Debug.Log(" Boss DIE ");
         }
 
-        pText_hp.text = Mathf.Floor(currentHealth) + " / " + maxHealth.ToString(); // ÇöÀç Ã¼·ÂÀ» Ç¥½ÃÇÕ´Ï´Ù.
+        pText_hp.text = Mathf.Floor(currentHealth) + " / " + maxHealth.ToString(); // í˜„ì¬ ì²´ë ¥ì„ í‘œì‹œí•©ë‹ˆë‹¤.
         Handle();
     }
     IEnumerator ActivatePatterns()
@@ -58,22 +58,22 @@ public class S_Boss_Controller : MonoBehaviour
         while (true)
         {
             ActivatePattern(slime_Jump);
-            yield return new WaitForSeconds(50f); // 2 ¹øÂ° ÆĞÅÏ À¯Áö ½Ã°£
+            yield return new WaitForSeconds(50f); // 2 ë²ˆì§¸ íŒ¨í„´ ìœ ì§€ ì‹œê°„
 
             yield return new WaitForSeconds(2f);
             ActivatePattern(slime_super_jump);
-            yield return new WaitForSeconds(6f); // 2 ¹øÂ° ÆĞÅÏ À¯Áö ½Ã°£
+            yield return new WaitForSeconds(6f); // 2 ë²ˆì§¸ íŒ¨í„´ ìœ ì§€ ì‹œê°„
 
             yield return new WaitForSeconds(1f);
         }
     }
 
-    // ÆĞÅÏÀ» È°¼ºÈ­ÇÏ´Â ¸Ş¼­µå
+    // íŒ¨í„´ì„ í™œì„±í™”í•˜ëŠ” ë©”ì„œë“œ
     void ActivatePattern(Slime_Jump patternScript)
     {
-        // ¸ğµç ÆĞÅÏ ºñÈ°¼ºÈ­
+        // ëª¨ë“  íŒ¨í„´ ë¹„í™œì„±í™”
         DeactivateAllPatterns();
-        // ¼±ÅÃÇÑ ÆĞÅÏ È°¼ºÈ­
+        // ì„ íƒí•œ íŒ¨í„´ í™œì„±í™”
         patternScript.enabled = true;
     }
     void ActivatePattern(Slime_Super_Jump patternScript)
@@ -82,7 +82,7 @@ public class S_Boss_Controller : MonoBehaviour
         patternScript.enabled = true;
     }
 
-    // ¸ğµç ÆĞÅÏÀ» ºñÈ°¼ºÈ­ÇÏ´Â ¸Ş¼­µå
+    // ëª¨ë“  íŒ¨í„´ì„ ë¹„í™œì„±í™”í•˜ëŠ” ë©”ì„œë“œ
     void DeactivateAllPatterns()
     {
         if (slime_Jump != null)
@@ -91,13 +91,13 @@ public class S_Boss_Controller : MonoBehaviour
             slime_super_jump.enabled = false;
     }
 
-    // µ¥¹ÌÁö¸¦ ¹Ş¾ÒÀ» ¶§ È£ÃâµÇ´Â ¸Ş¼­µå
+    // ë°ë¯¸ì§€ë¥¼ ë°›ì•˜ì„ ë•Œ í˜¸ì¶œë˜ëŠ” ë©”ì„œë“œ
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
     }
 
-    void Handle() //hp , st °¡ ´â´Â ¾Ö´Ï¸ŞÀÌ¼Ç
+    void Handle() //hp , st ê°€ ë‹³ëŠ” ì• ë‹ˆë©”ì´ì…˜
     {
         Boss_HP.value = Mathf.Lerp(Boss_HP.value, (float)currentHealth / (float)maxHealth, Time.deltaTime * 10);
     }

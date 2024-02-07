@@ -5,7 +5,6 @@ using System.Collections;
 using static SoonsoonData;
 using Com.LuisPedroFonseca.ProCamera2D;
 using Unity.VisualScripting;
-using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 
 public class EnemyController : MonoBehaviour

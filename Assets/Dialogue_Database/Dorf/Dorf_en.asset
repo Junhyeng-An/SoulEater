@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Dorf_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: e5d5821be6ac6ce40b343599f5fe86c8, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 193931026432
+    m_Localized: Do you want to save change?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 567823867904
+    m_Localized: Yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 620361719808
+    m_Localized: No
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5244305055744
+    m_Localized: Enhance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5998382194688
+    m_Localized: Weapon Damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10185811730432
+    m_Localized: Parrying Damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10190068948992
+    m_Localized: Size
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11546620108800
+    m_Localized: Confirm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12236851552256
+    m_Localized: Don't have enough coins.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13071295750144
+    m_Localized: Close
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

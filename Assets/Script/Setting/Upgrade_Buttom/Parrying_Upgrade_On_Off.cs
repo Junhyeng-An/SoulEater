@@ -13,7 +13,10 @@ public class Parrying_Upgrade_On_Off : MonoBehaviour
     private void Update()
     {
         parrying_cost_final = DataManager.Instance._SwordData.Upgrade_parrying_Cost - Mathf.RoundToInt(DataManager.Instance._SwordData.Upgrade_parrying_Cost * DataManager.Instance._Player_Skill.Discount_Cost / 100);
-        upgrade_cost.text = parrying_cost_final.ToString()+ "coin";
+        if(DataManager.Instance._Sound_Volume.Language == 0)
+            upgrade_cost.text = parrying_cost_final.ToString()+ "coin";
+        if(DataManager.Instance._Sound_Volume.Language == 1)
+            upgrade_cost.text = parrying_cost_final.ToString()+ "코인";
     }
 
     public void Upgrade_Click()

@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Setting_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 29e7ecbd03825c749aaa994923524b93, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 355608862720
+    m_Localized: Setting
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2055757406208
+    m_Localized: Sound On/Off
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2236917784576
+    m_Localized: BGM
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2293884821504
+    m_Localized: SFX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 325717458984960
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 326633096519680
+    m_Localized: Load Game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 326803410427904
+    m_Localized: New Game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 326901414535168
+    m_Localized: "Quit\t"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 426353496203264
+    m_Localized: Select
+    m_Metadata:
+      m_Items: []
+  - m_Id: 433303424376832
+    m_Localized: Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 433300014407680
+    m_Localized: Cancel
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

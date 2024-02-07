@@ -47,6 +47,18 @@ MonoBehaviour:
     m_Key: Quit
     m_Metadata:
       m_Items: []
+  - m_Id: 426353496203264
+    m_Key: Select
+    m_Metadata:
+      m_Items: []
+  - m_Id: 433300014407680
+    m_Key: Cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 433303424376832
+    m_Key: Exit
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

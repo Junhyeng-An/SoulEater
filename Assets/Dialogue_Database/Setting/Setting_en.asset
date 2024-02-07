@@ -50,6 +50,18 @@ MonoBehaviour:
     m_Localized: "Quit\t"
     m_Metadata:
       m_Items: []
+  - m_Id: 426353496203264
+    m_Localized: Select
+    m_Metadata:
+      m_Items: []
+  - m_Id: 433303424376832
+    m_Localized: Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 433300014407680
+    m_Localized: Cancel
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

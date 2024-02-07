@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -18,6 +19,24 @@ public class Skill_Select : MonoBehaviour
     public Sprite blue;
     public Sprite purple;
     public Sprite yellow;
+
+    #region Localization
+
+    private string Reduce_Damage;
+    private string Absortion;
+    private string Hermes;
+    private string Dash_Distance;
+    private string Max_Health;
+    private string Discout;
+    private string Double_Jump;
+    private string Miss;
+    private string Poision;
+    private string Skill_Damage;
+    
+
+    #endregion
+    
+    
     
     
     class Skill_Card
@@ -41,6 +60,7 @@ public class Skill_Select : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Language();
         GenerateSkillCards();
         CardShuffle();
         CardShow();
@@ -52,6 +72,46 @@ public class Skill_Select : MonoBehaviour
 
     }
 
+    void Language()
+    {
+        if (DataManager.Instance._Sound_Volume.Language == 0)
+        {
+            Reduce_Damage = "You gain a shield to reduce incoming damage.";
+            Absortion = "You absorb health.";
+            Hermes = "Movement speed increased.";
+            Dash_Distance = "Increasing dash distance.";
+            Max_Health = "Increasing maximum health.";
+            Discout = "Receiving a discount at the blacksmith.";
+            Double_Jump = "You can now double jump.";
+            Miss = "Attacks occasionally miss.";
+            Poision = "Inflicts poison damage.";
+            Skill_Damage = "Active skill damage increased.";
+
+        }
+
+
+        else if (DataManager.Instance._Sound_Volume.Language == 1)
+        {
+            Reduce_Damage = "방어도를 얻어 데미지를 적게있습니다.";
+            Absortion = "체력을 흡수합니다.";
+            Hermes = "이동속도가 증가합니다.";
+            Dash_Distance = "대쉬 거리를 늘립니다.";
+            Max_Health = "최대 체력을 증가시킵니다";
+            Discout = "대장간에서 할인을 받습니다";
+            Double_Jump = "더블점프가 가능해집니다";
+            Miss = "일정 확률 공격이 빚나갑니다";
+            Poision = "독 데미지를 가합니다";
+            Skill_Damage = "액티브 스킬 데미지가 증가합니다";
+            
+        }
+        
+        
+        
+        
+        
+    }
+    
+    
     void GenerateSkillCards()
     {
         // 전체 카드 목록 초기화
@@ -61,44 +121,44 @@ public class Skill_Select : MonoBehaviour
         for (int i = 0; i < 85; i++)
         {
                                            //스킬이름 , 등급기준 , 스킬내용 , 강화량, 강화수치
-            skillCards.Add(new Skill_Card("Reduce damage", 0, "방어도를 얻어 데미지를 적게있습니다", 10, 1));
-            skillCards.Add(new Skill_Card("Absorption", 0, "체력을 흡수합니다", 1, 1));
-            skillCards.Add(new Skill_Card("Hermes", 0, "이동속도가 증가합니다", 1, 1));
-            skillCards.Add(new Skill_Card("Dash Distance", 0, "대쉬 거리를 늘립니다", 1, 1)); //clear
-            skillCards.Add(new Skill_Card("Max Health", 0, "최대 체력을 증가시킵니다", 20, 1));
-            skillCards.Add(new Skill_Card("Discount", 0, "상점에서 할인을 받습니다", 10, 1));
-            skillCards.Add(new Skill_Card("Double_Jump", 0, "더블점프가 가능해집니다", 10, 1));
-            skillCards.Add(new Skill_Card("Miss", 0, "공격을 빚 맞습니다", 10, 1));
-            skillCards.Add(new Skill_Card("Posion", 0, "독 데미지를 가합니다", 5, 1));
-            skillCards.Add(new Skill_Card("Skill_Damage", 0, "액티브 스킬 데미지가 증가합니다", 10, 1));
+            skillCards.Add(new Skill_Card("Reduce damage", 0, Reduce_Damage, 10, 1));
+            skillCards.Add(new Skill_Card("Absorption", 0, Absortion, 1, 1));
+            skillCards.Add(new Skill_Card("Hermes", 0,  Hermes, 1, 1));
+            skillCards.Add(new Skill_Card("Dash Distance", 0,  Dash_Distance, 1, 1)); //clear
+            skillCards.Add(new Skill_Card("Max Health", 0,  Max_Health, 20, 1));
+            skillCards.Add(new Skill_Card("Discount", 0, Discout, 10, 1));
+            skillCards.Add(new Skill_Card("Double_Jump", 0, Double_Jump, 10, 1));
+            skillCards.Add(new Skill_Card("Miss", 0, Miss, 10, 1));
+            skillCards.Add(new Skill_Card("Poison", 0, Poision, 5, 1));
+            skillCards.Add(new Skill_Card("Skill_Damage", 0,  Skill_Damage, 10, 1));
         }
 
         // 에픽 카드 13%
         for (int i = 0; i < 13; i++)
         {
-            skillCards.Add(new Skill_Card("Reduce damage", 1, "방어도를 얻어 데미지를 적게있습니다", 20, 2));
-            skillCards.Add(new Skill_Card("Absorption", 1, "체력을 흡수합니다", 5, 2));
-            skillCards.Add(new Skill_Card("Hermes", 1, "이동속도가 증가합니다", 2, 2));
-            skillCards.Add(new Skill_Card("Dash Distance", 1, "대쉬 거리를 늘립니다", 2, 2));
-            skillCards.Add(new Skill_Card("Max Health", 1, "최대 체력을 증가시킵니다", 50, 2));
-            skillCards.Add(new Skill_Card("Discount", 1, "상점에서 할인을 받습니다", 20, 2));
-            skillCards.Add(new Skill_Card("Miss", 1, "공격을 빚 맞습니다", 20, 2));
-            skillCards.Add(new Skill_Card("Posion", 1, "독 데미지를 가합니다", 10, 2));
-            skillCards.Add(new Skill_Card("Skill_Damage", 1, "액티브 스킬 데미지가 증가합니다", 50, 2));
+            skillCards.Add(new Skill_Card("Reduce damage", 1,  Reduce_Damage, 20, 2));
+            skillCards.Add(new Skill_Card("Absorption", 1,   Absortion , 5, 2));
+            skillCards.Add(new Skill_Card("Hermes", 1,   Hermes, 2, 2));
+            skillCards.Add(new Skill_Card("Dash Distance", 1,   Dash_Distance, 2, 2));
+            skillCards.Add(new Skill_Card("Max Health", 1,  Max_Health, 50, 2));
+            skillCards.Add(new Skill_Card("Discount", 1, Discout, 20, 2));
+            skillCards.Add(new Skill_Card("Miss", 1, Miss, 20, 2));
+            skillCards.Add(new Skill_Card("Poison", 1, Poision, 10, 2));
+            skillCards.Add(new Skill_Card("Skill_Damage", 1,  Skill_Damage, 50, 2));
         }
 
         // 레전더리 카드 2%
         for (int i = 0; i < 2; i++)
         {
-            skillCards.Add(new Skill_Card("Reduce damage", 2, "방어도를 얻어 데미지를 적게있습니다", 50, 3));
-            skillCards.Add(new Skill_Card("Absorption", 2, "체력을 흡수합니다", 10, 3));
-            skillCards.Add(new Skill_Card("Hermes", 2, "이동속도가 증가합니다", 3, 3));
-            skillCards.Add(new Skill_Card("Dash Distance", 2, "대쉬 거리를 늘립니다", 3, 3));
-            skillCards.Add(new Skill_Card("Max Health", 2, "최대 체력을 증가시킵니다", 100, 3));
-            skillCards.Add(new Skill_Card("Discount", 2, "상점에서 할인을 받습니다", 50, 3));
-            skillCards.Add(new Skill_Card("Miss", 2, "공격을 빚 맞습니다", 50, 3));
-            skillCards.Add(new Skill_Card("Posion", 2, "독 데미지를 가합니다", 20, 3));
-            skillCards.Add(new Skill_Card("Skill_Damage", 2, "액티브 스킬 데미지가 증가합니다", 100, 3));
+            skillCards.Add(new Skill_Card("Reduce damage", 2, Reduce_Damage, 50, 3));
+            skillCards.Add(new Skill_Card("Absorption", 2, Absortion, 10, 3));
+            skillCards.Add(new Skill_Card("Hermes", 2,  Hermes, 3, 3));
+            skillCards.Add(new Skill_Card("Dash Distance", 2, Dash_Distance, 3, 3));
+            skillCards.Add(new Skill_Card("Max Health", 2,  Max_Health, 100, 3));
+            skillCards.Add(new Skill_Card("Discount", 2, Discout, 50, 3));
+            skillCards.Add(new Skill_Card("Miss", 2, Miss, 50, 3));
+            skillCards.Add(new Skill_Card("Poison", 2, Poision, 20, 3));
+            skillCards.Add(new Skill_Card("Skill_Damage", 2,  Skill_Damage, 100, 3));
         }
 
         // 다양한 스킬 추가 및 수정 가능
@@ -131,7 +191,10 @@ public class Skill_Select : MonoBehaviour
     {
         for (int i = 0; i < selectedCards.Count; i++)
         {
-            Card[i].text = $"{selectedCards[i].name}\n\n{selectedCards[i].skillContent}\n\n능력 강화량: {selectedCards[i].upgradeCount}";
+            if(DataManager.Instance._Sound_Volume.Language ==0)
+                Card[i].text = $"{selectedCards[i].name}\n\n{selectedCards[i].skillContent}\n\nEnhancement level of abilities: {selectedCards[i].upgradeCount}";
+            else if(DataManager.Instance._Sound_Volume.Language == 1)
+                Card[i].text = $"{selectedCards[i].name}\n\n{selectedCards[i].skillContent}\n\n능력 강화량: {selectedCards[i].upgradeCount}";
 
             // 카드 색상 설정
             SetCardColor(i, selectedCards[i].card_level);

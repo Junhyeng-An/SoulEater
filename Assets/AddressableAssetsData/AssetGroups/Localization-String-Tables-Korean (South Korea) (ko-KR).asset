@@ -24,6 +24,12 @@ MonoBehaviour:
     - Locale-kr
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a231a0e55adf56947818f740638c05f8
+    m_Address: Dorf_kr
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-kr
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: ef5d726a2297cd84499a7e103426dd03, type: 2}
   m_SchemaSet:

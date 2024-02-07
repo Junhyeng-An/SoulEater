@@ -31,6 +31,22 @@ MonoBehaviour:
     m_Key: SFX
     m_Metadata:
       m_Items: []
+  - m_Id: 325717458984960
+    m_Key: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 326633096519680
+    m_Key: LoadGame
+    m_Metadata:
+      m_Items: []
+  - m_Id: 326803410427904
+    m_Key: New Game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 326901414535168
+    m_Key: Quit
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -13,7 +13,10 @@ public class Reach_Upgrade_On_Off : MonoBehaviour
     private void Update()
     {
         reach_cost_final = DataManager.Instance._SwordData.Upgrade_reach_Cost - Mathf.RoundToInt(DataManager.Instance._SwordData.Upgrade_reach_Cost * DataManager.Instance._Player_Skill.Discount_Cost / 100);
-        upgrade_cost.text = reach_cost_final.ToString()+ "coin";
+        if(DataManager.Instance._Sound_Volume.Language == 0)
+            upgrade_cost.text = reach_cost_final.ToString()+ "coin";
+        if(DataManager.Instance._Sound_Volume.Language == 1)
+            upgrade_cost.text = reach_cost_final.ToString()+ "코인";
     }
 
     public void Upgrade_Click()

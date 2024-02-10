@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using PixelCrushers;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
@@ -70,7 +71,22 @@ public class Movement : MonoBehaviour
             GameObject Clone = GameObject.Find(clone_Name);
             Destroy(Clone, 0.1f);
         }
+        
+        if(gameover == true)
+            GameOver();
+        
+        
     }
+
+    public void GameOver()
+    {
+        LoadingScene.LoadScene("Start_Page");
+        gameover = false;
+    }
+    
+    
+    
+    
     public void Landing() //check can jump and can distance dash
     {
         LayerMask mask = 1 << 20;

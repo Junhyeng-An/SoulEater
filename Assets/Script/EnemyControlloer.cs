@@ -587,11 +587,11 @@ public class EnemyController : MonoBehaviour
             if (nextMove == -1)
             {
                 //spriteRenderer.flipX = false;
-                transform.rotation = Quaternion.Euler(0, 180, 0);
+                //transform.rotation = Quaternion.Euler(0, 180, 0);
             }
             else if (nextMove == 1)
             {
-                transform.rotation = Quaternion.Euler(0, 0, 0);
+                //transform.rotation = Quaternion.Euler(0, 0, 0);
                 //spriteRenderer.flipX = (nextMove == 1);
             }
         }
@@ -609,7 +609,7 @@ public class EnemyController : MonoBehaviour
     void Turn() // if Enemyfront == fall_area
     {
         nextMove = nextMove * (-1);
-        spriteRenderer.flipX = (nextMove == 1);
+        //spriteRenderer.flipX = (nextMove == 1);
         CancelInvoke();
         Invoke("Think", 2);
     }
@@ -619,11 +619,11 @@ public class EnemyController : MonoBehaviour
         float distance = Vector2.Distance(pos, playerPos);
         if (playerPos.x - pos.x >= 0)
         {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+            //transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         else if (playerPos.x - pos.x < 0)
         {
-            transform.rotation = Quaternion.Euler(0, 180, 0);
+            //transform.rotation = Quaternion.Euler(0, 180, 0);
         }
         if (isAttake == false && CurHP > 0)
         {

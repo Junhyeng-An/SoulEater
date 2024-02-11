@@ -4,20 +4,25 @@ using UnityEngine;
 
 public class AnimaionController : MonoBehaviour
 {
+    EnemyController enemy;
+
     Animator ani_body;
     Animator ani_eye;
+    Animator ani_weapon;
     GameObject player;
     Rigidbody2D rigid;
     Rigidbody2D rigid_player;
     SpriteRenderer render_body;
     SpriteRenderer render_head;
     SpriteRenderer render_eye;
+    SpriteRenderer render_weapon;
     Vector2 vel;
 
     GameObject root;
     GameObject body;
     GameObject head;
     GameObject eye;
+    GameObject weapon;
 
     bool isAni = false;
     bool isRun = false;
@@ -36,20 +41,24 @@ public class AnimaionController : MonoBehaviour
 
     void Awake()
     {
+        enemy = transform.GetComponent<EnemyController>();
+
         root = transform.Find("Root").gameObject;
         body = root.transform.Find("Body").gameObject;
         head = root.transform.Find("Head").gameObject;
         eye = head.transform.Find("Eye").gameObject;
+        weapon = root.transform.Find("Weapon").gameObject;
         ani_body = body.GetComponent<Animator>();
         ani_eye = eye.GetComponent<Animator>();
+        ani_weapon = weapon.GetComponent<Animator>();
         player = GameObject.Find("Player");
 
         rigid = GetComponent<Rigidbody2D>();
         rigid_player = player.GetComponent<Rigidbody2D>();
-
         render_body = body.GetComponent<SpriteRenderer>();
         render_head = head.GetComponent<SpriteRenderer>();
         render_eye = eye.GetComponent<SpriteRenderer>();
+        render_weapon = weapon.GetComponent<SpriteRenderer>();
         cycle = 0.1f;
     }
 
@@ -235,19 +244,6 @@ public class AnimaionController : MonoBehaviour
                 }
             }
 
-            if (vel.x < 0)
-            {
-                //render_body.flipX = true;
-                //render_head.flipX = true;
-                //render_eye.flipX = true;
-            }
-            else if (vel.x > 0)
-            {
-                //render_body.flipX = false;
-                //render_head.flipX = false;
-                //render_eye.flipX = false;
-            }
-
             else
             {
                 time = 0;
@@ -259,6 +255,15 @@ public class AnimaionController : MonoBehaviour
             moveHead = new Vector3(moveHead_basic.x + moveHead_ani.x, moveHead_basic.y + moveHead_ani.y);
             head.transform.position = transform.position + new Vector3(moveHead.x, moveHead.y);
             body.transform.position = transform.position + Vector3.up * (moveBody + 0.5f);
+
+            if(Input.GetKeyDown(KeyCode.L) || enemy.isAttake == true)
+            {
+                ani_weapon.SetBool("IsAttack", true);
+            }
+            if(Input.GetKeyUp(KeyCode.L) || enemy.isAttake == false)
+            {
+                ani_weapon.SetBool("IsAttack", false);
+            }
         }
     }
 }

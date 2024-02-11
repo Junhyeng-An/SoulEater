@@ -84,7 +84,7 @@ public class EnemyController : MonoBehaviour
     bool isAni = false;
     bool isEnemy = true;
     bool isPlayer = false;
-    bool isAttake = false;
+    public bool isAttake = false;
     bool issearch = false;
     bool hasDroppedItem = false;
     bool ispoison = false;

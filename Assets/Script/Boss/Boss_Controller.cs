@@ -50,13 +50,15 @@ public class Boss_Controller : MonoBehaviour
         }
         if (Input.GetKeyDown("p")) //hp 데미지
         {
-            currentHealth -= damage_playerAttack;
+            currentHealth -= 500;
         }
         // HP에 따라 패턴 전환
         if (currentHealth <= 0)
         {
             // 보스 사망 처리 또는 다음 단계로 진행
-            Destroy(gameObject);
+            wing_animator.SetTrigger("isDie");
+
+            Destroy(gameObject,1.5f);
             Debug.Log(" Boss DIE ");
         }
         //else if (currentHealth <= 80 && !isPattern1Active)

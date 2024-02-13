@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool isThrowing;
     bool hasDoubleJumpSkill;
+    bool isMoving = false;
     void Awake()
     {
         movement = GetComponent<Movement>();
@@ -46,7 +47,6 @@ public class PlayerController : MonoBehaviour
             //player movement
             float x = Input.GetAxisRaw("Horizontal");
             movement.Move(x);
-
             //player jump
             if (Input.GetKey(KeyCode.Space) && DataManager.Instance._Player_Skill.isDouble_Jump != true)
             {
@@ -118,9 +118,4 @@ public class PlayerController : MonoBehaviour
             time.SlowMotion(1);
         }
     }
-
-   
-    
-    
-    
 }

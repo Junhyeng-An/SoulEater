@@ -80,7 +80,7 @@ public class Movement : MonoBehaviour
 
     public void GameOver()
     {
-        LoadingScene.LoadScene("Start_Page");
+        SettingManager.Instance.Game_Over_Panel_Active();
         gameover = false;
     }
     

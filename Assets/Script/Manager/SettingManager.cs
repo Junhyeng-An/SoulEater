@@ -12,7 +12,7 @@ public class SettingManager : MonoBehaviour
     private GameObject settingWindowInstance; // 생성된 세팅 창 인스턴스
 
     public Transform Setting_Canvas;
-    
+    public Transform Game_Over_Panel;   
  
     
     
@@ -77,6 +77,18 @@ public class SettingManager : MonoBehaviour
         Destroy(settingWindowInstance);
     }
 
+    public void Game_Over_Panel_Active()
+    {
+        Game_Over_Panel.gameObject.SetActive(true);
+    }
+
+    public void Main_Menu_Button()
+    {
+        LoadingScene.LoadScene("Start_Page");
+        Game_Over_Panel.gameObject.SetActive(false);
+    }
+    
+    
  
 
     

@@ -49,6 +49,7 @@ public class Slime_Jump : MonoBehaviour
         {
             // 특정 시간 동안 대기
             jump_animator.SetBool("isjump",true);
+            SoundManager.Instance.Playsfx(SoundManager.SFX.Slime_Jump);
             Vector2 jumpForceVector;
             if (gameObject.transform.position.x - player.transform.position.x >= 0) { jumpForceVector = leftVector + Vector2.up * jumpForce; }
             else { jumpForceVector = rightVector + Vector2.up * jumpForce; }

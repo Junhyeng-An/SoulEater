@@ -26,8 +26,7 @@ public class SoundManager : MonoBehaviour
     public enum SFX
     {
         upgrade,
-        parrying,
-        thrust
+        Slime_Jump
     }
     
     

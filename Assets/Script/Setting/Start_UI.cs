@@ -48,7 +48,7 @@ public class Start_UI : MonoBehaviour
         DataManager.Instance._Player_Skill.Reduce_damage_Level = 0;
 
         DataManager.Instance._Player_Skill.poison_damage = 5.0f;
-        DataManager.Instance._Player_Skill.Poision_Damage_Level = 1;
+        DataManager.Instance._Player_Skill.Poision_Damage_Level = 0;
 
         DataManager.Instance._Player_Skill.MaxHP = 0.0f;
         DataManager.Instance._Player_Skill.MaxHP_Level = 0;
@@ -117,7 +117,7 @@ public class Start_UI : MonoBehaviour
 
     public void Boss_room()
     {
-        SceneManager.LoadScene("Boss2");
+        SceneManager.LoadScene("Boss");
     }
 
 

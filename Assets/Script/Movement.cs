@@ -298,7 +298,7 @@ public class Movement : MonoBehaviour
     }
     public void Return()
     {
-        if(transform.position.y <= -10)
+        if (transform.position.y <= -20)
         {
             transform.position = new Vector2(0, 5);
             rigid.velocity = new Vector2(rigid.velocity.x, 0);

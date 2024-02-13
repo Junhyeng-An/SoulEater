@@ -5,6 +5,7 @@ using UnityEngine;
 public class AnimaionController : MonoBehaviour
 {
     EnemyController enemy;
+    Sword sword;
 
     Animator ani_body;
     Animator ani_eye;
@@ -41,8 +42,6 @@ public class AnimaionController : MonoBehaviour
 
     void Awake()
     {
-        enemy = transform.GetComponent<EnemyController>();
-
         root = transform.Find("Root").gameObject;
         body = root.transform.Find("Body").gameObject;
         head = root.transform.Find("Head").gameObject;
@@ -60,6 +59,9 @@ public class AnimaionController : MonoBehaviour
         render_eye = eye.GetComponent<SpriteRenderer>();
         render_weapon = weapon.GetComponent<SpriteRenderer>();
         cycle = 0.1f;
+
+        enemy = transform.GetComponent<EnemyController>();
+        sword = player.transform.Find("Sword").GetComponent<Sword>();
     }
 
     void Update()
@@ -194,6 +196,15 @@ public class AnimaionController : MonoBehaviour
             moveHead = new Vector3(moveHead_view.x + moveHead_basic.x + moveHead_ani.x, moveHead_view.y + moveHead_basic.y + moveHead_ani.y);
             head.transform.position = transform.position + new Vector3(moveHead.x, moveHead.y);
             body.transform.position = transform.position + Vector3.up * moveBody;
+
+            if (sword.attack_Ani == true)
+            {
+                ani_body.SetBool("IsAttack", true);
+            }
+            else
+            {
+                ani_body.SetBool("IsAttack", false);
+            }
         }
         if (CompareTag("Enemy"))
         {
@@ -256,11 +267,11 @@ public class AnimaionController : MonoBehaviour
             head.transform.position = transform.position + new Vector3(moveHead.x, moveHead.y);
             body.transform.position = transform.position + Vector3.up * (moveBody + 0.5f);
 
-            if(Input.GetKeyDown(KeyCode.L) || enemy.isAttake == true)
+            if(enemy.isAttake == true)
             {
                 ani_weapon.SetBool("IsAttack", true);
             }
-            if(Input.GetKeyUp(KeyCode.L) || enemy.isAttake == false)
+            else
             {
                 ani_weapon.SetBool("IsAttack", false);
             }

@@ -41,7 +41,7 @@ public class Sword : MonoBehaviour
     [Range(0.0f, 1.0f)]
     public float stretch_Speed;
 
-    bool attack_Ani = false;
+    public bool attack_Ani = false;
     bool isMax = false;
 
     void Awake()

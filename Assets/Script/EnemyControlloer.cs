@@ -36,7 +36,7 @@ public class EnemyController : MonoBehaviour
 
     GameObject Player;
     public GameObject Hit_Area;
-    //GameObject Weapon;
+    GameObject Weapon;
     GameObject Attack_area;
     GameObject UI_EnemyStat;
     GameObject bar_EnemyHP;
@@ -194,7 +194,7 @@ public class EnemyController : MonoBehaviour
         bar_EnemyWP = UI_EnemyStat.transform.Find("EnemyWP").gameObject;
 
         Attack_area = transform.Find("Attack_area").gameObject;
-        //Weapon = transform.Find("Root").Find("BodySet").Find("P_Body").Find("ArmSet").gameObject;
+        Weapon = transform.Find("Root").Find("Weapon").gameObject;
     }
     void Update()
     {
@@ -297,7 +297,7 @@ public class EnemyController : MonoBehaviour
     void Tag_Disarmed()     // tag == DisArmed
     {
         CurWP = 0;
-        //Weapon.SetActive(false);
+        Weapon.SetActive(false);
 
         if (isAni == true)
         {
@@ -306,7 +306,7 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            float runSpeed = 1f;
+            float runSpeed = 0f;
 
             if (pos.x - playerPos.x < 0)
             {
@@ -320,7 +320,7 @@ public class EnemyController : MonoBehaviour
     }
     void Tag_Controlled()   // tag == Controlled
     {
-        //Weapon.SetActive(false);
+        Weapon.SetActive(false);
         UI_EnemyStat.SetActive(false);
 
         if (isPlayer == true)

@@ -5,6 +5,7 @@ using UnityEngine;
 public class sword_Flip : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
+    private PlayerController PC;
 
     private void Start()
     {
@@ -42,6 +43,14 @@ public class sword_Flip : MonoBehaviour
         if(name == "Hand")
         {
             transform.position += new Vector3(Mathf.Cos(angle)*0.15f, Mathf.Sin(angle)*0.15f);
+
+            PC = transform.parent.parent.GetComponent<PlayerController>();
+            if (PC.isThrowing == true)
+                gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            else
+                gameObject.GetComponent<SpriteRenderer>().enabled = true;
+
+            Debug.Log(PC.isThrowing);
         }
     }
 }

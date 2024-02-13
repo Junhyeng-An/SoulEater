@@ -38,9 +38,9 @@ public class Laser_Pattern : MonoBehaviour
             LaserMovement laserMovement = laser.AddComponent<LaserMovement>();
             laserMovement.speed = speed;
 
-            yield return new WaitForSeconds(2.5f);
+            yield return new WaitForSeconds(1.5f);
 
-            Destroy(laser); // 레이저를 생성한 후 일정 시간이 지나면 파괴
+            //Destroy(laser); // 레이저를 생성한 후 일정 시간이 지나면 파괴
         }
     }
 }

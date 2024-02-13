@@ -21,6 +21,7 @@ public class Boss_Controller : MonoBehaviour
     public Circle_Fire pattern_circle;  // 패턴1 스크립트
     public Red_Square pattern_Square;  // 패턴2 스크립트
     public Laser_Pattern laserPattern;  // 레이저 패턴 스크립트
+    public Animator wing_animator;
 
     private Sword sword;
     GameObject player;
@@ -29,6 +30,7 @@ public class Boss_Controller : MonoBehaviour
     {
         currentHealth = maxHealth;  // 시작 시 현재 체력을 최대 체력으로 초기화
         sword = GameObject.Find("Sword").GetComponent<Sword>();
+        wing_animator = GetComponent<Animator>();
     }
     void Start()
     {
@@ -41,6 +43,7 @@ public class Boss_Controller : MonoBehaviour
     void Update()
     {
         player = GameObject.Find("GameManager");
+        wing_animator.Play("Idle");
         if (sword.isSwing == false)
         {
             isDamage = false;

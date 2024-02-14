@@ -41,7 +41,7 @@ public class Sword : MonoBehaviour
     [Range(0.0f, 1.0f)]
     public float stretch_Speed;
 
-    bool attack_Ani = false;
+    public bool attack_Ani = false;
     bool isMax = false;
 
     void Awake()
@@ -159,7 +159,7 @@ public class Sword : MonoBehaviour
     {
         if (stat.Player_CurST >= 6 && swingForce > 5.0f && isSwing == false)
         {
-            Coin_Soul_Manager.Instance.Drop_Soul(transform);
+       
             isSwing = true;
             stat.Stat("ST", -6);
             gameObject.tag = "Parrying";

@@ -5,28 +5,42 @@ public class Laser_Pattern : MonoBehaviour
 {
     public GameObject laserPrefab;
     public GameObject Start_pos;
-    private float speed = 5f; // ·¹ÀÌÀú ÀÌµ¿ ¼Óµµ
-
+    private float speed = 5f; // ë ˆì´ì € ì´ë™ ì†ë„
     [HideInInspector] public float Layzer_Damage = 10f;
 
-    private void Start()
+    private Coroutine laserCoroutine;  // ë ˆì´ì € ìƒì„± ì½”ë£¨í‹´ì„ ì €ì¥í•  ë³€ìˆ˜
+
+    void OnEnable()
     {
-        StartCoroutine(FireLaserPattern());
+        // ìŠ¤í¬ë¦½íŠ¸ê°€ í™œì„±í™”ë˜ì–´ ìˆì„ ë•Œë§Œ ì½”ë£¨í‹´ ì‹œì‘
+        if (gameObject.activeSelf)
+        {
+            // ê¸°ì¡´ ì½”ë£¨í‹´ì„ ì¤‘ì§€í•˜ê³  ìƒˆë¡œìš´ ì½”ë£¨í‹´ì„ ì‹œì‘
+            if (laserCoroutine != null)
+                StopCoroutine(laserCoroutine);
+
+            laserCoroutine = StartCoroutine(FireLaserPattern());
+        }
+    }
+
+    void OnDisable()
+    {
+        // ìŠ¤í¬ë¦½íŠ¸ê°€ ë¹„í™œì„±í™”ë˜ì—ˆì„ ë•Œ ì½”ë£¨í‹´ì„ ì¤‘ì§€
+        if (laserCoroutine != null)
+            StopCoroutine(laserCoroutine);
     }
 
     IEnumerator FireLaserPattern()
     {
         while (true)
         {
-            // ·¹ÀÌÀú »ı¼º
             GameObject laser = Instantiate(laserPrefab, Start_pos.transform.position, Quaternion.identity);
-
-            // ·¹ÀÌÀú ÀÌµ¿ ¼Óµµ ¼³Á¤
             LaserMovement laserMovement = laser.AddComponent<LaserMovement>();
             laserMovement.speed = speed;
 
-            // ´ÙÀ½ ·¹ÀÌÀú±îÁö ´ë±â
-            yield return new WaitForSeconds(2.5f);
+            yield return new WaitForSeconds(1.5f);
+
+            //Destroy(laser); // ë ˆì´ì €ë¥¼ ìƒì„±í•œ í›„ ì¼ì • ì‹œê°„ì´ ì§€ë‚˜ë©´ íŒŒê´´
         }
     }
 }
@@ -37,11 +51,9 @@ public class LaserMovement : MonoBehaviour
 
     void Update()
     {
-        // ·¹ÀÌÀú¸¦ ¿À¸¥ÂÊÀ¸·Î ÀÌµ¿
         transform.Translate(Vector3.right * speed * Time.deltaTime);
 
-        // ·¹ÀÌÀú°¡ È­¸éÀ» ¹ş¾î³ª¸é ÆÄ±«
-        if (transform.position.x > 20f)
+        if (transform.position.x > 40f)
         {
             Destroy(gameObject);
         }

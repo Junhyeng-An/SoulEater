@@ -22,6 +22,7 @@ TagManager:
   - Skill_Smash
   - Layzer
   - Enemy_Vo
+  - Spike
   layers:
   - Default
   - TransparentFX
@@ -49,8 +50,8 @@ TagManager:
   - Coin
   - E_Attack
   - P_Attack
-  - 
-  - 
+  - Ground_col
+  - Global_Light2D
   - 
   - 
   - 

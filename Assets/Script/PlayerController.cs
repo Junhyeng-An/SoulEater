@@ -12,10 +12,10 @@ public class PlayerController : MonoBehaviour
     private EnemyController enemy;
     private SkillController skill;
     private VolumeController volume;
-
+    private int maxJumpCount = 2;
     [HideInInspector]
     public bool isThrowing;
-
+    bool hasDoubleJumpSkill;
     void Awake()
     {
         movement = GetComponent<Movement>();
@@ -48,13 +48,23 @@ public class PlayerController : MonoBehaviour
             movement.Move(x);
 
             //player jump
-            if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W))
+            if (Input.GetKey(KeyCode.Space) && DataManager.Instance._Player_Skill.isDouble_Jump != true)
             {
-                movement.Jump();
+                //Debug.Log("일반점프가 실행중입니다");
+                if (!movement.isJumping)
+                {
+                    movement.Jump();
+                }
+            }
+            //player Double jump
+            if (Input.GetKeyDown(KeyCode.Space) && movement.jumpsRemaining > 0 && DataManager.Instance._Player_Skill.isDouble_Jump == true)
+            {
+                //Debug.Log("더블 점프가 실행중입니다");
+                movement.Double_Jump();
             }
 
             //player jump bottom
-            if(Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKeyDown(KeyCode.S))
             {
                 movement.Jump_Down();
             }

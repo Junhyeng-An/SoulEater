@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using PixelCrushers;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
@@ -12,17 +13,21 @@ public class Movement : MonoBehaviour
     private float speed;
     private float jumpForce ;
     private float throwForce = 12.0f;
+
     [HideInInspector] public float dashForce = 5.0f;
     public float angle;
 
     public int bounceCount = 2;
     public bool gameover = false;
-
-    bool isJumping = false;
+    public int maxJumps = 2;
+    public int jumpsRemaining;
+    [HideInInspector] public bool isJumping = false;
+    [HideInInspector] public bool isDoubleJump = false;
     bool isThrowing = false;
     bool isDown = false;
     float time_down = 0;
     float Dash_D;
+    [HideInInspector] public int jumpCount = 0;
     public Vector2 posMid;
 
     Rigidbody2D rigid;
@@ -47,6 +52,8 @@ public class Movement : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         line = GetComponent<LineRenderer>();
         timeScale = GameObject.Find("GameManager").GetComponent<TimeScale>();
+
+        jumpsRemaining = maxJumps;
     }
 
     private void Update()
@@ -64,7 +71,22 @@ public class Movement : MonoBehaviour
             GameObject Clone = GameObject.Find(clone_Name);
             Destroy(Clone, 0.1f);
         }
+        
+        if(gameover == true)
+            GameOver();
+        
+        
     }
+
+    public void GameOver()
+    {
+        SettingManager.Instance.Game_Over_Panel_Active();
+        gameover = false;
+    }
+    
+    
+    
+    
     public void Landing() //check can jump and can distance dash
     {
         LayerMask mask = 1 << 20;
@@ -78,6 +100,8 @@ public class Movement : MonoBehaviour
             if (rayHit_Jump.distance <= 0.55f && rigid.velocity.y <= 0)
             {
                 isJumping = false;
+                jumpCount = 0;
+                jumpsRemaining = maxJumps;
             }
         }
 
@@ -99,13 +123,18 @@ public class Movement : MonoBehaviour
             isJumping = true;
         }
     }
+    public void Double_Jump()
+    {
+        rigid.velocity = Vector2.up * jumpForce;
+        jumpsRemaining--;
+    }
     public void Jump_Down()
     {
         try
         {
             if (rayHit_Jump.collider.gameObject.layer == LayerMask.NameToLayer("Platform"))
             {
-                Debug.Log(rayHit_Jump.collider.gameObject.layer);
+                //Debug.Log(rayHit_Jump.collider.gameObject.layer);
 
                 isDown = true;
                 time_down = 0;
@@ -118,7 +147,7 @@ public class Movement : MonoBehaviour
     public void Move(float x)
     {
         rigid.velocity = new Vector2(x * (speed+DataManager.Instance._Player_Skill.Skill_Speed), rigid.velocity.y);
-        Debug.Log(rigid.velocity.x);
+        //Debug.Log(rigid.velocity.x);
     }
     public void Dash()
     {
@@ -269,7 +298,7 @@ public class Movement : MonoBehaviour
     }
     public void Return()
     {
-        if(transform.position.y <= -10)
+        if (transform.position.y <= -20)
         {
             transform.position = new Vector2(0, 5);
             rigid.velocity = new Vector2(rigid.velocity.x, 0);

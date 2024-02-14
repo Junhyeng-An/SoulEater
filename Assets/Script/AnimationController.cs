@@ -57,7 +57,7 @@ public class AnimaionController : MonoBehaviour
         render_body = body.GetComponent<SpriteRenderer>();
         render_head = head.GetComponent<SpriteRenderer>();
         render_eye = eye.GetComponent<SpriteRenderer>();
-        render_weapon = weapon.GetComponent<SpriteRenderer>();
+        render_weapon = weapon.transform.Find("Sword").GetComponent<SpriteRenderer>();
         cycle = 0.1f;
 
         enemy = transform.GetComponent<EnemyController>();
@@ -213,12 +213,14 @@ public class AnimaionController : MonoBehaviour
                 render_body.flipX = true;
                 render_head.flipX = true;
                 render_eye.flipX = true;
+                render_weapon.flipX = true;
             }
             else if (vel.x > 0)
             {
                 render_body.flipX = false;
                 render_head.flipX = false;
                 render_eye.flipX = false;
+                render_weapon.flipX = false;
             }
 
             moveHead_basic = new Vector2(0.0f, 1.45f);

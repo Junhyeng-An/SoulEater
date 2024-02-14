@@ -71,7 +71,7 @@ public class Coin_Soul_Manager : MonoBehaviour
 
     private void Update()
     {
-        if (SceneManager.GetActiveScene().name == "Start_Page")
+        if (SceneManager.GetActiveScene().name == "Start_Page" || SceneManager.GetActiveScene().name == "Loading")
         {
             Start_Coin.SetActive(false);
             Start_Soul.SetActive(false);

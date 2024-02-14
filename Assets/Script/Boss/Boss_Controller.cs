@@ -14,15 +14,22 @@ public class Boss_Controller : MonoBehaviour
     private float currentHealth;    // 현재 체력
 
     float damage_playerAttack;
+    
     private bool isPattern1Active = false;  // 패턴1 활성화 여부
     private bool isPattern2Active = false;  // 패턴2 활성화 여부
     private bool isDamage;
+    private bool isAlive = true;
+    private float interval = 0.4f; // 각 오브젝트가 활성화되는 간격
+    private int currentIndex = 0; // 현재 활성화할 오브젝트의 인덱스
+    private float timer = 0f; // 타이머 변수
+    private float BloodTime = 0f; // 타이머 변수
 
     public Circle_Fire pattern_circle;  // 패턴1 스크립트
     public Red_Square pattern_Square;  // 패턴2 스크립트
     public Laser_Pattern laserPattern;  // 레이저 패턴 스크립트
     public Animator wing_animator;
-
+    public GameObject[] bloods;
+    public GameObject Portal;
     private Sword sword;
     GameObject player;
 
@@ -52,15 +59,37 @@ public class Boss_Controller : MonoBehaviour
         {
             currentHealth -= 500;
         }
-        // HP에 따라 패턴 전환
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && isAlive == true)
         {
             // 보스 사망 처리 또는 다음 단계로 진행
-            wing_animator.SetTrigger("isDie");
-
-            Destroy(gameObject,1.5f);
+            DeactivateAllPatterns();
+            Destroy(gameObject, 3.5f); // 3초 뒤에 보스 삭제
             Debug.Log(" Boss DIE ");
+
+            // Blood 객체들을 일정 시간 간격으로 활성화하고, 그 후에 비활성화합니다.
+            StartCoroutine(ActivateBloodsAndDeactivate());
         }
+
+        IEnumerator ActivateBloodsAndDeactivate()
+        {
+            isAlive = false;
+            foreach (GameObject blood in bloods)
+            {
+                blood.SetActive(true); // blood 객체 활성화
+                yield return new WaitForSeconds(0.2f); // 0.4초 대기
+            }
+
+            // 일정 시간이 지난 후에 Blood 객체들 비활성화
+            yield return new WaitForSeconds(2.2f); // 1초 대기
+            foreach (GameObject blood in bloods)
+            {
+                blood.SetActive(false); // blood 객체 비활성화
+                yield return new WaitForSeconds(0.2f); // 0.4초 대기
+            }
+            Portal.SetActive(true);
+        }
+
+
         //else if (currentHealth <= 80 && !isPattern1Active)
         //{
         //    isPattern2Active = false;

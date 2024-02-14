@@ -903,7 +903,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &796667675
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -992,6 +992,72 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &830081868
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6486428171285146061, guid: 15f29bca557e8f6488b0fe1e58b24e67, type: 3}
+      propertyPath: m_Name
+      value: Portal
+      objectReference: {fileID: 0}
+    - target: {fileID: 6486428171285146061, guid: 15f29bca557e8f6488b0fe1e58b24e67, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6486428171285146062, guid: 15f29bca557e8f6488b0fe1e58b24e67, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 6486428171285146062, guid: 15f29bca557e8f6488b0fe1e58b24e67, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 6486428171285146062, guid: 15f29bca557e8f6488b0fe1e58b24e67, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.23048146
+      objectReference: {fileID: 0}
+    - target: {fileID: 6486428171285146062, guid: 15f29bca557e8f6488b0fe1e58b24e67, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6486428171285146062, guid: 15f29bca557e8f6488b0fe1e58b24e67, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6486428171285146062, guid: 15f29bca557e8f6488b0fe1e58b24e67, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6486428171285146062, guid: 15f29bca557e8f6488b0fe1e58b24e67, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6486428171285146062, guid: 15f29bca557e8f6488b0fe1e58b24e67, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6486428171285146062, guid: 15f29bca557e8f6488b0fe1e58b24e67, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6486428171285146062, guid: 15f29bca557e8f6488b0fe1e58b24e67, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 15f29bca557e8f6488b0fe1e58b24e67, type: 3}
+--- !u!1 &830081869 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6486428171285146061, guid: 15f29bca557e8f6488b0fe1e58b24e67, type: 3}
+  m_PrefabInstance: {fileID: 830081868}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &868708668
 GameObject:
   m_ObjectHideFlags: 0
@@ -1009,7 +1075,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &868708669
 Animator:
   serializedVersion: 5
@@ -1916,6 +1982,11 @@ MonoBehaviour:
   pattern_Square: {fileID: 1583675912}
   laserPattern: {fileID: 1583675914}
   wing_animator: {fileID: 1583675915}
+  bloods:
+  - {fileID: 868708668}
+  - {fileID: 796667674}
+  - {fileID: 2145428558}
+  Portal: {fileID: 830081869}
 --- !u!114 &1583675914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2433,7 +2504,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &2145428559
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2541,3 +2612,4 @@ SceneRoots:
   - {fileID: 868708670}
   - {fileID: 796667677}
   - {fileID: 2145428561}
+  - {fileID: 830081868}

@@ -214,6 +214,7 @@ public class AnimaionController : MonoBehaviour
                 render_head.flipX = true;
                 render_eye.flipX = true;
                 render_weapon.flipX = true;
+                weapon.transform.position = weapon.transform.parent.position + Vector3.right * 0.75f;
             }
             else if (vel.x > 0)
             {
@@ -221,6 +222,7 @@ public class AnimaionController : MonoBehaviour
                 render_head.flipX = false;
                 render_eye.flipX = false;
                 render_weapon.flipX = false;
+                weapon.transform.position = weapon.transform.parent.position;
             }
 
             moveHead_basic = new Vector2(0.0f, 1.45f);

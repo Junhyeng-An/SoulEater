@@ -9,7 +9,16 @@ public class Damage : MonoBehaviour
     float Miss_per;
     float Miss_const;
     bool isDamage;
-
+    [HideInInspector]public bool isImmune = false;
+    public bool IsImmune
+    {
+        get { return isImmune; }
+        set { isImmune = value; }
+    }
+    private void Awake()
+    {
+        isImmune = false;
+    }
     private void Update()
     {
         Miss_per = DataManager.Instance._Player_Skill.Miss;
@@ -19,7 +28,7 @@ public class Damage : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Miss_const = Random.Range(0f, 100f);
-        if (collision.tag == "Boss")
+        if (collision.tag == "Boss" && !isImmune)
         {
             Debug.Log("슬라임한테 맞음");
             EnemyController enemyController = GetComponentInParent<EnemyController>();
@@ -27,7 +36,7 @@ public class Damage : MonoBehaviour
             enemyController.CurHP -= s_Boss.slime_damage;
         }
 
-        if (collision.tag == "Spike")
+        if (collision.tag == "Spike" && !isImmune)
         {
             Debug.Log("가시에 찔림");
             EnemyController enemyController = GetComponentInParent<EnemyController>();

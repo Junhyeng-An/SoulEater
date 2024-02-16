@@ -17,7 +17,7 @@ public class Portal : MonoBehaviour
     }
 
 
-    public void OnTriggerEnter2D(Collider2D other)
+    public void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
@@ -25,34 +25,37 @@ public class Portal : MonoBehaviour
             for(int i =0; i<_mapCreate.map_MaxCount; i++)
             try
             {
-
-                int count = 0;
-                if(GetChildrenWithTag(_mapCreate.map[i].transform, "Enemy") !=null)
-                     count = GetChildrenWithTag(_mapCreate.map[i].transform, "Enemy");
-                
-                Debug.Log(count);
-                if (count == 0)
+                if (Input.GetKeyDown(KeyCode.W))
                 {
-                    if (_mapCreate.map[i].transform.Find("East") == this.transform)
-                        CharacterManager.Instance.PlayerPosition(_mapCreate.map[i + 1].transform.Find("West").position +
-                                                                 UnityEngine.Vector3.right * 5);
-                    else if (_mapCreate.map[i].transform.Find("West") == this.transform)
-                        CharacterManager.Instance.PlayerPosition(_mapCreate.map[i - 1].transform.Find("East").position +
-                                                                 UnityEngine.Vector3.left * 5);
-                    else if (_mapCreate.map[i].transform.Find("North") == this.transform)
-                        CharacterManager.Instance.PlayerPosition(
-                            _mapCreate.map[i + _mapCreate.map_height].transform.Find("South").position +
-                            UnityEngine.Vector3.left * 5);
-                    else if (_mapCreate.map[i].transform.Find("South") == this.transform)
-                        CharacterManager.Instance.PlayerPosition(
-                            _mapCreate.map[i - _mapCreate.map_height].transform.Find("North").position +
-                            UnityEngine.Vector3.left * 5);
+                    int count = 0;
+                    if (GetChildrenWithTag(_mapCreate.map[i].transform, "Enemy") != null)
+                        count = GetChildrenWithTag(_mapCreate.map[i].transform, "Enemy");
+
+                    Debug.Log(count);
+                    if (count == 0)
+                    {
+                        if (_mapCreate.map[i].transform.Find("East") == this.transform)
+                            CharacterManager.Instance.PlayerPosition(
+                                _mapCreate.map[i + 1].transform.Find("West").position +
+                                UnityEngine.Vector3.right * 5);
+                        else if (_mapCreate.map[i].transform.Find("West") == this.transform)
+                            CharacterManager.Instance.PlayerPosition(
+                                _mapCreate.map[i - 1].transform.Find("East").position +
+                                UnityEngine.Vector3.left * 5);
+                        else if (_mapCreate.map[i].transform.Find("North") == this.transform)
+                            CharacterManager.Instance.PlayerPosition(
+                                _mapCreate.map[i + _mapCreate.map_height].transform.Find("South").position +
+                                UnityEngine.Vector3.left * 5);
+                        else if (_mapCreate.map[i].transform.Find("South") == this.transform)
+                            CharacterManager.Instance.PlayerPosition(
+                                _mapCreate.map[i - _mapCreate.map_height].transform.Find("North").position +
+                                UnityEngine.Vector3.left * 5);
+
+
+                    }
 
 
                 }
-
-
-
 
 
             }

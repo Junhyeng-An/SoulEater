@@ -8,6 +8,7 @@ public class bullet : MonoBehaviour
     public float Bullet_Damage;
     GameObject player;
     GameObject hit_area;
+    bool isimmune;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,12 +19,13 @@ public class bullet : MonoBehaviour
     void Update()
     {
         player = GameObject.FindGameObjectWithTag("Controlled");
-        
+        hit_area = GameObject.FindGameObjectWithTag("hit_area");
+        isimmune = hit_area.GetComponent<Damage>().isImmune;
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Player")
+        if (col.gameObject.tag == "Player" && isimmune == false)
         {
             Destroy(gameObject);
             player.GetComponent<EnemyController>().CurHP -= Bullet_Damage;

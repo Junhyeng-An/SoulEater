@@ -845,6 +845,7 @@ MonoBehaviour:
   sfxClip:
   - {fileID: 8300000, guid: ee8244fd830039e42aeec47962ba4051, type: 3}
   - {fileID: 8300000, guid: cc7668bc544fd4b4ea22b3d4a61620c5, type: 3}
+  - {fileID: 8300000, guid: 70907e24704b66743ba5c361b11f4079, type: 3}
   sfxVolume: 0.3
   channels: 3
 --- !u!1 &117821016
@@ -3695,7 +3696,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 150535223
+    m_Bits: 184089655
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

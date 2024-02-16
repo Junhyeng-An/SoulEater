@@ -21,6 +21,7 @@ public class S_Boss_Controller : MonoBehaviour
 
     private Sword sword;
     GameObject player;
+    public GameObject Portal;
 
     private void Awake()
     {
@@ -46,7 +47,9 @@ public class S_Boss_Controller : MonoBehaviour
         if (currentHealth <= 0)
         {
             // 보스 사망 처리 또는 다음 단계로 진행
+            Portal.SetActive(true);
             Destroy(gameObject);
+            
             Debug.Log(" Boss DIE ");
         }
 
@@ -58,7 +61,7 @@ public class S_Boss_Controller : MonoBehaviour
         while (true)
         {
             ActivatePattern(slime_Jump);
-            yield return new WaitForSeconds(50f); // 2 번째 패턴 유지 시간
+            yield return new WaitForSeconds(6.2f); // 2 번째 패턴 유지 시간
 
             yield return new WaitForSeconds(2f);
             ActivatePattern(slime_super_jump);

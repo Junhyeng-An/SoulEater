@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 public class Boss_Controller : MonoBehaviour
 {
@@ -22,9 +23,12 @@ public class Boss_Controller : MonoBehaviour
     public Red_Square pattern_Square;  // 패턴2 스크립트
     public Laser_Pattern laserPattern;  // 레이저 패턴 스크립트
     public Animator wing_animator;
-
+    public GameObject[] bloods;
+    public GameObject Portal;
     private Sword sword;
     GameObject player;
+    GameObject hit_area;
+    Damage damage;
 
     private void Awake()
     {
@@ -50,31 +54,43 @@ public class Boss_Controller : MonoBehaviour
         }
         if (Input.GetKeyDown("p")) //hp 데미지
         {
-            currentHealth -= 500;
+            currentHealth -= 100;
         }
         // HP에 따라 패턴 전환
         if (currentHealth <= 0)
         {
             // 보스 사망 처리 또는 다음 단계로 진행
-            wing_animator.SetTrigger("isDie");
-
-            Destroy(gameObject,1.5f);
+            Destroy(gameObject, 3.6f); // 3초 뒤에 보스 삭제
+           
             Debug.Log(" Boss DIE ");
+            StartCoroutine(DeactivateImmunityAfterDelay(4f));
+            // Blood 객체들을 일정 시간 간격으로 활성화하고, 그 후에 비활성화합니다.
+            StartCoroutine(ActivateBloodsAndDeactivate());
         }
-        //else if (currentHealth <= 80 && !isPattern1Active)
-        //{
-        //    isPattern2Active = false;
-        //    isPattern1Active = true;
-        //    ActivatePattern(patternScript1);
-        //}
-        //else if (currentHealth < maxHealth / 2 && !isPattern2Active)
-        //{
-        //    // HP가 최대 체력의 절반 미만이면서 현재 패턴이 활성화되어 있지 않은 경우
-        //    // 패턴 전환 및 해당 패턴 활성화
-        //    isPattern2Active = true;
-        //    isPattern1Active = false;
-        //    ActivatePattern(patternScript2);
-        //}
+
+        IEnumerator DeactivateImmunityAfterDelay(float delay) //보스잡고나서의 면역시간
+        {
+            yield return new WaitForSeconds(delay);
+            damage.isImmune = false;
+        }
+        IEnumerator ActivateBloodsAndDeactivate()
+        {
+            // Blood 객체들을 활성화
+            foreach (GameObject blood in bloods)
+            {
+                blood.SetActive(true);
+                yield return new WaitForSeconds(0.2f); // 0.4초 대기
+            }
+
+            // 일정 시간이 지난 후에 Blood 객체들 비활성화
+            yield return new WaitForSeconds(2.0f); // 2초 대기
+            foreach (GameObject blood in bloods)
+            {
+                blood.SetActive(false);
+                yield return new WaitForSeconds(0.2f); // 0.4초 대기
+            }
+            Portal.SetActive(true);
+        }
 
         pText_hp.text = Mathf.Floor(currentHealth) + " / " + maxHealth.ToString(); // 현재 체력을 표시합니다.
         Handle();

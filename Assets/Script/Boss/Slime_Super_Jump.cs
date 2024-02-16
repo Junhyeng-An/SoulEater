@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Slime_Super_Jump : MonoBehaviour
 {
-    private float s_jumpForce = 25f;  // 슈퍼 점프 힘
-    private float jumpCooldown = 3.3f;  // 슈퍼 점프 쿨다운
+    private float s_jumpForce = 15f;  // 슈퍼 점프 힘
+    private float jumpCooldown = 3.1f;  // 슈퍼 점프 쿨다운
     public GameObject spikePrefab;  // 가시 프리팹
     public Transform spikeSpawnPoint;  // 가시 생성 위치
     [HideInInspector]public float spike_damage= 10f;
@@ -26,8 +26,9 @@ public class Slime_Super_Jump : MonoBehaviour
         yield return new WaitForSeconds(jumpCooldown);
 
         // 땅에 찍고 가시 생성
+        SoundManager.Instance.Playsfx(SoundManager.SFX.Slime_spike);
         CreateSpike();
-        yield return new WaitForSeconds(0.5f); // 가시가 생성된 후 1초 대기
+        yield return new WaitForSeconds(0.5f); // 가시가 생성된 후 0.5초 대기
 
         // 가시 삭제
         DestroySpike();

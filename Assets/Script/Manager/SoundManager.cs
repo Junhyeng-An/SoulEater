@@ -26,7 +26,8 @@ public class SoundManager : MonoBehaviour
     public enum SFX
     {
         upgrade,
-        Slime_Jump
+        Slime_Jump,
+        Slime_spike
     }
     
     

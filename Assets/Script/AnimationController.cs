@@ -280,5 +280,10 @@ public class AnimaionController : MonoBehaviour
                 ani_weapon.SetBool("IsAttack", false);
             }
         }
+        if (CompareTag("Disarmed"))
+        {
+            body.transform.position = transform.position + Vector3.up * 0.5f;
+            head.transform.position = transform.position + Vector3.up * 1.55f;
+        }
     }
 }

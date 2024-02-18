@@ -49,8 +49,6 @@ public class sword_Flip : MonoBehaviour
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
             else
                 gameObject.GetComponent<SpriteRenderer>().enabled = true;
-
-            Debug.Log(PC.isThrowing);
         }
     }
 }

@@ -88,7 +88,7 @@ public class SkillController : MonoBehaviour
 
 
 
-    void LateUpdate()
+    void Update()
     {
         Check_PlayerSkill();
 
@@ -112,6 +112,7 @@ public class SkillController : MonoBehaviour
             controlled = GameObject.FindGameObjectWithTag("Controlled");
 
             player_skill = controlled.GetComponent<EnemyController>().CurSkill;
+
             Check_SkillKey();
         }
     }
@@ -119,7 +120,7 @@ public class SkillController : MonoBehaviour
     {
         if (player_skill == Skill_Active.DashAttack)
         {
-            if (Input.GetKey(KeyCode.LeftShift) )
+            if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 Active();
             }
@@ -189,7 +190,7 @@ public class SkillController : MonoBehaviour
             if (height >= height_smash)
             {
                 Check_Condition(3);
-                size_smash = height / 2;
+                size_smash = height/2;
                 if (size_smash >= 4)
                     size_smash = 4;
                 damage = height * 3 * DataManager.Instance._Active_Skill.Smash_Damage;
@@ -206,13 +207,13 @@ public class SkillController : MonoBehaviour
             if(height <= player.GetComponent<CircleCollider2D>().radius + 0.1f)
             {
                 End_Skill();
-                Create_HitBox(colPos + Vector3.up * skillSize.y / 2, skillSize, damage, 1);
+                Create_HitBox(colPos + Vector3.up * skillSize.y / 2, skillSize * 2, damage, 1);
             }
         }
     }
     void DashAttack()
     {
-        Vector2 skillSize = new Vector2(player.GetComponent<Movement>().dashForce, 1);
+        Vector2 skillSize = new Vector2(player.GetComponent<Movement>().dashForce, 1) * 2;
         if (condition == false && stat.Player_CurST >= 3)
         {
             condition = true;

@@ -38,6 +38,8 @@ public class P_Attack : MonoBehaviour
     }
     public void Attack_Area(Vector3 pos, Vector2 size, float dmg, float fade, float velocity)
     {
+        //transform.Rotate(0, 0, 90);
+
         transform.position = pos;
         transform.localScale = size;
         damage = dmg;

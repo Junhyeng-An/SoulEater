@@ -296,6 +296,7 @@ public class EnemyController : MonoBehaviour
     }
     void Tag_Disarmed()     // tag == DisArmed
     {
+        isAttake = false;
         CurWP = 0;
         Weapon.SetActive(false);
 
@@ -467,6 +468,7 @@ public class EnemyController : MonoBehaviour
     }
     void Col_Skill(Collider2D col)
     {
+        Debug.Log(skill.onSkill);
         if(skill.onSkill == true)
             isDamage_skill = false;
         if (col.gameObject.layer == LayerMask.NameToLayer("P_Attack") && isDamage_skill == false)
@@ -630,6 +632,8 @@ public class EnemyController : MonoBehaviour
             if (distance <= detect_distance && distance >= attack_distance)
             {
                 Vector3 direction = (Player.transform.position - transform.position).normalized;
+                if (enemyType == EnemyType.Enemy_B) ///////about speed    Lee
+                    direction *= 2;
                 direction.y = 0;
                 rigid.velocity = direction;
             }
@@ -703,16 +707,16 @@ public class EnemyController : MonoBehaviour
 
          if (DataManager.Instance._PlayerData.clear_stage == (int)stage.Main)
          {
-             EnemyA = new EnemyData(EnemyA_MaxHP, EnemyA_MaxHP, 20, 20, 5, 2, 10, SkillController.Skill_Active.Smash);
+             EnemyA = new EnemyData(EnemyA_MaxHP, EnemyA_MaxHP, 20, 20, 5, 2, 10, SkillController.Skill_Active.Slash);
              EnemyB = new EnemyData(EnemyB_MaxHP, EnemyB_MaxHP, 20, 20, 5, 2, 20, SkillController.Skill_Active.DashAttack);
-             EnemyC = new EnemyData(EnemyC_MaxHP, EnemyC_MaxHP, 20, 20, 5, 2, 30, SkillController.Skill_Active.Slash);
+             EnemyC = new EnemyData(EnemyC_MaxHP, EnemyC_MaxHP, 20, 20, 5, 2, 30, SkillController.Skill_Active.Smash);
          }
 
          else if(DataManager.Instance._PlayerData.clear_stage == (int)stage.stage1)
          {
-             EnemyA = new EnemyData(EnemyA_MaxHP_2, EnemyA_MaxHP_2, 20, 20, 5, 2, 10, SkillController.Skill_Active.Smash);
+             EnemyA = new EnemyData(EnemyA_MaxHP_2, EnemyA_MaxHP_2, 20, 20, 5, 2, 10, SkillController.Skill_Active.Slash);
              EnemyB = new EnemyData(EnemyB_MaxHP_2, EnemyB_MaxHP_2, 20, 20, 5, 2, 20, SkillController.Skill_Active.DashAttack);
-             EnemyC = new EnemyData(EnemyC_MaxHP_2, EnemyC_MaxHP_2, 20, 20, 5, 2, 30, SkillController.Skill_Active.Slash);
+             EnemyC = new EnemyData(EnemyC_MaxHP_2, EnemyC_MaxHP_2, 20, 20, 5, 2, 30, SkillController.Skill_Active.Smash);
          }
     }
 

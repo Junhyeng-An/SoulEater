@@ -468,13 +468,18 @@ public class EnemyController : MonoBehaviour
     }
     void Col_Skill(Collider2D col)
     {
-        Debug.Log(skill.onSkill);
-        if(skill.onSkill == true)
-            isDamage_skill = false;
-        if (col.gameObject.layer == LayerMask.NameToLayer("P_Attack") && isDamage_skill == false)
+        if (col.gameObject.layer == LayerMask.NameToLayer("P_Attack"))
         {
-            CurHP -= skill.damage;
-            isDamage_skill = true;
+            if (col.GetComponent<P_Attack>().isAttack > 0)
+            {
+                col.GetComponent<P_Attack>().isAttack--;
+                isDamage_skill = false;  // have to fix here
+            }
+            if (isDamage_skill == false && col.GetComponent<P_Attack>().isAttack == 0)
+            {
+                CurHP -= skill.damage;
+                isDamage_skill = true;
+            }
         }
     }
     void Col_Enemy(Collider2D col)

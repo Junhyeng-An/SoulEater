@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,73 +7,73 @@ using UnityEngine.UI;
 
 public class Prologue_manager : MonoBehaviour
 {
-    // ÅØ½ºÆ®¸¦ ´ãÀ» ¸®½ºÆ®
+    // í…ìŠ¤íŠ¸ë¥¼ ë‹´ì„ ë¦¬ìŠ¤íŠ¸
     public List<TextMeshProUGUI> textObjects = new List<TextMeshProUGUI>();
 
-    //ÀÌ¹ÌÁö
+    //ì´ë¯¸ì§€
     public GameObject S_Image;
 
-    // ÇöÀç º¸¿©Áö´Â ÅØ½ºÆ® ÀÎµ¦½º
+    // í˜„ì¬ ë³´ì—¬ì§€ëŠ” í…ìŠ¤íŠ¸ ì¸ë±ìŠ¤
     private int currentIndex = 0;
 
-    // ¸¶Áö¸·À¸·Î ¸¶¿ì½º¸¦ Å¬¸¯ÇÑ ½Ã°£
+    // ë§ˆì§€ë§‰ìœ¼ë¡œ ë§ˆìš°ìŠ¤ë¥¼ í´ë¦­í•œ ì‹œê°„
     private float lastClickTime = 0f;
 
-    // Å¬¸¯ °£°İ(ÄğÅ¸ÀÓ)
+    // í´ë¦­ ê°„ê²©(ì¿¨íƒ€ì„)
     public float clickInterval = 1f;
 
-    // ÀÚµ¿À¸·Î ÅØ½ºÆ®¸¦ º¸¿©ÁÙ °£°İ
+    // ìë™ìœ¼ë¡œ í…ìŠ¤íŠ¸ë¥¼ ë³´ì—¬ì¤„ ê°„ê²©
     public float autoShowInterval = 5f;
 
-    // ÄÚ·çÆ¾ ÂüÁ¶ º¯¼ö
+    // ì½”ë£¨í‹´ ì°¸ì¡° ë³€ìˆ˜
     private Coroutine autoShowCoroutine;
 
-    // ÆäÀÌµå ÀÎ ¼Óµµ
+    // í˜ì´ë“œ ì¸ ì†ë„
     public float fadeInSpeed = 5f;
 
     private void Start()
     {
-        // ÅØ½ºÆ® ÃÊ±âÈ­
+        // í…ìŠ¤íŠ¸ ì´ˆê¸°í™”
         foreach (var textObject in textObjects)
         {
             textObject.color = new Color(textObject.color.r, textObject.color.g, textObject.color.b, 0f);
         }
-        // ½ÃÀÛ ½Ã ÀÚµ¿À¸·Î Ã¹ ¹øÂ° ÅØ½ºÆ®¸¦ º¸¿©ÁÜ
+        // ì‹œì‘ ì‹œ ìë™ìœ¼ë¡œ ì²« ë²ˆì§¸ í…ìŠ¤íŠ¸ë¥¼ ë³´ì—¬ì¤Œ
         autoShowCoroutine = StartCoroutine(AutoShowNextText());
     }
 
     void Update()
     {
-        // ÇöÀç ½Ã°£
+        // í˜„ì¬ ì‹œê°„
         float currentTime = Time.time;
 
-        // ¸¶¿ì½º ÀÔ·ÂÀ» ¹Ş°í ÄğÅ¸ÀÓÀ» È®ÀÎ
+        // ë§ˆìš°ìŠ¤ ì…ë ¥ì„ ë°›ê³  ì¿¨íƒ€ì„ì„ í™•ì¸
         if (Input.GetMouseButtonDown(0) && (currentTime - lastClickTime) > clickInterval)
         {
             ShowNextText();
-            // ¸¶¿ì½º Å¬¸¯ÇÑ ½Ã°£ ¾÷µ¥ÀÌÆ®
+            // ë§ˆìš°ìŠ¤ í´ë¦­í•œ ì‹œê°„ ì—…ë°ì´íŠ¸
             lastClickTime = currentTime;
         }
         if (Input.GetMouseButtonDown(0) && currentIndex >= 7) { SceneManager.LoadScene("Dorf"); }
         if (currentIndex >= 5) { S_Image.SetActive(true); }
     }
 
-    // ´ÙÀ½ ÅØ½ºÆ®¸¦ º¸¿©ÁÖ´Â ÇÔ¼ö
+    // ë‹¤ìŒ í…ìŠ¤íŠ¸ë¥¼ ë³´ì—¬ì£¼ëŠ” í•¨ìˆ˜
     void ShowNextText()
     {
-        // ÇöÀç ÀÎµ¦½º°¡ ¸®½ºÆ®ÀÇ ¹üÀ§ ³»¿¡ ÀÖ´ÂÁö È®ÀÎ
+        // í˜„ì¬ ì¸ë±ìŠ¤ê°€ ë¦¬ìŠ¤íŠ¸ì˜ ë²”ìœ„ ë‚´ì— ìˆëŠ”ì§€ í™•ì¸
         if (currentIndex < textObjects.Count)
         {
-            // ÇöÀç ÀÎµ¦½º¿¡ ÇØ´çÇÏ´Â ÅØ½ºÆ® ¿ÀºêÁ§Æ®¸¦ È°¼ºÈ­
+            // í˜„ì¬ ì¸ë±ìŠ¤ì— í•´ë‹¹í•˜ëŠ” í…ìŠ¤íŠ¸ ì˜¤ë¸Œì íŠ¸ë¥¼ í™œì„±í™”
             StartCoroutine(FadeInText(textObjects[currentIndex]));
-            // ÇöÀç ÀÎµ¦½º¸¦ Áõ°¡½ÃÅ´À¸·Î½á ´ÙÀ½ ÅØ½ºÆ®¸¦ ÁØºñ
+            // í˜„ì¬ ì¸ë±ìŠ¤ë¥¼ ì¦ê°€ì‹œí‚´ìœ¼ë¡œì¨ ë‹¤ìŒ í…ìŠ¤íŠ¸ë¥¼ ì¤€ë¹„
             currentIndex++;
         }
         else
         {
-            // ¸®½ºÆ®ÀÇ ¸¶Áö¸· ÅØ½ºÆ®±îÁö ¸ğµÎ º¸¿©ÁØ °æ¿ì
-            Debug.Log("¸ğµç ÅØ½ºÆ®¸¦ º¸¿©ÁÖ¾ú½À´Ï´Ù.");
-            // ÄÚ·çÆ¾À» ¸ØÃã
+            // ë¦¬ìŠ¤íŠ¸ì˜ ë§ˆì§€ë§‰ í…ìŠ¤íŠ¸ê¹Œì§€ ëª¨ë‘ ë³´ì—¬ì¤€ ê²½ìš°
+            Debug.Log("ëª¨ë“  í…ìŠ¤íŠ¸ë¥¼ ë³´ì—¬ì£¼ì—ˆìŠµë‹ˆë‹¤.");
+            // ì½”ë£¨í‹´ì„ ë©ˆì¶¤
             if (autoShowCoroutine != null)
             {
                 StopCoroutine(autoShowCoroutine);
@@ -81,7 +81,7 @@ public class Prologue_manager : MonoBehaviour
         }
     }
 
-    // ÀÚµ¿À¸·Î ´ÙÀ½ ÅØ½ºÆ®¸¦ º¸¿©ÁÖ´Â ÄÚ·çÆ¾
+    // ìë™ìœ¼ë¡œ ë‹¤ìŒ í…ìŠ¤íŠ¸ë¥¼ ë³´ì—¬ì£¼ëŠ” ì½”ë£¨í‹´
     IEnumerator AutoShowNextText()
     {
         while (true)
@@ -93,7 +93,7 @@ public class Prologue_manager : MonoBehaviour
             if (currentIndex != 0)
             {
                 yield return new WaitForSeconds(autoShowInterval);
-                // ¸¶¿ì½º Å¬¸¯ °£°İ µ¿¾È ÀÚµ¿À¸·Î ÅØ½ºÆ®¸¦ º¸¿©ÁÖÁö ¾ÊÀ½
+                // ë§ˆìš°ìŠ¤ í´ë¦­ ê°„ê²© ë™ì•ˆ ìë™ìœ¼ë¡œ í…ìŠ¤íŠ¸ë¥¼ ë³´ì—¬ì£¼ì§€ ì•ŠìŒ
                 if (Time.time - lastClickTime > clickInterval && currentIndex < 4)
                 {
                     ShowNextText();
@@ -116,11 +116,11 @@ public class Prologue_manager : MonoBehaviour
     }
 
 
-    // ÅØ½ºÆ® ÆäÀÌµå ÀÎ È¿°ú¸¦ À§ÇÑ ÄÚ·çÆ¾
+    // í…ìŠ¤íŠ¸ í˜ì´ë“œ ì¸ íš¨ê³¼ë¥¼ ìœ„í•œ ì½”ë£¨í‹´
     IEnumerator FadeInText(TextMeshProUGUI text)
     {
         textObjects[currentIndex].gameObject.SetActive(true);
-        // ÇöÀç ¾ËÆÄ°ª
+        // í˜„ì¬ ì•ŒíŒŒê°’
         float alpha = 0f;
 
         while (alpha < 1f)

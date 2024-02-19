@@ -2770,6 +2770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingWindowPrefab: {fileID: 6109956192259773614, guid: 101bca099d1bfc841a6cf2103cad9f8f, type: 3}
+  PlayerUI: {fileID: 448976594}
   Setting_Canvas: {fileID: 936740560}
   Game_Over_Panel: {fileID: 1321281978}
 --- !u!114 &736246786 stripped

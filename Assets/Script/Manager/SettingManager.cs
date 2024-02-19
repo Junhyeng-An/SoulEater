@@ -9,6 +9,7 @@ public class SettingManager : MonoBehaviour
 {
   
     public GameObject settingWindowPrefab; // 세팅 창 프리팹
+    public GameObject PlayerUI; // 세팅 창 프리팹
     private GameObject settingWindowInstance; // 생성된 세팅 창 인스턴스
 
     public Transform Setting_Canvas;
@@ -69,6 +70,14 @@ public class SettingManager : MonoBehaviour
                     Destroy(settingWindowInstance);
                 }
             }
+        }
+        if (SceneManager.GetActiveScene().name != "Prologue") 
+        {
+            PlayerUI.SetActive(true);
+        }
+        else
+        {
+            PlayerUI.SetActive(false);
         }
     }
 

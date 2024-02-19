@@ -52,5 +52,11 @@ public class Setting_UI : MonoBehaviour
        DataManager.Instance._Sound_Volume.Mute = !DataManager.Instance._Sound_Volume.Mute;
        SoundManager.Instance.Mute_Button(DataManager.Instance._Sound_Volume.Mute);
    }
+   
+   
+   public void Quit()
+   {
+       Application.Quit();
+   }
 
 }

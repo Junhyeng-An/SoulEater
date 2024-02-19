@@ -63,6 +63,8 @@ public class SkillController : MonoBehaviour
     private System.Action[] skillFunctions;
 
     private GameObject HitBox;
+    private GameObject HitBox1;
+    private GameObject HitBox2;
     private GameObject AttackBox;
     private P_Attack p_attack;
 
@@ -84,6 +86,8 @@ public class SkillController : MonoBehaviour
         };
 
         HitBox = Resources.Load<GameObject>("P_Attack");
+        HitBox1 = Resources.Load<GameObject>("P_Smash");
+        HitBox2 = Resources.Load<GameObject>("P_Dash");
     }
 
 
@@ -271,12 +275,12 @@ public class SkillController : MonoBehaviour
 
     void Create_HitBox(Vector3 pos, Vector2 size, float dmg, float fade)
     {
-        AttackBox = Instantiate(HitBox, pos, transform.rotation);
+        AttackBox = Instantiate(HitBox1, pos, transform.rotation);
         AttackBox.GetComponent<P_Attack>().Attack_Area(pos, size, dmg, fade);
     }
     void Create_HitBox(Vector3 pos, Vector2 size, float dmg, float fade, Quaternion rotation)
     {
-        AttackBox = Instantiate(HitBox, pos, rotation);
+        AttackBox = Instantiate(HitBox2, pos, rotation);
         AttackBox.GetComponent<P_Attack>().Attack_Area(pos, size, dmg, fade);
     }
     void Create_HitBox(Vector3 pos, Vector2 size, float dmg, float fade, Quaternion rotation , float speed)

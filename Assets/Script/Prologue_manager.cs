@@ -46,15 +46,7 @@ public class Prologue_manager : MonoBehaviour
     {
         // 현재 시간
         float currentTime = Time.time;
-
-        // 마우스 입력을 받고 쿨타임을 확인
-        if (Input.GetMouseButtonDown(0) && (currentTime - lastClickTime) > clickInterval)
-        {
-            ShowNextText();
-            // 마우스 클릭한 시간 업데이트
-            lastClickTime = currentTime;
-        }
-        if (Input.GetMouseButtonDown(0) && currentIndex >= 7) { SceneManager.LoadScene("Dorf"); }
+        if (Input.GetMouseButtonDown(0) && currentIndex >= 7) { SceneManager.LoadScene("Main"); }
         if (currentIndex >= 5) { S_Image.SetActive(true); }
     }
 

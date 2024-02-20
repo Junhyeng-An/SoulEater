@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Prologue_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 871dd64e0505f514f82696fde089d08c, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 1066375618560
+    m_Localized: 'After the sudden turn of the peace-loving king, '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2055744823296
+    m_Localized: 'our blacksmith guild, which was called     the<color=#8B0000>"Arms
+      of the State"</color> for preventing treason, was attacked. '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2396846596096
+    m_Localized: With so much experience, I even served as the leader of the guild,
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2453008326656
+    m_Localized: but now I'm down with my heart stabbed by them
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8573085065216
+    m_Localized: I'm sure it's a beacon to think about it now
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8733928235008
+    m_Localized: But there's no way I can live anymore.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10899577413632
+    m_Localized: I heard something from my teacher who was better than me.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11010369953792
+    m_Localized: <color=#8B0000>"Every weapon has a soul."</color>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11166184153088
+    m_Localized: May my soul be in my sword and avenge me..
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

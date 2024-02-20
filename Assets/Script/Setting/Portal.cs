@@ -36,20 +36,17 @@ public class Portal : MonoBehaviour
                     {
                         if (_mapCreate.map[i].transform.Find("East") == this.transform)
                             CharacterManager.Instance.PlayerPosition(
-                                _mapCreate.map[i + 1].transform.Find("West").position +
-                                UnityEngine.Vector3.right * 5);
+                                _mapCreate.map[i + 1].transform.Find("West").position );
                         else if (_mapCreate.map[i].transform.Find("West") == this.transform)
                             CharacterManager.Instance.PlayerPosition(
-                                _mapCreate.map[i - 1].transform.Find("East").position +
-                                UnityEngine.Vector3.left * 5);
+                                _mapCreate.map[i - 1].transform.Find("East").position 
+                                );
                         else if (_mapCreate.map[i].transform.Find("North") == this.transform)
                             CharacterManager.Instance.PlayerPosition(
-                                _mapCreate.map[i + _mapCreate.map_height].transform.Find("South").position +
-                                UnityEngine.Vector3.left * 5);
+                                _mapCreate.map[i + _mapCreate.map_height].transform.Find("South").position);
                         else if (_mapCreate.map[i].transform.Find("South") == this.transform)
                             CharacterManager.Instance.PlayerPosition(
-                                _mapCreate.map[i - _mapCreate.map_height].transform.Find("North").position +
-                                UnityEngine.Vector3.left * 5);
+                                _mapCreate.map[i - _mapCreate.map_height].transform.Find("North").position);
 
 
                     }

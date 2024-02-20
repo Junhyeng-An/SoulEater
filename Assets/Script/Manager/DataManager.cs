@@ -22,7 +22,7 @@ public class Player_Data
     public int soul_Count;
     public float speed;
     public float jump;
-    public string controll_enemy;
+    public int controll_enemy;
     public int clear_stage;
 
 
@@ -213,6 +213,8 @@ public class DataManager : MonoBehaviour
         
         File.WriteAllText(path + Player_ASkill_filename,EncryptAndDecrypt(json_active_Skill));
         
+        //Delete 
+        Debug.Log(_PlayerData.controll_enemy);
     }
 
     public void LoadData()

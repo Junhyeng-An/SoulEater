@@ -31,9 +31,6 @@ public class Stage_Controller : MonoBehaviour
             // Check if there are no enemies in the scene
             if (NoEnemiesInScene())
             {
-
-              
-                    DataManager.Instance._PlayerData.controll_enemy =controlledObjects.name.ToString();
                     DontDestroyOnLoad(controlledObjects);
                 
                 LoadingScene.LoadScene(Scene_Name);

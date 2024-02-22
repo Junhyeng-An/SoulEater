@@ -18,7 +18,7 @@ public class Movement : MonoBehaviour
     public float angle;
 
     public int bounceCount = 2;
-    public bool gameover = false;
+    
     public int maxJumps = 2;
     public int jumpsRemaining;
     [HideInInspector] public bool isJumping = false;
@@ -72,7 +72,7 @@ public class Movement : MonoBehaviour
             Destroy(Clone, 0.1f);
         }
         
-        if(gameover == true)
+        if(SettingManager.Instance.gameover  == true)
             GameOver();
         
         
@@ -81,7 +81,6 @@ public class Movement : MonoBehaviour
     public void GameOver()
     {
         SettingManager.Instance.Game_Over_Panel_Active();
-        gameover = false;
     }
     
     
@@ -235,7 +234,7 @@ public class Movement : MonoBehaviour
             {
                 GetComponent<CircleCollider2D>().radius = 0.25f;
                 GetComponent<CircleCollider2D>().isTrigger = false;
-                gameover = true;
+                SettingManager.Instance.gameover  = true;
             }
         }
     }
@@ -302,7 +301,7 @@ public class Movement : MonoBehaviour
         {
             transform.position = new Vector2(0, 5);
             rigid.velocity = new Vector2(rigid.velocity.x, 0);
-            gameover = false;
+            SettingManager.Instance.gameover  = false;
         }
     }
     public void WallCheck()

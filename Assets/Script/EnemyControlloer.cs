@@ -6,7 +6,6 @@ using static SoonsoonData;
 using Com.LuisPedroFonseca.ProCamera2D;
 using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
-using UnityEditor.Localization.Plugins.XLIFF.V20;
 
 public class EnemyController : MonoBehaviour
 {
@@ -386,7 +385,8 @@ public class EnemyController : MonoBehaviour
     {
         gameObject.SetActive(false);
         timeScale.SlowMotion(TimeScale.MotionType.die);
-        movement.gameover = true;
+        if(SettingManager.Instance.gameover == false)
+            SettingManager.Instance.gameover = true;
         
         Debug.Log("Game over");
     }

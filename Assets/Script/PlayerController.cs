@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
         movement.Return();
         movement.Landing();
         movement.WallCheck();
-        if (movement.gameover == true)
+        if (SettingManager.Instance.gameover  == true)
         {
             sword.GameOver();
         }
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
             //player jump
             if (Input.GetKey(KeyCode.Space) && DataManager.Instance._Player_Skill.isDouble_Jump != true)
             {
-                //Debug.Log("ÀÏ¹ÝÁ¡ÇÁ°¡ ½ÇÇàÁßÀÔ´Ï´Ù");
+                //Debug.Log("ï¿½Ï¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½");
                 if (!movement.isJumping)
                 {
                     movement.Jump();
@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
             //player Double jump
             if (Input.GetKeyDown(KeyCode.Space) && movement.jumpsRemaining > 0 && DataManager.Instance._Player_Skill.isDouble_Jump == true)
             {
-                //Debug.Log("´õºí Á¡ÇÁ°¡ ½ÇÇàÁßÀÔ´Ï´Ù");
+                //Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½");
                 movement.Double_Jump();
             }
 

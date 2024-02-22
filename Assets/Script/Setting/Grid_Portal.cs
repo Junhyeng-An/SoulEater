@@ -1,18 +1,16 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class Stage_Controller : MonoBehaviour
+
+public class Grid_Portal : MonoBehaviour
 {
-    public string Scene_Name;
-
-
+    
+    
+    
     private void Awake()
     {
-        if (SceneManager.GetActiveScene().name == "Map_test")
-            Scene_Name = "Main";
+   
     }
 
 
@@ -31,9 +29,9 @@ public class Stage_Controller : MonoBehaviour
             // Check if there are no enemies in the scene
             if (NoEnemiesInScene())
             {
-                    DontDestroyOnLoad(controlledObjects);
+                DontDestroyOnLoad(controlledObjects);
                 
-                LoadingScene.LoadScene(Scene_Name);
+                Change_Scene();
             }
             else
             {
@@ -42,11 +40,6 @@ public class Stage_Controller : MonoBehaviour
         }
     }
     
-    
-    
-    
-    
-    
     private bool NoEnemiesInScene()
     {
         // Check if there are no game objects with the "Enemy" tag in the scene
@@ -54,13 +47,21 @@ public class Stage_Controller : MonoBehaviour
         return enemies.Length == 0;
     }
 
-    private void LoadNextScene()
+    private void Change_Scene()
     {
-        // Load the scene named "main2"
-        SceneManager.LoadScene(Scene_Name);
+        if (SceneManager.GetActiveScene().name == "Map1_1")
+            LoadingScene.LoadScene("Map_Test");
+        if (SceneManager.GetActiveScene().name == "Map_test")
+            LoadingScene.LoadScene("Dorf");
+
+        
+        
+        
+        
     }
-    
-    
-    
-    
+
+   
+
+
+
 }

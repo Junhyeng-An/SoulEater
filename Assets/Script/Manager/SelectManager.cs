@@ -7,11 +7,17 @@ public class SelectManager : MonoBehaviour
     public GameObject settingWindowPrefab; // 세팅 창 프리팹
     private GameObject settingWindowInstance; // 생성된 세팅 창 인스턴스
 
+    
+    
+    
+    
+    
+    
     public Transform Setting_Canvas;
 
     public int upgrade_soul = 2;
-    public bool isHPupadate;
-    public bool isChange_C;
+    [HideInInspector]public bool isHPupadate;
+    [HideInInspector]public bool isChange_C;
 
     private static SelectManager instance = null;
 

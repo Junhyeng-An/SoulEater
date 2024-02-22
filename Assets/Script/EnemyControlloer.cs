@@ -384,7 +384,8 @@ public class EnemyController : MonoBehaviour
     {
         gameObject.SetActive(false);
         timeScale.SlowMotion(TimeScale.MotionType.die);
-        movement.gameover = true;
+        if(movement.gameover == false)
+            movement.gameover = true;
         
         Debug.Log("Game over");
     }
@@ -706,6 +707,13 @@ public class EnemyController : MonoBehaviour
         float EnemyA_MaxHP = 200;
         float EnemyB_MaxHP = 200;
         float EnemyC_MaxHP = 200;   
+        
+        
+        
+        
+        
+        
+        
         
         float EnemyA_MaxHP_2 = 400;
         float EnemyB_MaxHP_2 = 400;

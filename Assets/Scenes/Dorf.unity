@@ -2948,7 +2948,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 78539862251081711, guid: 15f29bca557e8f6488b0fe1e58b24e67, type: 3}
       propertyPath: Scene_Name
-      value: Dorf
+      value: Boss2
       objectReference: {fileID: 0}
     - target: {fileID: 6486428171285146061, guid: 15f29bca557e8f6488b0fe1e58b24e67, type: 3}
       propertyPath: m_Name

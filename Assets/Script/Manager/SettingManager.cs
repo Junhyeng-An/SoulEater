@@ -14,7 +14,6 @@ public class SettingManager : MonoBehaviour
 
     public Transform Setting_Canvas;
     public Transform Game_Over_Panel;   
- 
     
     
     

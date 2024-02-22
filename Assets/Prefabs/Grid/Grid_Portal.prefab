@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6486428171285146063}
   - component: {fileID: 6486428171285146060}
   - component: {fileID: 7379092897822254822}
-  - component: {fileID: 78539862251081711}
   - component: {fileID: 8574852745085001100}
+  - component: {fileID: 6560647459954263047}
   m_Layer: 0
   m_Name: Grid_Portal
   m_TagString: Untagged
@@ -144,19 +144,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.3
---- !u!114 &78539862251081711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6486428171285146061}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 074a8543495540348a5cf584a52f2394, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Scene_Name: Dorf
 --- !u!50 &8574852745085001100
 Rigidbody2D:
   serializedVersion: 4
@@ -184,3 +171,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6560647459954263047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6486428171285146061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a039b2b8efcc85a49a752e7dedf606f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

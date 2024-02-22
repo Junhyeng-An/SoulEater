@@ -1926,9 +1926,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f949d81a0a6644b6aae6ea4dcc0a4d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Attack_damage: {fileID: 2016016260}
-  Parrying_damage: {fileID: 1970520552}
-  Sword_reach: {fileID: 1133247915}
+  HP_Drain_Text: {fileID: 0}
+  Reduce_Damage_Text: {fileID: 0}
+  Skill_Speed_Text: {fileID: 0}
+  Poison_Damage_Text: {fileID: 0}
+  Dash_Text: {fileID: 0}
+  MaxHP_Text: {fileID: 0}
+  Discount_Cost_Text: {fileID: 0}
+  Miss_Text: {fileID: 0}
+  isDouble_Jump_Text: {fileID: 0}
 --- !u!114 &293492886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2948,7 +2954,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 78539862251081711, guid: 15f29bca557e8f6488b0fe1e58b24e67, type: 3}
       propertyPath: Scene_Name
-      value: Dorf
+      value: Map1_1
       objectReference: {fileID: 0}
     - target: {fileID: 6486428171285146061, guid: 15f29bca557e8f6488b0fe1e58b24e67, type: 3}
       propertyPath: m_Name

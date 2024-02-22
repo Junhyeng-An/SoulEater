@@ -9,7 +9,7 @@ public class Minimp_Camera_Size : MonoBehaviour
     {
         Camera targetCamera = FindCameraByName("MinimapCamera");
 
-        targetCamera.orthographicSize  = 100;
+        targetCamera.orthographicSize  = 300;
 
 
     }

@@ -20,7 +20,6 @@ public class bullet : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Controlled");
         hit_area = GameObject.FindGameObjectWithTag("hit_area");
-        isimmune = hit_area.GetComponent<Damage>().isImmune;
     }
 
     private void OnTriggerEnter2D(Collider2D col)

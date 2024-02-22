@@ -5555,6 +5555,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6201845474072582358, guid: 6446dfed12b76fe428d673c16e702f47, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253393276698839805, guid: 6446dfed12b76fe428d673c16e702f47, type: 3}
+      propertyPath: m_Size.x
+      value: 0.35676134
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253393276698839805, guid: 6446dfed12b76fe428d673c16e702f47, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.07161934
+      objectReference: {fileID: 0}
     - target: {fileID: 6530702554904722600, guid: 6446dfed12b76fe428d673c16e702f47, type: 3}
       propertyPath: enemyType
       value: 1
@@ -5565,6 +5577,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6888720143479268762, guid: 6446dfed12b76fe428d673c16e702f47, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7475208793183752128, guid: 6446dfed12b76fe428d673c16e702f47, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8801486299978369506, guid: 6446dfed12b76fe428d673c16e702f47, type: 3}

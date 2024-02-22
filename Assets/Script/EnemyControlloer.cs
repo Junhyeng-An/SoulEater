@@ -401,7 +401,6 @@ public class EnemyController : MonoBehaviour
     {
         Col_Sword(col);
         Col_Skill(col);
-        Col_Enemy(col);
     }
     private void OnTriggerExit2D(Collider2D col)
     {
@@ -487,14 +486,6 @@ public class EnemyController : MonoBehaviour
                 CurHP -= skill.damage;
                 isDamage_skill = true;
             }
-        }
-    }
-    void Col_Enemy(Collider2D col)
-    {
-        if (col.CompareTag("closehit") && isHit == false)
-        {
-            CurHP -= damage_enemyAttack; 
-            isHit = true;
         }
     }
 

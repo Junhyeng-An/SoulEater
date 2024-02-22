@@ -71,7 +71,6 @@ public class Boss_Controller : MonoBehaviour
         IEnumerator DeactivateImmunityAfterDelay(float delay) //보스잡고나서의 면역시간
         {
             yield return new WaitForSeconds(delay);
-            damage.isImmune = false;
         }
         IEnumerator ActivateBloodsAndDeactivate()
         {

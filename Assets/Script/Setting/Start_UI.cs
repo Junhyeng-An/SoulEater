@@ -116,6 +116,10 @@ public class Start_UI : MonoBehaviour
         SceneManager.LoadScene("Boss2");
     }
 
+    public void Test_room()
+    {
+        SceneManager.LoadScene("Main");
+    }
 
     public void Quit()
     {

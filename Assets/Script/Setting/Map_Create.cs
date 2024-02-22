@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Map_Create : MonoBehaviour
@@ -36,7 +37,10 @@ public class Map_Create : MonoBehaviour
     GameObject startPrefab;
     GameObject endPrefab;
 
-
+    public int Type_Enemy; // NoEnemyInScene - Type Enemy = 0;
+    
+    
+    
     int Num_true;
     bool error = false;
 
@@ -176,13 +180,15 @@ public class Map_Create : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.M) && error == false)
-        {
-            MapReroll();
-        }
+        // if(Input.GetKeyDown(KeyCode.M) && error == false)
+        // {
+        //     MapReroll();
+        // }
 
    
-
+        Type_Enemy = CountObjectsWithTag(mapPrefab, "Enemy");
+        
+        Debug.Log(Type_Enemy);
     }
 
     void Pos_Check()
@@ -446,8 +452,22 @@ public class Map_Create : MonoBehaviour
         map_end.SetActive(true);
     }
 
+    int CountObjectsWithTag(GameObject[] objects, string tag)
+    {
+        int count = 0;
+        foreach (GameObject obj in objects)
+        {
+            // obj의 자식들을 순회하며 태그를 확인
+            foreach (Transform child in obj.transform)
+            {
+                if (child.CompareTag(tag))
+                {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
 
-    
-    
     
 }

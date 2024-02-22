@@ -4,16 +4,29 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class Stage_Controller : MonoBehaviour
+public class Dungeon_Stage_Controller : MonoBehaviour
 {
-    public string Scene_Name;
+    private string Scene_Name;
+    private Map_Create _mapCreate;
 
     private void Awake()
     {
-        if (SceneManager.GetActiveScene().name == "Map_test")
-            Scene_Name = "Main";
+        if (SceneManager.GetActiveScene().name == "Map1_1")
+            Scene_Name = "Dorf";
         
-
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        GameObject obj = GameObject.Find("Map_Manager");
+        _mapCreate = obj.GetComponent<Map_Create>();
     }
 
 
@@ -47,7 +60,7 @@ public class Stage_Controller : MonoBehaviour
     {
         // Check if there are no game objects with the "Enemy" tag in the scene
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        return enemies.Length == 0;
+        return enemies.Length-_mapCreate.Type_Enemy == 0;
     }
 
     private void LoadNextScene()

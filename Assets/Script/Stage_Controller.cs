@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class Stage_Controller : MonoBehaviour
 {
     public string Scene_Name;
-
+    
 
     private void Awake()
     {

@@ -40,6 +40,31 @@ public class Map_Create : MonoBehaviour
     int Num_true;
     bool error = false;
 
+    public void Current_Position_Up()
+    {
+        curPrefab.transform.position += Vector3.up * map_distance;
+    }
+    public void Current_Position_Down()    
+    {
+        curPrefab.transform.position += Vector3.down * map_distance;
+    }
+
+    public void Current_Position_Left()
+    {
+    curPrefab.transform.position += Vector3.left * map_distance;
+    }
+    public void Current_Position_Right()
+    {
+        curPrefab.transform.position += Vector3.right * map_distance;
+    }
+
+    
+    
+    
+    
+    
+    
+    
     void MapPos()
     {
         int pos = 0;
@@ -156,23 +181,7 @@ public class Map_Create : MonoBehaviour
             MapReroll();
         }
 
-        if(Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            curPrefab.transform.position += Vector3.up * map_distance;
-        }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            curPrefab.transform.position += Vector3.down * map_distance;
-        }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            curPrefab.transform.position += Vector3.left * map_distance;
-        }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            curPrefab.transform.position += Vector3.right * map_distance;
-        }
-        
+   
 
     }
 
@@ -436,4 +445,9 @@ public class Map_Create : MonoBehaviour
         map_start.SetActive(true);
         map_end.SetActive(true);
     }
+
+
+    
+    
+    
 }

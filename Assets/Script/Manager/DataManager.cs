@@ -24,8 +24,6 @@ public class Player_Data
     public float jump;
     public int controll_enemy;
     public int clear_stage;
-
-
 }
 
 public class Sword_Data

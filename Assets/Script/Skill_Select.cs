@@ -120,45 +120,129 @@ public class Skill_Select : MonoBehaviour
         // 레어 카드 85%
         for (int i = 0; i < 85; i++)
         {
-                                           //스킬이름 , 등급기준 , 스킬내용 , 강화량, 강화수치
-            skillCards.Add(new Skill_Card("Reduce damage", 0, Reduce_Damage, 10, 1));
-            skillCards.Add(new Skill_Card("Absorption", 0, Absortion, 1, 1));
-            skillCards.Add(new Skill_Card("Hermes", 0,  Hermes, 1, 1));
-            skillCards.Add(new Skill_Card("Dash Distance", 0,  Dash_Distance, 1, 1)); //clear
-            skillCards.Add(new Skill_Card("Max Health", 0,  Max_Health, 20, 1));
-            skillCards.Add(new Skill_Card("Discount", 0, Discout, 10, 1));
-            skillCards.Add(new Skill_Card("Double_Jump", 0, Double_Jump, 10, 1));
-            skillCards.Add(new Skill_Card("Miss", 0, Miss, 10, 1));
-            skillCards.Add(new Skill_Card("Poison", 0, Poision, 5, 1));
-            skillCards.Add(new Skill_Card("Skill_Damage", 0,  Skill_Damage, 10, 1));
+            //스킬이름 , 등급기준 , 스킬내용 , 강화량, 강화수치
+            if (DataManager.Instance._Player_Skill.Reduce_damage_Level<3)
+            {
+                skillCards.Add(new Skill_Card("Reduce damage", 0, Reduce_Damage, 10, 1));
+            }
+            if (DataManager.Instance._Player_Skill.HP_Drain_Level<3)
+            {
+                skillCards.Add(new Skill_Card("Absorption", 0, Absortion, 1, 1));
+            }
+            if (DataManager.Instance._Player_Skill.Skill_Speed_Level<3)
+            {
+                skillCards.Add(new Skill_Card("Hermes", 0, Hermes, 1, 1));
+            }
+            if (DataManager.Instance._Player_Skill.Dash_Level<3)
+            {
+                skillCards.Add(new Skill_Card("Dash Distance", 0, Dash_Distance, 1, 1));
+            }
+            if (DataManager.Instance._Player_Skill.MaxHP_Level<3)
+            {
+                skillCards.Add(new Skill_Card("Max Health", 0, Max_Health, 20, 1));
+            }
+            if (DataManager.Instance._Player_Skill.Discount_Cost_Level<3)
+            {
+                skillCards.Add(new Skill_Card("Discount", 0, Discout, 10, 1));
+            }
+            if (DataManager.Instance._Player_Skill.isDouble_Jump_Level<1)
+            {
+                skillCards.Add(new Skill_Card("Double_Jump", 0, Double_Jump, 10, 1));
+            }
+            if (DataManager.Instance._Player_Skill.Miss_Level<3)
+            {
+                skillCards.Add(new Skill_Card("Miss", 0, Miss, 10, 1));
+            }
+            if (DataManager.Instance._Player_Skill.Poision_Damage_Level<3)
+            {
+                skillCards.Add(new Skill_Card("Poison", 0, Poision, 5, 1));
+            }
+            if (DataManager.Instance._Active_Skill.Dash_Damage_Level<3 || DataManager.Instance._Active_Skill.Slash_Damage<3 || DataManager.Instance._Active_Skill.Smash_Damage<3)
+            {
+                skillCards.Add(new Skill_Card("Skill_Damage", 0, Skill_Damage, 10, 1));
+            }
         }
 
         // 에픽 카드 13%
         for (int i = 0; i < 13; i++)
         {
-            skillCards.Add(new Skill_Card("Reduce damage", 1,  Reduce_Damage, 20, 2));
-            skillCards.Add(new Skill_Card("Absorption", 1,   Absortion , 5, 2));
-            skillCards.Add(new Skill_Card("Hermes", 1,   Hermes, 2, 2));
-            skillCards.Add(new Skill_Card("Dash Distance", 1,   Dash_Distance, 2, 2));
-            skillCards.Add(new Skill_Card("Max Health", 1,  Max_Health, 50, 2));
-            skillCards.Add(new Skill_Card("Discount", 1, Discout, 20, 2));
-            skillCards.Add(new Skill_Card("Miss", 1, Miss, 20, 2));
-            skillCards.Add(new Skill_Card("Poison", 1, Poision, 10, 2));
-            skillCards.Add(new Skill_Card("Skill_Damage", 1,  Skill_Damage, 50, 2));
+            if (DataManager.Instance._Player_Skill.Reduce_damage_Level < 3)
+            {
+                skillCards.Add(new Skill_Card("Reduce damage", 1, Reduce_Damage, 20, 2));
+            }
+            if (DataManager.Instance._Player_Skill.HP_Drain_Level < 3)
+            {
+                skillCards.Add(new Skill_Card("Absorption", 1, Absortion, 5, 2));
+            }
+            if (DataManager.Instance._Player_Skill.Skill_Speed_Level < 3)
+            {
+                skillCards.Add(new Skill_Card("Hermes", 1, Hermes, 2, 2));
+            }
+            if (DataManager.Instance._Player_Skill.Dash_Level < 3)
+            {
+                skillCards.Add(new Skill_Card("Dash Distance", 1, Dash_Distance, 2, 2));
+            }
+            if (DataManager.Instance._Player_Skill.MaxHP_Level < 3)
+            {
+                skillCards.Add(new Skill_Card("Max Health", 1, Max_Health, 50, 2));
+            }
+            if (DataManager.Instance._Player_Skill.Discount_Cost_Level < 3)
+            {
+                skillCards.Add(new Skill_Card("Discount", 1, Discout, 20, 2));
+            }
+            if (DataManager.Instance._Player_Skill.Miss_Level < 3)
+            {
+                skillCards.Add(new Skill_Card("Miss", 1, Miss, 20, 2));
+            }
+            if (DataManager.Instance._Player_Skill.Poision_Damage_Level < 3)
+            {
+                skillCards.Add(new Skill_Card("Poison", 1, Poision, 10, 2));
+            }
+            if (DataManager.Instance._Active_Skill.Dash_Damage_Level < 3 || DataManager.Instance._Active_Skill.Slash_Damage < 3 || DataManager.Instance._Active_Skill.Smash_Damage < 3)
+            {
+                skillCards.Add(new Skill_Card("Skill_Damage", 1, Skill_Damage, 50, 2));
+            }
         }
 
         // 레전더리 카드 2%
         for (int i = 0; i < 2; i++)
         {
-            skillCards.Add(new Skill_Card("Reduce damage", 2, Reduce_Damage, 50, 3));
-            skillCards.Add(new Skill_Card("Absorption", 2, Absortion, 10, 3));
-            skillCards.Add(new Skill_Card("Hermes", 2,  Hermes, 3, 3));
-            skillCards.Add(new Skill_Card("Dash Distance", 2, Dash_Distance, 3, 3));
-            skillCards.Add(new Skill_Card("Max Health", 2,  Max_Health, 100, 3));
-            skillCards.Add(new Skill_Card("Discount", 2, Discout, 50, 3));
-            skillCards.Add(new Skill_Card("Miss", 2, Miss, 50, 3));
-            skillCards.Add(new Skill_Card("Poison", 2, Poision, 20, 3));
-            skillCards.Add(new Skill_Card("Skill_Damage", 2,  Skill_Damage, 100, 3));
+            if (DataManager.Instance._Player_Skill.Reduce_damage_Level < 3)
+            {
+                skillCards.Add(new Skill_Card("Reduce damage", 2, Reduce_Damage, 50, 3));
+            }
+            if (DataManager.Instance._Player_Skill.HP_Drain_Level < 3)
+            {
+                skillCards.Add(new Skill_Card("Absorption", 2, Absortion, 10, 3));
+            }
+            if (DataManager.Instance._Player_Skill.Skill_Speed_Level < 3)
+            {
+                skillCards.Add(new Skill_Card("Hermes", 2, Hermes, 3, 3));
+            }
+            if (DataManager.Instance._Player_Skill.Dash_Level < 3)
+            {
+                skillCards.Add(new Skill_Card("Dash Distance", 2, Dash_Distance, 3, 3));
+            }
+            if (DataManager.Instance._Player_Skill.MaxHP_Level < 3)
+            {
+                skillCards.Add(new Skill_Card("Max Health", 2, Max_Health, 100, 3));
+            }
+            if (DataManager.Instance._Player_Skill.Discount_Cost_Level < 3)
+            {
+                skillCards.Add(new Skill_Card("Discount", 2, Discout, 50, 3));
+            }
+            if (DataManager.Instance._Player_Skill.Miss_Level < 3)
+            {
+                skillCards.Add(new Skill_Card("Miss", 2, Miss, 50, 3));
+            }
+            if (DataManager.Instance._Player_Skill.Poision_Damage_Level < 3)
+            {
+                skillCards.Add(new Skill_Card("Poison", 2, Poision, 20, 3));
+            }
+            if (DataManager.Instance._Active_Skill.Dash_Damage_Level < 3 || DataManager.Instance._Active_Skill.Slash_Damage < 3 || DataManager.Instance._Active_Skill.Smash_Damage < 3)
+            {
+                skillCards.Add(new Skill_Card("Skill_Damage", 2, Skill_Damage, 100, 3));
+            }
         }
 
         // 다양한 스킬 추가 및 수정 가능

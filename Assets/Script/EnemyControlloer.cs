@@ -292,6 +292,7 @@ public class EnemyController : MonoBehaviour
 
     private void LateUpdate()
     {
+
     }
     void Tag_Enemy()        // tag == Enemy
     {

@@ -119,4 +119,14 @@ public class S_Boss_Controller : MonoBehaviour
             }
         }
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!isDamage)
+        {
+            if (collision.gameObject.tag == "Skill")
+            {
+                TakeDamage(DataManager.Instance._Active_Skill.Slash_Damage);
+            }
+        }
+    }
 }

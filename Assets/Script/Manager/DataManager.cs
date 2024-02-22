@@ -76,6 +76,7 @@ public class Player_Skill
 
 
     public float poison_damage;
+    public float poison_per;
     public int Poision_Damage_Level;
 
     public float Dash = 5;

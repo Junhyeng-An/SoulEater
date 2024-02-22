@@ -557,15 +557,18 @@ public class Skill_Select : MonoBehaviour
         if (DataManager.Instance._Player_Skill.Poision_Damage_Level == 1)
         {
             DataManager.Instance._Player_Skill.poison_damage = 5;
+            DataManager.Instance._Player_Skill.poison_per = 10;
         }
         else if (DataManager.Instance._Player_Skill.Poision_Damage_Level == 2)
         {
             DataManager.Instance._Player_Skill.poison_damage = 10;
+            DataManager.Instance._Player_Skill.poison_per = 30;
         }
         else if (DataManager.Instance._Player_Skill.Poision_Damage_Level >= 3)
         {
             DataManager.Instance._Player_Skill.Poision_Damage_Level = 3;
             DataManager.Instance._Player_Skill.poison_damage = 20;
+            DataManager.Instance._Player_Skill.poison_per = 50;
         }
 
         //스킬 데미지

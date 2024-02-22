@@ -6,6 +6,7 @@ using static SoonsoonData;
 using Com.LuisPedroFonseca.ProCamera2D;
 using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
+using UnityEditor.Localization.Plugins.XLIFF.V20;
 
 public class EnemyController : MonoBehaviour
 {
@@ -434,13 +435,14 @@ public class EnemyController : MonoBehaviour
         {
             if (isDamage == false)
             {
+                if (col.gameObject.tag == "Attack" && gameObject.tag == "Disarmed") { CurHP -= 999999; }
                 if (col.gameObject.tag == "Attack" && gameObject.tag != "Controlled")
                 {
                     CurHP -= sword.damage_playerAttack;
                     HP_Drain();
                     if (DataManager.Instance._Player_Skill.Poision_Damage_Level > 0 && !ispoison)
                     {
-                        Posion(70);
+                        Posion(DataManager.Instance._Player_Skill.poison_per);
                     }
                     //stat.Stat("ST", 3);
 
@@ -541,7 +543,7 @@ public class EnemyController : MonoBehaviour
         ispoison = false;
     }
 
-    public void Posion(int Posion_per)
+    public void Posion(float Posion_per)
     {
         // 1부터 100까지의 무작위 숫자를 생성합니다.
         int randomNum = Random.Range(1, 101);

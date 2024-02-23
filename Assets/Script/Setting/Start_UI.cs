@@ -113,7 +113,7 @@ public class Start_UI : MonoBehaviour
 
     public void Boss_room()
     {
-        SceneManager.LoadScene("Boss2");
+        SceneManager.LoadScene("Boss3");
     }
 
     public void Test_room()

@@ -56,7 +56,7 @@ public class SettingManager : MonoBehaviour
 
     private void Update()
     {
-        if (SceneManager.GetActiveScene().name != "Start_Page")
+        if (Active_Condition())
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -101,6 +101,10 @@ public class SettingManager : MonoBehaviour
         }
     }
 
+   
+    
+    
+    
     public void Destroy_Prefab()
     {
         Destroy(settingWindowInstance);
@@ -118,9 +122,15 @@ public class SettingManager : MonoBehaviour
         SettingManager.Instance.gameover = false;
         Time.timeScale = 1.0f;
     }
-    
-    
- 
+
+
+    public bool Active_Condition()
+    {
+        string activeSceneName = SceneManager.GetActiveScene().name;
+        return activeSceneName != "Start_Page" && activeSceneName != "Prologue" && activeSceneName != "Loading";
+
+    }
+
 
     
     

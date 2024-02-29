@@ -1,35 +1,31 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class Dungeon_Stage_Controller : MonoBehaviour
+
+public class Duegeon_Gate : MonoBehaviour
 {
     private string Scene_Name;
-    private Map_Create _mapCreate;
-
     private void Awake()
     {
-        if (SceneManager.GetActiveScene().name == "Map1_1")
-            Scene_Name = "Dorf";
+        if(DataManager.Instance._PlayerData.clear_stage == (int)stage.Main)
+            Scene_Name = "Map1_1";
+        if(DataManager.Instance._PlayerData.clear_stage == (int)stage.stage1)
+            Scene_Name = "Map2_1";
+        if(DataManager.Instance._PlayerData.clear_stage == (int)stage.stage2)
+            Scene_Name = "Map3_1";
 
 
 
-       
-        
-        
-        
-        
-        
-        
-        
-        
-        GameObject obj = GameObject.Find("Map_Manager");
-        _mapCreate = obj.GetComponent<Map_Create>();
+
+
+
+
+
+
+
     }
-
-
+    
     // Update is called once per frame
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -60,7 +56,7 @@ public class Dungeon_Stage_Controller : MonoBehaviour
     {
         // Check if there are no game objects with the "Enemy" tag in the scene
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        return enemies.Length-_mapCreate.Type_Enemy == 0;
+        return enemies.Length == 0;
     }
 
     private void LoadNextScene()
@@ -73,3 +69,5 @@ public class Dungeon_Stage_Controller : MonoBehaviour
     
     
 }
+
+

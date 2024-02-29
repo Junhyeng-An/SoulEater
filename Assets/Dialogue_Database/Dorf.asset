@@ -746,7 +746,9 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: "\uC783\uC5B4\uBC84\uB9B0 \uAE30\uC5B5\uC744 \uB418\uCC3E\uC544\uC57C\uC9C0"
+        value: "\uC624\uB978\uCABD\uC5D0 \uC788\uB294 \uD130\uB110\uC744 \uD1B5\uD574
+          \uB108\uB97C \uBC30\uC2E0\uD588\uB358 \uC0AC\uB78C\uB4E4\uC744 \uCC3E\uC6B8
+          \uC218 \uC788\uB2E4."
         type: 0
         typeString: 
       - title: Sequence
@@ -754,11 +756,14 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: kr
-        value: "\uC783\uC5B4\uBC84\uB9B0 \uAE30\uC5B5\uC744 \uB418\uCC3E\uC544\uC57C\uC9C0"
+        value: "\uC624\uB978\uCABD\uC5D0 \uC788\uB294 \uD130\uB110\uC744 \uD1B5\uD574
+          \uB108\uB97C \uBC30\uC2E0\uD588\uB358 \uC0AC\uB78C\uB4E4\uC744 \uCC3E\uC6B8
+          \uC218 \uC788\uB2E4."
         type: 4
         typeString: CustomFieldType_Localization
       - title: en
-        value: You need to recover lost memories.
+        value: Through the tunnel on the right, you can find the people who abandoned
+          you.
         type: 4
         typeString: CustomFieldType_Localization
       conversationID: 1
@@ -976,8 +981,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 217.59346, y: 341.6729}
-    canvasZoom: 1.0506943
+    canvasScrollPosition: {x: 30.000452, y: 76.17119}
+    canvasZoom: 0.8706945
   - id: 2
     fields:
     - title: Title

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Slime_Jump : MonoBehaviour
 {
-    private float jumpForce = 10f;  // ÆúÂ¦ ¶Ù±â Èû
+    private float jumpForce = 10f;  // í´ì§ ë›°ê¸° í˜
 
     private GameObject player;
     private Coroutine jump_pattern;
@@ -34,31 +34,31 @@ public class Slime_Jump : MonoBehaviour
         if (rb == null)
         {
             Debug.LogError("Rigidbody2D component is missing.");
-            yield break; // ÄÚ·çÆ¾ Á¾·á
+            yield break; // ì½”ë£¨í‹´ ì¢…ë£Œ
         }
         if (player == null)
         {
             Debug.LogError("Player object is missing.");
-            yield break; // ÄÚ·çÆ¾ Á¾·á
+            yield break; // ì½”ë£¨í‹´ ì¢…ë£Œ
         }
-        // ¿ŞÂÊÀ¸·Î ÀÌµ¿ÇÒ º¤ÅÍ
+        // ì™¼ìª½ìœ¼ë¡œ ì´ë™í•  ë²¡í„°
 
 
-        // Æ¯Á¤ Á¶°Ç¿¡¼­ ¹İº¹µÇ´Â ·çÇÁ¸¦ »ç¿ëÇÏ°Å³ª ¿øÇÏ´Â È½¼ö¸¸Å­ ¹İº¹
+        // íŠ¹ì • ì¡°ê±´ì—ì„œ ë°˜ë³µë˜ëŠ” ë£¨í”„ë¥¼ ì‚¬ìš©í•˜ê±°ë‚˜ ì›í•˜ëŠ” íšŸìˆ˜ë§Œí¼ ë°˜ë³µ
         while (true)
         {
-            // Æ¯Á¤ ½Ã°£ µ¿¾È ´ë±â
+            // íŠ¹ì • ì‹œê°„ ë™ì•ˆ ëŒ€ê¸°
             jump_animator.SetBool("isjump",true);
             SoundManager.Instance.Playsfx(SoundManager.SFX.Slime_Jump);
             Vector2 jumpForceVector;
             if (gameObject.transform.position.x - player.transform.position.x >= 0) { jumpForceVector = leftVector + Vector2.up * jumpForce; }
             else { jumpForceVector = rightVector + Vector2.up * jumpForce; }
-            // Á¡ÇÁ
+            // ì í”„
             rb.AddForce(jumpForceVector, ForceMode2D.Impulse);
-            // Æ¯Á¤ ½Ã°£ µ¿¾È ´ë±â
+            // íŠ¹ì • ì‹œê°„ ë™ì•ˆ ëŒ€ê¸°
             jump_animator.SetBool("isjump", false);
 
-            yield return new WaitForSecondsRealtime(3f); // ¿¹½Ã: 1ÃÊ µ¿¾È ´ë±â
+            yield return new WaitForSecondsRealtime(3f); // ì˜ˆì‹œ: 1ì´ˆ ë™ì•ˆ ëŒ€ê¸°
         }
     }
 
@@ -66,10 +66,10 @@ public class Slime_Jump : MonoBehaviour
 
     void OnEnable()
     {
-        // ½ºÅ©¸³Æ®°¡ È°¼ºÈ­µÇ¾î ÀÖÀ» ¶§¸¸ ÄÚ·çÆ¾ ½ÃÀÛ
+        // ìŠ¤í¬ë¦½íŠ¸ê°€ í™œì„±í™”ë˜ì–´ ìˆì„ ë•Œë§Œ ì½”ë£¨í‹´ ì‹œì‘
         if (gameObject.activeSelf)
         {
-            // ±âÁ¸ ÄÚ·çÆ¾À» ÁßÁöÇÏ°í »õ·Î¿î ÄÚ·çÆ¾À» ½ÃÀÛ
+            // ê¸°ì¡´ ì½”ë£¨í‹´ì„ ì¤‘ì§€í•˜ê³  ìƒˆë¡œìš´ ì½”ë£¨í‹´ì„ ì‹œì‘
             if (jump_pattern != null)
             {
                 StopCoroutine(jump_pattern);
@@ -80,7 +80,7 @@ public class Slime_Jump : MonoBehaviour
 
     void OnDisable()
     {
-        // ½ºÅ©¸³Æ®°¡ ºñÈ°¼ºÈ­µÇ¾úÀ» ¶§ ÄÚ·çÆ¾À» ÁßÁö
+        // ìŠ¤í¬ë¦½íŠ¸ê°€ ë¹„í™œì„±í™”ë˜ì—ˆì„ ë•Œ ì½”ë£¨í‹´ì„ ì¤‘ì§€
         if (jump_pattern != null)
             StopCoroutine(jump_pattern);
     }

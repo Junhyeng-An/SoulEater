@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        if (SettingManager.Instance.gameover == true)
+        if (SceneManager.GetActiveScene().name == "Start_Page")
             isThrowing = true;
         
         movement.Return();

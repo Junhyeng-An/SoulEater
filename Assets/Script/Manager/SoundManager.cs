@@ -12,7 +12,7 @@ public class SoundManager : MonoBehaviour
     private bool audio_Mute = false;
     
     [Header("#BGM")] 
-    public AudioClip bgmClip;
+    public AudioClip[] bgmClip;
     [HideInInspector]public float bgmVolume;
     private AudioSource bgmPlayer;
 
@@ -23,11 +23,20 @@ public class SoundManager : MonoBehaviour
     private AudioSource[] sfxPlayers;
     private int channelIndex;
 
+    
+    
+    public enum BGM
+    {
+        Dorf,
+        Dungeon
+    }
+    
     public enum SFX
     {
         upgrade,
         Slime_Jump,
-        Slime_spike
+        Slime_spike,
+        Player_Jump
     }
     
     
@@ -55,11 +64,11 @@ public class SoundManager : MonoBehaviour
         bgmObject.transform.parent = transform;
         bgmPlayer = bgmObject.AddComponent<AudioSource>();
 
-        bgmPlayer.playOnAwake = false;
+        bgmPlayer.playOnAwake = true;
         bgmPlayer.loop = true;
         bgmPlayer.volume = DataManager.Instance._Sound_Volume.BGM_Volume;
-        bgmPlayer.clip = bgmClip;
-
+        bgmPlayer.clip = bgmClip[(int)BGM.Dorf];
+        bgmPlayer.Play();
         #endregion
 
         
@@ -83,6 +92,28 @@ public class SoundManager : MonoBehaviour
 
     }
 
+    public void PlayBGM(bool isPlay, BGM bgm)
+    {
+        if (isPlay == true)
+        {
+            bgmPlayer.Play();
+            bgmPlayer.clip = bgmClip[(int)bgm];
+        }
+        else
+        {
+            bgmPlayer.Stop();
+        }
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     public void Playsfx(SFX sfx)
     {
         for (int index = 0; index < sfxPlayers.Length; index++)
@@ -123,7 +154,7 @@ public class SoundManager : MonoBehaviour
 
     public void Change_BGM_Volume(float value)
     {
-        bgmVolume = value;
+        bgmPlayer.volume = value;
         DataManager.Instance._Sound_Volume.BGM_Volume = value;
 
     }

@@ -122,6 +122,7 @@ public class Movement : MonoBehaviour
             rigid.velocity = Vector2.up * jumpForce;
             isJumping = true;
         }
+        SoundManager.Instance.Playsfx(SoundManager.SFX.Player_Jump);
     }
     public void Double_Jump()
     {

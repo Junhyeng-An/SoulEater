@@ -29,6 +29,9 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
+        if (SettingManager.Instance.gameover == true)
+            isThrowing = true;
+        
         movement.Return();
         movement.Landing();
         movement.WallCheck();

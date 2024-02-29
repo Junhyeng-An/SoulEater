@@ -75,9 +75,8 @@ public class Coin_Soul_Manager : MonoBehaviour
         {
             Start_Coin.SetActive(false);
             Start_Soul.SetActive(false);
-            Minimap.SetActive(false);
             HP_ST.SetActive(false);
-        }
+        } 
         else
         {
             Start_Coin.SetActive(true);
@@ -85,6 +84,11 @@ public class Coin_Soul_Manager : MonoBehaviour
             Minimap.SetActive(true);
             HP_ST.SetActive(true);
         }
+        
+        
+        if (SceneManager.GetActiveScene().name == "Start_Page" || SceneManager.GetActiveScene().name == "Loading" || SceneManager.GetActiveScene().name == "Main" || SceneManager.GetActiveScene().name == "Dorf")
+            Minimap.SetActive(false);
+    
         
         Show_Count();
     }

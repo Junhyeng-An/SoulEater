@@ -80,6 +80,7 @@ public class Movement : MonoBehaviour
 
     public void GameOver()
     {
+        SettingManager.Instance.gameover = false;
         SettingManager.Instance.Game_Over_Panel_Active();
     }
     

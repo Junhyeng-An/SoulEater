@@ -1904,17 +1904,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Attack_area
       objectReference: {fileID: 0}
-    - target: {fileID: 5059913326737140222, guid: 3c052d43a42d52148badd31c93953a18, type: 3}
-      propertyPath: m_LocalPosition.x
+    - target: {fileID: 2441121023461670068, guid: 3c052d43a42d52148badd31c93953a18, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5059913326737140222, guid: 3c052d43a42d52148badd31c93953a18, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.792
+      objectReference: {fileID: 0}
+    - target: {fileID: 5059913326737140222, guid: 3c052d43a42d52148badd31c93953a18, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0.457
       objectReference: {fileID: 0}
     - target: {fileID: 5059913326737140222, guid: 3c052d43a42d52148badd31c93953a18, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.039
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 5059913326737140222, guid: 3c052d43a42d52148badd31c93953a18, type: 3}
       propertyPath: m_LocalRotation.w

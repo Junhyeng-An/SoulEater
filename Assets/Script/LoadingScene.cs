@@ -9,14 +9,24 @@ public class LoadingScene : MonoBehaviour
     public static string nextScene;
     [SerializeField] Image progressBar;
     public TextMeshProUGUI text;
+    string[] tips; // 여러 팁을 저장할 배열
 
     private void Start()
     {
         StartCoroutine(LoadScene());
+        tips = new string[]
+        {
+            "칼을 던지는것은 재밌습니다.",
+            "TMI : 이 게임은 3개월의 개발기간을 가졌습니다.",
+            "TMI : 이 게임은 캡스톤디자인에 의해 개발되었습니다."
+            // 필요한 만큼 팁을 추가할 수 있습니다.
+        };
+
+        text.text = tips[Random.Range(0, tips.Length)];
     }
     private void Update()
     {
-        text.text = ("*This game is the next game for capstone design");
+
     }
     public static void LoadScene(string sceneName)
     {
@@ -30,7 +40,7 @@ public class LoadingScene : MonoBehaviour
         AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);
         op.allowSceneActivation = false;
         float timer = 0.0f;
-        float delayTime = 2.0f; // 로딩 시간을 늘리고 싶은 초 단위의 값
+        float delayTime = 1.2f; // 로딩 시간을 늘리고 싶은 초 단위의 값
 
         while (!op.isDone)
         {

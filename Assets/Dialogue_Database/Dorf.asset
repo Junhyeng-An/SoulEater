@@ -525,11 +525,11 @@ MonoBehaviour:
       - title: Title
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Description
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Actor
         value: 1
         type: 5
@@ -541,15 +541,15 @@ MonoBehaviour:
       - title: Menu Text
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Dialogue Text
         value: "\uC55E\uC73C\uB85C \uBB34\uC5C7\uC744 \uD574\uC57C\uD558\uB098\uC694"
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Sequence
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: kr
         value: "\uC55E\uC73C\uB85C \uBB34\uC5C7\uC744 \uD574\uC57C\uD558\uB098\uC694"
         type: 4
@@ -981,8 +981,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 30.000452, y: 76.17119}
-    canvasZoom: 0.8706945
+    canvasScrollPosition: {x: 0, y: 0}
+    canvasZoom: 0.78069466
   - id: 2
     fields:
     - title: Title

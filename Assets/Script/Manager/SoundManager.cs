@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using PixelCrushers;
+using PixelCrushers.DialogueSystem;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -40,7 +41,9 @@ public class SoundManager : MonoBehaviour
         upgrade,
         Slime_Jump,
         Slime_spike,
-        Player_Jump
+        Player_Jump,
+        Dash,
+        Walk
     }
     
     
@@ -148,9 +151,17 @@ public class SoundManager : MonoBehaviour
                 bgmPlayer.Play();
             }
 
+            if (currentSceneName == "Map1_1")
+            {
+                bgmPlayer.clip = bgmClip[(int)BGM.Dungeon];
+                bgmPlayer.Play();
+            }
+
 
 
             
+            
+        
             
             
             

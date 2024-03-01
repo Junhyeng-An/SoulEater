@@ -43,7 +43,8 @@ public class SoundManager : MonoBehaviour
         Slime_spike,
         Player_Jump,
         Dash,
-        Walk
+        Walk,
+        EnemySword
     }
     
     

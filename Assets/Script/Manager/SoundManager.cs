@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using PixelCrushers;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour
 {
@@ -23,11 +24,14 @@ public class SoundManager : MonoBehaviour
     private AudioSource[] sfxPlayers;
     private int channelIndex;
 
+    private string currentSceneName;
     
     
     public enum BGM
     {
+        Start_Page,
         Dorf,
+        Prologue,
         Dungeon
     }
     
@@ -67,7 +71,7 @@ public class SoundManager : MonoBehaviour
         bgmPlayer.playOnAwake = true;
         bgmPlayer.loop = true;
         bgmPlayer.volume = DataManager.Instance._Sound_Volume.BGM_Volume;
-        bgmPlayer.clip = bgmClip[(int)BGM.Dorf];
+        bgmPlayer.clip = bgmClip[(int)BGM.Start_Page];
         bgmPlayer.Play();
         #endregion
 
@@ -89,6 +93,11 @@ public class SoundManager : MonoBehaviour
         #endregion
 
         
+        
+        currentSceneName = SceneManager.GetActiveScene().name;
+        
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        
 
     }
 
@@ -96,8 +105,9 @@ public class SoundManager : MonoBehaviour
     {
         if (isPlay == true)
         {
-            bgmPlayer.Play();
+         
             bgmPlayer.clip = bgmClip[(int)bgm];
+            bgmPlayer.Play();
         }
         else
         {
@@ -106,10 +116,72 @@ public class SoundManager : MonoBehaviour
         
         
     }
+
+ 
+
+    
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        string newSceneName = scene.name;
+        
+        if (newSceneName != currentSceneName)
+        {
+            currentSceneName = newSceneName;
+
+            //Todo
+            
+            if (currentSceneName == "Start_Page")
+            {
+                bgmPlayer.clip = bgmClip[(int)BGM.Start_Page];
+                bgmPlayer.Play();
+            }
+            
+            if (currentSceneName == "Dorf")
+            {
+                bgmPlayer.clip = bgmClip[(int)BGM.Dorf];
+                bgmPlayer.Play();
+            }
+            
+            if (currentSceneName == "Prologue")
+            {
+                bgmPlayer.clip = bgmClip[(int)BGM.Prologue];
+                bgmPlayer.Play();
+            }
+
+
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        }
+    }
+    
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
     
     
     
     
+    
+
     
     
     

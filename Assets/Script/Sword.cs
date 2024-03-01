@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Sword : MonoBehaviour
 {
@@ -153,6 +154,12 @@ public class Sword : MonoBehaviour
             GetComponent<SpriteRenderer>().color = Color.red;
             
             attack_Ani = true;
+
+            //Todo
+            if (SceneManager.GetActiveScene().name != "Dorf")
+                SoundManager.Instance.Playsfx(SoundManager.SFX.Dash);
+            if
+
         }
     }
     public void Parrying()

@@ -42,6 +42,11 @@ public class Movement : MonoBehaviour
 
     RaycastHit2D rayHit_Jump;
 
+
+    private bool hasPlayedSfx = false;
+    bool isSoundPlaying = false;
+    private bool wasMovingHorizontally = false;
+    
     private void Awake()
     {
         jumpForce = DataManager.Instance._PlayerData.jump;
@@ -150,8 +155,15 @@ public class Movement : MonoBehaviour
     {
         rigid.velocity = new Vector2(x * (speed+DataManager.Instance._Player_Skill.Skill_Speed), rigid.velocity.y);
         //Debug.Log(rigid.velocity.x);\
-     
-      
+        if (Input.GetAxis("Horizontal") != 0 && !isJumping && !isSoundPlaying)
+        {
+            SoundManager.Instance.Playsfx(SoundManager.SFX.Walk);
+            isSoundPlaying = true;
+        }
+        else if ((Input.GetAxis("Horizontal") == 0 || isJumping) && isSoundPlaying)
+        {
+            isSoundPlaying = false;
+        }
     }
     public void Dash()
     {

@@ -666,6 +666,7 @@ public class EnemyController : MonoBehaviour
                     {
                         //animator.SetTrigger("Attack");//<-------- Attack Animation Here
                         isAni = true;
+                      
                     }
                 }
                 else

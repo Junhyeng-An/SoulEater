@@ -8,14 +8,9 @@ using UnityEngine.UIElements;
 
 public class SkillController : MonoBehaviour
 {
-
-    
-    
-    
-    
-    
     [Header("#other")] 
     Sword sword;
+    Movement movement;
     StatController stat;
     EnemyController enemy;
     Rigidbody2D rigid_player;
@@ -43,7 +38,7 @@ public class SkillController : MonoBehaviour
         DashAttack,
         Push
     }
-    public enum Passive_Active
+    public enum Skill_Passive
     {
     
     }
@@ -51,7 +46,7 @@ public class SkillController : MonoBehaviour
     public KeyCode skill_key;
 
     [HideInInspector] public Skill_Active skill_active;
-    [HideInInspector] public Passive_Active skill_passive;
+    [HideInInspector] public Skill_Passive skill_passive;
 
     [HideInInspector] public Skill_Active player_skill;
 
@@ -74,7 +69,7 @@ public class SkillController : MonoBehaviour
         stat = GetComponent<StatController>();
         rigid_player = player.GetComponent<Rigidbody2D>();
         sword = player.GetComponentInChildren<Sword>();
-
+        movement = player.GetComponent<Movement>();
         active_langth = System.Enum.GetValues(typeof(Skill_Active)).Length;
 
         skillFunctions = new System.Action[]
@@ -210,18 +205,23 @@ public class SkillController : MonoBehaviour
             rigid_player.velocity= Vector3.down * power_smash;
             if(height <= player.GetComponent<CircleCollider2D>().radius + 0.1f)
             {
+                coolTime = 0;
                 End_Skill();
                 Create_HitBox(colPos + Vector3.up * skillSize.y / 2, skillSize * 2, damage, 1);
             }
         }
     }
-    void DashAttack()
+    public void DashAttack()
     {
         Vector2 skillSize = new Vector2(player.GetComponent<Movement>().dashForce, 1) * 2;
-        if (condition == false && stat.Player_CurST >= 3)
+        if (condition == false)
         {
-            condition = true;
-            damage = DataManager.Instance._Active_Skill.Dash_Damage;
+            if (movement.isDash == true)
+            {
+                condition = true;
+                damage = DataManager.Instance._Active_Skill.Dash_Damage;
+                movement.isDash = false;
+            }
         }
         else
         {
@@ -232,6 +232,7 @@ public class SkillController : MonoBehaviour
                 1,
                 Quaternion.AngleAxis(sword.angle * Mathf.Rad2Deg, Vector3.forward)
                 );
+            coolTime = 0;
             End_Skill();
         }
     }

@@ -100,6 +100,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.R))
             {
                 movement.Throw();
+                SoundManager.Instance.Playsfx(SoundManager.SFX.Throw_Sword);
                 isThrowing = true;
             }
             //sword 

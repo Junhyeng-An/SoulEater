@@ -827,7 +827,7 @@ GameObject:
   - component: {fileID: 3581492040889355198}
   m_Layer: 12
   m_Name: Enemy_A
-  m_TagString: Disarmed
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -978,7 +978,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 43e85dd76a7f6bb42b43abde30f4e178, type: 2}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1549,6 +1549,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   root: {fileID: 4069900989266302495}
+  Body: {fileID: 5597133427429002071}
 --- !u!1 &8310236108355720678
 GameObject:
   m_ObjectHideFlags: 0

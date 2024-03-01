@@ -779,6 +779,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0e23ed004292e9241a0c9760513ba73c, type: 3}
   - {fileID: 8300000, guid: 6e84e6ce1f9f77345ab1578cd5f3f8d5, type: 3}
   - {fileID: 8300000, guid: 6f6b8172eba76454dae97034215837f8, type: 3}
+  - {fileID: 8300000, guid: ef1a2b0bacae6b047ae5b7f10a0fd9ad, type: 3}
+  - {fileID: 8300000, guid: 58333f5101cc6404ab4482bdcdf8433c, type: 3}
+  - {fileID: 8300000, guid: 219b9efd11351d7429410f6bb4d9c35d, type: 3}
+  - {fileID: 8300000, guid: 1413b810d792ba84d93b0d3ef32d86a3, type: 3}
   sfxVolume: 0.3
   channels: 16
 --- !u!1 &117821016
@@ -3026,6 +3030,7 @@ MonoBehaviour:
   Setting_Canvas: {fileID: 936740560}
   Game_Over_Panel: {fileID: 1321281978}
   gameover: 0
+  Setting_Active: 0
 --- !u!114 &736246786 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3758159365879594347, guid: abbc7fb0e28908b4fb9820bc6e36af8b, type: 3}

@@ -20,6 +20,9 @@ public class SettingManager : MonoBehaviour
     
     private static SettingManager instance = null;
 
+    public bool Setting_Active = false;
+    
+    
     public static SettingManager Instance
     {
         get
@@ -61,11 +64,13 @@ public class SettingManager : MonoBehaviour
                 // 세팅 창이 생성되지 않은 경우에만 생성
                 if (settingWindowInstance == null)
                 {
+                    Setting_Active = true;
                     settingWindowInstance = Instantiate(settingWindowPrefab, Setting_Canvas);
                 }
                 // 세팅 창이 생성된 경우에는 파괴
                 else
                 {
+                    Setting_Active = false;
                     Destroy(settingWindowInstance);
                 }
             }
@@ -106,6 +111,7 @@ public class SettingManager : MonoBehaviour
     public void Destroy_Prefab()
     {
         Destroy(settingWindowInstance);
+        Setting_Active = false;
     }
 
     public void Game_Over_Panel_Active()

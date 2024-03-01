@@ -56,6 +56,7 @@ public class Setting_UI : MonoBehaviour
    
    public void Quit()
    {
+       DataManager.Instance.SaveData();
        Application.Quit();
    }
 

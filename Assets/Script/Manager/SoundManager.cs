@@ -44,7 +44,11 @@ public class SoundManager : MonoBehaviour
         Player_Jump,
         Dash,
         Walk,
-        EnemySword
+        EnemySword,
+        PlayerSword,
+        Parrying,
+        Throw_Sword,
+        Map_Move
     }
     
     

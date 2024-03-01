@@ -457,6 +457,7 @@ public class EnemyController : MonoBehaviour
                 {
                     CurWP -= sword.damage_playerParrying;
                     stat.Stat("ST", 6);
+                    SoundManager.Instance.Playsfx(SoundManager.SFX.Parrying);
 
                     if (CurWP <= 0)
                     {

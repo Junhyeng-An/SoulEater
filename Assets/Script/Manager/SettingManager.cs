@@ -18,8 +18,6 @@ public class SettingManager : MonoBehaviour
  
     public bool gameover = false;
     
-    
-    
     private static SettingManager instance = null;
 
     public static SettingManager Instance

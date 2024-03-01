@@ -23,6 +23,7 @@ public class Movement : MonoBehaviour
     public int jumpsRemaining;
     [HideInInspector] public bool isJumping = false;
     [HideInInspector] public bool isDoubleJump = false;
+    [HideInInspector] public bool isDash = false;
     bool isThrowing = false;
     bool isDown = false;
     float time_down = 0;
@@ -154,6 +155,8 @@ public class Movement : MonoBehaviour
     }
     public void Dash()
     {
+        isDash = true;
+
         int cloneCount = 5;
         Vector2 posBefore = transform.position;
 

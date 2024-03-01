@@ -44,7 +44,11 @@ public class PlayerController : MonoBehaviour
             sword.Throw();
             volume.ZoomOut();
         }
-        else if(skill.onSkill == false)// setting miss 
+        else if(skill.player_skill == SkillController.Skill_Active.Smash && skill.onSkill == true)
+        {
+
+        }
+        else
         {
             //player movement
             float x = Input.GetAxisRaw("Horizontal");

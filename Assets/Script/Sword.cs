@@ -158,7 +158,7 @@ public class Sword : MonoBehaviour
             //Todo
             if (SceneManager.GetActiveScene().name != "Dorf")
                 SoundManager.Instance.Playsfx(SoundManager.SFX.Dash);
-            if
+         
 
         }
     }

@@ -9,6 +9,10 @@ public class Damage : MonoBehaviour
     float Miss_per;
     float Miss_const;
     bool isDamage;
+    bool isImmume = false;
+
+    public GameObject root;
+    public GameObject Body;
 
     private void Update()
     {
@@ -56,18 +60,28 @@ public class Damage : MonoBehaviour
        
         if (enemyController != null && isDamage == true)
         {
-            if (collision.CompareTag("closehit") && enemyController.isHit == false)
+            if (collision.CompareTag("closehit") && enemyController.isHit == false && root.tag == "Controlled" && !isImmume)
             {
                 enemyController.CurHP -= collision.GetComponentInParent<EnemyController>().damage_enemyAttack;
                 enemyController.CurHP += (collision.GetComponentInParent<EnemyController>().damage_enemyAttack * (DataManager.Instance._Player_Skill.Reduce_damage / 100));
 
                 enemyController.isHit = true;
+                StartCoroutine(ResetImmume());
             }
         }
         else
         {
             Debug.LogError("부모에서 EnemyController를 찾을 수 없습니다!");
         }
+    }
+
+    IEnumerator ResetImmume()
+    {
+        isImmume = true;
+        Body.GetComponent<Renderer>().material.color = Color.yellow;
+        yield return new WaitForSeconds(1f);
+        Body.GetComponent<Renderer>().material.color = Color.white;
+        isImmume = false;
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

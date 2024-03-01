@@ -47,6 +47,8 @@ public class S_Boss_Controller : MonoBehaviour
         if (currentHealth <= 0)
         {
             // 보스 사망 처리 또는 다음 단계로 진행
+            DataManager.Instance._PlayerData.clear_stage++;
+
             Portal.SetActive(true);
             Destroy(gameObject);
             

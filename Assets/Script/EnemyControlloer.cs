@@ -199,6 +199,8 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         //Debug.Log(CurSkill);
+        if (gameObject.tag == "Controlled" && Input.GetKeyDown(KeyCode.L)) { SceneManager.LoadScene("Clear_Scene"); }
+        
         //최대체력 증가
         if ((gameObject.tag == "Controlled") || SelectManager.Instance.isChange_C)
         {

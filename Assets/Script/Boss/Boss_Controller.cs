@@ -52,10 +52,6 @@ public class Boss_Controller : MonoBehaviour
         {
             isDamage = false;
         }
-        if (Input.GetKeyDown("p")) //hp 데미지
-        {
-            currentHealth -= 100;
-        }
         // HP에 따라 패턴 전환
         if (currentHealth <= 0)
         {
@@ -63,15 +59,9 @@ public class Boss_Controller : MonoBehaviour
             Destroy(gameObject, 3.6f); // 3초 뒤에 보스 삭제
            
             Debug.Log(" Boss DIE ");
-            StartCoroutine(DeactivateImmunityAfterDelay(4f));
-            // Blood 객체들을 일정 시간 간격으로 활성화하고, 그 후에 비활성화합니다.
             StartCoroutine(ActivateBloodsAndDeactivate());
         }
 
-        IEnumerator DeactivateImmunityAfterDelay(float delay) //보스잡고나서의 면역시간
-        {
-            yield return new WaitForSeconds(delay);
-        }
         IEnumerator ActivateBloodsAndDeactivate()
         {
             // Blood 객체들을 활성화
@@ -88,6 +78,7 @@ public class Boss_Controller : MonoBehaviour
                 blood.SetActive(false);
                 yield return new WaitForSeconds(0.2f); // 0.4초 대기
             }
+            DataManager.Instance._PlayerData.clear_stage++;
             Portal.SetActive(true);
         }
 

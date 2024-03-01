@@ -120,7 +120,10 @@ public class Start_UI : MonoBehaviour
     {
         SceneManager.LoadScene("Main");
     }
-
+    public void Test_Clear()
+    {
+        SceneManager.LoadScene("Clear_Scene");
+    }
     public void Quit()
     {
         Application.Quit();

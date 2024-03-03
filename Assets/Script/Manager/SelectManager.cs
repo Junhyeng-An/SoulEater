@@ -51,7 +51,10 @@ public class SelectManager : MonoBehaviour
     {
           if (DataManager.Instance._PlayerData.soul_Count >=upgrade_soul && settingWindowInstance == null )
           {
+              Time.timeScale = 0;
+              SettingManager.Instance.Setting_Active = true;
               settingWindowInstance = Instantiate(settingWindowPrefab, Setting_Canvas);
+              SoundManager.Instance.Playsfx(SoundManager.SFX.SKill_Select);
           }
     }
 
@@ -61,6 +64,8 @@ public class SelectManager : MonoBehaviour
     
     public void Destroy_Prefab()
     {
+        SettingManager.Instance.Setting_Active = false;
+        Time.timeScale = 1;
         Destroy(settingWindowInstance);
         Debug.Log("destroy");
     }

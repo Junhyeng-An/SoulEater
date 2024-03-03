@@ -46,6 +46,7 @@ public class Coin : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             ++DataManager.Instance._PlayerData.coin;
+            SoundManager.Instance.Playsfx(SoundManager.SFX.Coin);
             Destroy(this.gameObject);
         }
     }

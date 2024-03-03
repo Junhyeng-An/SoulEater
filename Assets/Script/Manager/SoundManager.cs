@@ -48,7 +48,10 @@ public class SoundManager : MonoBehaviour
         PlayerSword,
         Parrying,
         Throw_Sword,
-        Map_Move
+        Map_Move,
+        Skill_Canvas_On,
+        SKill_Select,
+        Coin
     }
     
     

@@ -42,7 +42,7 @@ public class Stat_UI : MonoBehaviour
     // Skill Speed 스킬 정보 설정
     public void SetSkillSpeedText()
     {
-        SetSkillLevelText(Skill_Speed_Text, DataManager.Instance._Player_Skill.Skill_Speed_Level, "Skill Speed", "이동속도 증가");
+        SetSkillLevelText(Skill_Speed_Text, DataManager.Instance._Player_Skill.Skill_Speed_Level, "Player Speed", "이동속도 증가");
     }
     
     // Poison Damage 스킬 정보 설정

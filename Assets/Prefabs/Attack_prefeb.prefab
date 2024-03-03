@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2456307491445772274}
   - component: {fileID: 8007435139519694730}
   - component: {fileID: 427802716039631007}
+  - component: {fileID: 7400023262675390157}
   m_Layer: 24
   m_Name: Attack_prefeb
   m_TagString: Hit_Ready
@@ -171,3 +172,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7400023262675390157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2441121023461670068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef9ffa0bbaaf37e4e8895cd0e5e5ad86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

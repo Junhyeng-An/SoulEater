@@ -213,7 +213,7 @@ public class SkillController : MonoBehaviour
     }
     public void DashAttack()
     {
-        Vector2 skillSize = new Vector2(player.GetComponent<Movement>().dashForce, 1) * 2;
+        Vector2 skillSize = new Vector2(player.GetComponent<Movement>().dashForce, 1) * 0.5f;
         if (condition == false)
         {
             if (movement.isDash == true)

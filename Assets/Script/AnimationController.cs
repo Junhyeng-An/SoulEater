@@ -363,5 +363,24 @@ public class AnimaionController : MonoBehaviour
             render_weapon.flipX = false;
             weapon.transform.position = weapon.transform.parent.position;
         }
+        else
+        {
+            if(player.transform.position.x - transform.position.x < 0)
+            {
+                render_body.flipX = true;
+                render_head.flipX = true;
+                render_eye.flipX = true;
+                render_weapon.flipX = true;
+                weapon.transform.position = weapon.transform.parent.position + Vector3.right * 0.75f;
+            }
+            else
+            {
+                render_body.flipX = false;
+                render_head.flipX = false;
+                render_eye.flipX = false;
+                render_weapon.flipX = false;
+                weapon.transform.position = weapon.transform.parent.position;
+            }
+        }
     }
 }

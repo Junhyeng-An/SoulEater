@@ -124,6 +124,10 @@ public class Start_UI : MonoBehaviour
     {
         SceneManager.LoadScene("Main");
     }
+    public void Tutorial()
+    {
+        SceneManager.LoadScene("Home");
+    }
     public void Test_Clear()
     {
         SceneManager.LoadScene("Clear_Scene");

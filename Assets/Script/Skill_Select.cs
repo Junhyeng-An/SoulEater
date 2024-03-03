@@ -599,6 +599,7 @@ public class Skill_Select : MonoBehaviour
         CardEffect(buttonIndex);
         skill_organize();
         DataManager.Instance._PlayerData.soul_Count -= SelectManager.Instance.upgrade_soul;
+        SoundManager.Instance.Playsfx(SoundManager.SFX.Skill_Canvas_On);
         SelectManager.Instance.Destroy_Prefab();
     }
 

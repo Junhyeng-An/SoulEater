@@ -18,7 +18,7 @@ public class Start_UI : MonoBehaviour
         #region Player_Data
         DataManager.Instance._PlayerData.soul_Count = 0;
         DataManager.Instance._PlayerData.jump = 12.0f;
-        DataManager.Instance._PlayerData.coin = 1000;
+        DataManager.Instance._PlayerData.coin = 0;
         DataManager.Instance._PlayerData.speed = 5.0f;
         DataManager.Instance._PlayerData.clear_stage = (int)stage.Main;
         #endregion
@@ -28,15 +28,15 @@ public class Start_UI : MonoBehaviour
 
         DataManager.Instance._SwordData.player_damage_attack = 10.0f;
         DataManager.Instance._SwordData.player_attack_level = 1;
-        DataManager.Instance._SwordData.Upgrade_attack_Cost = 10;
+        DataManager.Instance._SwordData.Upgrade_attack_Cost = 2;
 
         DataManager.Instance._SwordData.player_sword_reach = 1.0f;
         DataManager.Instance._SwordData.player_sword_level = 1;
         DataManager.Instance._SwordData.Upgrade_reach_Cost = 10;
 
-        DataManager.Instance._SwordData.player_parrying_attack = 50.0f;
+        DataManager.Instance._SwordData.player_parrying_attack = 5.0f;
         DataManager.Instance._SwordData.player_parrying_level = 1;
-        DataManager.Instance._SwordData.Upgrade_parrying_Cost = 10;
+        DataManager.Instance._SwordData.Upgrade_parrying_Cost = 2;
         #endregion
 
 

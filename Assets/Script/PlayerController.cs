@@ -27,107 +27,122 @@ public class PlayerController : MonoBehaviour
 
         isThrowing = true;
     }
+
     void Update()
     {
         if (SceneManager.GetActiveScene().name == "Start_Page")
             isThrowing = true;
         
-        movement.Return();
-        movement.Landing();
-        movement.WallCheck();
-        if (SettingManager.Instance.gameover  == true)
+        
+        if (SettingManager.Instance.Setting_Active == false)
         {
-            sword.GameOver();
-        }
-        else if (isThrowing == true)
-        {
-            sword.Throw();
-            volume.ZoomOut();
-        }
-        else if(skill.player_skill == SkillController.Skill_Active.Smash && skill.onSkill == true)
-        {
-
-        }
-        else
-        {
-            //player movement
-            float x = Input.GetAxisRaw("Horizontal");
-            movement.Move(x);
-
-            //player jump
-            if (Input.GetKey(KeyCode.Space) && DataManager.Instance._Player_Skill.isDouble_Jump != true)
+            movement.Return();
+            movement.Landing();
+            movement.WallCheck();
+            if (SettingManager.Instance.gameover == true)
             {
-                //Debug.Log("�Ϲ������� �������Դϴ�");
-                if (!movement.isJumping)
-                {
-                    movement.Jump();
-                }
+                sword.GameOver();
             }
-            //player Double jump
-            if (Input.GetKeyDown(KeyCode.Space) && movement.jumpsRemaining > 0 && DataManager.Instance._Player_Skill.isDouble_Jump == true)
+            else if (isThrowing == true)
             {
-                //Debug.Log("���� ������ �������Դϴ�");
-                movement.Double_Jump();
+                sword.Throw();
+                volume.ZoomOut();
             }
+            else if (skill.player_skill == SkillController.Skill_Active.Smash && skill.onSkill == true)
+            {
 
-            //player jump bottom
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                movement.Jump_Down();
-            }
-
-            //player dash
-            if (Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                if (stat.Player_CurST >= 3)
-                {
-                    movement.Dash();
-                    stat.Stat("ST", -3);
-                }
-            }
-
-            if (Input.GetKeyDown(KeyCode.R))    // Throw Key
-            {
-                movement.Throw_Ready();
-            }
-            if (Input.GetKey(KeyCode.R))
-            {
-                movement.Throw_Line();
-                volume.ZoomIn();
             }
             else
-                volume.ZoomOut();
-            if (Input.GetKeyUp(KeyCode.R))
             {
-                movement.Throw();
-                isThrowing = true;
-            }
-            //sword 
-            sword.PosRot();
-            //sword.SwingCheck();
-            if (Input.GetMouseButtonDown(0)) //left
-            {
-                sword.Attack();
-            }
-            if (Input.GetMouseButton(1)) //right
-            {
-                sword.Parrying();
-            }
-            if (Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1))
-            {
-                sword.Idle();
-            }
-        }
+                //player movement
+                float x = Input.GetAxisRaw("Horizontal");
+                movement.Move(x);
 
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            time.SlowMotion(1);
+                //player jump
+                if (Input.GetKey(KeyCode.Space) && DataManager.Instance._Player_Skill.isDouble_Jump != true)
+                {
+                    //Debug.Log("�Ϲ������� �������Դϴ�");
+                    if (!movement.isJumping)
+                    {
+                        movement.Jump();
+                    }
+                }
+
+                //player Double jump
+                if (Input.GetKeyDown(KeyCode.Space) && movement.jumpsRemaining > 0 &&
+                    DataManager.Instance._Player_Skill.isDouble_Jump == true)
+                {
+                    //Debug.Log("���� ������ �������Դϴ�");
+                    movement.Double_Jump();
+                }
+
+                //player jump bottom
+                if (Input.GetKeyDown(KeyCode.S))
+                {
+                    movement.Jump_Down();
+                }
+
+                //player dash
+                if (Input.GetKeyDown(KeyCode.LeftShift))
+                {
+                    if (stat.Player_CurST >= 3)
+                    {
+                        movement.Dash();
+                        stat.Stat("ST", -3);
+                    }
+                }
+
+                if (Input.GetKeyDown(KeyCode.R)) // Throw Key
+                {
+                    movement.Throw_Ready();
+                }
+
+                if (Input.GetKey(KeyCode.R))
+                {
+                    movement.Throw_Line();
+                    volume.ZoomIn();
+                }
+                else
+                    volume.ZoomOut();
+
+                if (Input.GetKeyUp(KeyCode.R))
+                {
+                    movement.Throw();
+                    SoundManager.Instance.Playsfx(SoundManager.SFX.Throw_Sword);
+                    isThrowing = true;
+                }
+
+                //sword 
+                sword.PosRot();
+                //sword.SwingCheck();
+                if (Input.GetMouseButtonDown(0)) //left
+                {
+                    sword.Attack();
+                }
+
+                if (Input.GetMouseButton(1)) //right
+                {
+                    sword.Parrying();
+                }
+
+                if (Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1))
+                {
+                    sword.Idle();
+                }
+            }
+
+            // if (Input.GetKeyDown(KeyCode.T))
+            // {
+            //     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            //     time.SlowMotion(1);
+            // }
+
+
+
         }
     }
 
-   
-    
-    
-    
+
+
+
 }

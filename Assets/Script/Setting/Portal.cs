@@ -39,6 +39,7 @@ public class Portal : MonoBehaviour
                             CharacterManager.Instance.PlayerPosition(
                                 _mapCreate.map[i + 1].transform.Find("West").position);
                             _mapCreate.Current_Position_Right();
+                            SoundManager.Instance.Playsfx(SoundManager.SFX.Map_Move);
                         }
                         else if (_mapCreate.map[i].transform.Find("West") == this.transform)
                         {
@@ -46,18 +47,21 @@ public class Portal : MonoBehaviour
                                 _mapCreate.map[i - 1].transform.Find("East").position
                             );
                             _mapCreate.Current_Position_Left();
+                            SoundManager.Instance.Playsfx(SoundManager.SFX.Map_Move);
                         }
                         else if (_mapCreate.map[i].transform.Find("North") == this.transform)
                         {
                             CharacterManager.Instance.PlayerPosition(
                                 _mapCreate.map[i + _mapCreate.map_height].transform.Find("South").position);
                             _mapCreate.Current_Position_Up();
+                            SoundManager.Instance.Playsfx(SoundManager.SFX.Map_Move);
                         }
                         else if (_mapCreate.map[i].transform.Find("South") == this.transform)
                         {
                             CharacterManager.Instance.PlayerPosition(
                                 _mapCreate.map[i - _mapCreate.map_height].transform.Find("North").position);
                             _mapCreate.Current_Position_Down();
+                            SoundManager.Instance.Playsfx(SoundManager.SFX.Map_Move);
                         }
                     }
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Setting_UI : MonoBehaviour
@@ -12,6 +13,13 @@ public class Setting_UI : MonoBehaviour
    [SerializeField] private GameObject Toggle_Off;
    
    
+    private void Start()
+    {
+        
+        
+    }    
+    
+    
    
    private void Update()
    {
@@ -56,6 +64,8 @@ public class Setting_UI : MonoBehaviour
    
    public void Quit()
    {
+       if(SceneManager.GetActiveScene().name == "Dorf")
+            DataManager.Instance.SaveData();
        Application.Quit();
    }
 

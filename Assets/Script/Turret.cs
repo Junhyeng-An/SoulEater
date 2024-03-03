@@ -6,16 +6,16 @@ public class Turret : MonoBehaviour
 {
     public float CurHP;
     public float MaxHP;
-    public float fireRate = 0.5f;            // ¹ß»ç ¼Óµµ (ÃÊ´ç ¹ß»ç È½¼ö)
-    public float maxDistance = 10f;        // ¹ß»ç ÃÖ´ë °Å¸®
+    public float fireRate = 0.5f;            // ï¿½ß»ï¿½ ï¿½Óµï¿½ (ï¿½Ê´ï¿½ ï¿½ß»ï¿½ È½ï¿½ï¿½)
+    public float maxDistance = 10f;        // ï¿½ß»ï¿½ ï¿½Ö´ï¿½ ï¿½Å¸ï¿½
     public float hp_har_height = 1;
-    public GameObject bulletPrefab;        // ÃÑ¾Ë ÇÁ¸®ÆÕ
-    public Transform shootingPoint;        // ¹ß»ç ÁöÁ¡ ¿ÀºêÁ§Æ®
+    public GameObject bulletPrefab;        // ï¿½Ñ¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public Transform shootingPoint;        // ï¿½ß»ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
     public RectTransform my_bar;
     public GameObject Canvas;
     GameObject bullet;
     GameObject player;
-    private float nextFireTime;             // ´ÙÀ½ ¹ß»ç ½Ã°£
+    private float nextFireTime;             // ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ ï¿½Ã°ï¿½
     private Sword sword;
     private bool isDamage;
     public bool isAuto = false;
@@ -33,7 +33,7 @@ public class Turret : MonoBehaviour
             isDamage = false;
         }
         player = GameObject.Find("GameManager");
-        // ¹ß»ç ¼Óµµ¿¡ µû¶ó ÃÑ¾Ë ¹ß»ç
+        // ï¿½ß»ï¿½ ï¿½Óµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾ï¿½ ï¿½ß»ï¿½
         if (Time.time > nextFireTime)
         {
             if (isAuto == false)
@@ -58,44 +58,45 @@ public class Turret : MonoBehaviour
 
     void Shoot()
     {
-        // ¹ß»ç ÁöÁ¡¿¡¼­ ÃÑ¾Ë »ý¼º
+        // ï¿½ß»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾ï¿½ ï¿½ï¿½ï¿½ï¿½
         bullet = Instantiate(bulletPrefab, shootingPoint.position, shootingPoint.rotation);
 
-        // ÃÑ¾Ë¿¡ Rigidbody2D°¡ ÀÖ´Ù°í °¡Á¤ÇÏ°í ¼Óµµ ¼³Á¤
+        // ï¿½Ñ¾Ë¿ï¿½ Rigidbody2Dï¿½ï¿½ ï¿½Ö´Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½
         Rigidbody2D bulletRigidbody = bullet.GetComponent<Rigidbody2D>();
         if (bulletRigidbody != null)
         {
-            // ÃÑ¾Ë ¹ß»ç ¹æÇâ ¼³Á¤ (ÃÑ¾ËÀÇ right ¹æÇâ)
+            // ï¿½Ñ¾ï¿½ ï¿½ß»ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½Ñ¾ï¿½ï¿½ï¿½ right ï¿½ï¿½ï¿½ï¿½)
             Vector2 shootDirection = shootingPoint.right;
             bulletRigidbody.velocity = shootDirection * 10f;
+            bulletRigidbody.velocity = shootDirection * 10f;
 
-            // ÃÑ¾ËÀ» ÀÏÁ¤ ½Ã°£ ÈÄ¿¡ ÆÄ±«
+            // ï¿½Ñ¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½Ä¿ï¿½ ï¿½Ä±ï¿½
             Destroy(bullet, maxDistance / 10f);
         }
         else
         {
-            Debug.LogError("ÃÑ¾Ë¿¡ Rigidbody2D°¡ ¾ø½À´Ï´Ù!");
+            Debug.LogError("ï¿½Ñ¾Ë¿ï¿½ Rigidbody2Dï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½!");
         }
     }
     void AutoShoot()
     {
-        // ¹ß»ç ÁöÁ¡¿¡¼­ ÃÑ¾Ë »ý¼º
+        // ï¿½ß»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾ï¿½ ï¿½ï¿½ï¿½ï¿½
         bullet = Instantiate(bulletPrefab, shootingPoint.position, shootingPoint.rotation);
 
-        // ÃÑ¾Ë¿¡ Rigidbody2D°¡ ÀÖ´Ù°í °¡Á¤ÇÏ°í ¼Óµµ ¼³Á¤
+        // ï¿½Ñ¾Ë¿ï¿½ Rigidbody2Dï¿½ï¿½ ï¿½Ö´Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½
         Rigidbody2D bulletRigidbody = bullet.GetComponent<Rigidbody2D>();
         if (bulletRigidbody != null)
         {
-            // °ËÀÇ À§Ä¡¸¦ ±âÁØÀ¸·Î ÃÑ¾Ë ¹ß»ç ¹æÇâ ¼³Á¤
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾ï¿½ ï¿½ß»ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             Vector2 shootDirection = sword.transform.position - shootingPoint.position;
             bulletRigidbody.velocity = shootDirection.normalized * 10f;
 
-            // ÃÑ¾ËÀ» ÀÏÁ¤ ½Ã°£ ÈÄ¿¡ ÆÄ±«
+            // ï¿½Ñ¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½Ä¿ï¿½ ï¿½Ä±ï¿½
             Destroy(bullet, maxDistance / 10f);
         }
         else
         {
-            Debug.LogError("ÃÑ¾Ë¿¡ Rigidbody2D°¡ ¾ø½À´Ï´Ù!");
+            Debug.LogError("ï¿½Ñ¾Ë¿ï¿½ Rigidbody2Dï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½!");
         }
     }
 

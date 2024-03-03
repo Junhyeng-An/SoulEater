@@ -157,7 +157,8 @@ public class Sword : MonoBehaviour
 
             //Todo
             if (SceneManager.GetActiveScene().name != "Dorf")
-                SoundManager.Instance.Playsfx(SoundManager.SFX.Dash);
+                if (SettingManager.Instance.Setting_Active == false)
+                    SoundManager.Instance.Playsfx(SoundManager.SFX.PlayerSword);
          
 
         }
@@ -171,6 +172,7 @@ public class Sword : MonoBehaviour
             stat.Stat("ST", -6);
             gameObject.tag = "Parrying";
             GetComponent<SpriteRenderer>().color = Color.blue;
+            
         }
 
         if (swingForce < 1.0f)

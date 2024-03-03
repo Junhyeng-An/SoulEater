@@ -65,6 +65,10 @@ public class Start_UI : MonoBehaviour
         DataManager.Instance._Player_Skill.Miss = 0.0f;
         DataManager.Instance._Player_Skill.Miss_Level = 0;
 
+
+        DataManager.Instance._Player_Skill.Dash = 5.0f;
+        DataManager.Instance._Player_Skill.Dash_Level = 0;
+
         #endregion
 
         #region Active_SKill

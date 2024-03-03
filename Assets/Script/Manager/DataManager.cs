@@ -79,7 +79,7 @@ public class Player_Skill
     public float poison_per;
     public int Poision_Damage_Level;
 
-    public float Dash = 5;
+    public float Dash;
     public int Dash_Level;
 
     public float MaxHP;

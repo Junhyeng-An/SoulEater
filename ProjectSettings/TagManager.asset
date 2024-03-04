@@ -25,6 +25,7 @@ TagManager:
   - Spike
   - Ground
   - Skill
+  - Bosshit
   layers:
   - Default
   - TransparentFX

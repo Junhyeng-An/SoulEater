@@ -11,15 +11,17 @@ public class Knight_Controller : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI pText_hp;
 
-    float Boss_MaxHP = 500;
+    float Boss_MaxHP = 1100;
     float Boss_CurHP;
-
+    public float Boss_Attack_Damage = 15;
     public Transform player_T; // 플레이어의 위치를 저장할 변수
     public Animator animator; // 애니메이터 컴포넌트를 저장할 변수
     public GameObject attack_area; // 공격 영역을 나타내는 게임 오브젝트
     private Sword sword;
     private GameObject player;
     public GameObject Portal;
+    public GameObject paze2_massage;
+    public GameObject[] Layzers;
     private float moveSpeed = 2.5f; // 이동 속도
     public bool isFlipped = false; // 좌우 방향을 나타내는 변수
     private bool isAttacking = false; // 공격 중인지 여부를 나타내는 변수
@@ -27,6 +29,9 @@ public class Knight_Controller : MonoBehaviour
     private float cooldownTime = 2.0f; // 쿨다운 시간
     private float damage_playerAttack;
     private bool isDamage;
+    private bool isPaze;
+    private bool isLayzing=false;
+    private bool isImmume=false;
 
     private void Awake()
     {
@@ -41,6 +46,44 @@ public class Knight_Controller : MonoBehaviour
         if (sword.isSwing == false)
         {
             isDamage = false;
+        }
+        if (Boss_CurHP > 1000) //1페이즈
+        {
+            // 플레이어와의 거리를 확인
+            float distanceToPlayer = Vector3.Distance(transform.position, player_T.position);
+
+            // 플레이어가 공격 범위 내에 있고 기사가 아직 공격 중이 아닌 경우
+            if (distanceToPlayer <= 2f && !isAttacking && !isCoolingDown)
+            {
+                isAttacking = true;
+                LookAtPlayer();
+                AttackPlayer(); // 플레이어를 공격
+                StartCoroutine(StartCooldown()); // 쿨다운 시작
+            }
+            else
+            {
+                isAttacking = false;
+                if (!isCoolingDown)
+                {
+                    LookAtPlayer(); // 플레이어를 바라봄
+                    RunBoss(); // 플레이어 쪽으로 이동
+                }
+            }
+        }
+        if (Boss_CurHP <= 1000 && Boss_CurHP > 0) //2페이즈
+        {
+            if(isPaze == false)
+            {
+                move_2paze();
+            }
+            if (isPaze == true) 
+            {
+                if(!isLayzing)
+                {
+                    Layzer();
+                }
+                
+            }
         }
         // HP에 따라 패턴 전환
         if (Boss_CurHP <= 0)
@@ -57,26 +100,7 @@ public class Knight_Controller : MonoBehaviour
         pText_hp.text = Mathf.Floor(Boss_CurHP) + " / " + Boss_MaxHP.ToString(); // 현재 체력을 표시합니다.
         Handle();
 
-        // 플레이어와의 거리를 확인
-        float distanceToPlayer = Vector3.Distance(transform.position, player_T.position);
 
-        // 플레이어가 공격 범위 내에 있고 기사가 아직 공격 중이 아닌 경우
-        if (distanceToPlayer <= 2f && !isAttacking && !isCoolingDown)
-        {
-            isAttacking = true;
-            LookAtPlayer();
-            AttackPlayer(); // 플레이어를 공격
-            StartCoroutine(StartCooldown()); // 쿨다운 시작
-        }
-        else
-        {
-            isAttacking = false;
-            if (!isCoolingDown)
-            {
-                LookAtPlayer(); // 플레이어를 바라봄
-                RunBoss(); // 플레이어 쪽으로 이동
-            }
-        }
     }
     IEnumerator StartCooldown()
     {
@@ -131,6 +155,51 @@ public class Knight_Controller : MonoBehaviour
         transform.position = new Vector2(newX, transform.position.y);
     }
 
+    void move_2paze()
+    {
+        isImmume = true;
+        // 게임 오브젝트를 향해 이동하는 코드
+        float step = moveSpeed * Time.deltaTime;
+        float newX = Mathf.MoveTowards(transform.position.x, 0f, step);
+        transform.position = new Vector2(newX, transform.position.y);
+        if (transform.position.x == 0)
+        {
+            isPaze = true;
+        }
+        StartCoroutine(ActivateMessage());
+    }
+
+
+
+    void Layzer()
+    {
+        isLayzing = true;
+        isImmume = true;
+        StartCoroutine(ActivateLayzers());
+
+    }
+
+    IEnumerator ActivateLayzers()
+    {
+        // 0부터 5까지의 Layzers 배열을 순회하며 작업
+        for (int i = 0; i < Layzers.Length; i++)
+        {
+            Layzers[i].SetActive(true);
+            yield return new WaitForSeconds(0.2f);
+            Layzers[i].SetActive(false);
+            yield return new WaitForSeconds(0.2f);
+        }
+        isImmume = false;
+        yield return new WaitForSeconds(4.0f);
+        isLayzing = false;
+    }
+    IEnumerator ActivateMessage()
+    {
+        paze2_massage.SetActive(true);
+        yield return new WaitForSeconds(2.0f);
+        paze2_massage.SetActive(false);
+    }
+
     public void TakeDamage(float damage)
     {
         Boss_CurHP -= damage;
@@ -143,7 +212,7 @@ public class Knight_Controller : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (isDamage == false)
+        if (isDamage == false && !isImmume)
         {
             if (collision.gameObject.tag == "Attack" && gameObject.tag != "Controlled")
             {

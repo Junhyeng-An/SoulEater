@@ -25,8 +25,10 @@ public class Sword : MonoBehaviour
     public float angle;
     float angleDelta;
     float angleDeltaDelta;
+    float cooldownTime =0.8f; //sword attack cooltime
 
     bool isThrowing;
+    bool isCoolingDown = false;
 
     [HideInInspector]
     public bool isSwing;
@@ -146,8 +148,9 @@ public class Sword : MonoBehaviour
 
     public void Attack()
     {
-        if(attack_Ani == false)
+        if(attack_Ani == false && !isCoolingDown)
         {
+            StartCoroutine(StartCooldown());
             isSwing = true;
             //stat.Stat("ST", -3);
             gameObject.tag = "Attack";
@@ -162,6 +165,12 @@ public class Sword : MonoBehaviour
          
 
         }
+    }
+    IEnumerator StartCooldown()
+    {
+        isCoolingDown = true;
+        yield return new WaitForSeconds(cooldownTime);
+        isCoolingDown = false;
     }
     public void Parrying()
     {

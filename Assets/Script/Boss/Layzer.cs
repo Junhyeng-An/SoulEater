@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Layzer : MonoBehaviour
 {
-    public float Bullet_Damage;
+    float Bullet_Damage = 5;
+    float Boss_Bullet_Damage = 100;
     GameObject player;
     GameObject hit_area;
     bool isimmune;
@@ -30,5 +32,10 @@ public class Layzer : MonoBehaviour
         {
             player.GetComponent<EnemyController>().CurHP -= Bullet_Damage;
         }
+        if (col.gameObject.tag == "Player" && !isimmune && SceneManager.GetActiveScene().name == "Boss3")
+        {
+            player.GetComponent<EnemyController>().CurHP -= Boss_Bullet_Damage;
+        }
+
     }
 }

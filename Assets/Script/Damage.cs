@@ -68,6 +68,11 @@ public class Damage : MonoBehaviour
                 enemyController.isHit = true;
                 StartCoroutine(ResetImmume());
             }
+            if (collision.CompareTag("Bosshit") && enemyController.isHit == false && root.tag == "Controlled") 
+            {
+                enemyController.CurHP -= collision.GetComponentInParent<Knight_Controller>().Boss_Attack_Damage;
+                enemyController.isHit = true;
+            }
         }
         else
         {

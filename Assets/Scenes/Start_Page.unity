@@ -2491,6 +2491,14 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7617136485542511002, guid: 835c29568c68a3f488e17e803e251efc, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 497d51b4151d0aa46bc4b985c0b46e9a, type: 2}
+    - target: {fileID: 7617136485542511002, guid: 835c29568c68a3f488e17e803e251efc, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8848077066831589978, guid: 835c29568c68a3f488e17e803e251efc, type: 3}
       propertyPath: m_Enabled
       value: 1

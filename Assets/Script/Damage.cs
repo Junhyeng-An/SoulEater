@@ -6,7 +6,6 @@ public class Damage : MonoBehaviour
 {
 
     Sword sword;
-    float Miss_per;
     float Miss_const;
     bool isDamage;
     bool isImmume = false;
@@ -14,12 +13,7 @@ public class Damage : MonoBehaviour
     public GameObject root;
     public GameObject Body;
 
-    private void Update()
-    {
-        Miss_per = DataManager.Instance._Player_Skill.Miss;
-        //Debug.Log("회피율 : " + Miss_per);
-        //Debug.Log("회피상수 : " + Miss_const);
-    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Miss_const = Random.Range(0f, 100f);
@@ -28,7 +22,7 @@ public class Damage : MonoBehaviour
             Debug.Log("슬라임한테 맞음");
             EnemyController enemyController = GetComponentInParent<EnemyController>();
             S_Boss_Controller s_Boss = GameObject.Find("Slime_boss").GetComponent<S_Boss_Controller>();
-            enemyController.CurHP -= s_Boss.slime_damage;
+            Damage_Calculate(collision, s_Boss.slime_damage, enemyController);
         }
 
         if (collision.tag == "Spike")
@@ -36,42 +30,40 @@ public class Damage : MonoBehaviour
             Debug.Log("가시에 찔림");
             EnemyController enemyController = GetComponentInParent<EnemyController>();
             Slime_Super_Jump slime_Super = GameObject.Find("Slime_boss").GetComponent<Slime_Super_Jump>();
-            enemyController.CurHP -= slime_Super.spike_damage;
+            Damage_Calculate(collision, slime_Super.spike_damage, enemyController);
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
 
         EnemyController enemyController = GetComponentInParent<EnemyController>();
-        if (enemyController.isHit == true && collision.tag == "Attack") {
-            Miss_const = Random.Range(0f, 100f);
-
-        }
-        if (Miss_const <= Miss_per)
-        {
-            // 공격이 빗나간 경우, 아무 동작도 하지 않음
-            //Debug.Log("빗나감");
-            return;
-        }
-        else
-        {
-            isDamage = true;
-        }
+     
+       
+      
+        isDamage = true;
+        
+        
+        
+        
+        
+        
+        
        
         if (enemyController != null && isDamage == true)
         {
             if (collision.CompareTag("closehit") && enemyController.isHit == false && root.tag == "Controlled" && !isImmume)
             {
-                enemyController.CurHP -= collision.GetComponentInParent<EnemyController>().damage_enemyAttack;
-                enemyController.CurHP += (collision.GetComponentInParent<EnemyController>().damage_enemyAttack * (DataManager.Instance._Player_Skill.Reduce_damage / 100));
-
                 enemyController.isHit = true;
+                Damage_Calculate(collision, 20, enemyController);
+                
+                
                 StartCoroutine(ResetImmume());
             }
             if (collision.CompareTag("Bosshit") && enemyController.isHit == false && root.tag == "Controlled") 
             {
-                enemyController.CurHP -= collision.GetComponentInParent<Knight_Controller>().Boss_Attack_Damage;
                 enemyController.isHit = true;
+                Damage_Calculate(collision,  30, enemyController);
+               
             }
         }
         else
@@ -88,7 +80,29 @@ public class Damage : MonoBehaviour
         Body.GetComponent<Renderer>().material.color = Color.white;
         isImmume = false;
     }
-    private void OnTriggerExit2D(Collider2D collision)
+   
+    void Damage_Calculate(Collider2D collision, float Damage,EnemyController enemyController)
     {
+        
+        Debug.Log("Damage Calculate");
+        
+        if (enemyController.isHit == true && collision.tag == "Attack") {
+            Miss_const = Random.Range(0f, 100f);
+            Debug.Log(Miss_const);
+        }
+        if (Miss_const <= DataManager.Instance._Player_Skill.Miss)
+        {
+            Debug.Log("빗나감");
+            return;
+        }
+        else
+        {
+            Debug.Log("맞음");
+            isDamage = true;
+        }
+         Debug.Log( Damage * (1.0f - DataManager.Instance._Player_Skill.Reduce_damage * 0.1f));
+        enemyController.CurHP -= Damage * (1.0f - (DataManager.Instance._Player_Skill.Reduce_damage * 0.01f));
+        
+
     }
 }

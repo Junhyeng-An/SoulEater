@@ -82,9 +82,9 @@ public class Start_UI : MonoBehaviour
         DataManager.Instance._Active_Skill.Slash_Damage_default = 10;
 
 
-        DataManager.Instance._Active_Skill.Smash_Damage = 1;
+        DataManager.Instance._Active_Skill.Smash_Damage = 5;
         DataManager.Instance._Active_Skill.Smash_Damage_Level = 1;
-        DataManager.Instance._Active_Skill.Slash_Damage_default = 1;
+        DataManager.Instance._Active_Skill.Smash_Damage_default = 5;
 
 
         #endregion

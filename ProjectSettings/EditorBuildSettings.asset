@@ -33,7 +33,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Boss/Boss3.unity
     guid: 664fb600ce8db2c42911cda204080b94
   - enabled: 1
-    path: Assets/Scenes/Map1_1.unity
+    path: Assets/Scenes/Map1/Map1_1.unity
     guid: 4b8ed6aaef9a2a9489e60e121fe4a8d2
   - enabled: 1
     path: Assets/Scenes/Stage/Stage4/Stage_4_1.unity

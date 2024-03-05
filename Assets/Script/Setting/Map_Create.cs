@@ -125,8 +125,7 @@ public class Map_Create : MonoBehaviour
         
         
         MapReroll();
-        
-       CharacterManager.Instance.spawnPosition = mapPositions[room_turn[0]];
+
     }
 
     void MapReroll()

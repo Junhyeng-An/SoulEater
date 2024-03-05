@@ -7883,6 +7883,7 @@ Transform:
   - {fileID: 755721813300570253}
   - {fileID: 4969553947558677745}
   - {fileID: 4451523444691899696}
+  - {fileID: 1794757970390579351}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!156049354 &4344088319194296931
@@ -7944,7 +7945,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 16
-      m_TileSpriteIndex: 16
+      m_TileSpriteIndex: 21
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -8029,18 +8030,18 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 21300062, guid: 1a08f9bec49c04809b03ba62a218b140, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
   m_TileMatrixArray:
   - m_RefCount: 1
     m_Data:
@@ -8172,6 +8173,68 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!1001 &1398702879446955166
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 560106032139952968}
+    m_Modifications:
+    - target: {fileID: 829069179749272585, guid: 39e776ab3e5c60b4ebd23473846e9b46, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -23.119623
+      objectReference: {fileID: 0}
+    - target: {fileID: 829069179749272585, guid: 39e776ab3e5c60b4ebd23473846e9b46, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -18.36211
+      objectReference: {fileID: 0}
+    - target: {fileID: 829069179749272585, guid: 39e776ab3e5c60b4ebd23473846e9b46, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.23048146
+      objectReference: {fileID: 0}
+    - target: {fileID: 829069179749272585, guid: 39e776ab3e5c60b4ebd23473846e9b46, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 829069179749272585, guid: 39e776ab3e5c60b4ebd23473846e9b46, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 829069179749272585, guid: 39e776ab3e5c60b4ebd23473846e9b46, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 829069179749272585, guid: 39e776ab3e5c60b4ebd23473846e9b46, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 829069179749272585, guid: 39e776ab3e5c60b4ebd23473846e9b46, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 829069179749272585, guid: 39e776ab3e5c60b4ebd23473846e9b46, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 829069179749272585, guid: 39e776ab3e5c60b4ebd23473846e9b46, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 829069179749272588, guid: 39e776ab3e5c60b4ebd23473846e9b46, type: 3}
+      propertyPath: m_Name
+      value: TP
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 39e776ab3e5c60b4ebd23473846e9b46, type: 3}
+--- !u!4 &1794757970390579351 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 829069179749272585, guid: 39e776ab3e5c60b4ebd23473846e9b46, type: 3}
+  m_PrefabInstance: {fileID: 1398702879446955166}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3697609434638509545
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -34,7 +34,7 @@ public class Start_UI : MonoBehaviour
         DataManager.Instance._SwordData.player_sword_level = 1;
         DataManager.Instance._SwordData.Upgrade_reach_Cost = 10;
 
-        DataManager.Instance._SwordData.player_parrying_attack = 5.0f;
+        DataManager.Instance._SwordData.player_parrying_attack = 55.0f;
         DataManager.Instance._SwordData.player_parrying_level = 1;
         DataManager.Instance._SwordData.Upgrade_parrying_Cost = 2;
         #endregion
@@ -50,8 +50,7 @@ public class Start_UI : MonoBehaviour
         DataManager.Instance._Player_Skill.poison_damage = 0.0f;
         DataManager.Instance._Player_Skill.Poision_Damage_Level = 0;
 
-        DataManager.Instance._Player_Skill.MaxHP = 0.0f;
-        DataManager.Instance._Player_Skill.MaxHP_Level = 0;
+    
 
         DataManager.Instance._Player_Skill.Skill_Speed = 0.0f;
         DataManager.Instance._Player_Skill.Skill_Speed_Level = 0;

@@ -201,45 +201,7 @@ public class EnemyController : MonoBehaviour
         //Debug.Log(CurSkill);
         if (gameObject.tag == "Controlled" && Input.GetKeyDown(KeyCode.L)) { SceneManager.LoadScene("Clear_Scene"); }
         
-        //최대체력 증가
-        if ((gameObject.tag == "Controlled") || SelectManager.Instance.isChange_C)
-        {
-            SelectManager.Instance.isChange_C = false;
-            skill_MaxHP = DataManager.Instance._Player_Skill.MaxHP;
-            switch (enemyType)
-            {
-                case EnemyType.Enemy_A:
-                    result_MaxHP = EnemyA.maxHP + skill_MaxHP;
-                    MaxHP = result_MaxHP;
-                    if (CurHP == MaxHP )
-                    {
-                        CurHP = MaxHP;
-                    }
-                    DataManager.Instance._PlayerData.controll_enemy = (int)EnemyType.Enemy_A;
-                    SelectManager.Instance.isHPupadate = false;
-                    break;
-                case EnemyType.Enemy_B:
-                    result_MaxHP =  EnemyB.maxHP + skill_MaxHP;
-                    MaxHP = result_MaxHP;
-                    if (CurHP == MaxHP)
-                    {
-                        CurHP = MaxHP;
-                    }
-                    DataManager.Instance._PlayerData.controll_enemy = (int)EnemyType.Enemy_B;
-                    SelectManager.Instance.isHPupadate = false;
-                    break;
-                case EnemyType.Enemy_C:
-                    result_MaxHP =  EnemyC.maxHP + skill_MaxHP;
-                    MaxHP = result_MaxHP;
-                    if (CurHP == MaxHP)
-                    {
-                        CurHP = MaxHP;
-                    }
-                    DataManager.Instance._PlayerData.controll_enemy = (int)EnemyType.Enemy_C;
-                    SelectManager.Instance.isHPupadate = false;
-                    break;
-            }
-        }
+       
         else if (gameObject.tag != "Controlled")
         {
             SelectManager.Instance.isHPupadate = false;
@@ -548,6 +510,7 @@ public class EnemyController : MonoBehaviour
 
     public void Posion(float Posion_per)
     {
+        Debug.Log("PoisonOn");
         // 1부터 100까지의 무작위 숫자를 생성합니다.
         int randomNum = Random.Range(1, 101);
 

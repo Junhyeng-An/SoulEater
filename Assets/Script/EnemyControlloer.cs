@@ -199,10 +199,9 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         //Debug.Log(CurSkill);
-        if (gameObject.tag == "Controlled" && Input.GetKeyDown(KeyCode.L)) { SceneManager.LoadScene("Clear_Scene"); }
         
        
-        else if (gameObject.tag != "Controlled")
+        if (gameObject.tag != "Controlled")
         {
             SelectManager.Instance.isHPupadate = false;
             switch (enemyType)

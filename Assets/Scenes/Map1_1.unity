@@ -678,7 +678,6 @@ GameObject:
   - component: {fileID: 1305445658}
   - component: {fileID: 1305445657}
   - component: {fileID: 1305445659}
-  - component: {fileID: 1305445660}
   m_Layer: 0
   m_Name: Map_Manager
   m_TagString: Untagged
@@ -743,18 +742,6 @@ MonoBehaviour:
   maxCount: 5
   map_distance: 200
   Type_Enemy: 0
---- !u!114 &1305445660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1305445656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8055ddc5fc12254a844f91e5e5ba79c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1345052596
 GameObject:
   m_ObjectHideFlags: 0

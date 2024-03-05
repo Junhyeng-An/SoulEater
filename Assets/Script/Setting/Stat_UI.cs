@@ -10,7 +10,6 @@ public class Stat_UI : MonoBehaviour
     public TextMeshProUGUI Skill_Speed_Text;
     public TextMeshProUGUI Poison_Damage_Text;
     public TextMeshProUGUI Dash_Text;
-    public TextMeshProUGUI MaxHP_Text;
     public TextMeshProUGUI Discount_Cost_Text;
     public TextMeshProUGUI Miss_Text;
     public TextMeshProUGUI isDouble_Jump_Text;

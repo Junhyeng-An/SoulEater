@@ -106,7 +106,7 @@ public class Turret : MonoBehaviour
         {
             if (collision.gameObject.tag == "Attack" && gameObject.tag != "Controlled")
             {
-                CurHP -= 10;
+                CurHP -= DataManager.Instance._SwordData.player_damage_attack;
                 player.GetComponent<StatController>().Stat("ST", 3);
 
                 isDamage = true;

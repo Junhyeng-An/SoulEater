@@ -121,7 +121,7 @@ public class Skill_Select : MonoBehaviour
             //스킬이름 , 등급기준 , 스킬내용 , 강화량, 강화수치
             if (DataManager.Instance._Player_Skill.Reduce_damage_Level<3)
             {
-                skillCards.Add(new Skill_Card("Reduce damage", 0, Reduce_Damage, 10, 1));
+                skillCards.Add(new Skill_Card("Reduce damage", 0, Reduce_Damage, 1, 1));
             }
             if (DataManager.Instance._Player_Skill.HP_Drain_Level<3)
             {
@@ -137,23 +137,23 @@ public class Skill_Select : MonoBehaviour
             }
             if (DataManager.Instance._Player_Skill.Discount_Cost_Level<3)
             {
-                skillCards.Add(new Skill_Card("Discount", 0, Discout, 10, 1));
+                skillCards.Add(new Skill_Card("Discount", 0, Discout, 1, 1));
             }
             if (DataManager.Instance._Player_Skill.isDouble_Jump_Level<1)
             {
-                skillCards.Add(new Skill_Card("Double_Jump", 0, Double_Jump, 10, 1));
+                skillCards.Add(new Skill_Card("Double_Jump", 0, Double_Jump, 1, 1));
             }
             if (DataManager.Instance._Player_Skill.Miss_Level<3)
             {
-                skillCards.Add(new Skill_Card("Miss", 0, Miss, 10, 1));
+                skillCards.Add(new Skill_Card("Miss", 0, Miss, 1, 1));
             }
             if (DataManager.Instance._Player_Skill.Poision_Damage_Level<3)
             {
-                skillCards.Add(new Skill_Card("Poison", 0, Poision, 5, 1));
+                skillCards.Add(new Skill_Card("Poison", 0, Poision, 1, 1));
             }
             if (DataManager.Instance._Active_Skill.Dash_Damage_Level<3 || DataManager.Instance._Active_Skill.Slash_Damage<3 || DataManager.Instance._Active_Skill.Smash_Damage<3)
             {
-                skillCards.Add(new Skill_Card("Skill_Damage", 0, Skill_Damage, 10, 1));
+                skillCards.Add(new Skill_Card("Skill_Damage", 0, Skill_Damage, 1, 1));
             }
         }
 
@@ -162,11 +162,11 @@ public class Skill_Select : MonoBehaviour
         {
             if (DataManager.Instance._Player_Skill.Reduce_damage_Level < 3)
             {
-                skillCards.Add(new Skill_Card("Reduce damage", 1, Reduce_Damage, 20, 2));
+                skillCards.Add(new Skill_Card("Reduce damage", 1, Reduce_Damage, 2, 2));
             }
             if (DataManager.Instance._Player_Skill.HP_Drain_Level < 3)
             {
-                skillCards.Add(new Skill_Card("Absorption", 1, Absortion, 5, 2));
+                skillCards.Add(new Skill_Card("Absorption", 1, Absortion, 2, 2));
             }
             if (DataManager.Instance._Player_Skill.Skill_Speed_Level < 3)
             {
@@ -178,19 +178,19 @@ public class Skill_Select : MonoBehaviour
             }
             if (DataManager.Instance._Player_Skill.Discount_Cost_Level < 3)
             {
-                skillCards.Add(new Skill_Card("Discount", 1, Discout, 20, 2));
+                skillCards.Add(new Skill_Card("Discount", 1, Discout, 2, 2));
             }
             if (DataManager.Instance._Player_Skill.Miss_Level < 3)
             {
-                skillCards.Add(new Skill_Card("Miss", 1, Miss, 20, 2));
+                skillCards.Add(new Skill_Card("Miss", 1, Miss, 2, 2));
             }
             if (DataManager.Instance._Player_Skill.Poision_Damage_Level < 3)
             {
-                skillCards.Add(new Skill_Card("Poison", 1, Poision, 10, 2));
+                skillCards.Add(new Skill_Card("Poison", 1, Poision, 2, 2));
             }
             if (DataManager.Instance._Active_Skill.Dash_Damage_Level < 3 || DataManager.Instance._Active_Skill.Slash_Damage < 3 || DataManager.Instance._Active_Skill.Smash_Damage < 3)
             {
-                skillCards.Add(new Skill_Card("Skill_Damage", 1, Skill_Damage, 50, 2));
+                skillCards.Add(new Skill_Card("Skill_Damage", 1, Skill_Damage, 2, 2));
             }
         }
 
@@ -199,11 +199,11 @@ public class Skill_Select : MonoBehaviour
         {
             if (DataManager.Instance._Player_Skill.Reduce_damage_Level < 3)
             {
-                skillCards.Add(new Skill_Card("Reduce damage", 2, Reduce_Damage, 50, 3));
+                skillCards.Add(new Skill_Card("Reduce damage", 2, Reduce_Damage, 3, 3));
             }
             if (DataManager.Instance._Player_Skill.HP_Drain_Level < 3)
             {
-                skillCards.Add(new Skill_Card("Absorption", 2, Absortion, 10, 3));
+                skillCards.Add(new Skill_Card("Absorption", 2, Absortion, 3, 3));
             }
             if (DataManager.Instance._Player_Skill.Skill_Speed_Level < 3)
             {
@@ -215,19 +215,19 @@ public class Skill_Select : MonoBehaviour
             }
             if (DataManager.Instance._Player_Skill.Discount_Cost_Level < 3)
             {
-                skillCards.Add(new Skill_Card("Discount", 2, Discout, 50, 3));
+                skillCards.Add(new Skill_Card("Discount", 2, Discout, 3, 3));
             }
             if (DataManager.Instance._Player_Skill.Miss_Level < 3)
             {
-                skillCards.Add(new Skill_Card("Miss", 2, Miss, 50, 3));
+                skillCards.Add(new Skill_Card("Miss", 2, Miss, 3, 3));
             }
             if (DataManager.Instance._Player_Skill.Poision_Damage_Level < 3)
             {
-                skillCards.Add(new Skill_Card("Poison", 2, Poision, 20, 3));
+                skillCards.Add(new Skill_Card("Poison", 2, Poision, 3, 3));
             }
             if (DataManager.Instance._Active_Skill.Dash_Damage_Level < 3 || DataManager.Instance._Active_Skill.Slash_Damage < 3 || DataManager.Instance._Active_Skill.Smash_Damage < 3)
             {
-                skillCards.Add(new Skill_Card("Skill_Damage", 2, Skill_Damage, 100, 3));
+                skillCards.Add(new Skill_Card("Skill_Damage", 2, Skill_Damage, 3, 3));
             }
         }
 

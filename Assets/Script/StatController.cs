@@ -46,13 +46,7 @@ public class StatController : MonoBehaviour
 
             Player_HP.value = Player_CurHP / Player_MaxHP;
             Player_ST.value = Player_CurST / Player_MaxST;
-            if (Input.GetKeyDown("p")) //hp µ¥¹ÌÁö
-            {
-                if (Player_CurHP > 0)
-                {
-                    player.GetComponent<EnemyController>().CurHP -= 10;
-                }
-            }
+          
 
             //if(hp, st <= 0)
             if (Player_CurHP <= 0)

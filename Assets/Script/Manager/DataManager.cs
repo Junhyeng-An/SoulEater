@@ -82,8 +82,6 @@ public class Player_Skill
     public float Dash;
     public int Dash_Level;
 
-    public float MaxHP;
-    public int MaxHP_Level;
 
     public float Discount_Cost;
     public int Discount_Cost_Level;

@@ -80,7 +80,6 @@ public class Skill_Select : MonoBehaviour
             Absortion = "You absorb health.";
             Hermes = "Movement speed increased.";
             Dash_Distance = "Increasing dash distance.";
-            Max_Health = "Increasing maximum health.";
             Discout = "Receiving a discount at the blacksmith.";
             Double_Jump = "You can now double jump.";
             Miss = "Attacks occasionally miss.";
@@ -96,7 +95,6 @@ public class Skill_Select : MonoBehaviour
             Absortion = "체력을 흡수합니다.";
             Hermes = "이동속도가 증가합니다.";
             Dash_Distance = "대쉬 거리를 늘립니다.";
-            Max_Health = "최대 체력을 증가시킵니다";
             Discout = "대장간에서 할인을 받습니다";
             Double_Jump = "더블점프가 가능해집니다";
             Miss = "일정 확률 공격이 빚나갑니다";
@@ -136,10 +134,6 @@ public class Skill_Select : MonoBehaviour
             if (DataManager.Instance._Player_Skill.Dash_Level<3)
             {
                 skillCards.Add(new Skill_Card("Dash Distance", 0, Dash_Distance, 1, 1));
-            }
-            if (DataManager.Instance._Player_Skill.MaxHP_Level<3)
-            {
-                skillCards.Add(new Skill_Card("Max Health", 0, Max_Health, 20, 1));
             }
             if (DataManager.Instance._Player_Skill.Discount_Cost_Level<3)
             {
@@ -182,10 +176,6 @@ public class Skill_Select : MonoBehaviour
             {
                 skillCards.Add(new Skill_Card("Dash Distance", 1, Dash_Distance, 2, 2));
             }
-            if (DataManager.Instance._Player_Skill.MaxHP_Level < 3)
-            {
-                skillCards.Add(new Skill_Card("Max Health", 1, Max_Health, 50, 2));
-            }
             if (DataManager.Instance._Player_Skill.Discount_Cost_Level < 3)
             {
                 skillCards.Add(new Skill_Card("Discount", 1, Discout, 20, 2));
@@ -222,10 +212,6 @@ public class Skill_Select : MonoBehaviour
             if (DataManager.Instance._Player_Skill.Dash_Level < 3)
             {
                 skillCards.Add(new Skill_Card("Dash Distance", 2, Dash_Distance, 3, 3));
-            }
-            if (DataManager.Instance._Player_Skill.MaxHP_Level < 3)
-            {
-                skillCards.Add(new Skill_Card("Max Health", 2, Max_Health, 100, 3));
             }
             if (DataManager.Instance._Player_Skill.Discount_Cost_Level < 3)
             {
@@ -348,24 +334,6 @@ public class Skill_Select : MonoBehaviour
                         break;
                 }
                 break;
-            case "Max Health":
-                switch (selectedSkill.card_level)
-                {
-                    case 0:
-                        DataManager.Instance._Player_Skill.MaxHP_Level += 1;
-                        SelectManager.Instance.isHPupadate = true;
-                        Debug.Log(SelectManager.Instance.isHPupadate);
-                        break;
-                    case 1:
-                        DataManager.Instance._Player_Skill.MaxHP_Level += 2;
-                        SelectManager.Instance.isHPupadate = true;
-                        break;
-                    case 2:
-                        DataManager.Instance._Player_Skill.MaxHP_Level += 3;
-                        SelectManager.Instance.isHPupadate = true;
-                        break;
-                }
-                break;
             case "Discount":
                 switch (selectedSkill.card_level)
                 {
@@ -406,13 +374,13 @@ public class Skill_Select : MonoBehaviour
                 switch (selectedSkill.card_level)
                 {
                     case 0:
-                        DataManager.Instance._Player_Skill.Miss_Level += 1;
+                        DataManager.Instance._Player_Skill.Poision_Damage_Level= 1;
                         break;
                     case 1:
-                        DataManager.Instance._Player_Skill.Miss_Level += 2;
+                        DataManager.Instance._Player_Skill.Poision_Damage_Level += 2;
                         break;
                     case 2:
-                        DataManager.Instance._Player_Skill.Miss_Level += 3;
+                        DataManager.Instance._Player_Skill.Poision_Damage_Level += 3;
                         break;
                 }
                 break;
@@ -501,21 +469,6 @@ public class Skill_Select : MonoBehaviour
             DataManager.Instance._Player_Skill.Dash = 10;
         }
 
-        // 최대 체력
-        if (DataManager.Instance._Player_Skill.MaxHP_Level == 1)
-        {
-            DataManager.Instance._Player_Skill.MaxHP = 20;
-        }
-        else if (DataManager.Instance._Player_Skill.MaxHP_Level == 2)
-        {
-            DataManager.Instance._Player_Skill.MaxHP = 50;
-        }
-        else if (DataManager.Instance._Player_Skill.MaxHP_Level >= 3)
-        {
-            DataManager.Instance._Player_Skill.MaxHP_Level = 3;
-            DataManager.Instance._Player_Skill.MaxHP = 100;
-        }
-
         // 할인
         if (DataManager.Instance._Player_Skill.Discount_Cost_Level == 1)
         {
@@ -557,18 +510,18 @@ public class Skill_Select : MonoBehaviour
         if (DataManager.Instance._Player_Skill.Poision_Damage_Level == 1)
         {
             DataManager.Instance._Player_Skill.poison_damage = 5;
-            DataManager.Instance._Player_Skill.poison_per = 10;
+            DataManager.Instance._Player_Skill.poison_per = 100;
         }
         else if (DataManager.Instance._Player_Skill.Poision_Damage_Level == 2)
         {
             DataManager.Instance._Player_Skill.poison_damage = 10;
-            DataManager.Instance._Player_Skill.poison_per = 30;
+            DataManager.Instance._Player_Skill.poison_per = 100;
         }
         else if (DataManager.Instance._Player_Skill.Poision_Damage_Level >= 3)
         {
             DataManager.Instance._Player_Skill.Poision_Damage_Level = 3;
             DataManager.Instance._Player_Skill.poison_damage = 20;
-            DataManager.Instance._Player_Skill.poison_per = 50;
+            DataManager.Instance._Player_Skill.poison_per = 100;
         }
 
         //스킬 데미지

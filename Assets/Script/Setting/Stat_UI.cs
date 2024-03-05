@@ -22,7 +22,6 @@ public class Stat_UI : MonoBehaviour
         SetSkillSpeedText();
         SetPoisonDamageText();
         SetDashText();
-        SetMaxHPText();
         SetDiscountCostText();
         SetIsDoubleJumpText();
         SetMissText();
@@ -56,12 +55,7 @@ public class Stat_UI : MonoBehaviour
     {
         SetSkillLevelText(Dash_Text, DataManager.Instance._Player_Skill.Dash_Level, "Dash", "대시");
     }
-    
-    // MaxHP 스킬 정보 설정
-    public void SetMaxHPText()
-    {
-        SetSkillLevelText(MaxHP_Text, DataManager.Instance._Player_Skill.MaxHP_Level, "Max HP", "최대 체력 증가");
-    }
+   
     
     // Discount Cost 스킬 정보 설정
     public void SetDiscountCostText()

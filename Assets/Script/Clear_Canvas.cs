@@ -43,9 +43,6 @@ public class Clear_Canvas : MonoBehaviour
         if (DataManager.Instance._Player_Skill.Dash_Level >= 1)
             displayedText += "Dash Level: " + DataManager.Instance._Player_Skill.Dash_Level + "\n";
 
-        if (DataManager.Instance._Player_Skill.MaxHP_Level >= 1)
-            displayedText += "Max HP Level: " + DataManager.Instance._Player_Skill.MaxHP_Level + "\n";
-
         if (DataManager.Instance._Player_Skill.Discount_Cost_Level >= 1)
             displayedText += "Discount Cost Level: " + DataManager.Instance._Player_Skill.Discount_Cost_Level + "\n";
 

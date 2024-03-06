@@ -39,7 +39,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Stage/Stage4/Stage_4_1.unity
     guid: 7f787e1db952abc48b707d1b4a5af52a
   - enabled: 1
-    path: Assets/Scenes/Stage/Stage_3/Stage_3_1.unity
+    path: Assets/Scenes/Stage/Stage3/Stage_3_1.unity
     guid: ca40e178f0a505343a2216229878d357
   - enabled: 1
     path: Assets/Scenes/Clear_Scene.unity

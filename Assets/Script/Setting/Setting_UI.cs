@@ -20,7 +20,6 @@ public class Setting_UI : MonoBehaviour
     }    
     
     
-   
    private void Update()
    {
        BGM_volume_slider.value = DataManager.Instance._Sound_Volume.BGM_Volume;

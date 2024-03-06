@@ -18,9 +18,15 @@ public class BackGround : MonoBehaviour
 
     private void Start()
     {
+        
         cameraTransform = Camera.main.transform;
         lastCameraPos = cameraTransform.position;
 
+
+        this.transform.position = new Vector3(lastCameraPos.x, lastCameraPos.y -3 , 0);
+
+        
+        
         Sprite sprite = GetComponent<SpriteRenderer>().sprite;
         Texture2D texture = sprite.texture;
         textureUnitSizeX = texture.width / sprite.pixelsPerUnit;

@@ -9,6 +9,7 @@ public class Spawn_Point : MonoBehaviour
     
     public void Start()
     {
-        CharacterManager.Instance.PlayerPosition(transform);
+        CharacterManager.Instance.PlayerPosition(this.transform);
+        CharacterManager.Instance.PlayerPosition(this.transform);
     }
 }

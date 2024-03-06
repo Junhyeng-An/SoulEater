@@ -27,7 +27,7 @@ public class BackGround : MonoBehaviour
         textureUnitSizeY = texture.height / sprite.pixelsPerUnit;
     }
 
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         Vector3 deltaMovement = cameraTransform.position - lastCameraPos;
         transform.position += new Vector3(deltaMovement.x * effectMult.x, deltaMovement.y * effectMult.y);

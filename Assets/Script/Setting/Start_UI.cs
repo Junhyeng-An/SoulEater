@@ -21,6 +21,8 @@ public class Start_UI : MonoBehaviour
         DataManager.Instance._PlayerData.coin = 0;
         DataManager.Instance._PlayerData.speed = 5.0f;
         DataManager.Instance._PlayerData.clear_stage = (int)stage.Main;
+        DataManager.Instance._PlayerData.Boss_Stage = false;
+        
         #endregion
 
 

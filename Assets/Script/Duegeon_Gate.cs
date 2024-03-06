@@ -10,12 +10,21 @@ public class Duegeon_Gate : MonoBehaviour
     {
         if(DataManager.Instance._PlayerData.clear_stage == (int)stage.Main && DataManager.Instance._PlayerData.Boss_Stage == false)
             Scene_Name = "Map1_1";
-        if(DataManager.Instance._PlayerData.clear_stage == (int)stage.Main && DataManager.Instance._PlayerData.Boss_Stage == true)
+        if (DataManager.Instance._PlayerData.clear_stage == (int)stage.Main && DataManager.Instance._PlayerData.Boss_Stage == true)
+        {
             Scene_Name = "Boss2";
+            DataManager.Instance._PlayerData.Boss_Stage = false;
+        }
+
         if(DataManager.Instance._PlayerData.clear_stage == (int)stage.stage1 && DataManager.Instance._PlayerData.Boss_Stage == false)
             Scene_Name = "Map2_1";
-        if(DataManager.Instance._PlayerData.clear_stage == (int)stage.stage1 && DataManager.Instance._PlayerData.Boss_Stage == true)
+        if (DataManager.Instance._PlayerData.clear_stage == (int)stage.stage1 && DataManager.Instance._PlayerData.Boss_Stage == true)
+        {
             Scene_Name = "Boss";
+            DataManager.Instance._PlayerData.Boss_Stage = false;
+        }
+
+
         if(DataManager.Instance._PlayerData.clear_stage == (int)stage.stage2 && DataManager.Instance._PlayerData.Boss_Stage == false)
             Scene_Name = "Map3_1";
         if(DataManager.Instance._PlayerData.clear_stage == (int)stage.stage2 && DataManager.Instance._PlayerData.Boss_Stage == true)

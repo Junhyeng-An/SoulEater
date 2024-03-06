@@ -36,7 +36,6 @@ public class PlayerController : MonoBehaviour
         
         if (SettingManager.Instance.Setting_Active == false)
         {
-            movement.Return();
             movement.Landing();
             movement.WallCheck();
             if (SettingManager.Instance.gameover == true)

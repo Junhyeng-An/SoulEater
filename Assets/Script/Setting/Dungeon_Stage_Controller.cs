@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Dungeon_Stage_Controller : MonoBehaviour
@@ -12,11 +13,54 @@ public class Dungeon_Stage_Controller : MonoBehaviour
     private void Awake()
     {
         if (SceneManager.GetActiveScene().name == "Map1_1")
+            Scene_Name = "Map1_2";
+
+        if (SceneManager.GetActiveScene().name == "Map1_2")
+            Scene_Name = "Map1_3";
+
+        if (SceneManager.GetActiveScene().name == "Map1_3")
+            Scene_Name = "Map1_4";
+        
+        if (SceneManager.GetActiveScene().name == "Map1_4")
+        {
             Scene_Name = "Dorf";
+            DataManager.Instance._PlayerData.Boss_Stage = true;
+        }
 
+        if (SceneManager.GetActiveScene().name == "Map2_1")
+            Scene_Name = "Map2_2";
 
+        if (SceneManager.GetActiveScene().name == "Map2_2")
+            Scene_Name = "Map2_3";
 
-       
+        if (SceneManager.GetActiveScene().name == "Map2_3")
+            Scene_Name = "Map2_4";
+        
+        if (SceneManager.GetActiveScene().name == "Map2_4")
+        {
+            Scene_Name = "Dorf";
+            DataManager.Instance._PlayerData.Boss_Stage = true;
+        }
+  
+        
+        
+        
+        if (SceneManager.GetActiveScene().name == "Map3_1")
+            Scene_Name = "Map3_2";
+
+        if (SceneManager.GetActiveScene().name == "Map3_2")
+            Scene_Name = "Map3_3";
+
+        if (SceneManager.GetActiveScene().name == "Map3_3")
+            Scene_Name = "Map3_4";
+        
+        if (SceneManager.GetActiveScene().name == "Map3_4")
+        {
+            Scene_Name = "Dorf";
+            DataManager.Instance._PlayerData.Boss_Stage = true;
+        }
+
+        
         
         
         

@@ -317,15 +317,7 @@ public class Movement : MonoBehaviour
 
         return results;
     }
-    public void Return()
-    {
-        if (transform.position.y <= -20)
-        {
-            transform.position = new Vector2(0, 5);
-            rigid.velocity = new Vector2(rigid.velocity.x, 0);
-            SettingManager.Instance.gameover  = false;
-        }
-    }
+   
     public void WallCheck()
     {
         time_down += Time.deltaTime;

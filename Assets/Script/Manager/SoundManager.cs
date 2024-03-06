@@ -33,7 +33,8 @@ public class SoundManager : MonoBehaviour
         Start_Page,
         Dorf,
         Prologue,
-        Dungeon
+        Dungeon,
+        knight_BGM
     }
     
     public enum SFX
@@ -165,29 +166,33 @@ public class SoundManager : MonoBehaviour
                 bgmPlayer.Play();
             }
 
+            if (currentSceneName == "Boss3")
+            {
+                bgmPlayer.clip = bgmClip[(int)BGM.knight_BGM];
+                bgmPlayer.Play();
+            }
 
 
-            
-            
-        
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
     }
     

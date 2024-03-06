@@ -770,6 +770,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: aa2c2c0f119493b4eb83e65ed8aec73b, type: 3}
   - {fileID: 8300000, guid: c816c51def13cf8489d425af1e166701, type: 3}
   - {fileID: 8300000, guid: 33237eee255a8cc4690cf0380616eb5e, type: 3}
+  - {fileID: 8300000, guid: e847f3a38f1c80c48bc5870b9531a375, type: 3}
   bgmVolume: 0
   sfxClip:
   - {fileID: 8300000, guid: ee8244fd830039e42aeec47962ba4051, type: 3}
@@ -786,7 +787,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a9b2ca9c87e33d646846b1c87c0cebfd, type: 3}
   - {fileID: 8300000, guid: 04a5863ff19bc0e4bbdfc74923eb9c13, type: 3}
   sfxVolume: 0.3
-  channels: 16
+  channels: 17
 --- !u!1 &117821016
 GameObject:
   m_ObjectHideFlags: 0

@@ -33,7 +33,6 @@ public class Damage : MonoBehaviour
         if (collision.CompareTag("Bosshit") && enemyController.isHit == false && root.tag == "Controlled")
         {
             Knight_Controller knight = GameObject.FindGameObjectWithTag("Knight_Boss").GetComponent<Knight_Controller>();
-            enemyController.isHit = true;
             SettingManager.Instance.Damage_Calculate(collision, knight.Boss_Attack_Damage, enemyController);
 
         }

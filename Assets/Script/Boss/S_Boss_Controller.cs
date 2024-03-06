@@ -120,6 +120,10 @@ public class S_Boss_Controller : MonoBehaviour
                 isDamage = true;
             }
         }
+        if (collision.gameObject.tag == "Sword")
+        {
+            isDamage = false;
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

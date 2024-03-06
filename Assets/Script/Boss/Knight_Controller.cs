@@ -22,16 +22,23 @@ public class Knight_Controller : MonoBehaviour
     public GameObject Portal;
     public GameObject paze2_massage;
     public GameObject[] Layzers;
+    public GameObject[] Sword_Start; // 발사할 위치를 가진 오브젝트들의 배열
+    public GameObject SlashPrefab; // 발사할 Slash 프리팹
+
+    private float SlashSpeed = 8.0f; // 발사 속도
+    private float delayTime = 3.0f; // 발사 후 지연 시간
     private float moveSpeed = 2.5f; // 이동 속도
     public bool isFlipped = false; // 좌우 방향을 나타내는 변수
     private bool isAttacking = false; // 공격 중인지 여부를 나타내는 변수
     private bool isCoolingDown = false; // 쿨다운 중인지 여부를 나타내는 변수
     private float cooldownTime = 2.0f; // 쿨다운 시간
     private float damage_playerAttack;
-    private bool isDamage;
+    private int DarkBall_Count = 0;
+    private bool isDamage; //자신이 맞았는가?
     private bool isPaze;
     private bool isLayzing=false;
     private bool isImmume=false;
+    private bool isSwordDance = false;
 
     private void Awake()
     {
@@ -43,6 +50,10 @@ public class Knight_Controller : MonoBehaviour
     void Update()
     {
         player = GameObject.Find("GameManager");
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Boss_CurHP -= 80;
+        }
         if (Boss_CurHP > 70) //1페이즈
         {
             // 플레이어와의 거리를 확인
@@ -66,7 +77,7 @@ public class Knight_Controller : MonoBehaviour
                 }
             }
         }
-        if (Boss_CurHP <= 70 && Boss_CurHP > 0) //2페이즈
+        if (Boss_CurHP <= 70 && Boss_CurHP > 10) //2페이즈
         {
             if(isPaze == false)
             {
@@ -79,6 +90,21 @@ public class Knight_Controller : MonoBehaviour
                     Layzer();
                 }
                 
+            }
+        }
+        if (Boss_CurHP <= 10) //3페이즈
+        {
+            for (int i = 0; i < Sword_Start.Length; i++)
+            {
+                Sword_Start[i].SetActive(true);
+            }
+            if (!isSwordDance)
+            {
+                StartCoroutine(Dark_Shoot());
+            }
+            if(DarkBall_Count >= 15)
+            {
+                Boss_CurHP -= 10;
             }
         }
         // HP에 따라 패턴 전환
@@ -164,9 +190,29 @@ public class Knight_Controller : MonoBehaviour
         }
         StartCoroutine(ActivateMessage());
     }
+    IEnumerator Dark_Shoot()
+    {
+        int randomIndex = Random.Range(0, Sword_Start.Length);
 
+        // 선택된 인덱스에 해당하는 Sword_Start 객체의 위치를 가져옴
+        Vector3 spawnPosition = Sword_Start[randomIndex].transform.position;
 
+        // Slash 프리팹을 생성하여 spawnPosition 위치에 발사
+        GameObject slashInstance = Instantiate(SlashPrefab, spawnPosition, Quaternion.identity);
 
+        // 발사된 Slash 객체가 Controlled 태그를 가진 오브젝트를 향하도록 설정
+        GameObject[] controlledObjects = GameObject.FindGameObjectsWithTag("Controlled");
+        foreach (GameObject controlledObject in controlledObjects)
+        {
+            // 발사된 Slash 객체를 Controlled 태그를 가진 오브젝트의 위치로 발사하도록 설정
+            Vector3 direction = controlledObject.transform.position - spawnPosition;
+            slashInstance.GetComponent<Rigidbody2D>().velocity = direction.normalized * SlashSpeed;
+        }
+        isSwordDance = true;
+        DarkBall_Count++;
+        yield return new WaitForSeconds(1f);
+        isSwordDance = false;
+    }
     void Layzer()
     {
         isLayzing = true;
@@ -189,6 +235,7 @@ public class Knight_Controller : MonoBehaviour
         yield return new WaitForSeconds(4.0f);
         isLayzing = false;
     }
+
     IEnumerator ActivateMessage()
     {
         paze2_massage.SetActive(true);
@@ -217,6 +264,10 @@ public class Knight_Controller : MonoBehaviour
 
                 isDamage = true;
             }
+        }
+        if (collision.gameObject.tag == "Sword")
+        {
+            isDamage = false;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

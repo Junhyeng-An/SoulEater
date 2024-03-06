@@ -22,7 +22,12 @@ public class SettingManager : MonoBehaviour
 
     public bool Setting_Active = false;
 
+    
     float Miss_const;
+    public float Height;
+
+
+
     public static SettingManager Instance
     {
         get
@@ -155,6 +160,9 @@ public class SettingManager : MonoBehaviour
 
     }
 
-
+    public float smash_Damage()
+    {
+        return Height * 3 * DataManager.Instance._Active_Skill.Smash_Damage;
+    }
 
 }

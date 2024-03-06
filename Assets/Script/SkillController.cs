@@ -181,7 +181,7 @@ public class SkillController : MonoBehaviour
 
         height = rayHit_smash.distance;
         Vector3 colPos = rayHit_smash.point;
-
+        SettingManager.Instance.Height = height;
         Vector2 skillSize = new Vector2(size_smash, size_smash);
 
         if (condition == false)

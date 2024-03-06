@@ -27,6 +27,7 @@ TagManager:
   - Skill
   - Slime_Boss
   - Bosshit
+  - Knight_Boss
   layers:
   - Default
   - TransparentFX

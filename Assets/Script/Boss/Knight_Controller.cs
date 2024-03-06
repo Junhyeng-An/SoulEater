@@ -11,7 +11,7 @@ public class Knight_Controller : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI pText_hp;
 
-    float Boss_MaxHP = 1100;
+    float Boss_MaxHP = 100;
     float Boss_CurHP;
     public float Boss_Attack_Damage = 15;
     public Transform player_T; // 플레이어의 위치를 저장할 변수
@@ -43,11 +43,7 @@ public class Knight_Controller : MonoBehaviour
     void Update()
     {
         player = GameObject.Find("GameManager");
-        if (sword.isSwing == false)
-        {
-            isDamage = false;
-        }
-        if (Boss_CurHP > 1000) //1페이즈
+        if (Boss_CurHP > 70) //1페이즈
         {
             // 플레이어와의 거리를 확인
             float distanceToPlayer = Vector3.Distance(transform.position, player_T.position);
@@ -70,7 +66,7 @@ public class Knight_Controller : MonoBehaviour
                 }
             }
         }
-        if (Boss_CurHP <= 1000 && Boss_CurHP > 0) //2페이즈
+        if (Boss_CurHP <= 70 && Boss_CurHP > 0) //2페이즈
         {
             if(isPaze == false)
             {
@@ -230,6 +226,14 @@ public class Knight_Controller : MonoBehaviour
             if (collision.gameObject.tag == "Skill")
             {
                 TakeDamage(DataManager.Instance._Active_Skill.Slash_Damage);
+            }
+            else if (collision.gameObject.tag == "Skill_Dash")
+            {
+                TakeDamage(DataManager.Instance._Active_Skill.Dash_Damage);
+            }
+            else if (collision.gameObject.tag == "Skill_Smash")
+            {
+                TakeDamage(SettingManager.Instance.smash_Damage());
             }
         }
     }

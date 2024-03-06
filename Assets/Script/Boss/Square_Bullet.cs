@@ -1,25 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Square_Bullet : MonoBehaviour
 {
-    public float Bullet_Damage;
+    float Bullet_Damage =10;
+    // TODO: Bat Falling Damage (Damage to be adjusted later)
     GameObject player;
     GameObject hit_area;
-
+    EnemyController enemyController;
     bool isimmune;
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        player = GameObject.FindGameObjectWithTag("Controlled");
-        hit_area = GameObject.FindGameObjectWithTag("hit_area");
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -27,10 +24,13 @@ public class Square_Bullet : MonoBehaviour
     }
     void Col_Red_Square(Collider2D col)
     {
-        if (col.gameObject.tag == "Player" && isimmune == false)
+        player = GameObject.FindGameObjectWithTag("Controlled");
+        enemyController = player.GetComponent<EnemyController>();
+        if (col.gameObject.tag == "hit_area")
         {
+            SettingManager.Instance.Damage_Calculate(col, Bullet_Damage, enemyController);
             Destroy(gameObject);
-            player.GetComponent<EnemyController>().CurHP -= Bullet_Damage;
         }
     }
+
 }

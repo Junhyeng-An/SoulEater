@@ -175,6 +175,14 @@ public class Boss_Controller : MonoBehaviour
             {
                 TakeDamage(DataManager.Instance._Active_Skill.Slash_Damage);
             }
+            else if (collision.gameObject.tag == "Skill_Dash")
+            {
+                TakeDamage(DataManager.Instance._Active_Skill.Dash_Damage);
+            }
+            else if (collision.gameObject.tag == "Skill_Smash")
+            {
+                TakeDamage(SettingManager.Instance.smash_Damage());
+            }
         }
     }
 }

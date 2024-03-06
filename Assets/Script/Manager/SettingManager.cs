@@ -21,8 +21,13 @@ public class SettingManager : MonoBehaviour
     private static SettingManager instance = null;
 
     public bool Setting_Active = false;
+
     
-    
+    float Miss_const;
+    public float Damage;
+
+
+
     public static SettingManager Instance
     {
         get
@@ -140,8 +145,25 @@ public class SettingManager : MonoBehaviour
     }
 
 
-    
-    
-    
-    
+    public void Damage_Calculate(Collider2D collision, float Damage, EnemyController enemyController)
+    {
+        Miss_const = UnityEngine.Random.Range(0f, 100f);
+        Debug.Log(Miss_const);
+        Debug.Log(DataManager.Instance._Player_Skill.Miss);
+
+        if (Miss_const <= DataManager.Instance._Player_Skill.Miss)
+        {
+            return;
+        }
+        Debug.Log(Damage * (1.0f - DataManager.Instance._Player_Skill.Reduce_damage * 0.01f));
+        enemyController.CurHP -= Damage * (1.0f - (DataManager.Instance._Player_Skill.Reduce_damage * 0.01f));
+
+
+    }
+
+    public float smash_Damage()
+    {
+        return Damage;
+    }
+
 }

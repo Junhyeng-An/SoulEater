@@ -13,57 +13,47 @@ public class Damage : MonoBehaviour
     public GameObject root;
     public GameObject Body;
 
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        EnemyController enemyController = GetComponentInParent<EnemyController>();
         Miss_const = Random.Range(0f, 100f);
-        if (collision.tag == "Boss")
+        if (collision.tag == "Slime_Boss")
         {
             Debug.Log("슬라임한테 맞음");
-            EnemyController enemyController = GetComponentInParent<EnemyController>();
             S_Boss_Controller s_Boss = GameObject.Find("Slime_boss").GetComponent<S_Boss_Controller>();
-            Damage_Calculate(collision, s_Boss.slime_damage, enemyController);
+            SettingManager.Instance.Damage_Calculate(collision, s_Boss.slime_damage, enemyController);
         }
 
         if (collision.tag == "Spike")
         {
             Debug.Log("가시에 찔림");
-            EnemyController enemyController = GetComponentInParent<EnemyController>();
             Slime_Super_Jump slime_Super = GameObject.Find("Slime_boss").GetComponent<Slime_Super_Jump>();
-            Damage_Calculate(collision, slime_Super.spike_damage, enemyController);
+            SettingManager.Instance.Damage_Calculate(collision, slime_Super.spike_damage, enemyController);
+        }
+        if (collision.CompareTag("Bosshit") && enemyController.isHit == false && root.tag == "Controlled")
+        {
+            Knight_Controller knight = GameObject.FindGameObjectWithTag("Knight_Boss").GetComponent<Knight_Controller>();
+            enemyController.isHit = true;
+            SettingManager.Instance.Damage_Calculate(collision, knight.Boss_Attack_Damage, enemyController);
+
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
 
         EnemyController enemyController = GetComponentInParent<EnemyController>();
-     
-       
-      
-        isDamage = true;
-        
-        
-        
-        
-        
-        
-        
-       
-        if (enemyController != null && isDamage == true)
+
+
+        if (enemyController != null)
         {
             if (collision.CompareTag("closehit") && enemyController.isHit == false && root.tag == "Controlled" && !isImmume)
             {
+
                 enemyController.isHit = true;
-                Damage_Calculate(collision, 20, enemyController);
+                SettingManager.Instance.Damage_Calculate(collision, collision.GetComponentInParent<EnemyController>().damage_enemyAttack, enemyController);
                 
                 
                 StartCoroutine(ResetImmume());
-            }
-            if (collision.CompareTag("Bosshit") && enemyController.isHit == false && root.tag == "Controlled") 
-            {
-                enemyController.isHit = true;
-                Damage_Calculate(collision,  30, enemyController);
-               
             }
         }
         else
@@ -79,30 +69,5 @@ public class Damage : MonoBehaviour
         yield return new WaitForSeconds(1f);
         Body.GetComponent<Renderer>().material.color = Color.white;
         isImmume = false;
-    }
-   
-    void Damage_Calculate(Collider2D collision, float Damage,EnemyController enemyController)
-    {
-        
-        Debug.Log("Damage Calculate");
-        
-        if (enemyController.isHit == true && collision.tag == "Attack") {
-            Miss_const = Random.Range(0f, 100f);
-            Debug.Log(Miss_const);
-        }
-        if (Miss_const <= DataManager.Instance._Player_Skill.Miss)
-        {
-            Debug.Log("빗나감");
-            return;
-        }
-        else
-        {
-            Debug.Log("맞음");
-            isDamage = true;
-        }
-         Debug.Log( Damage * (1.0f - DataManager.Instance._Player_Skill.Reduce_damage * 0.1f));
-        enemyController.CurHP -= Damage * (1.0f - (DataManager.Instance._Player_Skill.Reduce_damage * 0.01f));
-        
-
     }
 }

@@ -8,10 +8,9 @@ using UnityEngine.Experimental.GlobalIllumination;
 
 enum stage
 {
-    Main,
-    stage1,
-    stage2,
-    stage3
+    Main, // first
+    stage1, //first clear
+    stage2, //second clear
 }
 
 
@@ -24,6 +23,7 @@ public class Player_Data
     public float jump;
     public int controll_enemy;
     public int clear_stage;
+    public bool Boss_Stage;
 }
 
 public class Sword_Data

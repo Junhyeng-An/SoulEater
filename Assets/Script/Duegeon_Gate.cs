@@ -8,13 +8,22 @@ public class Duegeon_Gate : MonoBehaviour
     private string Scene_Name;
     private void Awake()
     {
-        if(DataManager.Instance._PlayerData.clear_stage == (int)stage.Main)
+        if(DataManager.Instance._PlayerData.clear_stage == (int)stage.Main && DataManager.Instance._PlayerData.Boss_Stage == false)
             Scene_Name = "Map1_1";
-        if(DataManager.Instance._PlayerData.clear_stage == (int)stage.stage1)
+        if(DataManager.Instance._PlayerData.clear_stage == (int)stage.Main && DataManager.Instance._PlayerData.Boss_Stage == true)
+            Scene_Name = "Boss2";
+        if(DataManager.Instance._PlayerData.clear_stage == (int)stage.stage1 && DataManager.Instance._PlayerData.Boss_Stage == false)
             Scene_Name = "Map2_1";
-        if(DataManager.Instance._PlayerData.clear_stage == (int)stage.stage2)
+        if(DataManager.Instance._PlayerData.clear_stage == (int)stage.stage1 && DataManager.Instance._PlayerData.Boss_Stage == true)
+            Scene_Name = "Boss";
+        if(DataManager.Instance._PlayerData.clear_stage == (int)stage.stage2 && DataManager.Instance._PlayerData.Boss_Stage == false)
             Scene_Name = "Map3_1";
+        if(DataManager.Instance._PlayerData.clear_stage == (int)stage.stage2 && DataManager.Instance._PlayerData.Boss_Stage == true)
+            Scene_Name = "Boss3";
 
+
+        
+        
 
 
 

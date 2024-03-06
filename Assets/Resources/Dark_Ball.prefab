@@ -96,8 +96,9 @@ GameObject:
   - component: {fileID: 1050977512550766049}
   - component: {fileID: 7206613661010039916}
   - component: {fileID: -5321529674132145810}
+  - component: {fileID: 3052875672453746136}
   m_Layer: 0
-  m_Name: knight_Slash
+  m_Name: Dark_Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -243,3 +244,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.41985017, y: 0.40334353}
   m_EdgeRadius: 0
+--- !u!114 &3052875672453746136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4357925904709284017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 109430e108b2b5f4e8545df22d8861ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

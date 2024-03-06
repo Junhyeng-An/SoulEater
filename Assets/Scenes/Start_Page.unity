@@ -3308,6 +3308,7 @@ MonoBehaviour:
   Game_Over_Panel: {fileID: 1321281978}
   gameover: 0
   Setting_Active: 0
+  Damage: 0
 --- !u!114 &736246786 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3758159365879594347, guid: abbc7fb0e28908b4fb9820bc6e36af8b, type: 3}
@@ -4312,9 +4313,9 @@ MonoBehaviour:
   Axis: 0
   UpdateType: 1
   FollowHorizontal: 1
-  HorizontalFollowSmoothness: 0.1
+  HorizontalFollowSmoothness: 0
   FollowVertical: 1
-  VerticalFollowSmoothness: 0.1
+  VerticalFollowSmoothness: 0
   OffsetX: 0
   OffsetY: 0
   IsRelativeOffset: 1
@@ -4464,6 +4465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8d592340edc4d04fbc7fbb27d5d8aa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SAVE_FILE_EXIST: 0
   Load: 0
 --- !u!1 &936740559
 GameObject:

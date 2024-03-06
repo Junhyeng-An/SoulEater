@@ -136,6 +136,7 @@ public class S_Boss_Controller : MonoBehaviour
             else if (collision.gameObject.tag == "Skill_Smash")
             {
                 TakeDamage(SettingManager.Instance.smash_Damage());
+                Debug.Log("damage");
             }
         }
     }

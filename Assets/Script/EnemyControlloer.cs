@@ -208,15 +208,15 @@ public class EnemyController : MonoBehaviour
             {
                 case EnemyType.Enemy_A:
                     MaxHP =  EnemyA.maxHP;
-                  
+                    DataManager.Instance._PlayerData.controll_enemy = 0;
                     break;
                 case EnemyType.Enemy_B:
                     MaxHP =  EnemyB.maxHP;
-                  
+                    DataManager.Instance._PlayerData.controll_enemy = 1;
                     break;
                 case EnemyType.Enemy_C:
                     MaxHP =  EnemyC.maxHP;
-              
+                    DataManager.Instance._PlayerData.controll_enemy = 2;
                     break;
             }
         }

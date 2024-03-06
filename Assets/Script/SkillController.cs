@@ -181,7 +181,7 @@ public class SkillController : MonoBehaviour
 
         height = rayHit_smash.distance;
         Vector3 colPos = rayHit_smash.point;
-        SettingManager.Instance.Height = height;
+      
         Vector2 skillSize = new Vector2(size_smash, size_smash);
 
         if (condition == false)
@@ -193,6 +193,7 @@ public class SkillController : MonoBehaviour
                 if (size_smash >= 4)
                     size_smash = 4;
                 damage = height * 3 * DataManager.Instance._Active_Skill.Smash_Damage;
+                SettingManager.Instance.Damage = damage;
             }
             else
                 End_Skill();

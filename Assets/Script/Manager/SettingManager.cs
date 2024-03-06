@@ -24,7 +24,7 @@ public class SettingManager : MonoBehaviour
 
     
     float Miss_const;
-    public float Height;
+    public float Damage;
 
 
 
@@ -162,7 +162,7 @@ public class SettingManager : MonoBehaviour
 
     public float smash_Damage()
     {
-        return Height * 3 * DataManager.Instance._Active_Skill.Smash_Damage;
+        return Damage;
     }
 
 }

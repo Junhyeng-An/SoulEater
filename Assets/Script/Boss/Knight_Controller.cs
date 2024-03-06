@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -21,6 +22,7 @@ public class Knight_Controller : MonoBehaviour
     private GameObject player;
     public GameObject Portal;
     public GameObject paze2_massage;
+    public GameObject paze3_massage;
     public GameObject[] Layzers;
     public GameObject[] Sword_Start; // 발사할 위치를 가진 오브젝트들의 배열
     public GameObject SlashPrefab; // 발사할 Slash 프리팹
@@ -36,9 +38,11 @@ public class Knight_Controller : MonoBehaviour
     private int DarkBall_Count = 0;
     private bool isDamage; //자신이 맞았는가?
     private bool isPaze;
-    private bool isLayzing=false;
-    private bool isImmume=false;
+    private bool isPaze3;
+    private bool isLayzing = false;
+    private bool isImmume = false;
     private bool isSwordDance = false;
+    private bool isDie = false;
 
     private void Awake()
     {
@@ -60,7 +64,7 @@ public class Knight_Controller : MonoBehaviour
             float distanceToPlayer = Vector3.Distance(transform.position, player_T.position);
 
             // 플레이어가 공격 범위 내에 있고 기사가 아직 공격 중이 아닌 경우
-            if (distanceToPlayer <= 2f && !isAttacking && !isCoolingDown)
+            if (distanceToPlayer <= 2.5f && !isAttacking && !isCoolingDown)
             {
                 isAttacking = true;
                 LookAtPlayer();
@@ -79,32 +83,38 @@ public class Knight_Controller : MonoBehaviour
         }
         if (Boss_CurHP <= 70 && Boss_CurHP > 10) //2페이즈
         {
-            if(isPaze == false)
+            if (isPaze == false)
             {
                 move_2paze();
             }
-            if (isPaze == true) 
+            if (isPaze == true)
             {
-                if(!isLayzing)
+                if (!isLayzing)
                 {
                     Layzer();
                 }
-                
+
             }
         }
         if (Boss_CurHP <= 10) //3페이즈
         {
+            isImmume = true;
+            animator.SetBool("Down", true);
+            if (isPaze3 == false)
+            {
+                StartCoroutine(ActivateMessage2());
+            }
             for (int i = 0; i < Sword_Start.Length; i++)
             {
                 Sword_Start[i].SetActive(true);
             }
-            if (!isSwordDance)
+            if (!isSwordDance && isPaze3 == true)
             {
                 StartCoroutine(Dark_Shoot());
             }
-            if(DarkBall_Count >= 15)
+            if (DarkBall_Count >= 15)
             {
-                Boss_CurHP -= 10;
+                Boss_CurHP = 0;
             }
         }
         // HP에 따라 패턴 전환
@@ -112,11 +122,13 @@ public class Knight_Controller : MonoBehaviour
         {
             // 보스 사망 처리 또는 다음 단계로 진행
             DataManager.Instance._PlayerData.clear_stage++;
-
+            animator.SetBool("Die", true);
             Portal.SetActive(true);
-            Destroy(gameObject);
-
-            Debug.Log(" Boss DIE ");
+            isDie= true;
+            if (isDie && !isCoolingDown)
+            {
+                StartCoroutine(DieCooldown());
+            }
         }
 
         pText_hp.text = Mathf.Floor(Boss_CurHP) + " / " + Boss_MaxHP.ToString(); // 현재 체력을 표시합니다.
@@ -128,6 +140,14 @@ public class Knight_Controller : MonoBehaviour
     {
         isCoolingDown = true;
         yield return new WaitForSeconds(cooldownTime);
+        isCoolingDown = false;
+    }
+    IEnumerator DieCooldown()
+    {
+        isDie = false;
+        isCoolingDown = true;
+        yield return new WaitForSeconds(4.5f);
+        Destroy(gameObject);
         isCoolingDown = false;
     }
     // 플레이어를 바라보도록 회전시키는 함수
@@ -170,6 +190,7 @@ public class Knight_Controller : MonoBehaviour
     // 플레이어 쪽으로 이동하는 함수
     public void RunBoss()
     {
+        animator.SetBool("Run",true);
         // 플레이어 쪽으로 일정 속도로 이동
         float targetX = player_T.position.x;
         float currentX = transform.position.x;
@@ -186,6 +207,7 @@ public class Knight_Controller : MonoBehaviour
         transform.position = new Vector2(newX, transform.position.y);
         if (transform.position.x == 0)
         {
+            animator.SetBool("Run", false);
             isPaze = true;
         }
         StartCoroutine(ActivateMessage());
@@ -210,7 +232,7 @@ public class Knight_Controller : MonoBehaviour
         }
         isSwordDance = true;
         DarkBall_Count++;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.7f);
         isSwordDance = false;
     }
     void Layzer()
@@ -232,7 +254,9 @@ public class Knight_Controller : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
         isImmume = false;
+        animator.SetBool("Down",true);
         yield return new WaitForSeconds(4.0f);
+        animator.SetBool("Down", false);
         isLayzing = false;
     }
 
@@ -241,6 +265,13 @@ public class Knight_Controller : MonoBehaviour
         paze2_massage.SetActive(true);
         yield return new WaitForSeconds(2.0f);
         paze2_massage.SetActive(false);
+    }
+    IEnumerator ActivateMessage2()
+    {
+        paze3_massage.SetActive(true);
+        yield return new WaitForSeconds(2.0f);
+        paze3_massage.SetActive(false);
+        isPaze3 = true;
     }
 
     public void TakeDamage(float damage)
@@ -272,7 +303,7 @@ public class Knight_Controller : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!isDamage)
+        if (!isDamage && !isImmume)
         {
             if (collision.gameObject.tag == "Skill")
             {

@@ -114,7 +114,7 @@ public class DataManager : MonoBehaviour
     private string Player_Skill_filename = "PlayerSkill";
     private string Sound_Volume_filename = "Sound_Volume";
     private string Player_ASkill_filename = "Player_Active_Skill";
-    private bool SAVE_FILE_EXIST = false;
+    [HideInInspector]public bool SAVE_FILE_EXIST = false;
 
     
     public Player_Data _PlayerData = new Player_Data();

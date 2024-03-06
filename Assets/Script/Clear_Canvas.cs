@@ -20,6 +20,7 @@ public class Clear_Canvas : MonoBehaviour
     public void new_Game()
     {
         DataManager.Instance.Delete_Save_File();
+        DataManager.Instance.SAVE_FILE_EXIST = false;
         SceneManager.LoadScene("Start_page");
     }
     void UpdateSkillText()

@@ -149,6 +149,7 @@ public class SettingManager : MonoBehaviour
     {
         Miss_const = UnityEngine.Random.Range(0f, 100f);
         Debug.Log(Miss_const);
+        Debug.Log(DataManager.Instance._Player_Skill.Miss);
 
         if (Miss_const <= DataManager.Instance._Player_Skill.Miss)
         {

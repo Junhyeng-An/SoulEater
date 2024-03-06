@@ -494,16 +494,16 @@ public class Skill_Select : MonoBehaviour
         //회피율
         if (DataManager.Instance._Player_Skill.Miss_Level == 1)
         {
-            DataManager.Instance._Player_Skill.Miss = 100;
+            DataManager.Instance._Player_Skill.Miss = 10;
         }
         else if (DataManager.Instance._Player_Skill.Miss_Level == 2)
         {
-            DataManager.Instance._Player_Skill.Miss = 100;
+            DataManager.Instance._Player_Skill.Miss = 20;
         }
         else if (DataManager.Instance._Player_Skill.Miss_Level >= 3)
         {
             DataManager.Instance._Player_Skill.Miss_Level = 3;
-            DataManager.Instance._Player_Skill.Miss = 100;
+            DataManager.Instance._Player_Skill.Miss = 30;
         }
 
         //독

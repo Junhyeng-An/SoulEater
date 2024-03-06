@@ -21,8 +21,8 @@ public class SettingManager : MonoBehaviour
     private static SettingManager instance = null;
 
     public bool Setting_Active = false;
-    
-    
+
+    float Miss_const;
     public static SettingManager Instance
     {
         get
@@ -140,8 +140,31 @@ public class SettingManager : MonoBehaviour
     }
 
 
-    
-    
-    
-    
+    public void Damage_Calculate(Collider2D collision, float Damage, EnemyController enemyController)
+    {
+
+        Debug.Log("Damage Calculate");
+        Debug.Log(enemyController.isHit);
+        Debug.Log(collision.tag);
+
+        Miss_const = UnityEngine.Random.Range(0f, 100f);
+        Debug.Log(Miss_const);
+
+        if (Miss_const <= DataManager.Instance._Player_Skill.Miss)
+        {
+            Debug.Log("빗나감");
+            return;
+        }
+        else
+        {
+            Debug.Log("맞음");
+        }
+        Debug.Log(Damage * (1.0f - DataManager.Instance._Player_Skill.Reduce_damage * 0.01f));
+        enemyController.CurHP -= Damage * (1.0f - (DataManager.Instance._Player_Skill.Reduce_damage * 0.01f));
+
+
+    }
+
+
+
 }

@@ -8,6 +8,7 @@ public class bullet : MonoBehaviour
     public float Bullet_Damage;
     GameObject player;
     GameObject hit_area;
+    EnemyController enemyController;
     bool isimmune;
     // Start is called before the first frame update
     void Start()
@@ -18,16 +19,17 @@ public class bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        player = GameObject.FindGameObjectWithTag("Controlled");
-        hit_area = GameObject.FindGameObjectWithTag("hit_area");
+        
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+        player = GameObject.FindGameObjectWithTag("Controlled");
+        enemyController = player.GetComponent<EnemyController>();
         if (col.gameObject.tag == "Player" && isimmune == false)
         {
+            SettingManager.Instance.Damage_Calculate(col, Bullet_Damage, enemyController);
             Destroy(gameObject);
-            player.GetComponent<EnemyController>().CurHP -= Bullet_Damage;
         }
     }
 }

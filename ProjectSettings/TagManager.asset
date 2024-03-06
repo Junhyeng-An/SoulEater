@@ -25,6 +25,7 @@ TagManager:
   - Spike
   - Ground
   - Skill
+  - Slime_Boss
   - Bosshit
   layers:
   - Default

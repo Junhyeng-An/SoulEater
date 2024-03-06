@@ -6,16 +6,16 @@ public class Turret : MonoBehaviour
 {
     public float CurHP;
     public float MaxHP;
-    public float fireRate = 0.5f;            // �߻� �ӵ� (�ʴ� �߻� Ƚ��)
-    public float maxDistance = 10f;        // �߻� �ִ� �Ÿ�
-    public float hp_har_height = 1;
-    public GameObject bulletPrefab;        // �Ѿ� ������
-    public Transform shootingPoint;        // �߻� ���� ������Ʈ
+    private float fireRate = 0.5f;
+    private float maxDistance = 10f;
+    private float hp_har_height = 2.5f;
+    public GameObject bulletPrefab;       
+    public Transform shootingPoint;        
     public RectTransform my_bar;
     public GameObject Canvas;
     GameObject bullet;
     GameObject player;
-    private float nextFireTime;             // ���� �߻� �ð�
+    private float nextFireTime;
     private Sword sword;
     private bool isDamage;
     public bool isAuto = false;
@@ -25,15 +25,16 @@ public class Turret : MonoBehaviour
     private void Awake()
     {
         sword = GameObject.Find("Sword").GetComponent<Sword>();
+
     }
     void Update()
     {
+
         if (sword.isSwing == false)
         {
             isDamage = false;
         }
         player = GameObject.Find("GameManager");
-        // �߻� �ӵ��� ���� �Ѿ� �߻�
         if (Time.time > nextFireTime)
         {
             if (isAuto == false)
@@ -58,59 +59,46 @@ public class Turret : MonoBehaviour
 
     void Shoot()
     {
-        // �߻� �������� �Ѿ� ����
         bullet = Instantiate(bulletPrefab, shootingPoint.position, shootingPoint.rotation);
 
-        // �Ѿ˿� Rigidbody2D�� �ִٰ� �����ϰ� �ӵ� ����
         Rigidbody2D bulletRigidbody = bullet.GetComponent<Rigidbody2D>();
         if (bulletRigidbody != null)
         {
-            // �Ѿ� �߻� ���� ���� (�Ѿ��� right ����)
             Vector2 shootDirection = shootingPoint.right;
             bulletRigidbody.velocity = shootDirection * 10f;
             bulletRigidbody.velocity = shootDirection * 10f;
 
-            // �Ѿ��� ���� �ð� �Ŀ� �ı�
             Destroy(bullet, maxDistance / 10f);
         }
         else
         {
-            Debug.LogError("�Ѿ˿� Rigidbody2D�� �����ϴ�!");
+            Debug.LogError("Rigidbody2D NULL");
         }
     }
     void AutoShoot()
     {
-        // �߻� �������� �Ѿ� ����
         bullet = Instantiate(bulletPrefab, shootingPoint.position, shootingPoint.rotation);
 
-        // �Ѿ˿� Rigidbody2D�� �ִٰ� �����ϰ� �ӵ� ����
         Rigidbody2D bulletRigidbody = bullet.GetComponent<Rigidbody2D>();
         if (bulletRigidbody != null)
         {
-            // ���� ��ġ�� �������� �Ѿ� �߻� ���� ����
             Vector2 shootDirection = sword.transform.position - shootingPoint.position;
             bulletRigidbody.velocity = shootDirection.normalized * 10f;
 
-            // �Ѿ��� ���� �ð� �Ŀ� �ı�
             Destroy(bullet, maxDistance / 10f);
         }
         else
         {
-            Debug.LogError("�Ѿ˿� Rigidbody2D�� �����ϴ�!");
+            Debug.LogError("Rigidbody2D NULL");
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (isDamage == false)
+        if (collision.gameObject.tag == "Attack" && gameObject.tag != "Controlled")
         {
-            if (collision.gameObject.tag == "Attack" && gameObject.tag != "Controlled")
-            {
-                CurHP -= DataManager.Instance._SwordData.player_damage_attack;
-                player.GetComponent<StatController>().Stat("ST", 3);
-
-                isDamage = true;
-            }
+            CurHP -= DataManager.Instance._SwordData.player_damage_attack;
+            player.GetComponent<StatController>().Stat("ST", 3);
         }
     }
 }

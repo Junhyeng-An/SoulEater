@@ -50,16 +50,16 @@ public class Sword_Data
 public class Active_Skill
 {
     public float Slash_Damage;
-    public int Slash_Damage_Level;
+
     public int Slash_Damage_default;
 
     public float Smash_Damage;
-    public int Smash_Damage_Level;
     public int Smash_Damage_default;
 
     public float Dash_Damage;
-    public int Dash_Damage_Level;
     public float Dash_Damage_default;
+
+    public int Skill_Level;
 }
 
 

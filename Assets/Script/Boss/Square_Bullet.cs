@@ -25,11 +25,17 @@ public class Square_Bullet : MonoBehaviour
     void Col_Red_Square(Collider2D col)
     {
         player = GameObject.FindGameObjectWithTag("Controlled");
-        enemyController = player.GetComponent<EnemyController>();
-        if (col.gameObject.tag == "hit_area")
+        if (player != null)
         {
-            SettingManager.Instance.Damage_Calculate(col, Bullet_Damage, enemyController);
-            Destroy(gameObject);
+            enemyController = player.GetComponent<EnemyController>();
+            if (enemyController != null)
+            {
+                if (col.gameObject.tag == "hit_area")
+                {
+                    SettingManager.Instance.Damage_Calculate(col, Bullet_Damage, enemyController);
+                    Destroy(gameObject);
+                }
+            }
         }
     }
 

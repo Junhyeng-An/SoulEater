@@ -116,7 +116,7 @@ public class Start_UI : MonoBehaviour
 
     public void Boss_room()
     {
-        SceneManager.LoadScene("Boss3");
+        SceneManager.LoadScene("Boss");
     }
 
     public void Test_room()

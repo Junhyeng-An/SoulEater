@@ -25,11 +25,18 @@ public class bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         player = GameObject.FindGameObjectWithTag("Controlled");
-        enemyController = player.GetComponent<EnemyController>();
-        if (col.gameObject.tag == "Player" && isimmune == false)
+        if (player != null )
         {
-            SettingManager.Instance.Damage_Calculate(col, Bullet_Damage, enemyController);
-            Destroy(gameObject);
+            enemyController = player.GetComponent<EnemyController>();
+            if (enemyController != null )
+            {
+                if (col.gameObject.tag == "Player" && isimmune == false)
+                {
+                    SettingManager.Instance.Damage_Calculate(col, Bullet_Damage, enemyController);
+                    Destroy(gameObject);
+                }
+            }
         }
+        
     }
 }

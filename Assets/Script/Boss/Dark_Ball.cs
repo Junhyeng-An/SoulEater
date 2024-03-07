@@ -26,10 +26,16 @@ public class Dark_Ball : MonoBehaviour
     void Col_Dark_Ball(Collider2D col)
     {
         player = GameObject.FindGameObjectWithTag("Controlled");
-        enemyController = player.GetComponent<EnemyController>();
-        if (col.tag == "hit_area")
+        if (player != null)
         {
-            SettingManager.Instance.Damage_Calculate(col, Dark_Ball_Damage, enemyController);
+            enemyController = player.GetComponent<EnemyController>();
+            if (enemyController != null)
+            {
+                if (col.tag == "hit_area")
+                {
+                    SettingManager.Instance.Damage_Calculate(col, Dark_Ball_Damage, enemyController);
+                }
+            }
         }
     }
 }

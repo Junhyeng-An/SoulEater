@@ -103,7 +103,7 @@ public class Movement : MonoBehaviour
 
         if (rayHit_Jump.collider != null)
         {
-            if (rayHit_Jump.distance <= 0.55f && rigid.velocity.y <= 0)
+            if (rayHit_Jump.distance <= 1.0f && rigid.velocity.y <= 0)
             {
                 isJumping = false;
                 jumpCount = 0;

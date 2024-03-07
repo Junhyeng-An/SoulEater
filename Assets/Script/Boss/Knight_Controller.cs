@@ -15,7 +15,7 @@ public class Knight_Controller : MonoBehaviour
     float Boss_MaxHP = 100;
     float Boss_CurHP;
     public float Boss_Attack_Damage = 15;
-    public Transform player_T; // 플레이어의 위치를 저장할 변수
+    private GameObject player_T; // 플레이어의 위치를 저장할 변수
     public Animator animator; // 애니메이터 컴포넌트를 저장할 변수
     public GameObject attack_area; // 공격 영역을 나타내는 게임 오브젝트
     private Sword sword;
@@ -54,6 +54,7 @@ public class Knight_Controller : MonoBehaviour
     void Update()
     {
         player = GameObject.Find("GameManager");
+        player_T = GameObject.FindGameObjectWithTag("Player");
         if (Input.GetKeyDown(KeyCode.K))
         {
             Boss_CurHP -= 80;
@@ -61,7 +62,7 @@ public class Knight_Controller : MonoBehaviour
         if (Boss_CurHP > 70) //1페이즈
         {
             // 플레이어와의 거리를 확인
-            float distanceToPlayer = Vector3.Distance(transform.position, player_T.position);
+            float distanceToPlayer = Vector3.Distance(transform.position, player_T.transform.position);
 
             // 플레이어가 공격 범위 내에 있고 기사가 아직 공격 중이 아닌 경우
             if (distanceToPlayer <= 2.5f && !isAttacking && !isCoolingDown)
@@ -153,7 +154,7 @@ public class Knight_Controller : MonoBehaviour
     // 플레이어를 바라보도록 회전시키는 함수
     public void LookAtPlayer()
     {
-        Vector2 direction = player_T.position - transform.position;
+        Vector2 direction = player_T.transform.position - transform.position;
         float x = direction.x;
         if (x < 0)
         {
@@ -192,7 +193,7 @@ public class Knight_Controller : MonoBehaviour
     {
         animator.SetBool("Run",true);
         // 플레이어 쪽으로 일정 속도로 이동
-        float targetX = player_T.position.x;
+        float targetX = player_T.transform.position.x;
         float currentX = transform.position.x;
         float newX = Mathf.MoveTowards(currentX, targetX, moveSpeed * Time.deltaTime);
         transform.position = new Vector2(newX, transform.position.y);

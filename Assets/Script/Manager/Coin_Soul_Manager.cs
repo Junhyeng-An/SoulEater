@@ -86,7 +86,15 @@ public class Coin_Soul_Manager : MonoBehaviour
         }
         
         
-        if (SceneManager.GetActiveScene().name == "Start_Page" || SceneManager.GetActiveScene().name == "Loading" || SceneManager.GetActiveScene().name == "Main" || SceneManager.GetActiveScene().name == "Dorf")
+        if (SceneManager.GetActiveScene().name == "Start_Page" || 
+            SceneManager.GetActiveScene().name == "Loading" || 
+            SceneManager.GetActiveScene().name == "Main" || 
+            SceneManager.GetActiveScene().name == "Dorf" ||
+            SceneManager.GetActiveScene().name == "Boss" ||
+            SceneManager.GetActiveScene().name == "Boss2" ||
+            SceneManager.GetActiveScene().name == "Boss3" ||
+            SceneManager.GetActiveScene().name == "Clear_Scene" ||
+            SceneManager.GetActiveScene().name == "Home" )
             Minimap.SetActive(false);
     
         

@@ -326,7 +326,7 @@ public class EnemyController : MonoBehaviour
                 CurHP = 0;
                 bar_EnemyHP.SetActive(false);
                 bar_EnemyWP.SetActive(false);
-                Invoke("Die_Player", 1.4f);
+                Invoke("Die_Player", 0.5f);
             }
             else
             {

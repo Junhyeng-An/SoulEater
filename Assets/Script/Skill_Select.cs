@@ -642,21 +642,27 @@ public class Skill_Select : MonoBehaviour
         {
             case 1:
                 DataManager.Instance._Player_Skill.poison_damage = 5.0f;
+                DataManager.Instance._Player_Skill.poison_per = 15.0f;
                 break;
             case 2:
                 DataManager.Instance._Player_Skill.poison_damage = 8.0f;
+                DataManager.Instance._Player_Skill.poison_per = 16.0f;
                 break;
             case 3:
                 DataManager.Instance._Player_Skill.poison_damage = 11.0f;
+                DataManager.Instance._Player_Skill.poison_per = 17.0f;
                 break;
             case 4:
                 DataManager.Instance._Player_Skill.poison_damage = 14.0f;
+                DataManager.Instance._Player_Skill.poison_per = 18.0f;
                 break;
             case 5:
                 DataManager.Instance._Player_Skill.poison_damage = 17.0f;
+                DataManager.Instance._Player_Skill.poison_per = 19.0f;
                 break;
             case 6:
                 DataManager.Instance._Player_Skill.poison_damage = 20.0f;
+                DataManager.Instance._Player_Skill.poison_per = 20.0f;
                 break;
             
         }

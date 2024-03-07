@@ -165,7 +165,24 @@ public class SoundManager : MonoBehaviour
                 bgmPlayer.clip = bgmClip[(int)BGM.Dungeon];
                 bgmPlayer.Play();
             }
+            if (currentSceneName == "Map2_1")
+            {
+                bgmPlayer.clip = bgmClip[(int)BGM.Dungeon];
+                bgmPlayer.Play();
+            }
+            if (currentSceneName == "Map3_1")
+            {
+                bgmPlayer.clip = bgmClip[(int)BGM.Dungeon];
+                bgmPlayer.Play();
+            }
 
+            
+            
+            
+            
+            
+            
+            
             if (currentSceneName == "Boss3")
             {
                 bgmPlayer.clip = bgmClip[(int)BGM.knight_BGM];

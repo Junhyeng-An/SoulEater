@@ -26,12 +26,12 @@ public class Skill_Select : MonoBehaviour
     private string Absortion;
     private string Hermes;
     private string Dash_Distance;
-    private string Max_Health;
     private string Discout;
     private string Double_Jump;
     private string Miss;
     private string Poision;
     private string Skill_Damage;
+    private string Get_Coin;
     
 
     #endregion
@@ -85,6 +85,7 @@ public class Skill_Select : MonoBehaviour
             Miss = "Attacks occasionally miss.";
             Poision = "Inflicts poison damage.";
             Skill_Damage = "Active skill damage increased.";
+            Get_Coin = "Get Coin";
 
         }
 
@@ -100,6 +101,7 @@ public class Skill_Select : MonoBehaviour
             Miss = "일정 확률 공격이 빚나갑니다";
             Poision = "독 데미지를 가합니다";
             Skill_Damage = "액티브 스킬 데미지가 증가합니다";
+            Get_Coin = "코인을 얻습니다";
             
         }
         
@@ -155,6 +157,10 @@ public class Skill_Select : MonoBehaviour
             {
                 skillCards.Add(new Skill_Card("Skill_Damage", 0, Skill_Damage, 1, 1));
             }
+            //Get Coin
+            {
+                skillCards.Add(new Skill_Card("Get_Coin", 0, Get_Coin, 1, 1));
+            }
         }
 
         // 에픽 카드 13%
@@ -192,7 +198,13 @@ public class Skill_Select : MonoBehaviour
             {
                 skillCards.Add(new Skill_Card("Skill_Damage", 1, Skill_Damage, 2, 2));
             }
+                //Get Coin
+            {
+                skillCards.Add(new Skill_Card("Get_Coin", 1, Get_Coin, 2, 2));
+            }
         }
+
+        
 
         // 레전더리 카드 2%
         for (int i = 0; i < 2; i++)
@@ -229,6 +241,11 @@ public class Skill_Select : MonoBehaviour
             {
                 skillCards.Add(new Skill_Card("Skill_Damage", 2, Skill_Damage, 3, 3));
             }
+            //Get Coin
+            {
+                skillCards.Add(new Skill_Card("Get_Coin", 2, Get_Coin, 3, 3));
+            }
+
         }
 
         // 다양한 스킬 추가 및 수정 가능
@@ -278,6 +295,22 @@ public class Skill_Select : MonoBehaviour
         // 선택된 스킬에 따라 효과 적용
         switch (selectedSkill.name)
         {
+                case "Get_Coin":
+                switch (selectedSkill.card_level)
+                {
+                    case 0:
+                        DataManager.Instance._PlayerData.coin += 10;
+                        break;
+                    case 1:
+                        DataManager.Instance._PlayerData.coin += 15;
+                        break;
+                    case 2:
+                        DataManager.Instance._PlayerData.coin += 20;
+                        break;
+                }
+                break;
+
+
             case "Reduce damage":
                 switch (selectedSkill.card_level)
                 {
@@ -410,63 +443,117 @@ public class Skill_Select : MonoBehaviour
     void skill_organize()
     {
         // 받는 피해 감소
-        if (DataManager.Instance._Player_Skill.Reduce_damage_Level == 1)
+
+
+        if (DataManager.Instance._Player_Skill.Reduce_damage_Level >= 6)
+            DataManager.Instance._Player_Skill.Reduce_damage_Level = 6;
+        
+        switch(DataManager.Instance._Player_Skill.Reduce_damage_Level)
         {
-            DataManager.Instance._Player_Skill.Reduce_damage = 10;
-        }
-        else if (DataManager.Instance._Player_Skill.Reduce_damage_Level == 2)
-        {
-            DataManager.Instance._Player_Skill.Reduce_damage = 20;
-        }
-        else if (DataManager.Instance._Player_Skill.Reduce_damage_Level >= 3)
-        {
-            DataManager.Instance._Player_Skill.Reduce_damage_Level = 3;
-            DataManager.Instance._Player_Skill.Reduce_damage = 50;
+            case 1:
+                DataManager.Instance._Player_Skill.Reduce_damage = 5;
+                break;
+            case 2:
+                DataManager.Instance._Player_Skill.Reduce_damage = 8;
+                break;
+            case 3:
+                DataManager.Instance._Player_Skill.Reduce_damage = 11; 
+                break;
+            case 4:
+                DataManager.Instance._Player_Skill.Reduce_damage = 14;
+                break;
+            case 5:
+                DataManager.Instance._Player_Skill.Reduce_damage = 17;
+                break;
+            case 6:
+                DataManager.Instance._Player_Skill.Reduce_damage = 20;
+                break;
+            
         }
 
-        // 흡수
-        if (DataManager.Instance._Player_Skill.HP_Drain_Level == 1)
+        if (DataManager.Instance._Player_Skill.HP_Drain_Level >= 6)
+            DataManager.Instance._Player_Skill.HP_Drain_Level = 6;
+        
+       
+        switch(DataManager.Instance._Player_Skill.HP_Drain_Level)
         {
-            DataManager.Instance._Player_Skill.HP_Drain = 2;
-        }
-        else if (DataManager.Instance._Player_Skill.HP_Drain_Level == 2)
-        {
-            DataManager.Instance._Player_Skill.HP_Drain = 5;
-        }
-        else if (DataManager.Instance._Player_Skill.HP_Drain_Level >= 3)
-        {
-            DataManager.Instance._Player_Skill.HP_Drain_Level = 3;
-            DataManager.Instance._Player_Skill.HP_Drain = 10;
-        }
-
-        // 이동속도 증가
-        if (DataManager.Instance._Player_Skill.Skill_Speed_Level == 1)
-        {
-            DataManager.Instance._Player_Skill.Skill_Speed = 1;
-        }
-        else if (DataManager.Instance._Player_Skill.Skill_Speed_Level == 2)
-        {
-            DataManager.Instance._Player_Skill.Skill_Speed = 2;
-        }
-        else if (DataManager.Instance._Player_Skill.Skill_Speed_Level >= 3)
-        {
-            DataManager.Instance._Player_Skill.Skill_Speed_Level = 3;
-            DataManager.Instance._Player_Skill.Skill_Speed = 3;
+            case 1:
+                DataManager.Instance._Player_Skill.HP_Drain = 0.5f;
+                break;
+            case 2:
+                DataManager.Instance._Player_Skill.HP_Drain = 1.0f;
+                break;
+            case 3:
+                DataManager.Instance._Player_Skill.HP_Drain = 1.5f;
+                break;
+            case 4:
+                DataManager.Instance._Player_Skill.HP_Drain = 2.0f;
+                break;
+            case 5:
+                DataManager.Instance._Player_Skill.HP_Drain = 2.5f;
+                break;
+            case 6:
+                DataManager.Instance._Player_Skill.HP_Drain = 3.0f;
+                break;
+            
         }
 
-        // 대쉬
-        if (DataManager.Instance._Player_Skill.Dash_Level == 1)
+        if (DataManager.Instance._Player_Skill.Skill_Speed_Level >= 6)
+            DataManager.Instance._Player_Skill.Skill_Speed_Level = 6;
+        
+        
+        switch(DataManager.Instance._Player_Skill.Skill_Speed_Level)
         {
-            DataManager.Instance._Player_Skill.Dash = 5;
+            case 1:
+                DataManager.Instance._Player_Skill.Skill_Speed = 0.5f;
+                break;
+            case 2:
+                DataManager.Instance._Player_Skill.Skill_Speed = 1.0f;
+                break;
+            case 3:
+                DataManager.Instance._Player_Skill.Skill_Speed = 1.5f;
+                break;
+            case 4:
+                DataManager.Instance._Player_Skill.Skill_Speed = 2.0f;
+                break;
+            case 5:
+                DataManager.Instance._Player_Skill.Skill_Speed = 2.5f;
+                break;
+            case 6:
+                DataManager.Instance._Player_Skill.Skill_Speed = 3.0f;
+                break;
+            
         }
-        else if (DataManager.Instance._Player_Skill.Dash_Level == 2)
+
+
+
+
+        
+        if (DataManager.Instance._Player_Skill.Dash_Level >= 6)
+            DataManager.Instance._Player_Skill.Dash_Level = 6;
+        
+        
+        switch(DataManager.Instance._Player_Skill.Dash_Level)
         {
-            DataManager.Instance._Player_Skill.Dash = 8;
-        }
-        else if (DataManager.Instance._Player_Skill.Dash_Level >= 3)
-        {
-            DataManager.Instance._Player_Skill.Dash_Level = 3;
-            DataManager.Instance._Player_Skill.Dash = 10;
+            case 1:
+                DataManager.Instance._Player_Skill.Dash = 2.0f;
+                break;
+            case 2:
+                DataManager.Instance._Player_Skill.Dash = 4.0f;
+                break;
+            case 3:
+                DataManager.Instance._Player_Skill.Dash = 1.5f;
+                break;
+            case 4:
+                DataManager.Instance._Player_Skill.Dash = 2.0f;
+                break;
+            case 5:
+                DataManager.Instance._Player_Skill.Dash = 2.5f;
+                break;
+            case 6:
+                DataManager.Instance._Player_Skill.Dash = 3.0f;
+                break;
+            
         }
 
         // 할인

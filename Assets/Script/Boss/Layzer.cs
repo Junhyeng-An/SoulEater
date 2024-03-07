@@ -10,9 +10,7 @@ public class Layzer : MonoBehaviour
     float Boss_Bullet_Damage = 100;
     // TODO: Night Boss Laser Damage (Damage to be adjusted later)
     GameObject player;
-    GameObject hit_area;
     EnemyController enemyController;
-    bool isimmune;
     // Start is called before the first frame update
     void Start()
     {

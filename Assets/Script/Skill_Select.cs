@@ -671,6 +671,44 @@ public class Skill_Select : MonoBehaviour
         if (DataManager.Instance._Active_Skill.Skill_Level >= 6)
             DataManager.Instance._Active_Skill.Skill_Level = 6;
         
+        switch(DataManager.Instance._Active_Skill.Skill_Level)
+        {
+            case 1:
+                DataManager.Instance._Active_Skill.Slash_Damage = DataManager.Instance._Active_Skill.Slash_Damage_default *1.1f;
+                DataManager.Instance._Active_Skill.Smash_Damage = DataManager.Instance._Active_Skill.Slash_Damage_default *1.1f;
+                DataManager.Instance._Active_Skill.Dash_Damage  = DataManager.Instance._Active_Skill.Slash_Damage_default *1.1f;
+                break;
+            case 2:
+                DataManager.Instance._Active_Skill.Slash_Damage = DataManager.Instance._Active_Skill.Slash_Damage_default *1.3f;
+                DataManager.Instance._Active_Skill.Smash_Damage = DataManager.Instance._Active_Skill.Slash_Damage_default *1.3f;
+                DataManager.Instance._Active_Skill.Dash_Damage  = DataManager.Instance._Active_Skill.Slash_Damage_default *1.3f;
+                break;
+            case 3:
+                DataManager.Instance._Active_Skill.Slash_Damage = DataManager.Instance._Active_Skill.Slash_Damage_default *1.5f;
+                DataManager.Instance._Active_Skill.Smash_Damage = DataManager.Instance._Active_Skill.Slash_Damage_default *1.5f;
+                DataManager.Instance._Active_Skill.Dash_Damage  = DataManager.Instance._Active_Skill.Slash_Damage_default *1.5f;
+                break;
+            case 4:
+                DataManager.Instance._Active_Skill.Slash_Damage = DataManager.Instance._Active_Skill.Slash_Damage_default *1.7f;
+                DataManager.Instance._Active_Skill.Smash_Damage = DataManager.Instance._Active_Skill.Slash_Damage_default *1.7f;
+                DataManager.Instance._Active_Skill.Dash_Damage  = DataManager.Instance._Active_Skill.Slash_Damage_default *1.7f;
+                break;
+            case 5:
+                DataManager.Instance._Active_Skill.Slash_Damage = DataManager.Instance._Active_Skill.Slash_Damage_default *1.9f;
+                DataManager.Instance._Active_Skill.Smash_Damage = DataManager.Instance._Active_Skill.Slash_Damage_default *1.9f;
+                DataManager.Instance._Active_Skill.Dash_Damage  = DataManager.Instance._Active_Skill.Slash_Damage_default *1.9f;
+                break;
+            case 6:
+                DataManager.Instance._Active_Skill.Slash_Damage = DataManager.Instance._Active_Skill.Slash_Damage_default *2.0f;
+                DataManager.Instance._Active_Skill.Smash_Damage = DataManager.Instance._Active_Skill.Slash_Damage_default *2.0f;
+                DataManager.Instance._Active_Skill.Dash_Damage  = DataManager.Instance._Active_Skill.Slash_Damage_default *2.0f;
+                break;
+            
+        }
+        
+        
+        
+        
         
         
 

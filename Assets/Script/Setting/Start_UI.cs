@@ -75,19 +75,17 @@ public class Start_UI : MonoBehaviour
         #region Active_SKill
 
         DataManager.Instance._Active_Skill.Dash_Damage = 10;
-        DataManager.Instance._Active_Skill.Dash_Damage_Level = 1;
         DataManager.Instance._Active_Skill.Dash_Damage_default = 10;
 
 
         DataManager.Instance._Active_Skill.Slash_Damage = 10;
-        DataManager.Instance._Active_Skill.Slash_Damage_Level = 1;
         DataManager.Instance._Active_Skill.Slash_Damage_default = 10;
 
 
         DataManager.Instance._Active_Skill.Smash_Damage = 5;
-        DataManager.Instance._Active_Skill.Smash_Damage_Level = 1;
         DataManager.Instance._Active_Skill.Smash_Damage_default = 5;
 
+        DataManager.Instance._Active_Skill.Skill_Level = 0;
 
         #endregion
 

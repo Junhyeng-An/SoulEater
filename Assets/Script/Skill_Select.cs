@@ -121,23 +121,23 @@ public class Skill_Select : MonoBehaviour
         for (int i = 0; i < 85; i++)
         {
             //스킬이름 , 등급기준 , 스킬내용 , 강화량, 강화수치
-            if (DataManager.Instance._Player_Skill.Reduce_damage_Level<3)
+            if (DataManager.Instance._Player_Skill.Reduce_damage_Level<6)
             {
                 skillCards.Add(new Skill_Card("Reduce damage", 0, Reduce_Damage, 1, 1));
             }
-            if (DataManager.Instance._Player_Skill.HP_Drain_Level<3)
+            if (DataManager.Instance._Player_Skill.HP_Drain_Level<6)
             {
                 skillCards.Add(new Skill_Card("Absorption", 0, Absortion, 1, 1));
             }
-            if (DataManager.Instance._Player_Skill.Skill_Speed_Level<3)
+            if (DataManager.Instance._Player_Skill.Skill_Speed_Level<6)
             {
                 skillCards.Add(new Skill_Card("Hermes", 0, Hermes, 1, 1));
             }
-            if (DataManager.Instance._Player_Skill.Dash_Level<3)
+            if (DataManager.Instance._Player_Skill.Dash_Level<6)
             {
                 skillCards.Add(new Skill_Card("Dash Distance", 0, Dash_Distance, 1, 1));
             }
-            if (DataManager.Instance._Player_Skill.Discount_Cost_Level<3)
+            if (DataManager.Instance._Player_Skill.Discount_Cost_Level<6)
             {
                 skillCards.Add(new Skill_Card("Discount", 0, Discout, 1, 1));
             }
@@ -145,15 +145,15 @@ public class Skill_Select : MonoBehaviour
             {
                 skillCards.Add(new Skill_Card("Double_Jump", 0, Double_Jump, 1, 1));
             }
-            if (DataManager.Instance._Player_Skill.Miss_Level<3)
+            if (DataManager.Instance._Player_Skill.Miss_Level<6)
             {
                 skillCards.Add(new Skill_Card("Miss", 0, Miss, 1, 1));
             }
-            if (DataManager.Instance._Player_Skill.Poision_Damage_Level<3)
+            if (DataManager.Instance._Player_Skill.Poision_Damage_Level<6)
             {
                 skillCards.Add(new Skill_Card("Poison", 0, Poision, 1, 1));
             }
-            if (DataManager.Instance._Active_Skill.Skill_Level<3 || DataManager.Instance._Active_Skill.Slash_Damage<3 || DataManager.Instance._Active_Skill.Smash_Damage<3)
+            if (DataManager.Instance._Active_Skill.Skill_Level<6)
             {
                 skillCards.Add(new Skill_Card("Skill_Damage", 0, Skill_Damage, 1, 1));
             }
@@ -166,35 +166,35 @@ public class Skill_Select : MonoBehaviour
         // 에픽 카드 13%
         for (int i = 0; i < 13; i++)
         {
-            if (DataManager.Instance._Player_Skill.Reduce_damage_Level < 3)
+            if (DataManager.Instance._Player_Skill.Reduce_damage_Level < 5)
             {
                 skillCards.Add(new Skill_Card("Reduce damage", 1, Reduce_Damage, 2, 2));
             }
-            if (DataManager.Instance._Player_Skill.HP_Drain_Level < 3)
+            if (DataManager.Instance._Player_Skill.HP_Drain_Level < 5)
             {
                 skillCards.Add(new Skill_Card("Absorption", 1, Absortion, 2, 2));
             }
-            if (DataManager.Instance._Player_Skill.Skill_Speed_Level < 3)
+            if (DataManager.Instance._Player_Skill.Skill_Speed_Level < 5)
             {
                 skillCards.Add(new Skill_Card("Hermes", 1, Hermes, 2, 2));
             }
-            if (DataManager.Instance._Player_Skill.Dash_Level < 3)
+            if (DataManager.Instance._Player_Skill.Dash_Level < 5)
             {
                 skillCards.Add(new Skill_Card("Dash Distance", 1, Dash_Distance, 2, 2));
             }
-            if (DataManager.Instance._Player_Skill.Discount_Cost_Level < 3)
+            if (DataManager.Instance._Player_Skill.Discount_Cost_Level < 5)
             {
                 skillCards.Add(new Skill_Card("Discount", 1, Discout, 2, 2));
             }
-            if (DataManager.Instance._Player_Skill.Miss_Level < 3)
+            if (DataManager.Instance._Player_Skill.Miss_Level < 5)
             {
                 skillCards.Add(new Skill_Card("Miss", 1, Miss, 2, 2));
             }
-            if (DataManager.Instance._Player_Skill.Poision_Damage_Level < 3)
+            if (DataManager.Instance._Player_Skill.Poision_Damage_Level < 5)
             {
                 skillCards.Add(new Skill_Card("Poison", 1, Poision, 2, 2));
             }
-            if (DataManager.Instance._Active_Skill.Skill_Level < 3 || DataManager.Instance._Active_Skill.Slash_Damage < 3 || DataManager.Instance._Active_Skill.Smash_Damage < 3)
+            if (DataManager.Instance._Active_Skill.Skill_Level < 5)
             {
                 skillCards.Add(new Skill_Card("Skill_Damage", 1, Skill_Damage, 2, 2));
             }
@@ -209,35 +209,35 @@ public class Skill_Select : MonoBehaviour
         // 레전더리 카드 2%
         for (int i = 0; i < 2; i++)
         {
-            if (DataManager.Instance._Player_Skill.Reduce_damage_Level < 3)
+            if (DataManager.Instance._Player_Skill.Reduce_damage_Level < 4)
             {
                 skillCards.Add(new Skill_Card("Reduce damage", 2, Reduce_Damage, 3, 3));
             }
-            if (DataManager.Instance._Player_Skill.HP_Drain_Level < 3)
+            if (DataManager.Instance._Player_Skill.HP_Drain_Level < 4)
             {
                 skillCards.Add(new Skill_Card("Absorption", 2, Absortion, 3, 3));
             }
-            if (DataManager.Instance._Player_Skill.Skill_Speed_Level < 3)
+            if (DataManager.Instance._Player_Skill.Skill_Speed_Level < 4)
             {
                 skillCards.Add(new Skill_Card("Hermes", 2, Hermes, 3, 3));
             }
-            if (DataManager.Instance._Player_Skill.Dash_Level < 3)
+            if (DataManager.Instance._Player_Skill.Dash_Level < 4)
             {
                 skillCards.Add(new Skill_Card("Dash Distance", 2, Dash_Distance, 3, 3));
             }
-            if (DataManager.Instance._Player_Skill.Discount_Cost_Level < 3)
+            if (DataManager.Instance._Player_Skill.Discount_Cost_Level < 4)
             {
                 skillCards.Add(new Skill_Card("Discount", 2, Discout, 3, 3));
             }
-            if (DataManager.Instance._Player_Skill.Miss_Level < 3)
+            if (DataManager.Instance._Player_Skill.Miss_Level < 4)
             {
                 skillCards.Add(new Skill_Card("Miss", 2, Miss, 3, 3));
             }
-            if (DataManager.Instance._Player_Skill.Poision_Damage_Level < 3)
+            if (DataManager.Instance._Player_Skill.Poision_Damage_Level < 4)
             {
                 skillCards.Add(new Skill_Card("Poison", 2, Poision, 3, 3));
             }
-            if (DataManager.Instance._Active_Skill.Skill_Level < 3 || DataManager.Instance._Active_Skill.Slash_Damage < 3 || DataManager.Instance._Active_Skill.Smash_Damage < 3)
+            if (DataManager.Instance._Active_Skill.Skill_Level < 4 )
             {
                 skillCards.Add(new Skill_Card("Skill_Damage", 2, Skill_Damage, 3, 3));
             }

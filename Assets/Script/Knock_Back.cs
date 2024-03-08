@@ -22,7 +22,8 @@ public class Knock_Back : MonoBehaviour
             {
                 knockbackForce = knockbackForce_Attack;
                 //knockbackDirection = (transform.position - other.transform.parent.position).normalized;
-                knockbackDirection = Vector2.up;
+                //Kbicj
+                //knockbackDirection = Vector2.up;
             }
             else
             {
@@ -35,7 +36,7 @@ public class Knock_Back : MonoBehaviour
             Rigidbody2D enemyRigidbody = GetComponent<Rigidbody2D>();
             if (enemyRigidbody != null)
             {
-                enemyRigidbody.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
+                //enemyRigidbody.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
                 sword.isKnock = true;
 
                 // Disable enemy movement temporarily

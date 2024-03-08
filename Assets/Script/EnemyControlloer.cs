@@ -414,7 +414,7 @@ public class EnemyController : MonoBehaviour
                     timeScale.SlowMotion(TimeScale.MotionType.attack);
                 }
                 if (col.gameObject.tag == "Parrying" && gameObject.tag != "Controlled" &&
-                    timer > 0 && timer <= 1.2f)
+                    timer > 0.5 && timer <= 1.2f)
                 {
                     CurWP -= sword.damage_playerParrying;
                     stat.Stat("ST", 6);

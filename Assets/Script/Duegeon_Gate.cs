@@ -9,7 +9,7 @@ public class Duegeon_Gate : MonoBehaviour
     private void Awake()
     {
         if(DataManager.Instance._PlayerData.clear_stage == (int)stage.Main && DataManager.Instance._PlayerData.Boss_Stage == false)
-            Scene_Name = "Map1_2";
+            Scene_Name = "Map1_3";
         if (DataManager.Instance._PlayerData.clear_stage == (int)stage.Main && DataManager.Instance._PlayerData.Boss_Stage == true)
         {
             Scene_Name = "Boss2";

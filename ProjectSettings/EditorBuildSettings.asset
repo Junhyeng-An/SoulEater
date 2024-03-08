@@ -18,9 +18,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Loading.unity
     guid: cd933cee9fc26524ca5e4d260ba30933
   - enabled: 1
-    path: Assets/Scenes/Stage/Stage2/Stage_2_1.unity
-    guid: 7efc3e771f3dc8f4c9b9b6fc55b91463
-  - enabled: 1
     path: Assets/Scenes/Dorf.unity
     guid: 2e6222d6a7f138c408dfca5e0e6f768f
   - enabled: 1
@@ -33,15 +30,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Boss/Boss3.unity
     guid: 664fb600ce8db2c42911cda204080b94
   - enabled: 1
-    path: Assets/Scenes/Map1/Map1_3.unity
-    guid: 4b8ed6aaef9a2a9489e60e121fe4a8d2
-  - enabled: 1
-    path: Assets/Scenes/Stage/Stage4/Stage_4_1.unity
-    guid: 7f787e1db952abc48b707d1b4a5af52a
-  - enabled: 1
-    path: Assets/Scenes/Stage/Stage3/Stage_3_1.unity
-    guid: ca40e178f0a505343a2216229878d357
-  - enabled: 1
     path: Assets/Scenes/Clear_Scene.unity
     guid: 5baceca6442085249bf750d8faacc196
   - enabled: 1
@@ -53,6 +41,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Map1/Map1_2.unity
     guid: 0f3618fa96801a74e860494ae343f02c
+  - enabled: 1
+    path: Assets/Scenes/Map1/Map1_3.unity
+    guid: 4b8ed6aaef9a2a9489e60e121fe4a8d2
+  - enabled: 1
+    path: Assets/Scenes/Map1/Map1_4.unity
+    guid: 0c4e0da384213eb40af7de667f3cf630
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 950e2dad93ae36841a8950252c9d2e30, type: 2}
     com.unity.localization.settings: {fileID: 11400000, guid: b022934c4c8364c40a880b8cb93d8ead, type: 2}

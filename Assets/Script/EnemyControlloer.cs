@@ -340,7 +340,7 @@ public class EnemyController : MonoBehaviour
 
                 CurHP = 0;
                 //animator.SetTrigger("Die");
-                Invoke("Die_Enemy", 1.4f);
+                Invoke("Die_Enemy", 0.4f);
             }
         }
     }
@@ -473,7 +473,7 @@ public class EnemyController : MonoBehaviour
 
             if (enemyController != null)
             {
-                enemyController.CurHP += sword.damage_playerAttack * DataManager.Instance._Player_Skill.HP_Drain/100;
+                enemyController.CurHP +=  DataManager.Instance._Player_Skill.HP_Drain;
             }
         }
     }
@@ -663,31 +663,80 @@ public class EnemyController : MonoBehaviour
         
         
         
-        float EnemyA_MaxHP = 200;
-        float EnemyB_MaxHP = 200;
-        float EnemyC_MaxHP = 200;   
+        float EnemyA_MaxHP_1 = 180;
+        float EnemyB_MaxHP_1 = 190;
+        float EnemyC_MaxHP_1 = 200;   
         
-        float EnemyA_MaxHP_2 = 400;
-        float EnemyB_MaxHP_2 = 400;
-        float EnemyC_MaxHP_2 = 400;
+        float EnemyA_WP_1 = 15;
+        float EnemyB_WP_1 = 20;
+        float EnemyC_WP_1 = 22;   
+        
+        float EnemyA_Damage_1 = 60;
+        float EnemyB_Damage_1 = 65;
+        float EnemyC_Damage_1 = 70;   
         
         
+        
+        
+        
+        
+        float EnemyA_MaxHP_2 = 200;
+        float EnemyB_MaxHP_2 = 210;
+        float EnemyC_MaxHP_2 = 220;
+        
+        float EnemyA_WP_2 = 15;
+        float EnemyB_WP_2 = 20;
+        float EnemyC_WP_2 = 22;   
+
+        float EnemyA_Damage_2 = 90;
+        float EnemyB_Damage_2 = 95;
+        float EnemyC_Damage_2 = 100;   
+
+
+        
+        
+        
+        
+        
+        float EnemyA_MaxHP_3= 220;
+        float EnemyB_MaxHP_3= 240;
+        float EnemyC_MaxHP_3= 250;
+
+        float EnemyA_WP_3 = 24;
+        float EnemyB_WP_3 = 30;
+        float EnemyC_WP_3 = 36;   
+
+        float EnemyA_Damage_3 = 100;
+        float EnemyB_Damage_3 = 110;
+        float EnemyC_Damage_3 = 120;   
+
+
+
+
         
             
          
 
          if (DataManager.Instance._PlayerData.clear_stage == (int)stage.Main)
          {
-             EnemyA = new EnemyData(EnemyA_MaxHP, EnemyA_MaxHP, 20, 20, 5, 2, 10, SkillController.Skill_Active.Slash);
-             EnemyB = new EnemyData(EnemyB_MaxHP, EnemyB_MaxHP, 20, 20, 5, 2, 20, SkillController.Skill_Active.DashAttack);
-             EnemyC = new EnemyData(EnemyC_MaxHP, EnemyC_MaxHP, 20, 20, 5, 2, 30, SkillController.Skill_Active.Smash);
+             EnemyA = new EnemyData(EnemyA_MaxHP_1, EnemyA_MaxHP_1, EnemyA_WP_1, EnemyA_WP_1, 5, 2, EnemyA_Damage_1, SkillController.Skill_Active.Slash);
+             EnemyB = new EnemyData(EnemyB_MaxHP_1, EnemyB_MaxHP_1, EnemyB_WP_1, EnemyB_WP_1, 5, 2, EnemyB_Damage_1, SkillController.Skill_Active.DashAttack);
+             EnemyC = new EnemyData(EnemyC_MaxHP_1, EnemyC_MaxHP_1, EnemyC_WP_1, EnemyC_WP_1, 5, 2, EnemyC_Damage_1, SkillController.Skill_Active.Smash);
          }
 
          else if(DataManager.Instance._PlayerData.clear_stage == (int)stage.stage1)
          {
-             EnemyA = new EnemyData(EnemyA_MaxHP_2, EnemyA_MaxHP_2, 20, 20, 5, 2, 10, SkillController.Skill_Active.Slash);
-             EnemyB = new EnemyData(EnemyB_MaxHP_2, EnemyB_MaxHP_2, 20, 20, 5, 2, 20, SkillController.Skill_Active.DashAttack);
-             EnemyC = new EnemyData(EnemyC_MaxHP_2, EnemyC_MaxHP_2, 20, 20, 5, 2, 30, SkillController.Skill_Active.Smash);
+             EnemyA = new EnemyData(EnemyA_MaxHP_2, EnemyA_MaxHP_2,  EnemyA_WP_2,  EnemyA_WP_2, 5, 2.2f, EnemyA_Damage_2, SkillController.Skill_Active.Slash);
+             EnemyB = new EnemyData(EnemyB_MaxHP_2, EnemyB_MaxHP_2,  EnemyB_WP_2,  EnemyB_WP_2, 5, 2.2f, EnemyB_Damage_2, SkillController.Skill_Active.DashAttack);
+             EnemyC = new EnemyData(EnemyC_MaxHP_2, EnemyC_MaxHP_2,  EnemyC_WP_2,  EnemyC_WP_2, 5, 2.2f, EnemyC_Damage_2, SkillController.Skill_Active.Smash);
+         }
+         
+         
+         else if(DataManager.Instance._PlayerData.clear_stage == (int)stage.stage2)
+         {
+             EnemyA = new EnemyData(EnemyA_MaxHP_3, EnemyA_MaxHP_3,  EnemyA_WP_3,  EnemyA_WP_3, 5, 2.3f, EnemyA_Damage_3, SkillController.Skill_Active.Slash);
+             EnemyB = new EnemyData(EnemyB_MaxHP_3, EnemyB_MaxHP_3,  EnemyB_WP_3,  EnemyB_WP_3, 5, 2.3f, EnemyB_Damage_3, SkillController.Skill_Active.DashAttack);
+             EnemyC = new EnemyData(EnemyC_MaxHP_3, EnemyC_MaxHP_3,  EnemyC_WP_3,  EnemyC_WP_3, 5, 2.3f, EnemyC_Damage_3, SkillController.Skill_Active.Smash);
          }
     }
 

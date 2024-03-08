@@ -56,7 +56,7 @@ public class Sword : MonoBehaviour
         stretch = 1.4f;
         stretch_Min = 1.4f;
         stretch_Max = 2.2f;
-        stretch_Speed = 0.05f;
+        stretch_Speed = 0.25f;
 
        
 

@@ -50,7 +50,7 @@ public class Black_Smith : MonoBehaviour
         if (DataManager.Instance._PlayerData.coin >= DataManager.Instance._SwordData.Upgrade_attack_Cost - (DataManager.Instance._SwordData.Upgrade_attack_Cost * DataManager.Instance._Player_Skill.Discount_Cost/100))
         {
             DataManager.Instance._PlayerData.coin -= DataManager.Instance._SwordData.Upgrade_attack_Cost - Mathf.RoundToInt(DataManager.Instance._SwordData.Upgrade_attack_Cost * DataManager.Instance._Player_Skill.Discount_Cost / 100);
-            DataManager.Instance._SwordData.player_damage_attack += 2;
+            DataManager.Instance._SwordData.player_damage_attack += 3;
             DataManager.Instance._SwordData.player_attack_level += 1;
             DataManager.Instance._SwordData.Upgrade_attack_Cost += 1;
             SoundManager.Instance.Playsfx(SoundManager.SFX.upgrade);

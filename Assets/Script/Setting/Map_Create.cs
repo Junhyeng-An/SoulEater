@@ -114,7 +114,7 @@ public class Map_Create : MonoBehaviour
         wayPositions = new Vector2[map_MaxCount, 4];
 
         room_turn = new int[maxCount];
-
+        
         Transform map_type = GameObject.Find("Map_Type").transform;
         mapPrefab = new GameObject[map_type.childCount];
         for (int i = 0; i < map_type.childCount; i++) { mapPrefab[i] = map_type.GetChild(i).gameObject; }
@@ -125,7 +125,7 @@ public class Map_Create : MonoBehaviour
         
         
         MapReroll();
-
+        GameObject.Find("Map_Type").SetActive(false);
     }
 
     void MapReroll()

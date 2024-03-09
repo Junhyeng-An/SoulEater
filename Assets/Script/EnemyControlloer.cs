@@ -201,21 +201,17 @@ public class EnemyController : MonoBehaviour
         //Debug.Log(CurSkill);
         
        
-        if (gameObject.tag != "Controlled")
+        if (gameObject.tag == "Controlled")
         {
-            SelectManager.Instance.isHPupadate = false;
             switch (enemyType)
             {
                 case EnemyType.Enemy_A:
-                    MaxHP =  EnemyA.maxHP;
                     DataManager.Instance._PlayerData.controll_enemy = 0;
                     break;
                 case EnemyType.Enemy_B:
-                    MaxHP =  EnemyB.maxHP;
                     DataManager.Instance._PlayerData.controll_enemy = 1;
                     break;
                 case EnemyType.Enemy_C:
-                    MaxHP =  EnemyC.maxHP;
                     DataManager.Instance._PlayerData.controll_enemy = 2;
                     break;
             }
@@ -347,7 +343,6 @@ public class EnemyController : MonoBehaviour
     void Die_Player()
     {
         gameObject.SetActive(false);
-        timeScale.SlowMotion(TimeScale.MotionType.die);
         if(SettingManager.Instance.gameover == false)
             SettingManager.Instance.gameover = true;
         

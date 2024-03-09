@@ -133,6 +133,8 @@ public class SettingManager : MonoBehaviour
         LoadingScene.LoadScene("Start_Page");
         Game_Over_Panel.gameObject.SetActive(false);
         SettingManager.Instance.gameover = false;
+        DataManager.Instance.SAVE_FILE_EXIST = false;
+        DataManager.Instance.Delete_Save_File();
         Time.timeScale = 1.0f;
     }
 

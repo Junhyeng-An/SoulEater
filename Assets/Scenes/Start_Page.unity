@@ -2080,7 +2080,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &455978897
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3560,7 +3560,6 @@ MonoBehaviour:
   settingWindowPrefab: {fileID: 464575272059657230, guid: 01b27162de120484abb904f280e8033c, type: 3}
   Setting_Canvas: {fileID: 2004728817}
   upgrade_soul: 4
-  isHPupadate: 0
   isChange_C: 0
 --- !u!4 &777871167
 Transform:

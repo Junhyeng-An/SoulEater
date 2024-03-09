@@ -32,9 +32,9 @@ public class PlayerController : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "Start_Page")
             isThrowing = true;
-        
-        
-        if (SettingManager.Instance.Setting_Active == false)
+
+
+        if (SettingManager.Instance.Setting_Active == false || SettingManager.Instance.gameover == false) 
         {
             movement.Landing();
             movement.WallCheck();

@@ -32,7 +32,7 @@ public class Stage_Controller : MonoBehaviour
             // Check if there are no enemies in the scene
             if (NoEnemiesInScene())
             {
-                while(true)
+                for(int i =0; i<10; i++)
                 {
                     if (controlledObjects != null)
                     {

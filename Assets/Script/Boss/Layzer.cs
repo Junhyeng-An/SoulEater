@@ -14,7 +14,10 @@
         // Start is called before the first frame update
         void Start()
         {
-
+            if (SceneManager.GetActiveScene().name == "Boss3") 
+            {
+                SoundManager.Instance.Playsfx(SoundManager.SFX.Knight_laser);
+            }
         }
 
         // Update is called once per frame

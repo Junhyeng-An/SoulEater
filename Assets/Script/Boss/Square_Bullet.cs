@@ -11,6 +11,7 @@ public class Square_Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SoundManager.Instance.Playsfx(SoundManager.SFX.Bat_Cry);
     }
 
     // Update is called once per frame
@@ -22,6 +23,14 @@ public class Square_Bullet : MonoBehaviour
     {
         Col_Red_Square(collision);
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Floor")
+        {
+            SoundManager.Instance.Playsfx(SoundManager.SFX.Bat_Drop);
+            Destroy(gameObject);
+        }
+    }
     void Col_Red_Square(Collider2D col)
     {
         player = GameObject.FindGameObjectWithTag("Controlled");
@@ -32,11 +41,11 @@ public class Square_Bullet : MonoBehaviour
             {
                 if (col.gameObject.tag == "hit_area")
                 {
+                    SoundManager.Instance.Playsfx(SoundManager.SFX.Bat_Drop);
                     SettingManager.Instance.Damage_Calculate(col, Bullet_Damage, enemyController);
                     Destroy(gameObject);
                 }
             }
         }
     }
-
 }

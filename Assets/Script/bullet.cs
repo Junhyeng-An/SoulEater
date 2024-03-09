@@ -32,11 +32,11 @@ public class bullet : MonoBehaviour
             {
                 if (col.gameObject.tag == "Player" && isimmune == false)
                 {
+                    SoundManager.Instance.Playsfx(SoundManager.SFX.Bat_Drop); 
                     SettingManager.Instance.Damage_Calculate(col, Bullet_Damage, enemyController);
                     Destroy(gameObject);
                 }
             }
         }
-        
     }
 }

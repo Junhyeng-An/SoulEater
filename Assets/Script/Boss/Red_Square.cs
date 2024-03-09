@@ -15,7 +15,7 @@ public class Red_Square : MonoBehaviour
     void Start()
     {
         // 플레이어를 찾아서 트랜스폼 저장
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject player = GameObject.FindGameObjectWithTag("Controlled");
         if (player != null)
         {
             playerTransform = player.transform;

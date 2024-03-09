@@ -55,10 +55,9 @@ public class Boss_Controller : MonoBehaviour
         // HP에 따라 패턴 전환
         if (currentHealth <= 0)
         {
+            currentHealth = 0;
             // 보스 사망 처리 또는 다음 단계로 진행
             Destroy(gameObject, 3.6f); // 3초 뒤에 보스 삭제
-           
-            Debug.Log(" Boss DIE ");
             StartCoroutine(ActivateBloodsAndDeactivate());
         }
 
@@ -91,7 +90,7 @@ public class Boss_Controller : MonoBehaviour
         while (true)
         {
             ActivatePattern(laserPattern);
-            yield return new WaitForSeconds(5f); // 1 번째 패턴 유지 시간
+            yield return new WaitForSeconds(3.5f); // 1 번째 패턴 유지 시간
 
             // 대기 시간
             yield return new WaitForSeconds(2f);

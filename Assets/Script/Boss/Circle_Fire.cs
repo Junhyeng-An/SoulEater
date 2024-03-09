@@ -19,6 +19,7 @@ public class Circle_Fire : MonoBehaviour
     private void Start()
     {
         sword = GameObject.Find("Sword").GetComponent<Sword>();
+        SoundManager.Instance.Playsfx(SoundManager.SFX.Bat_Circle_fire);
     }
     void Update()
     {

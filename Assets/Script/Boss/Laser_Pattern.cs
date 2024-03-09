@@ -10,11 +10,16 @@ public class Laser_Pattern : MonoBehaviour
 
     private Coroutine laserCoroutine;  // 레이저 생성 코루틴을 저장할 변수
 
+    private void Start()
+    {
+        
+    }
     void OnEnable()
     {
         // 스크립트가 활성화되어 있을 때만 코루틴 시작
         if (gameObject.activeSelf)
         {
+            SoundManager.Instance.Playsfx(SoundManager.SFX.Bat_laser);
             // 기존 코루틴을 중지하고 새로운 코루틴을 시작
             if (laserCoroutine != null)
                 StopCoroutine(laserCoroutine);
@@ -34,13 +39,12 @@ public class Laser_Pattern : MonoBehaviour
     {
         while (true)
         {
+            
             GameObject laser = Instantiate(laserPrefab, Start_pos.transform.position, Quaternion.identity);
             LaserMovement laserMovement = laser.AddComponent<LaserMovement>();
             laserMovement.speed = speed;
 
             yield return new WaitForSeconds(1.5f);
-
-            //Destroy(laser); // 레이저를 생성한 후 일정 시간이 지나면 파괴
         }
     }
 }

@@ -55,10 +55,6 @@ public class Knight_Controller : MonoBehaviour
     {
         player = GameObject.Find("GameManager");
         player_T = GameObject.FindGameObjectWithTag("Player");
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            Boss_CurHP -= 80;
-        }
         if (Boss_CurHP > 70) //1페이즈
         {
             // 플레이어와의 거리를 확인

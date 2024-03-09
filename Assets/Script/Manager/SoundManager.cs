@@ -34,7 +34,9 @@ public class SoundManager : MonoBehaviour
         Dorf,
         Prologue,
         Dungeon,
-        knight_BGM
+        knight_BGM,
+        Bat_Boss_BGM,
+        Slime_Boss_BGM
     }
     
     public enum SFX
@@ -52,7 +54,12 @@ public class SoundManager : MonoBehaviour
         Map_Move,
         Skill_Canvas_On,
         SKill_Select,
-        Coin
+        Knight_laser,
+        Knight_Dark_Ball,
+        Bat_Drop,
+        Bat_laser,
+        Bat_Cry,
+        Bat_Circle_fire
     }
     
     
@@ -176,13 +183,21 @@ public class SoundManager : MonoBehaviour
                 bgmPlayer.Play();
             }
 
-            
-            
-            
-            
-            
-            
-            
+
+
+
+
+
+            if (currentSceneName == "Boss")
+            {
+                bgmPlayer.clip = bgmClip[(int)BGM.Bat_Boss_BGM];
+                bgmPlayer.Play();
+            }
+            if (currentSceneName == "Boss2")
+            {
+                bgmPlayer.clip = bgmClip[(int)BGM.Slime_Boss_BGM];
+                bgmPlayer.Play();
+            }
             if (currentSceneName == "Boss3")
             {
                 bgmPlayer.clip = bgmClip[(int)BGM.knight_BGM];

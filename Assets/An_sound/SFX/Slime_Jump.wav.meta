@@ -1,21 +1,14 @@
 fileFormatVersion: 2
-guid: 2b45791230ec3694c9da89beebe921eb
-labels:
-- usfx
-- imphenzia
-- explosion
-- explode
-- bang
-- stereo
+guid: dbea22a17a26e4542a04fd23bf8fddc7
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6
   defaultSettings:
     loadType: 0
     sampleRateSetting: 0
-    sampleRateOverride: 0
+    sampleRateOverride: 44100
     compressionFormat: 0
-    quality: 0
+    quality: 1
     conversionMode: 0
   platformSettingOverrides: {}
   forceToMono: 0

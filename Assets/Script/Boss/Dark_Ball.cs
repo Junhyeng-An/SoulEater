@@ -11,7 +11,7 @@ public class Dark_Ball : MonoBehaviour
     EnemyController enemyController;
     void Start()
     {
-        
+        SoundManager.Instance.Playsfx(SoundManager.SFX.Knight_Dark_Ball);
     }
 
     // Update is called once per frame

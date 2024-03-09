@@ -77,7 +77,7 @@ public class Boss_Controller : MonoBehaviour
                 blood.SetActive(false);
                 yield return new WaitForSeconds(0.2f); // 0.4√  ¥Î±‚
             }
-            DataManager.Instance._PlayerData.clear_stage++;
+            DataManager.Instance._PlayerData.clear_stage = 2;
             DataManager.Instance._PlayerData.Boss_Stage = false;
             Portal.SetActive(true);
         }

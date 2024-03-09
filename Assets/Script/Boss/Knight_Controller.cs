@@ -78,7 +78,7 @@ public class Knight_Controller : MonoBehaviour
                 }
             }
         }
-        if (Boss_CurHP <= 700 && Boss_CurHP > 10) //2페이즈
+        if (Boss_CurHP <= 700 && Boss_CurHP > 100) //2페이즈
         {
             if (isPaze == false)
             {
@@ -93,7 +93,7 @@ public class Knight_Controller : MonoBehaviour
 
             }
         }
-        if (Boss_CurHP <= 10) //3페이즈
+        if (Boss_CurHP <= 100) //3페이즈
         {
             isImmume = true;
             animator.SetBool("Down", true);
@@ -118,7 +118,7 @@ public class Knight_Controller : MonoBehaviour
         if (Boss_CurHP <= 0)
         {
             // 보스 사망 처리 또는 다음 단계로 진행
-            DataManager.Instance._PlayerData.clear_stage++;
+            DataManager.Instance._PlayerData.clear_stage = 3;
             DataManager.Instance._PlayerData.Boss_Stage = false;
             animator.SetBool("Die", true);
             Portal.SetActive(true);

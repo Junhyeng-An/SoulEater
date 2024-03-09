@@ -10,9 +10,9 @@ public class S_Boss_Controller : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI pText_hp;
 
-    [HideInInspector]public float maxHealth = 1000;  // 최대 체력
+    [HideInInspector]private float maxHealth = 1000;  // 최대 체력
     private float currentHealth;    // 현재 체력
-    [HideInInspector]public float slime_damage = 50f;
+    public float slime_damage = 50f;
     float damage_playerAttack;
     private bool isDamage;
 
@@ -47,7 +47,7 @@ public class S_Boss_Controller : MonoBehaviour
         if (currentHealth <= 0)
         {
             // 보스 사망 처리 또는 다음 단계로 진행
-            DataManager.Instance._PlayerData.clear_stage++;
+            DataManager.Instance._PlayerData.clear_stage = 1;
             DataManager.Instance._PlayerData.Boss_Stage = false;
             Portal.SetActive(true);
             Destroy(gameObject);

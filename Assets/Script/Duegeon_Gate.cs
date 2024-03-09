@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,10 +7,12 @@ using UnityEngine.SceneManagement;
 public class Duegeon_Gate : MonoBehaviour
 {
     private string Scene_Name;
+    
+    
     private void Awake()
     {
         if(DataManager.Instance._PlayerData.clear_stage == (int)stage.Main && DataManager.Instance._PlayerData.Boss_Stage == false)
-            Scene_Name = "Boss2";
+            Scene_Name = "Map1_1";
         if (DataManager.Instance._PlayerData.clear_stage == (int)stage.Main && DataManager.Instance._PlayerData.Boss_Stage == true)
         {
             Scene_Name = "Boss2";
@@ -29,26 +32,17 @@ public class Duegeon_Gate : MonoBehaviour
             Scene_Name = "Map3_1";
         if(DataManager.Instance._PlayerData.clear_stage == (int)stage.stage2 && DataManager.Instance._PlayerData.Boss_Stage == true)
             Scene_Name = "Boss3";
-
-
-        
-        
-
-
-
-
-
-
-
-
-
     }
-    
+
+    private void Update()
+    {
+    }
+
+
     // Update is called once per frame
     private void OnTriggerEnter2D(Collider2D other)
     {
   
-        GameObject controlledObjects = GameObject.FindGameObjectWithTag("Controlled");
 
    
         
@@ -59,20 +53,6 @@ public class Duegeon_Gate : MonoBehaviour
             // Check if there are no enemies in the scene
             if (NoEnemiesInScene())
             {
-                for(int i =0; i<10; i++)
-                {
-                    if (controlledObjects != null)
-                    {
-                        DontDestroyOnLoad(controlledObjects);
-                        break;
-                    }
-                    else
-                    {
-                        controlledObjects = GameObject.FindGameObjectWithTag("Controlled");
-                    }
-
-                }
-                
                 LoadingScene.LoadScene(Scene_Name);
             }
             else

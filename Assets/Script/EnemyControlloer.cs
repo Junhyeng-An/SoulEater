@@ -199,8 +199,9 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         //Debug.Log(CurSkill);
+        if(this.tag == "Controlled")
+            DontDestroyOnLoad(this);
         
-       
         if (gameObject.tag == "Controlled")
         {
             switch (enemyType)
@@ -651,6 +652,14 @@ public class EnemyController : MonoBehaviour
             }
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    
 
     private void Enemy_data_save()
     {

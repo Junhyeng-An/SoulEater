@@ -32,19 +32,6 @@ public class Stage_Controller : MonoBehaviour
             // Check if there are no enemies in the scene
             if (NoEnemiesInScene())
             {
-                for(int i =0; i<10; i++)
-                {
-                    if (controlledObjects != null)
-                    {
-                        DontDestroyOnLoad(controlledObjects);
-                        break;
-                    }
-                    else
-                    {
-                        controlledObjects = GameObject.FindGameObjectWithTag("Controlled");
-                    }
-
-                }
                 
                 LoadingScene.LoadScene(Scene_Name);
             }

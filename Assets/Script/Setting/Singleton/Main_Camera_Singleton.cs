@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Com.LuisPedroFonseca.ProCamera2D;
+using UnityEngine.SceneManagement;
 
 public class Main_Camera_Singleton : MonoBehaviour
 {

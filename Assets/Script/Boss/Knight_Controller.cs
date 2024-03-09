@@ -177,6 +177,7 @@ public class Knight_Controller : MonoBehaviour
         // 공격 애니메이션 시작
         animator.SetTrigger("Attack");
         yield return new WaitForSeconds(0.5f); // 짧은 시간 동안 대기
+        SoundManager.Instance.Playsfx(SoundManager.SFX.Boss_Attack);
         // 공격 영역 활성화
         attack_area.SetActive(true);
         yield return new WaitForSeconds(0.5f); // 짧은 시간 동안 대기

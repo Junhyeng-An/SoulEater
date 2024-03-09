@@ -64,7 +64,8 @@ public class SoundManager : MonoBehaviour
         Bat_Cry,
         Bat_Circle_fire,
         Smash,
-        Slash
+        Slash,
+        Boss_Attack
     }
     
     

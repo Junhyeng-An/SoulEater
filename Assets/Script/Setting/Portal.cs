@@ -9,11 +9,12 @@ using Vector3 = System.Numerics.Vector3;
 public class Portal : MonoBehaviour
 {
     private Map_Create _mapCreate;
-    
+    private Renderer renderer;
     private void Start()
     {
         GameObject obj = GameObject.Find("Map_Manager");
         _mapCreate = obj.GetComponent<Map_Create>();
+        renderer = GetComponent<Renderer>();
     }
 
 
@@ -28,40 +29,43 @@ public class Portal : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.W))
                 {
                     int count = 0;
-                    if (GetChildrenWithTag(_mapCreate.map[i].transform, "Enemy") != null)
-                        count = GetChildrenWithTag(_mapCreate.map[i].transform, "Enemy");
+                    if (GetChildrenWithTag(transform.parent, "Enemy") != null)
+                        count = GetChildrenWithTag(transform.parent, "Enemy");
 
-                    Debug.Log(count);
                     if (count == 0)
                     {
-                        if (_mapCreate.map[i].transform.Find("East") == this.transform)
+                        if (_mapCreate.map[i] != null)
                         {
-                            CharacterManager.Instance.PlayerPosition(
-                                _mapCreate.map[i + 1].transform.Find("West").position);
-                            _mapCreate.Current_Position_Right();
-                            SoundManager.Instance.Playsfx(SoundManager.SFX.Map_Move);
-                        }
-                        else if (_mapCreate.map[i].transform.Find("West") == this.transform)
-                        {
-                            CharacterManager.Instance.PlayerPosition(
-                                _mapCreate.map[i - 1].transform.Find("East").position
-                            );
-                            _mapCreate.Current_Position_Left();
-                            SoundManager.Instance.Playsfx(SoundManager.SFX.Map_Move);
-                        }
-                        else if (_mapCreate.map[i].transform.Find("North") == this.transform)
-                        {
-                            CharacterManager.Instance.PlayerPosition(
-                                _mapCreate.map[i + _mapCreate.map_height].transform.Find("South").position);
-                            _mapCreate.Current_Position_Up();
-                            SoundManager.Instance.Playsfx(SoundManager.SFX.Map_Move);
-                        }
-                        else if (_mapCreate.map[i].transform.Find("South") == this.transform)
-                        {
-                            CharacterManager.Instance.PlayerPosition(
-                                _mapCreate.map[i - _mapCreate.map_height].transform.Find("North").position);
-                            _mapCreate.Current_Position_Down();
-                            SoundManager.Instance.Playsfx(SoundManager.SFX.Map_Move);
+                            if (_mapCreate.map[i].transform.Find("East") == this.transform)
+                            {
+                                CharacterManager.Instance.PlayerPosition(
+                                    _mapCreate.map[i + 1].transform.Find("West").position);
+                                _mapCreate.Current_Position_Right();
+                                SoundManager.Instance.Playsfx(SoundManager.SFX.Map_Move);
+                            }
+
+                            else if (_mapCreate.map[i].transform.Find("West") == this.transform)
+                            {
+                                CharacterManager.Instance.PlayerPosition(
+                                    _mapCreate.map[i - 1].transform.Find("East").position
+                                );
+                                _mapCreate.Current_Position_Left();
+                                SoundManager.Instance.Playsfx(SoundManager.SFX.Map_Move);
+                            }
+                            else if (_mapCreate.map[i].transform.Find("North") == this.transform)
+                            {
+                                CharacterManager.Instance.PlayerPosition(
+                                    _mapCreate.map[i + _mapCreate.map_height].transform.Find("South").position);
+                                _mapCreate.Current_Position_Up();
+                                SoundManager.Instance.Playsfx(SoundManager.SFX.Map_Move);
+                            }
+                            else if (_mapCreate.map[i].transform.Find("South") == this.transform)
+                            {
+                                CharacterManager.Instance.PlayerPosition(
+                                    _mapCreate.map[i - _mapCreate.map_height].transform.Find("North").position);
+                                _mapCreate.Current_Position_Down();
+                                SoundManager.Instance.Playsfx(SoundManager.SFX.Map_Move);
+                            }
                         }
                     }
 
@@ -99,8 +103,14 @@ public class Portal : MonoBehaviour
 
         return count;
     }
-    
-    
-    
-    
+
+    private void Update()
+    {
+        if (GetChildrenWithTag(transform.parent, "Enemy") == 0)
+        {
+
+            // 새로운 색상을 적용합니다.
+            renderer.material.color = Color.green;
+        }
+    }
 }

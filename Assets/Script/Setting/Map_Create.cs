@@ -187,7 +187,6 @@ public class Map_Create : MonoBehaviour
    
         Type_Enemy = CountObjectsWithTag(mapPrefab, "Enemy");
         
-        Debug.Log(Type_Enemy);
     }
 
     void Pos_Check()

@@ -407,7 +407,7 @@ public class Skill_Select : MonoBehaviour
                 switch (selectedSkill.card_level)
                 {
                     case 0:
-                        DataManager.Instance._Player_Skill.Poision_Damage_Level= 1;
+                        DataManager.Instance._Player_Skill.Poision_Damage_Level += 1;
                         break;
                     case 1:
                         DataManager.Instance._Player_Skill.Poision_Damage_Level += 2;

@@ -3560,7 +3560,6 @@ MonoBehaviour:
   settingWindowPrefab: {fileID: 464575272059657230, guid: 01b27162de120484abb904f280e8033c, type: 3}
   Setting_Canvas: {fileID: 2004728817}
   upgrade_soul: 4
-  isHPupadate: 0
   isChange_C: 0
 --- !u!4 &777871167
 Transform:
@@ -10612,7 +10611,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2055116812}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 33d38afbeb5f4a248b68b0146ad48ace, type: 2}
   m_CullingMode: 0

@@ -46,7 +46,7 @@ public class Prologue_manager : MonoBehaviour
     {
         // 현재 시간
         float currentTime = Time.time;
-        if (Input.GetMouseButtonDown(0) && currentIndex >= 7) { SceneManager.LoadScene("Dorf"); }
+        if (Input.GetMouseButtonDown(0) && currentIndex >= 7) { SceneManager.LoadScene("Main"); }
         if (currentIndex >= 5) { S_Image.SetActive(true); }
     }
 

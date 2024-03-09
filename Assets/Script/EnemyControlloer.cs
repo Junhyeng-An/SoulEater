@@ -199,8 +199,7 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         //Debug.Log(CurSkill);
-        if(this.tag == "Controlled")
-            DontDestroyOnLoad(this);
+   
         
         if (gameObject.tag == "Controlled")
         {

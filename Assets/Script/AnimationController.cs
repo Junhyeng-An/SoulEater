@@ -25,7 +25,6 @@ public class AnimaionController : MonoBehaviour
     GameObject head;
     GameObject eye;
     GameObject weapon;
-
     bool isAni = false;
     bool isRun = false;
 

@@ -52,14 +52,15 @@ public class Duegeon_Gate : MonoBehaviour
 
    
         
-        
+          
         // Check if the object entering the portal is the player
         if (other.CompareTag("Player"))
         {
             // Check if there are no enemies in the scene
             if (NoEnemiesInScene())
             {
-                DontDestroyOnLoad(controlledObjects);
+                if (controlledObjects != null)            
+                    DontDestroyOnLoad(controlledObjects);
                 
                 LoadingScene.LoadScene(Scene_Name);
             }

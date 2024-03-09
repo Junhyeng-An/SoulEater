@@ -33,10 +33,13 @@ public class SoundManager : MonoBehaviour
         Start_Page,
         Dorf,
         Prologue,
-        Dungeon,
         knight_BGM,
         Bat_Boss_BGM,
-        Slime_Boss_BGM
+        Slime_Boss_BGM,
+        Map_1,
+        Map_2,
+        Map_3,
+        Map_4
     }
     
     public enum SFX
@@ -59,7 +62,9 @@ public class SoundManager : MonoBehaviour
         Bat_Drop,
         Bat_laser,
         Bat_Cry,
-        Bat_Circle_fire
+        Bat_Circle_fire,
+        Smash,
+        Slash
     }
     
     
@@ -167,24 +172,82 @@ public class SoundManager : MonoBehaviour
                 bgmPlayer.Play();
             }
 
+            #region Map1
+            
             if (currentSceneName == "Map1_1")
             {
-                bgmPlayer.clip = bgmClip[(int)BGM.Dungeon];
+                bgmPlayer.clip = bgmClip[(int)BGM.Map_1];
                 bgmPlayer.Play();
             }
             if (currentSceneName == "Map2_1")
             {
-                bgmPlayer.clip = bgmClip[(int)BGM.Dungeon];
+                bgmPlayer.clip = bgmClip[(int)BGM.Map_1];
                 bgmPlayer.Play();
             }
             if (currentSceneName == "Map3_1")
             {
-                bgmPlayer.clip = bgmClip[(int)BGM.Dungeon];
+                bgmPlayer.clip = bgmClip[(int)BGM.Map_1];
                 bgmPlayer.Play();
             }
+            #endregion
 
+            #region Map2
+            
+            if (currentSceneName == "Map1_2")
+            {
+                bgmPlayer.clip = bgmClip[(int)BGM.Map_2];
+                bgmPlayer.Play();
+            }
+            if (currentSceneName == "Map2_2")
+            {
+                bgmPlayer.clip = bgmClip[(int)BGM.Map_2];
+                bgmPlayer.Play();
+            }
+            if (currentSceneName == "Map3_2")
+            {
+                bgmPlayer.clip = bgmClip[(int)BGM.Map_2];
+                bgmPlayer.Play();
+            }
+            #endregion
+            
+            
+            #region Map3
+            
+            if (currentSceneName == "Map1_3")
+            {
+                bgmPlayer.clip = bgmClip[(int)BGM.Map_3];
+                bgmPlayer.Play();
+            }
+            if (currentSceneName == "Map2_3")
+            {
+                bgmPlayer.clip = bgmClip[(int)BGM.Map_3];
+                bgmPlayer.Play();
+            }
+            if (currentSceneName == "Map3_3")
+            {
+                bgmPlayer.clip = bgmClip[(int)BGM.Map_3];
+                bgmPlayer.Play();
+            }
+            #endregion
 
-
+            #region Map4
+            
+            if (currentSceneName == "Map1_4")
+            {
+                bgmPlayer.clip = bgmClip[(int)BGM.Map_4];
+                bgmPlayer.Play();
+            }
+            if (currentSceneName == "Map2_4")
+            {
+                bgmPlayer.clip = bgmClip[(int)BGM.Map_4];
+                bgmPlayer.Play();
+            }
+            if (currentSceneName == "Map3_4")
+            {
+                bgmPlayer.clip = bgmClip[(int)BGM.Map_4];
+                bgmPlayer.Play();
+            }
+            #endregion
 
 
 

@@ -5,8 +5,5 @@ using UnityEngine;
 
 public class BGM_CHANGE : MonoBehaviour
 {
-    public void Start()
-    {
-        SoundManager.Instance.PlayBGM(true,SoundManager.BGM.Dungeon);
-    }
+  
 }

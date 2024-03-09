@@ -169,6 +169,7 @@ public class SkillController : MonoBehaviour
                 Quaternion.AngleAxis(sword.angle * Mathf.Rad2Deg - 90, Vector3.forward),
                 10
                 );
+            SoundManager.Instance.Playsfx(SoundManager.SFX.Slash);
             coolTime = 3;
             End_Skill();
         }
@@ -194,6 +195,7 @@ public class SkillController : MonoBehaviour
                     size_smash = 4;
                 damage = height * 3 * DataManager.Instance._Active_Skill.Smash_Damage;
                 SettingManager.Instance.Damage = damage;
+             
             }
             else
                 End_Skill();
@@ -209,7 +211,9 @@ public class SkillController : MonoBehaviour
                 coolTime = 0;
                 End_Skill();
                 Create_HitBox(colPos + Vector3.up * skillSize.y / 2, skillSize * 2, damage, 1);
+                SoundManager.Instance.Playsfx(SoundManager.SFX.Smash);
             }
+         
         }
     }
     public void DashAttack()

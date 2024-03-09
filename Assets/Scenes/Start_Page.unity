@@ -769,10 +769,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e16b1ef179791c744865aff2909e7169, type: 3}
   - {fileID: 8300000, guid: aa2c2c0f119493b4eb83e65ed8aec73b, type: 3}
   - {fileID: 8300000, guid: c816c51def13cf8489d425af1e166701, type: 3}
-  - {fileID: 8300000, guid: 33237eee255a8cc4690cf0380616eb5e, type: 3}
   - {fileID: 8300000, guid: e847f3a38f1c80c48bc5870b9531a375, type: 3}
   - {fileID: 8300000, guid: fd8d73c47f374f14f8b3745bc1f88d73, type: 3}
   - {fileID: 8300000, guid: 35ec8d6b682e121478c91fcede756df2, type: 3}
+  - {fileID: 8300000, guid: 0745a0d17c55a964f8515434f5ccedeb, type: 3}
+  - {fileID: 8300000, guid: fcff79a2f03ccac4cb0f3bbf076f2c03, type: 3}
+  - {fileID: 8300000, guid: fcff79a2f03ccac4cb0f3bbf076f2c03, type: 3}
+  - {fileID: 8300000, guid: f360869e1e74f7e41b68319f326344d3, type: 3}
   bgmVolume: 0
   sfxClip:
   - {fileID: 8300000, guid: ee8244fd830039e42aeec47962ba4051, type: 3}
@@ -783,7 +786,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6e84e6ce1f9f77345ab1578cd5f3f8d5, type: 3}
   - {fileID: 8300000, guid: 6f6b8172eba76454dae97034215837f8, type: 3}
   - {fileID: 8300000, guid: ef1a2b0bacae6b047ae5b7f10a0fd9ad, type: 3}
-  - {fileID: 8300000, guid: 58333f5101cc6404ab4482bdcdf8433c, type: 3}
+  - {fileID: 8300000, guid: 417c27795ffe5cd49ac8e71c82c4aca5, type: 3}
   - {fileID: 8300000, guid: 219b9efd11351d7429410f6bb4d9c35d, type: 3}
   - {fileID: 8300000, guid: 1413b810d792ba84d93b0d3ef32d86a3, type: 3}
   - {fileID: 8300000, guid: a9b2ca9c87e33d646846b1c87c0cebfd, type: 3}
@@ -794,6 +797,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 19dcd1d51f0577b46910579d638a2c0e, type: 3}
   - {fileID: 8300000, guid: b5bc421fbedd7cf4083ec7d31103dd6b, type: 3}
   - {fileID: 8300000, guid: 251d445625fafdf4f8e9d408334ac9a4, type: 3}
+  - {fileID: 8300000, guid: 0d87f94358c1b884da947ea5122a5486, type: 3}
+  - {fileID: 8300000, guid: f5a627c9e5aaffd44b9f9e9ff717a211, type: 3}
   sfxVolume: 0.3
   channels: 17
 --- !u!1 &117821016

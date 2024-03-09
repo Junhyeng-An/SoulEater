@@ -5,7 +5,7 @@
 
     public class Layzer : MonoBehaviour
     {
-        float Bullet_Damage = 10;
+        float Bullet_Damage = 80;
         // TODO: Bat Boss Laser Damage (Damage to be adjusted later)
         float Boss_Bullet_Damage = 100;
         // TODO: Night Boss Laser Damage (Damage to be adjusted later)

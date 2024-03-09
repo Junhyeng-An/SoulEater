@@ -11,7 +11,7 @@ public class Boss_Controller : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI pText_hp;
 
-    public float maxHealth = 100;  // 최대 체력
+    public float maxHealth = 1000;  // 최대 체력
     private float currentHealth;    // 현재 체력
 
     float damage_playerAttack;

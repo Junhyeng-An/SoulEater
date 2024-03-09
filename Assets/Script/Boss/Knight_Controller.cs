@@ -12,7 +12,7 @@ public class Knight_Controller : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI pText_hp;
 
-    float Boss_MaxHP = 100;
+    float Boss_MaxHP = 1500;
     float Boss_CurHP;
     public float Boss_Attack_Damage = 15;
     private GameObject player_T; // 플레이어의 위치를 저장할 변수
@@ -55,7 +55,7 @@ public class Knight_Controller : MonoBehaviour
     {
         player = GameObject.Find("GameManager");
         player_T = GameObject.FindGameObjectWithTag("Player");
-        if (Boss_CurHP > 70) //1페이즈
+        if (Boss_CurHP > 700) //1페이즈
         {
             // 플레이어와의 거리를 확인
             float distanceToPlayer = Vector3.Distance(transform.position, player_T.transform.position);
@@ -78,7 +78,7 @@ public class Knight_Controller : MonoBehaviour
                 }
             }
         }
-        if (Boss_CurHP <= 70 && Boss_CurHP > 10) //2페이즈
+        if (Boss_CurHP <= 700 && Boss_CurHP > 10) //2페이즈
         {
             if (isPaze == false)
             {

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Square_Bullet : MonoBehaviour
 {
-    float Bullet_Damage =10;
+    float Bullet_Damage =40;
     // TODO: Bat Falling Damage (Damage to be adjusted later)
     GameObject player;
     GameObject hit_area;

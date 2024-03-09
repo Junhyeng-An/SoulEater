@@ -87,9 +87,19 @@ public class Dungeon_Stage_Controller : MonoBehaviour
             // Check if there are no enemies in the scene
             if (NoEnemiesInScene())
             {      
-                if (controlledObjects != null)  
-                    DontDestroyOnLoad(controlledObjects);
-                
+                while(true)
+                {
+                    if (controlledObjects != null)
+                    {
+                        DontDestroyOnLoad(controlledObjects);
+                        break;
+                    }
+                    else
+                    {
+                        controlledObjects = GameObject.FindGameObjectWithTag("Controlled");
+                    }
+
+                }
                 LoadingScene.LoadScene(Scene_Name);
             }
             else

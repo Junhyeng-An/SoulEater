@@ -8,6 +8,7 @@ public class Start_Save : MonoBehaviour
     void Start()
     {
         DataManager.Instance.SaveData();
+        Debug.Log("save");
     }
 
     // Update is called once per frame

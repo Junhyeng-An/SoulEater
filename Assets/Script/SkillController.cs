@@ -126,14 +126,14 @@ public class SkillController : MonoBehaviour
         }
         if (player_skill == Skill_Active.Slash)
         {
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 Active();
             }
         }
         if (player_skill == Skill_Active.Smash)
         {
-            if (Input.GetKey(KeyCode.R))
+            if (Input.GetKey(KeyCode.Q))
             {
                 Active();
             }

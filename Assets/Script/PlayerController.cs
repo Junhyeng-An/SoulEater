@@ -32,7 +32,14 @@ public class PlayerController : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "Start_Page")
             isThrowing = true;
+        
+        CircleCollider2D circleCollider = GetComponent<CircleCollider2D>();
 
+        if (circleCollider != null)
+        {
+            // 반지름을 0.5로 설정
+            circleCollider.radius = 0.5f;
+        }
 
         if (SettingManager.Instance.Setting_Active == false || SettingManager.Instance.gameover == false) 
         {

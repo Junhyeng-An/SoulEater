@@ -49,7 +49,10 @@ public class Prologue_manager : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && currentIndex >= 7) { SceneManager.LoadScene("Main"); }
         if (currentIndex >= 5) { S_Image.SetActive(true); }
     }
-
+    public void Skip_Prologue()
+    {
+        SceneManager.LoadScene("Main");
+    }
     // 다음 텍스트를 보여주는 함수
     void ShowNextText()
     {
